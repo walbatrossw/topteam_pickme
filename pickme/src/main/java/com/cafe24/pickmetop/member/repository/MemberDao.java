@@ -25,7 +25,7 @@ public class MemberDao {
 	public String selectMemberGeneral(String memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
 	}
-	//api ����ȸ�� �α���
+	
 	public int insertMemberLinked(MemberLinkedVo memberLinkedVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberLinked", memberLinkedVo);
 	}
