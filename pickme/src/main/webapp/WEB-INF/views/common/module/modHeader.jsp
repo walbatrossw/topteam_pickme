@@ -18,12 +18,12 @@
     				</div>
     				<ul class="nav navbar-nav navbar-right">
     					<li><a href="/recruit">채용공고</a></li>
-      					<li><a href="/companyJobCoverletterInsert">자기소개서</a></li>
+      					<li><a href="/memberCoverletterList">자기소개서</a></li>
       					<li><a href="/resumeList">이력서</a></li>
       					<li><a href="/freeboardInsert">자유게시판</a></li>
       					<li><a href="/companyInfo">기업정보</a></li>
       					<li><a href="/memberGeneralInsert"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      					<li><a href="/memberLinkedInsert"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      					<li><a href="/memberGeneralLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     				</ul>
   				</div>
 			</nav>
