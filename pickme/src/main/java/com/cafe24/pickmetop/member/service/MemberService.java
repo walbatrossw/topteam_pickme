@@ -21,11 +21,15 @@ public class MemberService {
 		memberGeneralVo.setGeneralState(0);
 		 memberDao.insertMemberGeneral(memberGeneralVo);
 		
-		
 	}
+	public void selectmemberGeneral(String memberGeneralVo){
+		memberDao.selectMemberGeneral(memberGeneralVo);
+	}
+	
 	public void addmemberLinked(MemberLinkedVo memberLinkedVo){
 		
 		memberDao.insertMemberLinked(memberLinkedVo);
+		
 	}
 
 			

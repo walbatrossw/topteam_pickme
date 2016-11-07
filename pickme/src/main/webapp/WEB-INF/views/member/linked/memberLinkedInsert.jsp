@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE   
-<!doctype html>
+
+<!DOCTYPE>  
+
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
 	<title>로그인</title>
-
+<body>
 <style rel="stylesheet">
 body {
    font: 13px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -157,21 +158,40 @@ input {
    padding: 0;
 }
 </style>
-<script>
-	
-
-
+<script type="text/javascript">  
+$(document).ready(function(){
+    var $email = $('#email');
+    var $password = $('#generalPw');
+    var $signUpButton = $('.signUpButton');
+ 
+    $btSubmit.on('click', function(){
+        // 정규식 - 이메일 유효성 검사
+        var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+       
+     
+ 
+        if( !$email.val() ){
+            alert('이메일주소를 입력 해 주세요');
+            $email.focus();
+            return false;
+        } else if(!regEmail.test($email.val())) {
+            alert('이메일 주소가 유효하지 않습니다');
+            $email.focus();
+            return false;
+        }
+    });
+});
 
 </script>
 </head>
-<body>
+
 
 <form action="/memberLinkedInsert" class="signUp" id="signupForm"  method="post" >
    <div class="container">
    
    <h1 class="signUpTitle">로그인</h1>
-   <input type="text" id="email" name="generalId"  class="signUpInput" placeholder="이메일" required>
-   <input type="password" id="password" name="generalPw"  class="signUpInput" placeholder="비밀번호" required>
+   <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="login" required>
+   <input type="password" id="generalPw" name="generalPw"  class="signUpInput" placeholder="비밀번호" value="welcom1" required>
   
     <input type="checkbox" id="remember" class="checkbox" checked>
     <label for="remember">자동 로그인</label>

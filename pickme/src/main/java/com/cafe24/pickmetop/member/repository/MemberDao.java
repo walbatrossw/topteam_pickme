@@ -22,7 +22,10 @@ public class MemberDao {
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
 	
 	}
-	//api ����ȸ�� �α���
+	public String selectMemberGeneral(String memberGeneralVo){
+		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
+	}
+	
 	public int insertMemberLinked(MemberLinkedVo memberLinkedVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberLinked", memberLinkedVo);
 	}

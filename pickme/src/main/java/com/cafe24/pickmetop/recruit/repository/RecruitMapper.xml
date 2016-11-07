@@ -2,7 +2,93 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
-
+	
+		<!-- 채용달력 종료일 select -->
+	<select id="selectscheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
+	SELECT 
+	
+		recruit_company_cd as recruitCompanyCd , 
+		company_cd as companyCd,
+		recruit_name as recruitName, 
+		recruit_begindate as recruitBegindate , 
+		recruit_enddate as recruitEnddate, 
+		recruit_regdate as recruitRegdate , 
+		recruit_register as recruitRegister, 
+		recruit_modidate as recruitModidate, 
+		recruit_modify as recruitModify,
+		'end' as 'end'
+	FROM tb_recruit_company
+	WHERE recruit_enddate= #{scheduleDate}
+	ORDER BY recruit_company_cd
+	</select>
+	
+	<!-- 채용달력 시작일 select -->
+	<select id="selectScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
+	SELECT 
+		recruit_company_cd as recruitCompanyCd , 
+		company_cd as companyCd,
+		recruit_name as recruitName, 
+		recruit_begindate as recruitBegindate , 
+		recruit_enddate as recruitEnddate, 
+		recruit_regdate as recruitRegdate , 
+		recruit_register as recruitRegister, 
+		recruit_modidate as recruitModidate, 
+		recruit_modify as recruitModify,
+		'begin' as 'begin'
+	FROM tb_recruit_company
+	WHERE recruit_begindate= #{scheduleDate}
+	ORDER BY recruit_company_cd
+	</select>
+	
+	<!--  tb_cletter_company_job의 총 열갯수 -->
+	<select id="getCountOfCoverletterJob" resultType="int">
+		 SELECT COUNT(c_cletter_article_cd) 
+		 FROM tb_cletter_company_job
+	</select>
+	
+	<!-- <insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
+	INSERT INTO tb_cletter_company_job
+	(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
+	VALUES (#{cCletterArticleCd},#{recruitJobCd},#{cletterArticle})
+	</insert> -->
+	
+	
+	<!-- 채용달력 종료일 select -->
+	<select id="selectscheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
+	SELECT 
+		recruit_company_cd as recruitCompanyCd , 
+		company_cd as companyCd,
+		recruit_name as recruitName, 
+		recruit_begindate as recruitBegindate , 
+		recruit_enddate as recruitEnddate, 
+		recruit_regdate as recruitRegdate , 
+		recruit_register as recruitRegister, 
+		recruit_modidate as recruitModidate, 
+		recruit_modify as recruitModify,
+		'end' as 'end'
+	FROM tb_recruit_company
+	WHERE recruit_enddate= #{scheduleDate}
+	ORDER BY recruit_company_cd
+	</select>
+	
+	<!-- 채용달력 시작일 select -->
+	<select id="selectScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
+	SELECT 
+		recruit_company_cd as recruitCompanyCd , 
+		company_cd as companyCd,
+		recruit_name as recruitName, 
+		recruit_begindate as recruitBegindate , 
+		recruit_enddate as recruitEnddate, 
+		recruit_regdate as recruitRegdate , 
+		recruit_register as recruitRegister, 
+		recruit_modidate as recruitModidate, 
+		recruit_modify as recruitModify,
+		'begin' as 'begin'
+	FROM tb_recruit_company
+	WHERE recruit_begindate= #{scheduleDate}
+	ORDER BY recruit_company_cd
+	</select>
+	
 	<!-- 임시기업등록 -->
 	<insert id="insertTemporaryCompany" parameterType="com.cafe24.pickmetop.recruit.model.Recruit">
 		INSERT INTO tb_company_info

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.company.model.CompanyInfoVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
@@ -27,6 +28,24 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//채용달력 종료일 select 
+	public List<Recruit> selectscheduleListByEndDate(String scheduleDate){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",scheduleDate);
+	}
+
+	//채용달력 시작일 select 
+	public List<Recruit> selectScheduleListByBeginDate(String scheduleDate){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectScheduleListByBeginDate",scheduleDate);
+	}
+	
+	//CoverletterJob의 총열갯수 
+	public int getCountOfCoverletterJob(){
+		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfCoverletterJob");
+	}
+	
+	public int insertCoverletterArticle(CoverletterCompanyJobVo cletterArticle){
+		return sqlSessionFactoryRecruit.insert(NS+".insertCoverletterArticle",cletterArticle);
+	}
 	public int insertTemporaryCompany(Recruit recruit){
 		return sqlSessionFactoryRecruit.insert(NS+".insertTemporaryCompany",recruit);
 	}
