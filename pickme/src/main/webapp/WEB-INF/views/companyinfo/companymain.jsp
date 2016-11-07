@@ -64,7 +64,7 @@
 				<li><a href="#"><img alt="확인서 신청 - 쉽고 빠른 확인서 발급을 도와 드립니다." src="/images/main/main_quick2.png"></a></li>
 				<li><a href="#"><img alt="발급현황 - 확인서 발급기업을 확인해보세요" src="/images/main/main_quick3.png"></a></li>
 				<li><a href="#"><img alt="가입확인 - 가입담당자를 확인해보세요" src="/images/main/main_quick4.png"></a></li>  
-			</ul>
+			</ul> 
 		</div>
 	</div>
 </body>
