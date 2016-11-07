@@ -31,8 +31,8 @@
 			<div class="section_cont">
 				<div class="visual">
 					<ul>
-						<li class="list1"><!-- 관리자가 비주얼 등록한 갯수만큼 그냥 루프 -->
-							<span class="img" style="z-index:2; opacity:1;"><img src="/img/company/companymain.png" alt="한강앞의 빌딩숲 사진" /></span><!-- 비주얼 이미지1 -->
+						<li class="list1">
+							<span class="img" style="z-index:2; opacity:1;"><img src="/img/company/companymain.png"/></span><!-- 비주얼 이미지1 -->
 						</li>
 					</ul>
 				</div>
@@ -40,31 +40,31 @@
 		</div>
 	</div>
 	<!-- 비주얼 이미지 end -->
-	<div class="sections2">
-		<div class="container">
-			<h1>기업 총 평점 TOP10</h1>
-			<div class="table-responsive">
-				<table class="table table-bordered">
-					<thead class="text-center">
-						<tr>
-							<th>순위</th>
-							<th>기업이름</th>
-							<th>기업홈페이지</th>
-							<th>기업 총 평점</th>
-						<tr>
-					</thead>
-					<tbody>
-						<c:forEach var="companyTotalRateList" items="${companyTotalRateList}" varStatus="i">
-							<tr>
-								<td>${i.count}</td>
-								<td>${companyTotalRateList.companyName }</td>
-								<td>${companyTotalRateList.companySite }</td>
-								<td>${companyTotalRateList.companyTotalRate }</td>
-							</tr>				
-						</c:forEach>
-					</tbody>
-				</table>	
+	<div class="container">
+		<div class="sections2">
+			<div class="toplist">
+				<ul id="list10">
+			    	<li class="bar"><h3>기업 평점 순위</h3></li>
+			     	<li id="list10_bg">
+					    <p id="listit1">순위</p>
+						<p id="listit2">기업이름</p>
+						<p id="listit3">기업 총 평점</p>
+				 	</li>
+				 	<c:forEach var="companyTotalRateList" items="${companyTotalRateList}" varStatus="i">
+					<li class="list10_list">
+					    <p class="list10_0">${i.count}</p>
+						<p class="list10_1"><a href="${companyTotalRateList.companySite }">${companyTotalRateList.companyName }</a></p>
+						<p class="list10_2">${companyTotalRateList.companyTotalRate * 1.0}</p>
+					</li>
+					</c:forEach>
+				</ul> 
 			</div>
+			<ul class="quick_service">
+				<li><a href="#"><img src="/img/company/companyreview.png" width="200px"><p>기업리뷰</p></a></li>
+				<li><a href="#"><img alt="확인서 신청 - 쉽고 빠른 확인서 발급을 도와 드립니다." src="/images/main/main_quick2.png"></a></li>
+				<li><a href="#"><img alt="발급현황 - 확인서 발급기업을 확인해보세요" src="/images/main/main_quick3.png"></a></li>
+				<li><a href="#"><img alt="가입확인 - 가입담당자를 확인해보세요" src="/images/main/main_quick4.png"></a></li>  
+			</ul>
 		</div>
 	</div>
 </body>
