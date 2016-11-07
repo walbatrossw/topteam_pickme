@@ -42,18 +42,24 @@ body {
 .sections .section_cont .visual ul li.list1 .txt	{top:260px; right:14px;}
 .sections .section_cont .visual ul li.list2 .txt	{top:260px; right:95px;}
 .sections .section_cont .visual ul li.list3 .txt	{top:260px; right:109px;}
-
-.toplist{
-	width: 500px;
+.quick a{
+	font-size: 1.5em;
+	font-weight:bold;
+	text-align: center;
 }
-
+.quick a:hover{
+	text-decoration: none;
+}
+.toplist{
+	padding-top: 30px;
+	width: 350px;
+}
 .toplist li{
 	float:left;
 	display:inline;
 	margin:0;
 	padding:0;
 }
-
 /*list 100*/
 #list10 {
 	float:left;
@@ -61,7 +67,6 @@ body {
 	padding: 0px;
 	padding-top: 10px;
 }
-
 .list10_list {
 	float:left;
 	width:350px;
@@ -70,7 +75,6 @@ body {
 	overflow:hidden;
 	white-space:nowrap;
 }
-
 #listit1 {
 	float:left;
 	width:55px;
@@ -79,7 +83,6 @@ body {
 	padding-top:10px;
 	text-align: center;
 }
-
 #listit2 {
 	float:left;
 	width:160px;
@@ -88,7 +91,6 @@ body {
 	padding-top:10px;
 	text-align: center;
 }
-
 #listit3 {
 	float:left;
 	width:80px;
@@ -96,7 +98,6 @@ body {
 	font-weight:bold;
 	padding-top:10px;
 }
-
 .list10_0 {
 	float:left;
 	width:55px;
@@ -105,7 +106,6 @@ body {
 	text-align:center;
 	padding:2px 0 0 0;
 }
-
 .list10_1 {
 	float:left;
 	width:160px;
@@ -116,7 +116,6 @@ body {
 	overflow:hidden; 
 	white-space:nowrap;
 }
-
 .list10_2 {
 	float:left;
 	width:70px;
@@ -147,6 +146,10 @@ body {
 .companyReviewList{
 	background-color: rgba(213,213,213,0.5);
 	padding: 30px 40px 30px 40px;
+}
+.companyReviewList .col-xs-3{
+	padding-right: 5px;
+	padding-left: 12px;
 }
 .review{
 	border-radius: 10px;

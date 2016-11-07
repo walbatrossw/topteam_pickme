@@ -31,12 +31,15 @@
 		<div class="companyReviewList">
 			<div class="row">
 				<div class="col-xs-3">
-					 <select class="form-control" id="jobTopIndex" name="jobTopIndexCd">
-					 	<option value="">전체</option>
+					 <select class="form-control" name="jobTopIndexCd">
+					 	<option value="">직무분류</option>
 					 	<c:forEach var="jobTopIndexList" items="${jobTopIndexList}" >
 					 		<option value="${jobTopIndexList.jobTopIndexCd }">${jobTopIndexList.jobTopIndexName }</option>
 					 	</c:forEach>
 					 </select>
+				</div>
+				<div class="col-xs-3">
+					<input type="text" class="form-control" name="searchName" placeholder="기업명">
 				</div>
 			</div>
 			<c:forEach var="reviewListAllow" items="${reviewListAllow}">
