@@ -1,9 +1,20 @@
 package com.cafe24.pickmetop.coverletter.model;
 
+import java.util.List;
+
 public class CoverletterCompanyJobVo {
 	String cCletterArticleCd;
 	String recruitJobCd;
 	String cletterArticle;
+	
+	List<CoverletterCompanyJobVo> coverletterList;
+	
+	public List<CoverletterCompanyJobVo> getCoverletterList() {
+		return coverletterList;
+	}
+	public void setCoverletterList(List<CoverletterCompanyJobVo> coverletterList) {
+		this.coverletterList = coverletterList;
+	}
 	public String getcCletterArticleCd() {
 		return cCletterArticleCd;
 	}
@@ -22,11 +33,6 @@ public class CoverletterCompanyJobVo {
 	public void setCletterArticle(String cletterArticle) {
 		this.cletterArticle = cletterArticle;
 	}
-	@Override
-	public String toString() {
-		return "CoverletterCompanyJobVo [cCletterArticleCd=" + cCletterArticleCd + ", recruitJobCd=" + recruitJobCd
-				+ ", cletterArticle=" + cletterArticle + "]";
-	}
 	
-	
+
 }

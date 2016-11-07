@@ -1,7 +1,7 @@
 package com.cafe24.pickmetop.recruit.controller;
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.service.RecruitService;
@@ -28,7 +29,20 @@ public class RecruitController {
 	Commons commons;
 	
 	/* 채용 삭제*/
-	/* 채용 리스트 */
+	/* 채용 리스트               {} : 배열요청. */
+	@RequestMapping(value="/diary")
+	public String diary(Model model,
+							@RequestParam(value="ddayYear", defaultValue="0") int ddayYear,
+							@RequestParam(value="ddayMonth", defaultValue="0") int ddayMonth,
+							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption){
+		logger.info("diary");
+		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption);
+		model.addAttribute("oneDayList",map.get("oneDayList"));
+		model.addAttribute("ddayYear",map.get("ddayYear"));
+		model.addAttribute("ddayMonth",map.get("ddayMonth"));
+		model.addAttribute("today",map.get("today"));
+		return "/recruit/company/companyRecruitList";
+	}
 	
 	/* 채용 입력 처리 */
 	@RequestMapping(value = "/recruitInsert", method = RequestMethod.POST)
@@ -52,7 +66,6 @@ public class RecruitController {
 			}
 				recruitService.insertRecruitCompany(recruit,session);
 				recruitService.insertRecruitCompanyJob(recruit);	
-				
 			return "index";
 		//파일타입이 이미지가 아닐경우
 		}else{

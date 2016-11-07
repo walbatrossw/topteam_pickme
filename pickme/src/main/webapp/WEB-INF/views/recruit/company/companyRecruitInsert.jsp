@@ -105,6 +105,18 @@ $(document).ready(function(){
 						'<option value="4년대졸">4년대졸</option>'+
 					'</select>'+
 				'</div>'+
+		 		'<div id="coverletter" class="form-group">'+
+		 			'<label>자기소개서 항목</label>'+
+		 			'<textarea class="form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
+		 		'</div>'+
+			 	'<hr>'+
+		 		'<div class="fieldCoverletter></div>'+
+		 		'<hr>'+
+		 		'<div class="form-group">'+
+			 		'<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">'+
+			 		'<input type="button" class="coverletterDelBtn btn btn-default" value="항목삭제">'+
+		 		'</div>'+
+	 		'<hr>'+
 			'</div>'
 	$('#jobAddBtn').click(function(){
 		var flag = false;
@@ -126,9 +138,24 @@ $(document).ready(function(){
 	});
 	
 	/***********  직무 삭제 버튼***********/ 
-		$('#jobRemoveBtn').click(function(){
-			 $('#job1').last().remove();
-		});
+	$('#jobRemoveBtn').click(function(){
+		 $('#job1').last().remove();
+	});
+	
+	/*********** 자기소개서 항목 ***********/ 
+	var num = 0;
+	$('.coverletterAddBtn').on('click',function(){
+		console.log("ddfdf");
+		num++;
+		$('.fieldCoverletter').append(
+			'<textarea class="coverletter form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+		);
+	});
+	
+	$('.coverletterDelBtn').on('click', function(){
+		num--;
+		$('.coverletter').last().remove();
+	});
 		
 	/************ 등록버튼 클릭시 유효성검사 ************/
  	$('#recruitAdd').click(function(){	
@@ -181,29 +208,34 @@ $(document).ready(function(){
 			class="form-horizontal" method="post" enctype="multipart/form-data">
 			<h1>채용입력</h1>
 			<div class="form-group" id="the-basics">
-				채용기업<input class="typeahead" type="text" class="form-control"
+				<label>채용기업</label>
+				<input class="typeahead" type="text" class="form-control"
 					name="CompanyName" id="CompanyName" placeholder="기업명을 입력하세요"
 					value="${recruit.companyName}"> <span style="color: gray">*
 					검색내에 없는 기업일시 임시등록됩니다.</span>
 			</div>
 			<div class="form-group">
-				채용공고명<input type="text" name="recruitName" id="recruitName"
+				<label>채용공고명</label>
+				<input type="text" name="recruitName" id="recruitName"
 					class="form-control" value="${recruit.recruitName}">
 			</div>
 
 			<div class="form-group">
-				채용시작일<input type="date" name="recruitBegindate"
+				<label>채용시작일</label>
+				<input type="date" name="recruitBegindate"
 					id="recruitBegindate" class="form-control"
 					value="${recruit.recruitBegindate}">
 			</div>
 
 			<div class="form-group">
-				채용마감일<input type="date" name="recruitEnddate" id="recruitEnddate"
+				<label>채용마감일</label>
+				<input type="date" name="recruitEnddate" id="recruitEnddate"
 					class="form-control" value="${recruit.recruitEnddate}">
 			</div>
 
 			<div class="form-group">
-				공고문(사진파일1장) <input type="file" name="recruitJobFile"
+				<label>공고문(사진파일1장)</label>
+				 <input type="file" name="recruitJobFile"
 					id="recruitJobFile"> <span style="color: red">${errorMsg}</span>
 			</div>
 
@@ -212,7 +244,8 @@ $(document).ready(function(){
 			<h1>직무별 상세입력</h1>
 			<div id="job">
 				<div class="form-group">
-					직무선택 : <select name="jobTopIndexCd" class="jobTopIndexCd">
+					<label>직무선택 </label> 
+					<select name="jobTopIndexCd" class="jobTopIndexCd">
 						<option value="">대분류</option>
 						<c:forEach var="jobTopIndex" items="${jobTopIndex}">
 							<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>
@@ -223,7 +256,8 @@ $(document).ready(function(){
 				</div>
 
 				<div class="form-group">
-					채용형태(선택) <select name="recruitJobWorkstatus"
+					<label>채용형태(선택)</label> 
+					<select name="recruitJobWorkstatus"
 						class="recruitJobWorkstatus">
 						<option value="신입">신입</option>
 						<option value="경력">경력</option>
@@ -232,14 +266,15 @@ $(document).ready(function(){
 					</select>
 				</div>
 				<div class="form-group">
-					채용상세직무
+					<label>채용상세직무</label>
 					<%-- 리스트로 들어가니까 value="${recruit.recruitEnddate}"를 하면 [ㅇㄹㅇ]이런 형식으로 들어간당 --%>
 					<input type="text" name="recruitJobJobdetail"
 						class="recruitJobJobdetail">
 				</div>
 
 				<div class="form-group">
-					학력 <select name="recruitJobEducation"
+					<label>학력 </label>
+					<select name="recruitJobEducation"
 						class="recruitJobEducation form-control">
 						<option value="학력무관">학력무관</option>
 						<option value="고졸">고졸</option>
@@ -247,6 +282,16 @@ $(document).ready(function(){
 						<option value="4년대졸">4년대졸</option>
 					</select>
 				</div>
+		 		<div id="coverletter" class="form-group">
+		 			<label>자기소개서 항목</label>
+		 			<textarea class="form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
+		 		</div>
+		 		<div class="fieldCoverletter"></div>
+		 		<div class="form-group">
+			 		<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">
+			 		<input type="button" class="coverletterDelBtn btn btn-defualt" value="항목삭제">
+		 		</div>
+		 		<hr>
 			</div>
 
 			<div id="jobDetail"></div>

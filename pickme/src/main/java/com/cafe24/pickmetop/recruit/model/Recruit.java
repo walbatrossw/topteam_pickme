@@ -16,6 +16,15 @@ public class Recruit {
 	List<String> recruitJobWorkstatus;
 	List<String> recruitJobJobdetail;
 	List<String> recruitJobEducation;
+	List<String> cCletterArticle;
+	
+	
+	public List<String> getcCletterArticle() {
+		return cCletterArticle;
+	}
+	public void setcCletterArticle(List<String> cCletterArticle) {
+		this.cCletterArticle = cCletterArticle;
+	}
 	public String getCompanyName() {
 		return CompanyName;
 	}
