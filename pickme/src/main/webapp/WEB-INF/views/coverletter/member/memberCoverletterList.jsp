@@ -23,6 +23,7 @@
 			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterArticleInsert" role="button">직접 작성하러가기</a>
 		</div>
 		<div>
+			<h3>내가 작성한 자기소개서</h3>
 			<table class="table table-striped">
 				<tr>
 					<th>번호</th>
@@ -48,5 +49,4 @@
 		</div>
 	</div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

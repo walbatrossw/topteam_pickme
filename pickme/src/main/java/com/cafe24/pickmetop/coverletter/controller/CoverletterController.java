@@ -16,7 +16,7 @@ public class CoverletterController {
 	@Autowired
 	private CoverletterService coverletterService;
 	
-	// 01 회원이 작성한 자기소개서 리스트
+	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	@RequestMapping(value="/memberCoverletterList", method = RequestMethod.GET)
 	public String memberCoverletterList(Model model){
 		model.addAttribute("memberCoverletterList", coverletterService.getMemberCoverletterList());
@@ -24,5 +24,13 @@ public class CoverletterController {
 		return "/coverletter/member/memberCoverletterList";
 	}
 	
+	// 02 기업채용 공고 리스트(자기소개서 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
 	
+	// 03 자기소개서 입력화면(채용공고리스트 검색을 기반으로 화면구성)
+	
+	// 04 자기소개서 입력화면(기본자소서 화면 구성)
+	
+	// 05 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
+	
+	// 06 자기소개서 삭제처리(리스트에서 바로 삭제처리)
 }

@@ -33,19 +33,21 @@ public class ResumeController {
 	@Autowired
 	private ResumeService resumeService;
 	
-	//01 이력서 입력화면
+	//01 이력서 리스트(회원이 작성한 이력서 리스트)
+	@RequestMapping(value="/resumeList", method = RequestMethod.GET)
+	public String resumeList(Model model){
+		model.addAttribute("resumeList", resumeService.getResumeList());
+		Logger.info("이력서 리스트 : {}", model.toString());
+		return "/resume/resumeList";
+	}
+	
+	//02 이력서 입력화면(이력서 입력폼)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.GET)
 	public String resumeInsert(){
 		return "/resume/resumeInsert";
 	}
-	/*//02 이력서 입력처리
-	@RequestMapping(value="/resumeInsert", method = RequestMethod.POST)
-	public String resumeInsert(ResumeVo resume){
-		resumeService.addResume(resume);
-		Logger.info(resume.toString());
-		return "/resume/resumeInsert";
-	}*/
-	//02 이력서 입력처리
+	
+	//02 이력서 입력처리(이력서 입력처리후 리스트로 이동)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.POST)
 	public String resumeInsert(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, ResumeUniversityVo resumeUniversityVo, 
 			ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, 
@@ -65,18 +67,11 @@ public class ResumeController {
 		Logger.info("기타,포트폴리오 입력 : {}", resumeEtcVo.toString());
 		resumeService.addResume(resumeVo, resumePersonalVo, resumeHighschoolVo, resumeUniversityVo, resumeFamilyVo, resumeMilitaryserviceVo, 
 				resumeCertificateVo, resumeCareerVo, resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo);
-		return "/resume/resumeInsert";
-	}
-	
-	//03 이력서 리스트
-	@RequestMapping(value="/resumeList", method = RequestMethod.GET)
-	public String resumeList(Model model){
-		model.addAttribute("resumeList", resumeService.getResumeList());
-		Logger.info("이력서 리스트 : {}", model.toString());
 		return "/resume/resumeList";
 	}
 	
-	//04 이력서 상세보기
+	
+	//04 이력서 상세보기 (이력서 리스트에서 이력서 이름 클릭시 상세보기 화면으로 이동)
 	@RequestMapping(value="/resumeDetail", method = RequestMethod.GET)
 	public String resumeDetail(Model model, @RequestParam(value="resumeCd") String resumeCd){
 		model.addAttribute("resumeDetail", resumeService.getResumeDetail(resumeCd));
@@ -86,12 +81,13 @@ public class ResumeController {
 	}
 	
 	
-	//05 이력서 수정처리
+	//05 이력서 수정처리(이력서 리스트에서 수정 버튼 클릭 후 수정화면으로 이동)
 	//@RequestMapping(value="/resumeUpdate", method = RequestMethod.POST)
-	//06 이력서 삭제
+	
+	//06 이력서 삭제(이력서 리스트에서 바로 삭제처리)
 	//@RequestMapping(value="/resumeDelete", method = RequestMethod.POST)
 	
-	//00 자격증 및 어학 검색페이지
+	//00 자격증 및 어학 검색페이지(이력서 입력폼에서 팝업을 통해 검색창을 띄워주고, 검색값을 입력폼에 자동입력 할 수 있게 처리)
 	@RequestMapping(value="/resumeCertilangIndex", method = RequestMethod.GET)
 	public String resumeCertilangIndex(){
 		return "/resume/resumeCertilangIndex";
