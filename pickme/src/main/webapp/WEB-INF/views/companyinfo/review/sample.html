@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--suppress CssUnusedSymbol, JSUnresolvedLibraryURL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Krajee JQuery Plugins - &copy; Kartik</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/star-rating.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="../css/theme-krajee-fa.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="../css/theme-krajee-svg.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="../css/theme-krajee-uni.css" media="all" type="text/css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../js/star-rating.js" type="text/javascript"></script>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h2>Bootstrap Star Rating Examples
+            <small>&copy; Kartik Visweswaran, Krajee.com</small>
+        </h2>
+    </div>
+    <form>
+        <div class="page-header">
+            <h3>SVG LTR Star</h3>
+        </div>
+        <input type="text" class="kv-svg rating-loading" value="3.75" data-size="xl" title="">
+        <br>
+        <input type="text" class="kv-svg rating-loading" value="2.5" data-size="lg" title="">
+        <br>
+        <input type="text" class="kv-svg rating-loading" value="1.75" data-size="md" title="">
+        <br>
+        <input type="text" class="kv-svg rating-loading" value="4" data-size="sm" title="">
+        <br>
+        <input type="text" class="kv-svg rating-loading" value="2" data-size="xs" title="">
+        <br>
+    </form>
+</div>
+</body>
+<script>
+    $(document).on('ready', function () {
+  
+        $('.kv-svg').rating({
+            theme: 'krajee-svg',
+            filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
+            emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
+        });
+  
+
+        $('.kv-svg').on(
+                'change', function () {
+                    console.log('Rating selected: ' + $(this).val());
+                });
+    });
+</script>
+</html>
+
+

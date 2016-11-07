@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.pickmetop.company.repository.CompanyMapper">
+
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									기업 메인 페이지 관련
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->
+	<!-- 기업 총평점 TOP10 -->
+	<select id="selectCompanyByTotalRate" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
+		SELECT 
+			company_name as companyName,
+			company_site as companySite,
+			IFNULL(company_total_rate/(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd=info.company_cd AND review.review_allow=1),0) as companyTotalRate
+		FROM tb_company_info info
+		ORDER BY
+			companyTotalRate DESC
+		LIMIT 10
+	</select>
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									기업리뷰 관련
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->
+	<!-- 기업리뷰사용자 등록 -->
+	<insert id="insertCompanyReview" parameterType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
+		INSERT INTO tb_company_review(
+			company_cd,
+			login_id,
+			job_topindex_cd,
+			review_workyear,
+			review_rate,
+			review_comment,
+			review_strength,
+			review_weak,
+			review_wish,
+			review_promotion,
+			review_welfare,
+			review_culture,
+			review_balance,
+			review_ceorate,
+			review_ceosupport,
+			review_regdate,
+			review_modidate
+		) VALUES (
+			#{companyCd},
+			#{loginId},
+			#{jobTopIndexCd},
+			#{reviewWorkYear},
+			#{reviewRate},
+			#{reviewComment},
+			#{reviewStrength},
+			#{reviewWeak},
+			#{reviewWish},
+			#{reviewPromotion},
+			#{reviewWelfare},
+			#{reviewCulture},
+			#{reviewBalance},
+			#{reviewCeorate},
+			#{reviewCeosupport},
+			now(),
+			now()	
+		)
+	</insert>
+	<!-- 기업이름으로 기업코드검색 -->
+	<select id="selectCompanyInfoByCompanyCd" resultType="String" parameterType="String">
+		SELECT
+			company_cd
+		FROM
+		 	tb_company_info
+		 WHERE
+		 	company_name = #{companyName}
+	</select>
+	<!-- 기업정보리스트 -->
+	<select id="selectCompanyInfoAllList" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
+		SELECT
+			company_name as companyName
+		FROM
+			tb_company_info
+		ORDER BY
+			company_cd
+	</select>
+	
+	<!-- 직무 중분류 리스트 -->
+	<select id="selectJobTopIndexAllList" resultType="com.cafe24.pickmetop.admin.model.JobTopIndexVo">
+		SELECT
+			job_topindex_cd as jobTopIndexCd,
+			job_topindex_name as jobTopIndexName
+		FROM
+			tb_job_topindex
+		ORDER BY
+			job_topindex_cd
+	</select>
+	
+	<!-- 기업리뷰 비승인 리스트 -->
+	<select id="selectCompanyReviewListByReviewUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
+		SELECT
+			company_review_cd as companyReviewCd,
+			company_cd as companyCd,
+			login_id as loginId,
+			review_comment as reviewComment,
+			review_regdate as reviewRegDate
+		FROM
+			tb_company_review
+		WHERE
+			review_allow = 0
+		ORDER BY
+			review_regdate DESC
+		LIMIT #{startRow}, #{linePerPage}
+	</select>
+	
+	<!-- 기업리뷰 승인 리스트 -->
+	<select id="selectCompanyReviewListByReviewAllow" parameterType="java.util.Map" resultType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
+		SELECT
+			review.company_review_cd as companyReviewCd,
+			(SELECT company_name FROM tb_company_info WHERE company_cd = review.company_cd) as companyName,
+			(SELECT job_topindex_name FROM tb_job_topindex WHERE job_topindex_cd=review.job_topindex_cd) as jobTopIndexName,
+			review.review_comment as reviewComment,
+			review.review_strength as reviewStrength,
+			review.review_weak as reviewWeak,
+			DATE_FORMAT(review.review_regdate, '%Y-%m-%d %H:%i') as reviewRegDate
+		FROM
+			tb_company_review review
+		WHERE
+			review.review_allow = 1
+		<if test='jobTopIndexCd != null and jobTopIndexCd != ""'>
+			AND review.job_topindex_cd = #{jobTopIndexCd}
+		</if>
+		ORDER BY
+			review.review_regdate DESC
+        LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}
+	</select>
+	
+	<!-- 기업리뷰 리스트 수 -->
+	<!-- <select id="selectAllowTotalCount" parameterType="Integer" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM 
+        	tb_company_review
+        WHERE
+        	review_allow = #{reviewAllow}
+    </select> -->
+    <select id="selectAllowTotalCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM 
+        	${tbName} 
+        WHERE
+        	${tbColumn} = #{allow}
+    </select>
+    
+    <!-- 기업리뷰 분류 리스트 수 -->
+	<select id="selectAllowSearchCount" parameterType="String" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM 
+        	tb_company_review
+        WHERE
+        	review_allow = 1
+        AND
+        	job_topindex_cd = #{jobTopIndexCd}	
+    </select>
+    
+	<!-- 기업리뷰 디테일 -->
+	<select id="selectCompanyListByReviewCd" parameterType="Integer" resultType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
+		SELECT
+			company_review_cd as companyReviewCd,
+			company_cd as companyCd,
+			login_id as loginId,
+			(SELECT general_nick FROM tb_member_general WHERE general_id=loginId)as generalNick,
+			(SELECT linked_nick FROM tb_member_linked WHERE linked_id=loginId)as linkedNick,
+			review_workyear as reviewWorkYear,
+			review_rate as reviewRate,
+			review_comment as reviewComment,
+			review_strength as reviewStrength,
+			review_weak as reviewWeak,
+			review_wish as reviewWish,
+			review_promotion as reviewPromotion,
+			review_welfare as reviewWelfare,
+			review_culture as reviewCulture,
+			review_balance as reviewBalance,
+			review_ceorate as reviewCeorate,
+			review_ceosupport as reviewCeosupport,
+			review_regdate as reviewRegDate
+		FROM 
+			  tb_company_review review
+		WHERE
+			company_review_cd = #{companyReviewCd}	
+	</select>
+	
+	<!-- 기업리뷰 승인처리 update -->
+	<update id="updateCompanyReviewAllow" parameterType="java.util.Map">
+		UPDATE
+			tb_company_review
+		SET
+			review_allow = 1,
+			review_allowdate = now(),
+			review_grantor = #{loginId}
+		WHERE
+			company_review_cd = #{companyReviewCd}
+	</update>
+	
+	<update id="updateCompanyInfoTotalRate" parameterType="java.util.Map">
+		UPDATE
+			tb_company_info 
+		SET
+			company_total_rate = (SELECT a.total 
+								FROM (SELECT (c.company_total_rate + r.review_rate) as total from tb_company_info c, tb_company_review r
+							      where r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
+										
+		WHERE company_cd = (SELECT company_cd FROM tb_company_review  WHERE company_review_cd = #{companyReviewCd})
+	</update>
+	
+	<!-- 기업리뷰 삭제처리 -->
+	<delete id="deleteCompanyReview" parameterType="Integer">
+		DELETE FROM
+			tb_company_review
+		WHERE
+			company_review_cd = #{companyReviewCd}
+	</delete>
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									기업리뷰 관련 끝
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
+-->
+
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									면접후기 관련 시작
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
+-->
+<!-- 면접후기 비승인 리스트 -->
+	<select id="selectCompanyInterviewListByInterviewUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
+		SELECT
+			interview_cd as interviewCd,
+			company_cd as companyCd,
+			login_id as loginId,
+			interview_summary as interviewSummary,
+			interview_regdate as interviewRegdate
+		FROM
+			tb_company_interview
+		WHERE
+			interview_allow = 0
+		ORDER BY
+			interview_regdate DESC
+		LIMIT #{startRow}, #{linePerPage}
+	</select>	
+</mapper>

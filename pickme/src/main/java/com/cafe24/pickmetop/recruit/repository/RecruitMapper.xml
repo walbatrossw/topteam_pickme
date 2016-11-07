@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
+
+	<!-- 임시기업등록 -->
+	<insert id="insertTemporaryCompany" parameterType="com.cafe24.pickmetop.recruit.model.Recruit">
+		INSERT INTO tb_company_info
+			(company_cd, company_name)
+		VALUES (#{CompanyCd},#{CompanyName})
+	 </insert>
+	 
+	<!-- default 기업코드 열 갯수 -->
+	<select id="selectDefaultCd" resultType="int">
+		SELECT count(company_cd) 
+		FROM tb_company_info
+		where company_cd like '%de%'
+	</select>
+
+
+	<select id="getJobTopIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobTopIndexVo">
+		SELECT job_topindex_cd as jobTopIndexCd, job_topindex_name as jobTopIndexName
+		FROM tb_job_topindex
+	</select>
+
+	<!-- JobMidIndex 검색 -->
+	<select id="getJobMidIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobMidIndexVo">
+		 SELECT job_midindex_cd as jobMidindexCd ,job_topindex_cd as jobTopIndexCd, job_midindex_name as jobMidindexName 
+		 FROM tb_job_midindex
+	</select>
+	
+	
+   	<!--  RecruitCompanyJob의 총 열갯수 -->
+	<select id="getCountOfRecruitJob" resultType="int">
+		 SELECT COUNT(recruit_job_education) 
+		 FROM tb_recruit_company_job
+	</select>
+
+   	<!--  RecruitCompany의 총 열갯수 -->
+	<select id="getCountOfRecruit" resultType="int">
+		 SELECT COUNT(recruit_modidate) 
+		 FROM tb_recruit_company
+	</select>
+
+	<!-- 기업명으로 기업코드 찾기 -->
+	<select id="getCompanyCd" resultType="java.lang.String">
+		SELECT company_cd as companyCd
+		FROM tb_company_info 
+		WHERE company_name = #{companyName}
+	</select>
+	
+	<!-- 전체 기업명 검색 -->
+	<select id="selectCompany" resultType="java.lang.String"> 
+		SELECT company_name
+		FROM tb_company_info
+	</select>
+	
+	<!-- RecruitCompany 입력 -->
+	<insert id="insertRecruit" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompany">
+		INSERT INTO tb_recruit_company
+			(recruit_company_cd, company_cd, recruit_name, recruit_begindate, recruit_enddate, recruit_regdate, recruit_register, recruit_modidate, recruit_modify)
+		VALUES 
+			(#{recruitCompanyCd}, #{companyCd}, #{recruitName}, #{recruitBegindate}, #{recruitEnddate}, NOW(), #{recruitRegister}, NOW(),#{recruitModify})
+	</insert>
+	 
+	 <!-- RecruitCompanyJob 입력 -->
+	 <insert id="insertRecruitJob" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo">
+		INSERT INTO tb_recruit_company_job
+			(recruit_job_cd, recruit_company_cd, company_cd, job_midindex_cd, recruit_job_workstatus, recruit_job_jobdetail, recruit_job_education, recruit_job_file)
+		VALUES 
+			(#{recruitJobCd}, #{recruitCompanyCd},#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
+	 </insert>
+
+</mapper>

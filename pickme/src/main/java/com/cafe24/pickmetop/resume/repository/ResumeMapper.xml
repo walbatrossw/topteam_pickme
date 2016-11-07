@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cafe24.pickmetop.resume.repository.ResumeMapper">
+	<!-- 01_00 이력서 등록 -->
+	<insert id="insertResume" parameterType="com.cafe24.pickmetop.resume.model.ResumeVo">
+		INSERT INTO tb_resume(
+			resume_cd,
+			login_id,
+			resume_name,
+			resume_regdate,
+			resume_modidate
+		)VALUES(
+			(SELECT CONCAT('resume_cd_', LPAD(IFNULL(MAX(substring(resume.resume_cd, 11)),0)+1,4,'0')) AS cdOrder FROM tb_resume resume ORDER BY cdOrder),
+			#{loginId},
+			#{resumeName},
+			now(),
+			now()
+		)		
+	</insert>
+	<!-- 01_01 개인신상 -->
+	<insert id="insertResumePersonal" parameterType="com.cafe24.pickmetop.resume.model.ResumePersonalVo">
+		INSERT INTO tb_resume_personal(
+			resume_cd,    
+			personal_korname,
+			personal_engname,
+			personal_birthdate,
+			personal_gender,
+			personal_phone,
+			personal_cellphone,
+			personal_email,
+			personal_sns,
+			personal_addr
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{personalKorname},
+			#{personalEngname},
+			#{personalBirthdate},
+			#{personalGender},
+			#{personalPhone},
+			#{personalCellphone},
+			#{personalEmail},
+			#{personalSns},
+			#{personalAddr}
+		)
+	</insert>
+	<!-- 01_02 고등학교 -->
+	<insert id="insertResumeHighschool" parameterType="com.cafe24.pickmetop.resume.model.ResumeHighschoolVo">
+		INSERT INTO tb_resume_highschool(
+			resume_cd,
+			highschool_name,
+			highschool_category,
+			highschool_begindate,
+			highschool_enddate
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{highschoolName},
+			#{highschoolCategory},
+			#{highschoolBegindate},
+			#{highschoolEnddate}
+		)
+	</insert>
+	<!-- 01_03 대학교 -->
+	<insert id="insertResumeUniversity" parameterType="com.cafe24.pickmetop.resume.model.ResumeUniversityVo">
+		INSERT INTO tb_resume_university(
+			resume_cd,
+			university_name,
+			university_category,
+			university_begindate,
+			university_enddate,
+			university_major,
+			university_dmajorminor,
+			university_dmajorminor_name,
+			university_credit
+		) VALUES 
+		<!-- <foreach collection="resumeUniversityVoList" item="item" separator=" , "> -->
+		(
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{universityName},
+			#{universityCategory},
+			#{universityBegindate},
+			#{universityEnddate},
+			#{universityMajor},
+			#{universityDmajorminor},
+			#{universityDmajorminorName},
+			#{universityCredit}
+		)
+		<!-- </foreach> -->
+	</insert>
+	<!-- 01_04 가족 -->
+	<insert id="insertResumeFamily" parameterType="com.cafe24.pickmetop.resume.model.ResumeFamilyVo">
+		INSERT INTO tb_resume_family(
+			resume_cd,
+			family_relation,
+			family_name,
+			family_birthdate,
+			family_education,
+			family_job,
+			family_cohabit
+		) VALUES 
+			<foreach collection="resumeFamilyVoList" item="item" separator=" , ">
+			(
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.familyRelation},
+			#{item.familyName},
+			#{item.familyBirthdate},
+			#{item.familyEducation},
+			#{item.familyJob},
+			#{item.familyCohabit}
+			)
+			</foreach>
+		
+	</insert>
+	<!-- 01_05 병역 -->
+	<insert id="insertResumeMilitaryservice" parameterType="com.cafe24.pickmetop.resume.model.ResumeMilitaryserviceVo">
+		INSERT INTO tb_resume_militaryservice(
+			resume_cd,
+			militaryservice_state,
+			militaryservice_group,
+			militaryservice_level,
+			militaryservice_branch,
+			militaryservice_begindate,
+			militaryservice_enddate
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{militaryserviceState},
+			#{militaryserviceGroup},
+			#{militaryserviceLevel},
+			#{militaryserviceBranch},
+			#{militaryserviceBegindate},
+			#{militaryserviceEnddate}
+		)
+	</insert>
+	<!-- 01_06 자격증 -->
+	<insert id="insertResumeCertificate" parameterType="com.cafe24.pickmetop.resume.model.ResumeCertificateVo">
+		INSERT INTO tb_resume_certificate(
+			resume_cd,
+			certificate_name,
+			certificate_host,
+			certificate_grade,
+			certificate_regnum,
+			certificate_begindate,
+			certificate_enddate
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{certificateName},
+			#{certificateHost},
+			#{certificateGrade},
+			#{certificateRegnum},
+			#{certificateBegindate},
+			#{certificateEnddate}
+		)
+	</insert>
+	<!-- 01_07 경력 -->
+	<insert id="insertResumeCareer" parameterType="com.cafe24.pickmetop.resume.model.ResumeCareerVo">
+		INSERT INTO tb_resume_career(
+			resume_cd,
+			career_company,
+			career_begindate,
+			career_enddate,
+			career_period,
+			career_resign,
+			career_level,
+			career_department,
+			career_task
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{careerCompany},
+			#{careerBegindate},
+			#{careerEnddate},
+			#{careerPeriod},
+			#{careerResign},
+			#{careerLevel},
+			#{careerDepartment},
+			#{careerTask}
+		)
+	</insert>
+	<!-- 01_08 어학 -->
+	<insert id="insertResumeLanguage" parameterType="com.cafe24.pickmetop.resume.model.ResumeLanguageVo">
+		INSERT INTO tb_resume_langauge(
+			resume_cd,
+			langauge_name,
+			language_level,
+			language_test,
+			language_grade,
+			language_host,
+			language_regnum,
+			language_begindate,
+			language_enddate
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{languageName},
+			#{languageLevel},
+			#{languageTest},
+			#{languageGrade},
+			#{languageHost},
+			#{languageRegnum},
+			#{languageBegindate},
+			#{languageEnddate}
+		)
+	</insert>
+	<!-- 01_09 수상경력 -->
+	<insert id="insertResumeAward" parameterType="com.cafe24.pickmetop.resume.model.ResumeAwardVo">
+		INSERT INTO tb_resume_award(
+			resume_cd,
+			award_name,
+			award_content,
+			award_host,
+			award_date
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{awardName},
+			#{awardContent},
+			#{awardHost},
+			#{awardDate}
+		)
+	</insert>
+	<!-- 01_10 국내외연수 -->
+	<insert id="insertResumeTraining" parameterType="com.cafe24.pickmetop.resume.model.ResumeTrainingVo">
+		INSERT INTO tb_resume_training(
+			resume_cd,
+			training_country,
+			training_academy,
+			training_begindate,
+			training_enddate,
+			training_content
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{trainingCountry},
+			#{trainingAcademy},
+			#{trainingBegindate},
+			#{trainingEnddate},
+			#{trainingContent}
+		)
+	</insert>
+	<!-- 01_11 동아리 -->
+	<insert id="insertResumeClub" parameterType="com.cafe24.pickmetop.resume.model.ResumeClubVo">
+		INSERT INTO tb_resume_club(
+			resume_cd,
+			club_host,
+			club_name,
+			club_begindate,
+			club_enddate,
+			club_content
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{clubHost},
+			#{clubName},
+			#{clubBegindate},
+			#{clubEnddate},
+			#{clubContent}
+		)
+	</insert>
+	<!-- 01_12 기타 -->
+	<insert id="insertResumeEtc" parameterType="com.cafe24.pickmetop.resume.model.ResumeEtcVo">
+		INSERT INTO tb_resume_etc(
+			resume_cd,
+			etc_title,
+			etc_content,
+			etc_begindate,
+			etc_enddate
+		) VALUES (
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{etcTitle},
+			#{etcContent},
+			#{etcBegindate},
+			#{etcEnddate}
+		)
+	</insert>
+	<select id="selectResumeList" resultType="com.cafe24.pickmetop.resume.model.ResumeVo">
+		SELECT
+			resume_cd as resumeCd,
+			login_id as loginId,
+			resume_name as resumeName,
+			resume_regdate as resumeRegdate,
+			resume_modidate as resumeModidate
+		FROM
+			tb_resume
+	</select>
+	<select id="selectResumeDetailByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeVo">
+		SELECT 
+			p.resume_cd as resumeCd,    
+			p.personal_korname as personalKorname,
+			p.personal_engname as personalEngname,
+			p.personal_birthdate as personalBirthdate,
+			p.personal_gender as personalGender,
+			p.personal_phone as personalPhone,
+			p.personal_cellphone as personalCellphone,
+			p.personal_email as personalEmail,
+			p.personal_sns as personalSns,
+			p.personal_addr as personalAddr
+		FROM
+			tb_resume_personal p
+			<!-- tb_resume_highschool h,
+			tb_resume_university u,
+			tb_resume_militaryservice m,
+			tb_resume_certificate ce,
+			tb_resume_career ca,
+			tb_resume_langauge l,
+			tb_resume_award a,
+			tb_resume_training t,
+			tb_resume_club cl,
+			tb_resume_etc e -->
+		
+		WHERE
+			p.resume_cd = #{resumeCd}	
+	</select>
+</mapper>
