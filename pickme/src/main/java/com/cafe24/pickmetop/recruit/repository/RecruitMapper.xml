@@ -6,6 +6,7 @@
 		<!-- 채용달력 종료일 select -->
 	<select id="selectscheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
 	SELECT 
+	
 		recruit_company_cd as recruitCompanyCd , 
 		company_cd as companyCd,
 		recruit_name as recruitName, 
