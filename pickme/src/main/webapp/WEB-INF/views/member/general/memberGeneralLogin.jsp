@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html lang="kr"> 
+
+<!DOCTYPE>  
+
+<html lang="kr">
 	<head>
 	<meta charset="UTF-8">
-	<title>회 원 가입</title>
-
+	<title>로그인</title>
+<body>
 <style rel="stylesheet">
 body {
    font: 13px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -157,32 +159,26 @@ input {
 }
 </style>
 
-<script>
-$(document).ready(function(){
-   $('[data-toggle="tooltip"]').tooltip();
-});
-
-
-</script>
 </head>
 
-<body>
 
-<form action="/memberGeneralInsert" class="signUp" id="signupForm" method="post" >
-	<div class="container">
-	<div class="User">
-		<h1 class="signUpTitle">회 원 가 입</h1>
-		<input type="text" id="email" name="generalId"  class="signUpInput" placeholder="이메일" required>
-		<input type="password" id="password" name="generalPw"  class="signUpInput" placeholder="비밀번호" required>
- 		<input type="password" id="password" class="signUpInput" placeholder="비밀번호 재입력" required>
- 		<input type="text" id="name" name="generalNick"  class="signUpInput" placeholder="닉네임" required>
-   	 	  회원가입시<a href="/terms" data-toggle="tooltip" title="Hooray!">이용약관</a>에 동의하게 됩니다.
-	</div>
-	</div>			
-	<input type="submit" value="회원가입" class="signUpButton">
-	
-	<input type="image" class="signUpButton" value="회원가입" onclick="javascript:wondow.location='memberGeneralInsert'" src="/img/naver.jpg" width="100%" height="px" >
-    </form>
-    
+<form action="/memberGeneralLogin" class="signUp" id="signupForm"  method="post" >
+   <div class="container">
+   
+   <h1 class="signUpTitle">로그인</h1>
+   <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="login" required>
+   <input type="password" id="generalPw" name="generalPw"  class="signUpInput" placeholder="비밀번호" value="welcom1" required>
+  
+    <input type="checkbox" id="remember" class="checkbox" checked>
+    <label for="remember">자동 로그인</label>
+    </div>
+    <br></br>
+   <input type="submit" value="로그인" class="signUpButton">
+   <br>
+	<input type="submit" value="비밀번호찾기" class="signUpButton">
+	<br>
+   <input type="image" class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
+</form>
+
 </body>
 </html>

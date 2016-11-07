@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 import com.cafe24.pickmetop.member.repository.MemberDao;
@@ -36,15 +35,14 @@ public class MemberController {
 	
 		}		
 	//01_03  일반회원 로그인 처리
-		@RequestMapping(value="/memberLinkedInsert", method = RequestMethod.GET)
-	public String memberLinkedLogin(MemberLinkedVo memberLinkedVo){
-		memberService.addmemberLinked(memberLinkedVo);
+	@RequestMapping(value="/memberGeneralLogin")
+	public String memberGeneralLogin(){
+		return "/member/general/memberGeneralLogin";
+	}
+		@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
+	public String memberGeneralLoginn(String memberGeneralVo){
+		memberService.selectmemberGeneral(memberGeneralVo);
+		return "/index";
+	}
 			
-			
-		return "/member/linked/memberLinkedInsert";
-		}
-		
-		
-		
-	
-}	
+}

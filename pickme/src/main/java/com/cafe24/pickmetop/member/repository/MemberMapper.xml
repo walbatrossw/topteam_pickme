@@ -23,14 +23,27 @@
 			#{generalState}
 		) 	
 	</insert>
+	<!-- MemberGeneralVo 로그인 -->
+	<select id="selectMemberGeneral" resultType="String" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
+		SELECT 
+		general_id as generalId,
+		general_pw as generalPw
+		FROM
+		tb_member_general
+		WHERE
+		general_id = #{generalId} AND
+		general_pw = #{generalPw}
+		
+	</select>
+	
  <!-- MemberLinkedVo 로그인 -->
 	<insert id="insertMemberLinked" parameterType="com.cafe24.pickmetop.member.model.MemberLinkedVo">
-		INSERT INTO tb_member_general(
-			linkedId,
-			linkedNick,
-			linkedRegdate,
-			linkedLogdate,
-			linkedState,
+		INSERT INTO tb_member_linked(
+			linked_id,
+			linked_nick,
+			linked_regdate,
+			linked_logdate,
+			linked_state
 			
 		)VALUES(
 			#{linkedId},
