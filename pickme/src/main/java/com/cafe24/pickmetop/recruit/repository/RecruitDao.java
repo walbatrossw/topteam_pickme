@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.company.model.CompanyInfoVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
@@ -27,6 +28,14 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//CoverletterJobÀÇ ÃÑ¿­°¹¼ö 
+	public int getCountOfCoverletterJob(){
+		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfCoverletterJob");
+	}
+	
+	public int insertCoverletterArticle(CoverletterCompanyJobVo cletterArticle){
+		return sqlSessionFactoryRecruit.insert(NS+".insertCoverletterArticle",cletterArticle);
+	}
 	public int insertTemporaryCompany(Recruit recruit){
 		return sqlSessionFactoryRecruit.insert(NS+".insertTemporaryCompany",recruit);
 	}

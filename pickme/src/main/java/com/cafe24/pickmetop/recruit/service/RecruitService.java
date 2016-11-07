@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartRequest;
 
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
@@ -30,6 +31,8 @@ public class RecruitService {
 	String companyCd = "";
 	//final String imgDir = "D:\\git_pickme\\topteam_pickme\\pickme\\src\\main\\webapp\\recruitImgs";
 	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+
+	
 	//임시 기업명 입력
 	public void insertTemporaryCompany(Recruit recruit){
 		recruitDao.insertTemporaryCompany(recruit);
@@ -128,7 +131,17 @@ public class RecruitService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+			
+			//자기소개서항목입력 
+			//for(???){
+			CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
+			int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
+			numberOfCoverletter++;
+			String coverletterCd = "coverletterCd"+numberOfCoverletter;
+			cletterArticle.setRecruitJobCd(recruitJobCd);
+			cletterArticle.setcCletterArticleCd(coverletterCd);
+			recruitDao.insertCoverletterArticle(cletterArticle);
+			
 			logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	
 			recruitDao.insertRecruitJob(recruitCompanyJobVo);
 		}

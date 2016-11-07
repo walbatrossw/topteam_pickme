@@ -52,7 +52,6 @@ public class RecruitController {
 			}
 				recruitService.insertRecruitCompany(recruit,session);
 				recruitService.insertRecruitCompanyJob(recruit);	
-				
 			return "index";
 		//파일타입이 이미지가 아닐경우
 		}else{
