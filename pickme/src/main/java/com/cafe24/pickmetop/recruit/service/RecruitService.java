@@ -166,7 +166,7 @@ public class RecruitService {
 
 	
 	//companyRecruitJob입력
-	public void insertRecruitCompanyJob(Recruit recruit){
+	public void insertRecruitCompanyJob(Recruit recruit, CoverletterCompanyJobVo coverletterCompanyJobVo){
 
 		for(int i=0; i<recruit.getRecruitJobEducation().size(); i++){
 			
@@ -214,13 +214,16 @@ public class RecruitService {
 			}
 			
 			//자기소개서항목입력 
-			//for(???){
+			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",coverletterCompanyJobVo.getCoverletterList().size());
+			//for(???){    coverletterList의 길이만큼 돌려야하는데 이중포문 나와야할거같음 
 			CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 			int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
 			numberOfCoverletter++;
 			String coverletterCd = "coverletterCd"+numberOfCoverletter;
+			
 			cletterArticle.setRecruitJobCd(recruitJobCd);
-			cletterArticle.setcCletterArticleCd(coverletterCd);
+			/*cletterArticle.setcCletterArticleCd(coverletterCd);*/
+			
 			recruitDao.insertCoverletterArticle(cletterArticle);
 			
 			logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	

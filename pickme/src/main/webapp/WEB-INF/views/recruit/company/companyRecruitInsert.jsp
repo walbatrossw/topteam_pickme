@@ -11,7 +11,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.js"></script>
 <script>	 
 $(document).ready(function(){
-
+	var first = 0;
+	var second = 0;
 	/************* 기업검색 자동완성 *******************/ 
 	var states = new Bloodhound({
 		  datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -68,56 +69,7 @@ $(document).ready(function(){
 		</c:forEach>	
 	});
 	
-	/************ 직무추가 버튼 클릭  ************/
-	var jobDetail = 
-			'<div id="job1"><hr/>'+
-				'<div class="form-group">'+
-				'직무선택 : '+
-					'<select name="jobTopIndexCd" class="jobTopIndexCd" >'+
-						'<option value="">대분류</option>'+
-						'<c:forEach var ="jobTopIndex" items="${jobTopIndex}">'+
-							'<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>'+
-						'</c:forEach>'+
-					'</select>'+							
-					'<select name="jobMidIndexCd" class="jobMidIndexCd">'+
-					 	'<option value="">소분류</option>'+ 
-					'</select>'+
-				'</div>'+
-				'<div class="form-group">'+
-					'채용형태(선택)'+
-					'<select name="recruitJobWorkstatus" class="recruitJobWorkstatus">'+
-						'<option value="신입">신입</option>'+
-						'<option value="경력">경력</option>'+
-						'<option value="인턴">인턴</option>'+
-						'<option value="계약직">계약직</option>'+
-					'</select>'+
-				'</div>'+
-				'<div class="form-group">'+
-					'채용상세직무'+
-					'<input type="text" name="recruitJobJobdetail" class="recruitJobJobdetail form-control" >'+
-				'</div>'+
-				'<div class="form-group">'+
-					'학력'+
-					'<select name="recruitJobEducation" class="recruitJobEducation form-control" >'+
-						'<option value="학력무관">학력무관</option>'+
-						'<option value="고졸">고졸</option>'+
-						'<option value="전문대졸">전문대졸</option>'+
-						'<option value="4년대졸">4년대졸</option>'+
-					'</select>'+
-				'</div>'+
-		 		'<div id="coverletter" class="form-group">'+
-		 			'<label>자기소개서 항목</label>'+
-		 			'<textarea class="form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
-		 		'</div>'+
-			 	'<hr>'+
-		 		'<div class="fieldCoverletter></div>'+
-		 		'<hr>'+
-		 		'<div class="form-group">'+
-			 		'<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">'+
-			 		'<input type="button" class="coverletterDelBtn btn btn-default" value="항목삭제">'+
-		 		'</div>'+
-	 		'<hr>'+
-			'</div>'
+	
 	$('#jobAddBtn').click(function(){
 		var flag = false;
 		 $('.recruitJobJobdetail').each(function(index, item){
@@ -133,7 +85,61 @@ $(document).ready(function(){
 		 if(flag){
 			$('#jobAddError').text('상세직무 모두입력후 추가가능합니다.');
 		}else{
+			second = 0;
+			first++;
+			/************ 직무추가 버튼 클릭  ************/
+			var jobDetail = 
+					'<div id="job1"><hr/>'+
+						'<div class="form-group">'+
+						'직무선택 : '+
+							'<select name="jobTopIndexCd" class="jobTopIndexCd" >'+
+								'<option value="">대분류</option>'+
+								'<c:forEach var ="jobTopIndex" items="${jobTopIndex}">'+
+									'<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>'+
+								'</c:forEach>'+
+							'</select>'+							
+							'<select name="recruitList['+first+'].jobMidIndexCd" class="jobMidIndexCd">'+
+							 	'<option value="">소분류</option>'+ 
+							'</select>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'채용형태(선택)'+
+							'<select name="recruitList['+first+'].recruitJobWorkstatus" class="recruitJobWorkstatus">'+
+								'<option value="신입">신입</option>'+
+								'<option value="경력">경력</option>'+
+								'<option value="인턴">인턴</option>'+
+								'<option value="계약직">계약직</option>'+
+							'</select>'+
+						'</div>'+
+						'<div class="form-group">'+
+							'채용상세직무'+
+							'<input type="text" name="recruitList['+first+'].recruitJobJobdetail" class="recruitJobJobdetail form-control" >'+
+						'</div>'+
+						'<div class="form-group">'+
+							'학력'+
+							'<select name="recruitList['+first+'].recruitJobEducation" class="recruitJobEducation form-control" >'+
+								'<option value="학력무관">학력무관</option>'+
+								'<option value="고졸">고졸</option>'+
+								'<option value="전문대졸">전문대졸</option>'+
+								'<option value="4년대졸">4년대졸</option>'+
+							'</select>'+
+						'</div>'+
+				 		'<div id="coverletter" class="form-group">'+
+				 			'<label>자기소개서 항목</label>'+
+				 			'<textarea class="form-control" rows="2" id="cCletterArticle" name=recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
+				 		'</div>'+
+					 	'<hr>'+
+				 		'<div class="fieldCoverletter"></div>'+
+				 		'<hr>'+
+				 		'<div class="form-group">'+
+					 		'<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">'+
+					 		'<input type="button" class="coverletterDelBtn btn btn-default" value="항목삭제">'+
+				 		'</div>'+
+			 		'<hr>'+
+					'</div>'
 			$('#jobDetail').append(jobDetail);
+			//어떤 숫자값을 미리 설정해놓고 , 직무추가가되면 증가함. 그 증가값으로 자기소개서 항목에 쓰는거임 아 이상한데 
+			//아니면 추가된 값을 각각의 직무에 부여하고 그값을 해당 직무-항목으로 연결하면 완벽함 근데 어떻게하는거임 ㅅㅂ
 		}
 	});
 	
@@ -144,11 +150,13 @@ $(document).ready(function(){
 	
 	/*********** 자기소개서 항목 ***********/ 
 	var num = 0;
-	$('.coverletterAddBtn').on('click',function(){
-		console.log("ddfdf");
+	$(document).on('click','.coverletterAddBtn',function(){
+		second++;
+		var index = $('.coverletterAddBtn').index(this);
+		console.log(second);
 		num++;
-		$('.fieldCoverletter').append(
-			'<textarea class="coverletter form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+		$('.fieldCoverletter').eq(index).append(
+			'<textarea class="coverletter form-control" rows="2" id="cCletterArticle" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
 		);
 	});
 	
@@ -250,14 +258,14 @@ $(document).ready(function(){
 						<c:forEach var="jobTopIndex" items="${jobTopIndex}">
 							<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>
 						</c:forEach>
-					</select> <select name="jobMidIndexCd" class="jobMidIndexCd">
+					</select> <select name="recruitList[0].jobMidIndexCd" class="jobMidIndexCd">
 						<option value="">소분류</option>
 					</select>
 				</div>
 
 				<div class="form-group">
 					<label>채용형태(선택)</label> 
-					<select name="recruitJobWorkstatus"
+					<select name="recruitList[0].recruitJobWorkstatus"
 						class="recruitJobWorkstatus">
 						<option value="신입">신입</option>
 						<option value="경력">경력</option>
@@ -268,13 +276,13 @@ $(document).ready(function(){
 				<div class="form-group">
 					<label>채용상세직무</label>
 					<%-- 리스트로 들어가니까 value="${recruit.recruitEnddate}"를 하면 [ㅇㄹㅇ]이런 형식으로 들어간당 --%>
-					<input type="text" name="recruitJobJobdetail"
+					<input type="text" name="recruitList[0].recruitJobJobdetail"
 						class="recruitJobJobdetail">
 				</div>
 
 				<div class="form-group">
 					<label>학력 </label>
-					<select name="recruitJobEducation"
+					<select name="recruitList[0].recruitJobEducation"
 						class="recruitJobEducation form-control">
 						<option value="학력무관">학력무관</option>
 						<option value="고졸">고졸</option>
@@ -283,8 +291,9 @@ $(document).ready(function(){
 					</select>
 				</div>
 		 		<div id="coverletter" class="form-group">
+		 		<!-- 여기있는 항목은 list의0번째가 됩니다  -->
 		 			<label>자기소개서 항목</label>
-		 			<textarea class="form-control" rows="2" id="cCletterArticle" name="cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
+		 			<textarea class="form-control" rows="2" id="cCletterArticle" name="recruitList[0].cCletterArticle[0].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
 		 		</div>
 		 		<div class="fieldCoverletter"></div>
 		 		<div class="form-group">

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
+
 public class Recruit {
 
 	String CompanyName;
@@ -16,15 +18,11 @@ public class Recruit {
 	List<String> recruitJobWorkstatus;
 	List<String> recruitJobJobdetail;
 	List<String> recruitJobEducation;
-	List<String> cCletterArticle;
+	List<CoverletterCompanyJobVo> cCletterArticle;
+	List<Recruit> recruitList;
 	
-	
-	public List<String> getcCletterArticle() {
-		return cCletterArticle;
-	}
-	public void setcCletterArticle(List<String> cCletterArticle) {
-		this.cCletterArticle = cCletterArticle;
-	}
+	String begin;
+	String end;
 	public String getCompanyName() {
 		return CompanyName;
 	}
@@ -85,14 +83,42 @@ public class Recruit {
 	public void setRecruitJobEducation(List<String> recruitJobEducation) {
 		this.recruitJobEducation = recruitJobEducation;
 	}
+	public List<CoverletterCompanyJobVo> getcCletterArticle() {
+		return cCletterArticle;
+	}
+	public void setcCletterArticle(List<CoverletterCompanyJobVo> cCletterArticle) {
+		this.cCletterArticle = cCletterArticle;
+	}
+	public List<Recruit> getRecruitList() {
+		return recruitList;
+	}
+	public void setRecruitList(List<Recruit> recruitList) {
+		this.recruitList = recruitList;
+	}
+	public String getBegin() {
+		return begin;
+	}
+	public void setBegin(String begin) {
+		this.begin = begin;
+	}
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
 	@Override
 	public String toString() {
 		return "Recruit [CompanyName=" + CompanyName + ", CompanyCd=" + CompanyCd + ", recruitName=" + recruitName
 				+ ", recruitBegindate=" + recruitBegindate + ", recruitEnddate=" + recruitEnddate + ", recruitJobFile="
 				+ recruitJobFile + ", jobMidIndexCd=" + jobMidIndexCd + ", recruitJobWorkstatus=" + recruitJobWorkstatus
-				+ ", recruitJobJobdetail=" + recruitJobJobdetail + ", recruitJobEducation=" + recruitJobEducation + "]";
+				+ ", recruitJobJobdetail=" + recruitJobJobdetail + ", recruitJobEducation=" + recruitJobEducation
+				+ ", cCletterArticle=" + cCletterArticle + ", recruitList=" + recruitList + ", begin=" + begin
+				+ ", end=" + end + "]";
 	}
 	
 	
+	
+
 	
 }

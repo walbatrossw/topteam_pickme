@@ -15,7 +15,8 @@ String recruitJobWorkstatus;
 String recruitJobJobdetail;
 String recruitJobEducation;
 String recruitJobFile;
-List<String> cCletterArticle;
+
+//List<String> cCletterArticle;
 public String getRecruitJobCd() {
 	return recruitJobCd;
 }

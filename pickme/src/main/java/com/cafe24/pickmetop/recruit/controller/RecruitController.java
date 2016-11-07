@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.service.RecruitService;
 import com.cafe24.pickmetop.recruit.service.Commons;
@@ -49,7 +50,12 @@ public class RecruitController {
 	public String recruitInsert(Recruit recruit,HttpSession session,Model model) {
 		//파일 타입 검사 메서드 
 		boolean result =commons.checkFileType(recruit);
-		//파일 타입이 이미지일경우 
+		logger.info("tes t{}",recruit.toString());
+		//Recruit내 필드의 리스트의 0번째 - List<CoverletterCompanyJobVo> cCletterArticle 의 0번째 이런식
+		logger.info("tes t{}",recruit.getRecruitList().get(0).getcCletterArticle().get(0).getCletterArticle());
+		logger.info("tes t{}",recruit.getRecruitList().get(1).getcCletterArticle().toString());
+		
+		/*//파일 타입이 이미지일경우 
 		if(result){
 			//기업명으로 기업코드를 검색한다
 			String companyCd = recruitService.getCompanyCd(recruit.getCompanyName());
@@ -65,13 +71,14 @@ public class RecruitController {
 				logger.info("recruit.getCompanyCd(): {}",recruit.getCompanyCd());
 			}
 				recruitService.insertRecruitCompany(recruit,session);
-				recruitService.insertRecruitCompanyJob(recruit);	
+				recruitService.insertRecruitCompanyJob(recruit,coverletterCompanyJobVo);	
 			return "index";
 		//파일타입이 이미지가 아닐경우
 		}else{
 			model.addAttribute("errorMsg","콘텐츠타입 불일치");
-			return "/recruit/company/companyRecruitInsert";
-		}
+			
+		}*/
+		return "/recruit/company/companyRecruitInsert";
 		
 	}
 	

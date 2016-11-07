@@ -3,7 +3,7 @@ package com.cafe24.pickmetop.coverletter.model;
 import java.util.List;
 
 public class CoverletterCompanyJobVo {
-	String cCletterArticleCd;
+	List<String> cCletterArticleCd;
 	String recruitJobCd;
 	String cletterArticle;
 	
@@ -15,10 +15,11 @@ public class CoverletterCompanyJobVo {
 	public void setCoverletterList(List<CoverletterCompanyJobVo> coverletterList) {
 		this.coverletterList = coverletterList;
 	}
-	public String getcCletterArticleCd() {
+
+	public List<String> getcCletterArticleCd() {
 		return cCletterArticleCd;
 	}
-	public void setcCletterArticleCd(String cCletterArticleCd) {
+	public void setcCletterArticleCd(List<String> cCletterArticleCd) {
 		this.cCletterArticleCd = cCletterArticleCd;
 	}
 	public String getRecruitJobCd() {
