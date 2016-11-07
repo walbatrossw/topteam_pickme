@@ -147,7 +147,7 @@ var num = 0;
 </script>
 </head>
 <body>
-	<jsp:include page="../common/module/modHeader.jsp"/>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 	<div class="container">
 		<div class="jumbotron">
 			<h2>이력서</h2>
