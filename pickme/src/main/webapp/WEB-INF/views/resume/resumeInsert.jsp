@@ -796,9 +796,9 @@
 									<td class="col-sm-3">
 										<input type="text" class="form-control" id="awardName" name="resumeAwardVoList[0].awardName" placeholder="수상명 입력">
 									</td>
-									<td class="col-sm-4"><input type="text" class="form-control" id="resumeAwardVoList[0].awardContent" name="awardContent" placeholder="수상내용 입력"></td>
-									<td class="col-sm-3"><input type="text" class="form-control" id="resumeAwardVoList[0].awardHost" name="awardHost" placeholder="수여기관 입력"></td>
-									<td class="col-sm-2"><input type="date" class="form-control" id="resumeAwardVoList[0].awardDate" name="awardDate" value="2016-11-02"></td>
+									<td class="col-sm-4"><input type="text" class="form-control" id="awardContent" name="resumeAwardVoList[0].awardContent" placeholder="수상내용 입력"></td>
+									<td class="col-sm-3"><input type="text" class="form-control" id="awardHost" name="resumeAwardVoList[0].awardHost" placeholder="수여기관 입력"></td>
+									<td class="col-sm-2"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList[0].awardDate" value="2016-11-02"></td>
 								</tr>
 							</table>
 						</div>
@@ -858,20 +858,20 @@
 									<th class="col-sm-1">종료일자</th>
 								</tr>
 								<tr>
-									<td class="col-sm-2"><input type="text" class="form-control" id="clubName" name="clubName" placeholder="동아리/활동명 입력"></td>	
-									<td class="col-sm-2"><input type="text" class="form-control" id="clubHost" name="clubHost" placeholder="주관기관 입력"></td>
+									<td class="col-sm-2"><input type="text" class="form-control" id="clubName" name="resumeClubVoList[0].clubName" placeholder="동아리/활동명 입력"></td>	
+									<td class="col-sm-2"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList[0].clubHost" placeholder="주관기관 입력"></td>
 									<td class="col-sm-2">
-										<input type="date" class="form-control" id="clubBegindate" name="clubBegindate" value="2016-11-02">
+										<input type="date" class="form-control" id="clubBegindate" name="resumeClubVoList[0].clubBegindate" value="2016-11-02">
 									</td>
 									<td class="col-sm-2">
-										<input type="date" class="form-control" id="clubEnddate" name="clubEnddate" value="2016-11-02">
+										<input type="date" class="form-control" id="clubEnddate" name="resumeClubVoList[0].clubEnddate" value="2016-11-02">
 									</td>
 								</tr>
 								<tr>
 									<th colspan="8">활동내용</th>
 								</tr>
 								<tr>
-									<td colspan="8"><textarea class="form-control col-sm-5" rows="2" id="clubContent" name="clubContent" style="resize:none" placeholder="활동내용 대한 간략한 설명"></textarea></td>
+									<td colspan="8"><textarea class="form-control col-sm-5" rows="2" id="clubContent" name="resumeClubVoList[0].clubContent" style="resize:none" placeholder="활동내용 대한 간략한 설명"></textarea></td>
 								</tr>
 							</table>
 						</div>
@@ -894,14 +894,14 @@
 								<th class="col-sm-7">내용</th>
 							</tr>
 							<tr>
-								<td class="col-sm-3"><input type="text" class="form-control" id="etcTitle" name="resumeClubVoList[0].etcTitle" placeholder="기타 및 포트폴리오명 입력"></td>
+								<td class="col-sm-3"><input type="text" class="form-control" id="etcTitle" name="etcTitle" placeholder="기타 및 포트폴리오명 입력"></td>
 								<td class="col-sm-1">
-									<input type="date" class="form-control" id="etcBegindate" name="resumeClubVoList[0].etcBegindate" value="2016-11-02">
+									<input type="date" class="form-control" id="etcBegindate" name="etcBegindate" value="2016-11-02">
 								</td>
 								<td class="col-sm-1">
-									<input type="date" class="form-control" id="etcEnddate" name="resumeClubVoList[0].etcEnddate" value="2016-11-02">
+									<input type="date" class="form-control" id="etcEnddate" name="etcEnddate" value="2016-11-02">
 								</td>
-								<td class="col-sm-7"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="resumeClubVoList[0].etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요"></textarea></td>
+								<td class="col-sm-7"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요"></textarea></td>
 							</tr>
 							<tr>
 								

@@ -82,20 +82,21 @@
 		(
 			(SELECT CONCAT('university_cd_', LPAD(IFNULL(MAX(substring(university.university_cd, 15)),0)+1,4,'0')) AS universityCdOrder FROM tb_resume_university university ORDER BY universityCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{universityName},
-			#{universityCategory},
-			#{universityBegindate},
-			#{universityEnddate},
-			#{universityMajor},
-			#{universityDmajorminor},
-			#{universityDmajorminorName},
-			#{universityCredit}
+			#{item.universityName},
+			#{item.universityCategory},
+			#{item.universityBegindate},
+			#{item.universityEnddate},
+			#{item.universityMajor},
+			#{item.universityDmajorminor},
+			#{item.universityDmajorminorName},
+			#{item.universityCredit}
 		)
 			</foreach>
 	</insert>
 	<!-- 01_04 가족 -->
 	<insert id="insertResumeFamily" parameterType="com.cafe24.pickmetop.resume.model.ResumeFamilyVo">
 		INSERT INTO tb_resume_family(
+			family_cd,
 			resume_cd,
 			family_relation,
 			family_name,
@@ -106,7 +107,7 @@
 		) VALUES 
 			<foreach collection="resumeFamilyVoList" item="item" separator=" , ">
 		(
-			(),
+			(SELECT CONCAT('family_cd_', LPAD(IFNULL(MAX(substring(family.family_cd, 11)),0)+1,4,'0')) AS familyCdOrder FROM tb_resume_family family ORDER BY familyCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
 			#{item.familyRelation},
 			#{item.familyName},
@@ -156,12 +157,12 @@
 		(
 			(SELECT CONCAT('certificate_cd_', LPAD(IFNULL(MAX(substring(certificate.certificate_cd, 16)),0)+1,4,'0')) AS certificateCdOrder FROM tb_resume_certificate certificate ORDER BY certificateCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{certificateName},
-			#{certificateHost},
-			#{certificateGrade},
-			#{certificateRegnum},
-			#{certificateBegindate},
-			#{certificateEnddate}
+			#{item.certificateName},
+			#{item.certificateHost},
+			#{item.certificateGrade},
+			#{item.certificateRegnum},
+			#{item.certificateBegindate},
+			#{item.certificateEnddate}
 		)
 			</foreach>
 	</insert>
@@ -181,16 +182,16 @@
 		) VALUES 
 			<foreach collection="resumeCareerVoList" item="item" separator=" , ">
 		(
-			(SELECT CONCAT('certificate_cd_', LPAD(IFNULL(MAX(substring(certificate.certificate_cd, 16)),0)+1,4,'0')) AS certificateCdOrder FROM tb_resume_certificate certificate ORDER BY certificateCdOrder),
+			(SELECT CONCAT('career_cd_', LPAD(IFNULL(MAX(substring(career.career_cd, 11)),0)+1,4,'0')) AS careerCdOrder FROM tb_resume_career career ORDER BY careerCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{careerCompany},
-			#{careerBegindate},
-			#{careerEnddate},
-			#{careerPeriod},
-			#{careerResign},
-			#{careerLevel},
-			#{careerDepartment},
-			#{careerTask}
+			#{item.careerCompany},
+			#{item.careerBegindate},
+			#{item.careerEnddate},
+			#{item.careerPeriod},
+			#{item.careerResign},
+			#{item.careerLevel},
+			#{item.careerDepartment},
+			#{item.careerTask}
 		)
 			</foreach>
 	</insert>
@@ -212,14 +213,14 @@
 		(
 			(SELECT CONCAT('language_cd_', LPAD(IFNULL(MAX(substring(language.language_cd, 13)),0)+1,4,'0')) AS languageCdOrder FROM tb_resume_language language ORDER BY languageCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{languageName},
-			#{languageLevel},
-			#{languageTest},
-			#{languageGrade},
-			#{languageHost},
-			#{languageRegnum},
-			#{languageBegindate},
-			#{languageEnddate}
+			#{item.languageName},
+			#{item.languageLevel},
+			#{item.languageTest},
+			#{item.languageGrade},
+			#{item.languageHost},
+			#{item.languageRegnum},
+			#{item.languageBegindate},
+			#{item.languageEnddate}
 		)
 			</foreach>
 	</insert>
@@ -237,10 +238,10 @@
 		(
 			(SELECT CONCAT('award_cd_', LPAD(IFNULL(MAX(substring(award.award_cd, 10)),0)+1,4,'0')) AS awardCdOrder FROM tb_resume_award award ORDER BY awardCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{awardName},
-			#{awardContent},
-			#{awardHost},
-			#{awardDate}
+			#{item.awardName},
+			#{item.awardContent},
+			#{item.awardHost},
+			#{item.awardDate}
 		)
 			</foreach>
 	</insert>
@@ -259,11 +260,11 @@
 		(
 			(SELECT CONCAT('training_cd_', LPAD(IFNULL(MAX(substring(training.training_cd, 13)),0)+1,4,'0')) AS trainingCdOrder FROM tb_resume_training training ORDER BY trainingCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{trainingCountry},
-			#{trainingAcademy},
-			#{trainingBegindate},
-			#{trainingEnddate},
-			#{trainingContent}
+			#{item.trainingCountry},
+			#{item.trainingAcademy},
+			#{item.trainingBegindate},
+			#{item.trainingEnddate},
+			#{item.trainingContent}
 		)
 			</foreach>
 	</insert>
@@ -282,11 +283,11 @@
 		(
 			(SELECT CONCAT('club_cd_', LPAD(IFNULL(MAX(substring(club.club_cd, 9)),0)+1,4,'0')) AS clubCdOrder FROM tb_resume_club club ORDER BY clubCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
-			#{clubHost},
-			#{clubName},
-			#{clubBegindate},
-			#{clubEnddate},
-			#{clubContent}
+			#{item.clubHost},
+			#{item.clubName},
+			#{item.clubBegindate},
+			#{item.clubEnddate},
+			#{item.clubContent}
 		)
 			</foreach>
 	</insert>
