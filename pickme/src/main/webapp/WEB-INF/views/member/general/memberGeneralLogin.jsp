@@ -177,7 +177,7 @@ input {
    <br>
 	<input type="submit" value="비밀번호찾기" class="signUpButton">
 	<br>
-   <input type="image" class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
+   <input type="image"  class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
 </form>
 
 </body>
