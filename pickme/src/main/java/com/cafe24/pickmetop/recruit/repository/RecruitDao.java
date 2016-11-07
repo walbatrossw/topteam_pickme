@@ -28,6 +28,16 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//채용달력 종료일 select 
+	public List<Recruit> selectscheduleListByEndDate(String scheduleDate){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",scheduleDate);
+	}
+
+	//채용달력 시작일 select 
+	public List<Recruit> selectScheduleListByBeginDate(String scheduleDate){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectScheduleListByBeginDate",scheduleDate);
+	}
+	
 	//CoverletterJob의 총열갯수 
 	public int getCountOfCoverletterJob(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfCoverletterJob");

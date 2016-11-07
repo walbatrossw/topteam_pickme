@@ -2,7 +2,11 @@ package com.cafe24.pickmetop.recruit.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +22,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
+import com.cafe24.pickmetop.recruit.model.OneDay;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
@@ -32,7 +37,83 @@ public class RecruitService {
 	//final String imgDir = "D:\\git_pickme\\topteam_pickme\\pickme\\src\\main\\webapp\\recruitImgs";
 	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
 
-	
+	//달력화면
+	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption){
+		logger.info("getOneDayList");
+		Map map = new HashMap<String , Object>();
+		//dday : ?년 + ?월 + 1일
+		Calendar dday= Calendar.getInstance();	//오늘날짜
+		dday.set(Calendar.DATE,1);
+		if(ddayOption.equals("prev")){
+			dday.set(ddayYear, ddayMonth,1);
+			dday.add(Calendar.MONTH, -1);//1월에서 -1하면 12월이 될수있도록 메서드를 사용
+		}else if(ddayOption.equals("next")){
+			dday.set(ddayYear, ddayMonth,1);
+			dday.add(Calendar.MONTH, 1);//12월에서 +1하면 1월이 될수있도록 메서드를 사용
+		}
+		
+		//1일의 요일 : 앞부분 공백구하기
+		int firstWeek = dday.get(Calendar.DAY_OF_WEEK);
+		List<OneDay> oneDayList = new ArrayList<OneDay>();
+		//마지막날짜
+		int endDay= dday.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
+		//List size(=날짜가 들어갈 <td>의개수)
+		int listSize = (firstWeek-1)+endDay;
+		if(listSize%7!=0){
+			listSize=listSize+(7-(listSize%7));
+		}
+		//이전달의 마지막날 
+		Calendar preMonth = Calendar.getInstance();	
+		preMonth.set(Calendar.MONTH, dday.MONTH-1);
+		int preLastDay= preMonth.getActualMaximum(Calendar.DATE);
+		int beginSpace= preLastDay -(firstWeek-2);
+		int endSpace=1;
+		for(int i =0; i<listSize;i++){
+			OneDay oneDay;
+			//앞의공백
+			if(i<(firstWeek-1)){
+				oneDay = new OneDay();
+				oneDay.setDay(beginSpace);
+				beginSpace++;
+			}else if(i<endDay+(firstWeek-1)){
+				oneDay = new OneDay();
+				oneDay.setDay((i+1)-(firstWeek-1));
+				oneDay.setYear(dday.get(Calendar.YEAR));
+				oneDay.setMonth(dday.get(Calendar.MONTH)+1);
+				String scheduleDate = oneDay.getYear()+"-"+oneDay.getMonth()+"-"+oneDay.getDay();
+				logger.info("scheduleDate : {}",scheduleDate);
+				//시작일 
+				List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(scheduleDate);
+				
+				//종료일
+				List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(scheduleDate);
+				
+				beginScheduleList.addAll(EndScheduleList);
+				//두개의 스케쥴을 합침 
+				oneDay.setScheduleList(beginScheduleList);
+				
+				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑
+			//뒤의공백
+			}else {
+				oneDay = new OneDay();
+				oneDay.setDay(endSpace);
+				endSpace++;
+			}
+			oneDayList.add(oneDay);
+		}
+		OneDay today = new OneDay();
+		Calendar getToDay= Calendar.getInstance();	
+		today.setDay(getToDay.get(Calendar.DATE));
+		today.setMonth(getToDay.get(Calendar.MONTH)+1);
+		today.setYear(getToDay.get(Calendar.YEAR));
+		map.put("oneDayList", oneDayList);
+		map.put("ddayYear", dday.get(Calendar.YEAR));
+		map.put("ddayMonth", dday.get(Calendar.MONTH));
+		map.put("today", today);
+		
+		return map;		
+	}
 	//임시 기업명 입력
 	public void insertTemporaryCompany(Recruit recruit){
 		recruitDao.insertTemporaryCompany(recruit);
