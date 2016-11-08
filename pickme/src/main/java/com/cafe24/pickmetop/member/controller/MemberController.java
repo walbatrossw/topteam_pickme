@@ -46,18 +46,15 @@ public class MemberController {
 		return "/member/general/memberGeneralLogin";
 	}
 		@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
-	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model, HttpSession session ){
+	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model){
 		MemberGeneralVo	member = memberService.selectmemberGeneral(memberGeneralVo);
 		logger.info("generalId {}" , member.getGeneralId());
 		logger.info("generalPw {}" , member.getGeneralPw());
 		model.addAttribute("generalId",member.getGeneralId());
 		model.addAttribute("generalPw",member.getGeneralPw());	
-		if(member !=null){
-			return "index";
-		}else{
-			 
+		return "/index";
 		
-		return "index";
-		}
-	}	
+				
+	}
+			
 }
