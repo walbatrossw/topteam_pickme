@@ -29,7 +29,7 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
-	//
+	//산업군topindex 전체 리스트
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectAllTopIndustry");
 	}
@@ -47,10 +47,11 @@ public class RecruitDao {
 	public int getCountOfCoverletterJob(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfCoverletterJob");
 	}
-	
+	//자소서항목입력
 	public int insertCoverletterArticle(CoverletterCompanyJobVo cletterArticle){
 		return sqlSessionFactoryRecruit.insert(NS+".insertCoverletterArticle",cletterArticle);
 	}
+	//임시기업입력
 	public int insertTemporaryCompany(Recruit recruit){
 		return sqlSessionFactoryRecruit.insert(NS+".insertTemporaryCompany",recruit);
 	}

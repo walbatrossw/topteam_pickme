@@ -15,11 +15,11 @@
 		 FROM tb_cletter_company_job
 	</select> 
 	
-	<!-- <insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
+	<insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
 	INSERT INTO tb_cletter_company_job
 	(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
 	VALUES (#{cCletterArticleCd},#{recruitJobCd},#{cletterArticle})
-	</insert> -->
+	</insert> 
 	
 	
 	<!-- 채용달력 종료일 select -->

@@ -60,11 +60,12 @@ $(document).ready(function(){
 
 	/************ 직무 대분류 - 중분류 *********** */
 
-	$(document).on("change",".jobTopIndexCd",function(){  
-		$('.jobMidIndexCd').empty();
+	$(document).on("change",".jobTopIndexCd",function(){ 
+		var num = $('.jobTopIndexCd').index(this);
+		$('.jobMidIndexCd').eq(num).empty();
 		<c:forEach items="${jobMidIndex}" var ="jobMid">
-			if($('.jobTopIndexCd').val()=="${jobMid.jobTopIndexCd}"){
-				$('.jobMidIndexCd').append('<option value="${jobMid.jobMidIndexCd}">${jobMid.jobMidIndexName}</option>');
+			if($('.jobTopIndexCd').eq(num).val()=="${jobMid.jobTopIndexCd}"){
+				$('.jobMidIndexCd').eq(num).append('<option value="${jobMid.jobMidIndexCd}">${jobMid.jobMidIndexName}</option>');
 			}
 		</c:forEach>	
 	});
@@ -126,7 +127,7 @@ $(document).ready(function(){
 						'</div>'+
 				 		'<div id="coverletter" class="form-group">'+
 				 			'<label>자기소개서 항목</label>'+
-				 			'<textarea class="form-control" rows="2" id="cCletterArticle" name=recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
+				 			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
 				 		'</div>'+
 					 	'<hr>'+
 				 		'<div class="fieldCoverletter"></div>'+
@@ -152,8 +153,9 @@ $(document).ready(function(){
 		second++;
 		var index = $('.coverletterAddBtn').index(this);
 		console.log(second);
-		$('.fieldCoverletter').eq(index).append(
-			'<textarea class="coverletter form-control" rows="2" id="cCletterArticle" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+		$('.fieldCoverletter').eq(index).append(											
+			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+			
 		);
 	});
 	//??????????????????????????????
@@ -166,6 +168,8 @@ $(document).ready(function(){
 		
 	/************ 등록버튼 클릭시 유효성검사 ************/
  	$('#recruitAdd').click(function(){	
+		console.log($('.cCletterArticle').eq(3).val());
+		
 		if($('#CompanyName').val()==''){
 			$('#error').text('기업명을 입력하세요');
 			$('#CompanyName').focus();	
@@ -185,16 +189,19 @@ $(document).ready(function(){
 			var flag = false;
 			 $('.recruitJobJobdetail').each(function(index, item){
 	            if($(this).val() == ''){
-	            	$('#error').text('직무를 입력하세요');
 	                flag = true;    
 	        	} 
 			 }); 
 			 $('.jobMidIndexCd').each(function(index, item){
 	            if($(this).val() == ''){
-	            	$('#error').text('채용상세직무 입력하세요');
 	                flag = true;    
 	       		 } 
 			 }); 
+			 $('.cCletterArticle').each(function(index, item){
+		            if($(this).val() == ''){
+		                flag = true;    
+		       		 } 
+				 }); 
 			 if(flag){
 				$('#error').text('상세직무 모두입력후 추가가능합니다.');
 			}else{
@@ -292,7 +299,7 @@ $(document).ready(function(){
 		 		<div id="coverletter" class="form-group">
 		 		<!-- 여기있는 항목은 list의0번째가 됩니다  -->
 		 			<label>자기소개서 항목</label>
-		 			<textarea class="form-control" rows="2" id="cCletterArticle" name="recruitList[0].cCletterArticle[0].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
+		 			<textarea class="cCletterArticle form-control" rows="2" name="recruitList[0].cCletterArticle[0].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
 		 		</div>
 		 		<div class="fieldCoverletter"></div>
 		 		<div class="form-group">

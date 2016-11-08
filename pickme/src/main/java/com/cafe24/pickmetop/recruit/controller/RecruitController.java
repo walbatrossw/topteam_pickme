@@ -55,6 +55,7 @@ public class RecruitController {
 	public String recruitInsert(Recruit recruit,HttpSession session,Model model) {
 		//파일 타입 검사 메서드 
 		boolean result =commons.checkFileType(recruit);
+		
 		logger.info("tes t{}",recruit.toString());
 		//Recruit내 필드의 리스트의 0번째 - List<CoverletterCompanyJobVo> cCletterArticle 의 0번째 이런식
 		logger.info("tes t{}",recruit.getRecruitList().get(0).getcCletterArticle().get(0).getCletterArticle());

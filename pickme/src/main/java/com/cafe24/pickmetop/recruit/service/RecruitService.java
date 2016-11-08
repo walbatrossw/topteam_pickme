@@ -193,11 +193,9 @@ public class RecruitService {
 			MultipartFile recruitImgs = recruit.getRecruitJobFile();
 			String saveFileName = recruit.getRecruitJobFile().getOriginalFilename().substring(0,recruit.getRecruitJobFile().getOriginalFilename().length()-4);
 
-			
 			String ext = recruitImgs.getOriginalFilename().substring(recruitImgs.getOriginalFilename().lastIndexOf(".") + 1);
 			ext = ext.toLowerCase();
 			saveFileName=saveFileName+ "_" + System.currentTimeMillis()+"."+ext;
-			//controller에서 유효성검사하기 
 			String type = recruitImgs.getContentType();
 			logger.info("생성된 파일이름 : {}", saveFileName);
 			
@@ -217,18 +215,19 @@ public class RecruitService {
 			}
 			
 			//자기소개서항목입력 미완성
-			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",recruit.getRecruitList().get(0).getcCletterArticle().size());
-			//for(???){    coverletterList의 길이만큼 돌려야하는데
-			CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
-			int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
-			numberOfCoverletter++;
-			String coverletterCd = "coverletter_cd_"+numberOfCoverletter;
-			
-			cletterArticle.setRecruitJobCd(recruitJobCd);
-			/*cletterArticle.setcCletterArticleCd(coverletterCd);*/
-			
-			//recruitDao.insertCoverletterArticle(cletterArticle);
-			
+			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",recruit.getRecruitList().get(1).getcCletterArticle().size());
+			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
+				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
+				int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
+				numberOfCoverletter++;
+				String coverletterCd = "coverletter_cd_"+numberOfCoverletter;
+				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
+				cletterArticle.setRecruitJobCd(recruitJobCd);
+				cletterArticle.setcCletterArticleCd(coverletterCd);
+				cletterArticle.setCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle());
+				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
+				recruitDao.insertCoverletterArticle(cletterArticle);
+			}
 			logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	
 			recruitDao.insertRecruitJob(recruitCompanyJobVo);
 		}
