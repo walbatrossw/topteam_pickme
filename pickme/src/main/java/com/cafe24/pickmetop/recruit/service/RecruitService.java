@@ -35,15 +35,20 @@ public class RecruitService {
 	@Autowired
 	RecruitDao recruitDao;
 	String companyCd = "";
-	//final String imgDir = "D:\\git_pickme\\topteam_pickme\\pickme\\src\\main\\webapp\\recruitImgs";
-	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+	final String imgDir = "C:\\Users\\202-10\\Desktop\\new_git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+	
+	//채용상세보기 
+	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
+		recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd);
+		return null;
+	}
 	
 	//IndustryTop 전체리스트
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return recruitDao.selectAllTopIndustry();
 	}
 	//달력화면
-	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption){
+	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName){
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
 		Calendar dday= Calendar.getInstance();	//오늘날짜
@@ -86,11 +91,19 @@ public class RecruitService {
 				oneDay.setYear(dday.get(Calendar.YEAR));
 				oneDay.setMonth(dday.get(Calendar.MONTH)+1);
 				String scheduleDate = oneDay.getYear()+"-"+oneDay.getMonth()+"-"+oneDay.getDay();
-				//시작일 
-				List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(scheduleDate);
 				
+				//기업명으로 기업코드검색
+				String searchCompanyCd = null;
+				if(searchCompanyName!=""){
+					searchCompanyCd= recruitDao.getCompanyCd(searchCompanyName);
+				}
+				Map<String, Object> companySearchMap = new HashMap<String, Object>();
+				companySearchMap.put("searchCompanyCd", searchCompanyCd);
+				companySearchMap.put("scheduleDate", scheduleDate);
+				//시작일 
+				List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
 				//종료일
-				List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(scheduleDate);
+				List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(companySearchMap);
 				
 				beginScheduleList.addAll(EndScheduleList);
 				//두개의 스케쥴을 합침 

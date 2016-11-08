@@ -29,18 +29,23 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//디테일 
+	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectForRecruitCompanyDetail",recruitCompanyCd);
+	}
+	
 	//산업군topindex 전체 리스트
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectAllTopIndustry");
 	}
 	//채용달력 종료일 select 
-	public List<Recruit> selectscheduleListByEndDate(String scheduleDate){
-		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",scheduleDate);
+	public List<Recruit> selectscheduleListByEndDate(Map companySearchMap){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",companySearchMap);
 	}
 
 	//채용달력 시작일 select 
-	public List<Recruit> selectScheduleListByBeginDate(String scheduleDate){
-		return sqlSessionFactoryRecruit.selectList(NS+".selectScheduleListByBeginDate",scheduleDate);
+	public List<Recruit> selectScheduleListByBeginDate(Map companySearchMap){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectScheduleListByBeginDate",companySearchMap);
 	}
 	
 	//CoverletterJob의 총열갯수 
