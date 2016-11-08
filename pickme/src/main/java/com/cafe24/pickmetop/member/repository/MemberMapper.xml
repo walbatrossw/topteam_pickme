@@ -24,7 +24,7 @@
 		) 	
 	</insert>
 	<!-- MemberGeneralVo 로그인 -->
-	<select id="selectMemberGeneral" resultType="String" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
+	<select id="selectMemberGeneral" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
 		SELECT 
 		general_id as generalId,
 		general_pw as generalPw

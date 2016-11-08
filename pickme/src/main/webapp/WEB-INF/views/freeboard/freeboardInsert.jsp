@@ -55,8 +55,8 @@
 </body>
 	<body id="page-top" class="index">
 		<div class="container">
-			<input type="hidden" name="group_id" value=""/>
-			<input type="hidden" name="depth" value=""/>
+			제목 <input type="hidden" name="group_id" value="" style="width:400px"/>
+			글쓴이 :<input type="hidden" name="depth" value=""/>
 		 	<input type="hidden" name="board_id" value="" />
 		 	<input type="hidden" name="mode" value=""/>
 		 	<input type="hidden" name="comment_userid" value=""/>
@@ -64,9 +64,8 @@
 			<input type="hidden" name="subclass" value=""/>
 			<tr align="right">
                 <td colspan="5">
-                <input type="button" value="글쓰기">
+                <button> 등록 </button>
 			</tr>
 		</div>	
-		
+	</body>	
 	
-</html>

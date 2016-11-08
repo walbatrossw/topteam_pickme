@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 import com.cafe24.pickmetop.member.model.MemberLinkedVo;
@@ -22,9 +23,16 @@ public class MemberService {
 		 memberDao.insertMemberGeneral(memberGeneralVo);
 		
 	}
-	public void selectmemberGeneral(String memberGeneralVo){
-		memberDao.selectMemberGeneral(memberGeneralVo);
+	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
+		return memberDao.selectMemberGeneral(memberGeneralVo);
+	
+		
+		
 	}
+	
+	
+	
+	
 	
 	public void addmemberLinked(MemberLinkedVo memberLinkedVo){
 		

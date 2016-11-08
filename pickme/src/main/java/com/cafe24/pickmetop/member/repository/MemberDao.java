@@ -20,9 +20,9 @@ public class MemberDao {
 	//�Ϲ�ȸ�� ����
 	public int insertMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
-	
 	}
-	public String selectMemberGeneral(String memberGeneralVo){
+	//로그인 처리
+	public MemberGeneralVo selectMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
 	}
 	
