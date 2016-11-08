@@ -20,9 +20,25 @@ public class Recruit {
 	List<String> recruitJobEducation;
 	List<CoverletterCompanyJobVo> cCletterArticle;
 	List<Recruit> recruitList;
-	
+	String recruitCompanyCd;
+	String companySite;
 	String begin;
 	String end;
+	
+	
+	
+	public String getCompanySite() {
+		return companySite;
+	}
+	public void setCompanySite(String companySite) {
+		this.companySite = companySite;
+	}
+	public String getRecruitCompanyCd() {
+		return recruitCompanyCd;
+	}
+	public void setRecruitCompanyCd(String recruitCompanyCd) {
+		this.recruitCompanyCd = recruitCompanyCd;
+	}
 	public String getCompanyName() {
 		return CompanyName;
 	}

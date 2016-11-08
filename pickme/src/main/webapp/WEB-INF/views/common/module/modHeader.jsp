@@ -17,7 +17,7 @@
       					<a class="navbar-brand" href="/">PICK ME</a>
     				</div>
     				<ul class="nav navbar-nav navbar-right">
-    					<li><a href="/recruit">채용공고</a></li>
+    					<li><a href="/diary">채용공고</a></li>
       					<li><a href="/memberCoverletterList">자기소개서</a></li>
       					<li><a href="/resumeList">이력서</a></li>
       					<li><a href="/freeboardInsert">자유게시판</a></li>

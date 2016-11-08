@@ -3,6 +3,30 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
 	
+	<!-- 디테일 기업정보 -->
+	<select id="selectForRecruitCompanyDetail" resultType="com.cafe24.pickmetop.recruit.model.Recruit">
+	SELECT 
+		recruit.company_cd as companyCd, 
+		company.company_name as companyName,
+		company.company_site as companySite,
+		recruit.recruit_begindate as recruitBegindate,
+		recruit.recruit_enddate as recruitEnddate
+	FROM 
+		tb_recruit_company as recruit ,
+		tb_company_info as company
+	WHERE
+		recruit_company_cd = #{recruitCompanyCd} 
+	AND 
+		company.company_cd = recruit.company_cd
+	</select>
+	
+	<!-- 와일드카드 쓰고 기업명으로 기업코드 찾기 -->
+	<select id="getCompanyCdWithWildCard" resultType="java.lang.String">
+		SELECT company_cd as companyCd
+		FROM tb_company_info 
+		WHERE company_name = '%'+#{companyName}+'%'
+	</select>
+	
 	<!-- 산업군 topindex 전체리스트 -->
 	<select id="selectAllTopIndustry" resultType="com.cafe24.pickmetop.admin.model.IndustryTopIndexVo">
 	SELECT industry_topindex_cd as industryTopindexCd, industry_topindex_name as industryTopindexName
@@ -37,6 +61,9 @@
 		'end' as 'end'
 	FROM tb_recruit_company
 	WHERE recruit_enddate= #{scheduleDate}
+<!-- 		<if test='searchCompanyCd != null or searchCompanyCd != ""'>
+			AND company_cd = #{searchCompanyCd}
+		</if> -->
 	ORDER BY recruit_company_cd
 	</select>
 	
@@ -55,6 +82,9 @@
 		'begin' as 'begin'
 	FROM tb_recruit_company
 	WHERE recruit_begindate= #{scheduleDate}
+<!-- 			<if test='searchCompanyCd != null or searchCompanyCd != ""'>
+			AND  company_cd = #{searchCompanyCd}
+			</if> -->
 	ORDER BY recruit_company_cd
 	</select>
 	

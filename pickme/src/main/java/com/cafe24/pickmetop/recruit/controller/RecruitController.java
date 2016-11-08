@@ -28,20 +28,29 @@ public class RecruitController {
 	RecruitService recruitService;	
 	@Autowired
 	Commons commons;
-	
+	//디테일 
+	@RequestMapping(value="/recruitDetail")
+	public String recruitDetail(Model model,
+			@RequestParam(value="recruitCd", defaultValue="0") String recruitCompanyCd){
+		logger.info("recruitCd : {}",recruitCompanyCd);
+		model.addAttribute("companyInfoForDetail",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
+		return "/recruit/company/companyRecruitDetail"; 
+	}
 	/* 채용 삭제*/
 	/* 채용 리스트               {} : 배열요청. */
 	@RequestMapping(value="/diary")
 	public String diary(Model model,
 							@RequestParam(value="ddayYear", defaultValue="0") int ddayYear,
 							@RequestParam(value="ddayMonth", defaultValue="0") int ddayMonth,
-							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption){
-		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption);
+							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption,
+							@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName){
+		logger.info("searchCompanyName:{}",searchCompanyName);
+		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,searchCompanyName);
 		model.addAttribute("oneDayList",map.get("oneDayList"));
 		model.addAttribute("ddayYear",map.get("ddayYear"));
 		model.addAttribute("ddayMonth",map.get("ddayMonth"));
 		model.addAttribute("today",map.get("today"));
-		
+
 		//전체 직무 대분류
 		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
 		//전체 산업군 대분류
