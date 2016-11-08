@@ -170,24 +170,24 @@ public class RecruitService {
 	
 	//companyRecruitJob입력
 	public void insertRecruitCompanyJob(Recruit recruit){
-
-		for(int i=0; i<recruit.getRecruitJobEducation().size(); i++){
+		logger.info("recruit.getRecruitJobEducation() : {} " ,recruit.getRecruitJobEducation());
+		for(int i=0; i<recruit.getRecruitList().size(); i++){
 			
 			//recruitJobCd = 문자열 + 증가하는 값
 			String recruitJobCd = "";
 			int count = recruitDao.getCountOfRecruitJob()+1;
 			recruitJobCd= "recruit_company_job_"+ count;
-			
 			logger.info("recruit {}",recruit.toString());
-			logger.info("for 문 {}",recruit.getRecruitJobEducation().size());
 			RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
 			recruitCompanyJobVo.setRecruitJobCd(recruitJobCd);
 			recruitCompanyJobVo.setCompanyCd(recruit.getCompanyCd());
 			recruitCompanyJobVo.setRecruitCompanyCd(companyCd);
-			recruitCompanyJobVo.setJobMidindexCd(recruit.getJobMidIndexCd().get(i));
-			recruitCompanyJobVo.setRecruitJobWorkstatus(recruit.getRecruitJobWorkstatus().get(i));
-			recruitCompanyJobVo.setRecruitJobJobdetail(recruit.getRecruitJobJobdetail().get(i));
-			recruitCompanyJobVo.setRecruitJobEducation(recruit.getRecruitJobEducation().get(i));
+			for(int j=0;j<recruit.getRecruitList().get(i).getJobMidIndexCd().size();j++){
+			recruitCompanyJobVo.setJobMidindexCd(recruit.getRecruitList().get(i).getJobMidIndexCd().get(j));
+			recruitCompanyJobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(i).getRecruitJobWorkstatus().get(j));
+			recruitCompanyJobVo.setRecruitJobJobdetail(recruit.getRecruitList().get(i).getRecruitJobJobdetail().get(j));
+			recruitCompanyJobVo.setRecruitJobEducation(recruit.getRecruitList().get(i).getRecruitJobEducation().get(j));
+			}
 			
 			//file이름 
 			MultipartFile recruitImgs = recruit.getRecruitJobFile();
@@ -227,7 +227,7 @@ public class RecruitService {
 			cletterArticle.setRecruitJobCd(recruitJobCd);
 			/*cletterArticle.setcCletterArticleCd(coverletterCd);*/
 			
-			recruitDao.insertCoverletterArticle(cletterArticle);
+			//recruitDao.insertCoverletterArticle(cletterArticle);
 			
 			logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	
 			recruitDao.insertRecruitJob(recruitCompanyJobVo);
