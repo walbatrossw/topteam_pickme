@@ -1,7 +1,5 @@
 package com.cafe24.pickmetop.recruit.model;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 

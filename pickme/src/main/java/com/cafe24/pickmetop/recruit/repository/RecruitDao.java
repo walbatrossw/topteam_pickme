@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.pickmetop.admin.model.IndustryTopIndexVo;
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.company.model.CompanyInfoVo;
@@ -28,6 +29,10 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//
+	public List<IndustryTopIndexVo> selectAllTopIndustry(){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectAllTopIndustry");
+	}
 	//채용달력 종료일 select 
 	public List<Recruit> selectscheduleListByEndDate(String scheduleDate){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",scheduleDate);

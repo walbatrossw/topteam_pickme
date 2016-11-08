@@ -8,7 +8,31 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="recruitList.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	//기업이름로 검색
+	$('#companySearch').click(function(){
+		if($('#companyName').val() != "") {
+			location.href="/diary?companyName="+$('#companyName').val();
+		}else{
+			location.href="/diary";
+		}   
+	});
+/* 	
+	const $jobTopIndex = $('#jobTopIndex');
+	$jobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
+	$jobTopIndex.change(function(){
+		if($jobTopIndex.val() != "") {
+			location.href="/review/companyReviewListAllow?jobTopIndexCd="+$jobTopIndex.val();
+		}else{
+			location.href="/review/companyReviewListAllow";
+		}    
+    }); 
+*/
+});
+</script>
 <title>Insert title here</title>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
@@ -24,32 +48,31 @@
         <div id="sidebar-wrapper">
             <nav id="spy">
                 <ul class="sidebar-nav nav">
-                    <li class="sidebar-brand">
-                        <a href="#home"><span class="fa fa-home solo">Home</span></a>
+                    <li>
+                        <label>채용형태</label>
+                        <input type="radio" name = "recruitJobWorkstatus" value="신입">신입
+                        <input type="radio" name = "recruitJobWorkstatus" value="경력">경력
+                        <input type="radio" name = "recruitJobWorkstatus" value="인턴">인턴
+                        <input type="radio" name = "recruitJobWorkstatus" value="계약직">계약직                        
                     </li>
                     <li>
-                        <a href="#anch1" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 1</span>
-                        </a>
+                        <label>직무선택</label>
+						<c:forEach var="jobTopIndex" items="${jobTopIndex}">
+							<input type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
+						</c:forEach>
                     </li>
                     <li>
-                        <a href="#anch2" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 2</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#anch3" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 3</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#anch4" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 4</span>
-                        </a>
+                       <label> 산업군</label>
+                       <c:forEach var="topIndustry" items="${topIndustry}">
+							<input type="checkbox" value="${topIndustry.industryTopindexCd}">${topIndustry.industryTopindexName}
+						</c:forEach>
                     </li>
                 </ul>
             </nav>
         </div>
+        
+        <input type="text" name="companyName" id="companyName" placeholder="기업이름으로 검색">
+        <input type="button" id="companySearch" value="검색">
         
 	<table class="table table-responsive" >
 		<thead>

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
+import com.cafe24.pickmetop.admin.model.IndustryTopIndexVo;
 import com.cafe24.pickmetop.admin.model.JobMidIndexVo;
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
@@ -36,10 +37,13 @@ public class RecruitService {
 	String companyCd = "";
 	//final String imgDir = "D:\\git_pickme\\topteam_pickme\\pickme\\src\\main\\webapp\\recruitImgs";
 	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
-
+	
+	//IndustryTop 전체리스트
+	public List<IndustryTopIndexVo> selectAllTopIndustry(){
+		return recruitDao.selectAllTopIndustry();
+	}
 	//달력화면
 	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption){
-		logger.info("getOneDayList");
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
 		Calendar dday= Calendar.getInstance();	//오늘날짜
@@ -82,7 +86,6 @@ public class RecruitService {
 				oneDay.setYear(dday.get(Calendar.YEAR));
 				oneDay.setMonth(dday.get(Calendar.MONTH)+1);
 				String scheduleDate = oneDay.getYear()+"-"+oneDay.getMonth()+"-"+oneDay.getDay();
-				logger.info("scheduleDate : {}",scheduleDate);
 				//시작일 
 				List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(scheduleDate);
 				
@@ -149,11 +152,11 @@ public class RecruitService {
 		//객체내에 값setting
 		//RecruitCompanyCd를 문자열 + 증가하는수로 setting
 		int count = recruitDao.getCountOfRecruit() +1;
-		companyCd = "recruitCompany"+count;
+		companyCd = "recruit_company_"+count;
 		
 		recruitCompany.setRecruitCompanyCd(companyCd);
 		recruitCompany.setCompanyCd(recruit.getCompanyCd());
-		recruitCompany.setRecruitName(recruit.getCompanyName());
+		recruitCompany.setRecruitName(recruit.getRecruitName());
 		recruitCompany.setRecruitBegindate(recruit.getRecruitBegindate());
 		recruitCompany.setRecruitEnddate(recruit.getRecruitEnddate());
 		recruitCompany.setRecruitRegister(id);
@@ -166,14 +169,14 @@ public class RecruitService {
 
 	
 	//companyRecruitJob입력
-	public void insertRecruitCompanyJob(Recruit recruit, CoverletterCompanyJobVo coverletterCompanyJobVo){
+	public void insertRecruitCompanyJob(Recruit recruit){
 
 		for(int i=0; i<recruit.getRecruitJobEducation().size(); i++){
 			
 			//recruitJobCd = 문자열 + 증가하는 값
 			String recruitJobCd = "";
 			int count = recruitDao.getCountOfRecruitJob()+1;
-			recruitJobCd= "recruitCompanyJob" + count;
+			recruitJobCd= "recruit_company_job_"+ count;
 			
 			logger.info("recruit {}",recruit.toString());
 			logger.info("for 문 {}",recruit.getRecruitJobEducation().size());
@@ -213,13 +216,13 @@ public class RecruitService {
 				e.printStackTrace();
 			}
 			
-			//자기소개서항목입력 
-			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",coverletterCompanyJobVo.getCoverletterList().size());
-			//for(???){    coverletterList의 길이만큼 돌려야하는데 이중포문 나와야할거같음 
+			//자기소개서항목입력 미완성
+			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",recruit.getRecruitList().get(0).getcCletterArticle().size());
+			//for(???){    coverletterList의 길이만큼 돌려야하는데
 			CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 			int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
 			numberOfCoverletter++;
-			String coverletterCd = "coverletterCd"+numberOfCoverletter;
+			String coverletterCd = "coverletter_cd_"+numberOfCoverletter;
 			
 			cletterArticle.setRecruitJobCd(recruitJobCd);
 			/*cletterArticle.setcCletterArticleCd(coverletterCd);*/

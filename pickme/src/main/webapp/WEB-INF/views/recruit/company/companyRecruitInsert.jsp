@@ -69,7 +69,7 @@ $(document).ready(function(){
 		</c:forEach>	
 	});
 	
-	
+	/************ 직무추가 버튼 클릭  ************/
 	$('#jobAddBtn').click(function(){
 		var flag = false;
 		 $('.recruitJobJobdetail').each(function(index, item){
@@ -87,7 +87,7 @@ $(document).ready(function(){
 		}else{
 			second = 0;
 			first++;
-			/************ 직무추가 버튼 클릭  ************/
+			
 			var jobDetail = 
 					'<div id="job1"><hr/>'+
 						'<div class="form-group">'+
@@ -138,8 +138,6 @@ $(document).ready(function(){
 			 		'<hr>'+
 					'</div>'
 			$('#jobDetail').append(jobDetail);
-			//어떤 숫자값을 미리 설정해놓고 , 직무추가가되면 증가함. 그 증가값으로 자기소개서 항목에 쓰는거임 아 이상한데 
-			//아니면 추가된 값을 각각의 직무에 부여하고 그값을 해당 직무-항목으로 연결하면 완벽함 근데 어떻게하는거임 ㅅㅂ
 		}
 	});
 	
@@ -149,20 +147,21 @@ $(document).ready(function(){
 	});
 	
 	/*********** 자기소개서 항목 ***********/ 
-	var num = 0;
+	
 	$(document).on('click','.coverletterAddBtn',function(){
 		second++;
 		var index = $('.coverletterAddBtn').index(this);
 		console.log(second);
-		num++;
 		$('.fieldCoverletter').eq(index).append(
 			'<textarea class="coverletter form-control" rows="2" id="cCletterArticle" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
 		);
 	});
-	
-	$('.coverletterDelBtn').on('click', function(){
-		num--;
-		$('.coverletter').last().remove();
+	//??????????????????????????????
+	$(document).on('click','.coverletterDelBtn',function(){
+		second--;
+		var index = $('.coverletterDelBtn').index(this);
+		$('.coverletter').eq(index).last().remove();
+		/* $('.coverletter').last().remove(); */
 	});
 		
 	/************ 등록버튼 클릭시 유효성검사 ************/

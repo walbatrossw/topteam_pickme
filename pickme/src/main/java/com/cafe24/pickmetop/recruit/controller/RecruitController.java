@@ -36,12 +36,17 @@ public class RecruitController {
 							@RequestParam(value="ddayYear", defaultValue="0") int ddayYear,
 							@RequestParam(value="ddayMonth", defaultValue="0") int ddayMonth,
 							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption){
-		logger.info("diary");
 		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption);
 		model.addAttribute("oneDayList",map.get("oneDayList"));
 		model.addAttribute("ddayYear",map.get("ddayYear"));
 		model.addAttribute("ddayMonth",map.get("ddayMonth"));
 		model.addAttribute("today",map.get("today"));
+		
+		//전체 직무 대분류
+		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
+		//전체 산업군 대분류
+		model.addAttribute("topIndustry",recruitService.selectAllTopIndustry());
+		logger.info("recruitService.selectAllTopIndustry():{}",recruitService.selectAllTopIndustry());
 		return "/recruit/company/companyRecruitList";
 	}
 	
@@ -55,7 +60,7 @@ public class RecruitController {
 		logger.info("tes t{}",recruit.getRecruitList().get(0).getcCletterArticle().get(0).getCletterArticle());
 		logger.info("tes t{}",recruit.getRecruitList().get(1).getcCletterArticle().toString());
 		
-		/*//파일 타입이 이미지일경우 
+		//파일 타입이 이미지일경우 
 		if(result){
 			//기업명으로 기업코드를 검색한다
 			String companyCd = recruitService.getCompanyCd(recruit.getCompanyName());
@@ -71,13 +76,13 @@ public class RecruitController {
 				logger.info("recruit.getCompanyCd(): {}",recruit.getCompanyCd());
 			}
 				recruitService.insertRecruitCompany(recruit,session);
-				recruitService.insertRecruitCompanyJob(recruit,coverletterCompanyJobVo);	
+				recruitService.insertRecruitCompanyJob(recruit);	
 			return "index";
 		//파일타입이 이미지가 아닐경우
 		}else{
 			model.addAttribute("errorMsg","콘텐츠타입 불일치");
 			
-		}*/
+		}
 		return "/recruit/company/companyRecruitInsert";
 		
 	}
@@ -90,11 +95,11 @@ public class RecruitController {
 		
 		//db에서 가져온 전체 직무중분류 코드와 직무명리스트를 모델에 담는다
 		model.addAttribute("jobMidIndex",recruitService.getJobMidIndexCd());
-		logger.info("recruitService.getJobMidIndexCd() : {}",recruitService.getJobMidIndexCd());
+		//logger.info("recruitService.getJobMidIndexCd() : {}",recruitService.getJobMidIndexCd());
 		
 		//db에서 가져온 전체 기업명리스트를 모델에 담는다
 		List<String> companyList = recruitService.selectCompany();
-		logger.info("companyList : {}",companyList);
+		//logger.info("companyList : {}",companyList);
 		model.addAttribute("companyList", companyList);
 		
 		//test값으로 세션에 아이디 입력
