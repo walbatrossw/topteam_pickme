@@ -1,13 +1,12 @@
 package com.cafe24.pickmetop.coverletter.model;
 
-import java.util.Date;
 
 public class CoverletterMemberArticleSaveVo {
-	String mCletterRecordCd;
-	String mCletterArticleCd;
-	String cCletterArticleCd;
-	String mCletterArticleContent;
-	Date mCletterRecordDate;
+	private String mCletterRecordCd;
+	private String mCletterArticleCd;
+	private String cCletterArticleCd;
+	private String mCletterArticleContent;
+	private String mCletterRecordDate;
 	public String getmCletterRecordCd() {
 		return mCletterRecordCd;
 	}
@@ -32,10 +31,10 @@ public class CoverletterMemberArticleSaveVo {
 	public void setmCletterArticleContent(String mCletterArticleContent) {
 		this.mCletterArticleContent = mCletterArticleContent;
 	}
-	public Date getmCletterRecordDate() {
+	public String getmCletterRecordDate() {
 		return mCletterRecordDate;
 	}
-	public void setmCletterRecordDate(Date mCletterRecordDate) {
+	public void setmCletterRecordDate(String mCletterRecordDate) {
 		this.mCletterRecordDate = mCletterRecordDate;
 	}
 	@Override
@@ -44,5 +43,6 @@ public class CoverletterMemberArticleSaveVo {
 				+ mCletterArticleCd + ", cCletterArticleCd=" + cCletterArticleCd + ", mCletterArticleContent="
 				+ mCletterArticleContent + ", mCletterRecordDate=" + mCletterRecordDate + "]";
 	}
+	
 	
 }

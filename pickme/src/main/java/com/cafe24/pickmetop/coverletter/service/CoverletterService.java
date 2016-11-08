@@ -18,9 +18,13 @@ public class CoverletterService {
 	@Autowired
 	CoverletterDao coverletterDao;
 	
-	// 01 회원이 작성한 자기소개서 리스트
+	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	public List<CoverletterMemberVo> getMemberCoverletterList(){
 		return coverletterDao.selectCoverletterMemberList();
 	}
 	
+	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
+	public List<CoverletterCompanyJobVo> getCompanyJobCoverletterList(){
+		return coverletterDao.selectCoverletterCompanyJobList();
+	}
 }

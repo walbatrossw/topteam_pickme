@@ -11,6 +11,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
+	//자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
+	function openPop() { 
+	    window.open("/resumeCertilangIndex", "CertifiLang", "top=0, left=0, width=500, height=300, scrollbars=no, resizable=no ,status=no ,toolbar=no"); 
+	}
 	
 	var univerNum = 0;
 	var familyNum = 0;

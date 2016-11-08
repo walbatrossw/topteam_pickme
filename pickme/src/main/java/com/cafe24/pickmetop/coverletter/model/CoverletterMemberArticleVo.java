@@ -1,10 +1,10 @@
 package com.cafe24.pickmetop.coverletter.model;
 
 public class CoverletterMemberArticleVo {
-	String mCletterArticleCd;
-	String mCletterCd;
-	String cCletterArticle;
-	String mCletterArticleContent;
+	private String mCletterArticleCd;
+	private String mCletterCd;
+	private String cCletterArticle;
+	private String mCletterArticleContent;
 	public String getmCletterArticleCd() {
 		return mCletterArticleCd;
 	}

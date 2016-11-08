@@ -24,8 +24,13 @@ public class CoverletterController {
 		return "/coverletter/member/memberCoverletterList";
 	}
 	
-	// 02 기업채용 공고 리스트(자기소개서 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
-	
+	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
+	@RequestMapping(value="/companyJobCoverletterList", method = RequestMethod.GET)
+	public String companyJobCoverletterList(Model model){
+		model.addAttribute("companyJobCoverletterList", coverletterService.getCompanyJobCoverletterList());
+		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
+		return "/coverletter/admin/companyJobCoverletterList";
+	}
 	// 03 자기소개서 입력화면(채용공고리스트 검색을 기반으로 화면구성)
 	
 	// 04 자기소개서 입력화면(기본자소서 화면 구성)
