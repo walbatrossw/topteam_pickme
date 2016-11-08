@@ -7,37 +7,41 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.pickmetop.admin.model.JobTopIndexVo;
 import com.cafe24.pickmetop.commons.PageHelper;
 import com.cafe24.pickmetop.company.model.*;
+import com.cafe24.pickmetop.company.service.CompanyService;
 
 @Repository
 public class CompanyDao {
+	private static final Logger logger = LoggerFactory.getLogger(CompanyDao.class);
 	final String NS = "com.cafe24.pickmetop.company.repository.CompanyMapper";
 	@Autowired
 	@Resource(name = "sqlSessionCompany")
 	private SqlSessionTemplate sqlSessionFactoryCompany;
-/*
- * ----------------------------------------------------------------------------------------
- * 
- * 									   기업메인페이지 관련
- * 
- * ----------------------------------------------------------------------------------------
- * */
+	/*
+	 * ----------------------------------------------------------------------------------------
+	 * 
+	 * 									   기업메인페이지 관련
+	 * 
+	 * ----------------------------------------------------------------------------------------
+	 * */
 	public List<CompanyInfoVo> selectCompanyByTotalRate(){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyByTotalRate");
 	}
 
-/*
- * ----------------------------------------------------------------------------------------
- * 
- * 									   기업리뷰 관련
- * 
- * ----------------------------------------------------------------------------------------
- * */	
+	/*
+	 * ----------------------------------------------------------------------------------------
+	 * 
+	 * 									   기업리뷰 관련
+	 * 
+	 * ----------------------------------------------------------------------------------------
+	 * */	
 	//기업리뷰 목록(승인)
 	public List<CompanyReviewVo> selectCompanyReviewListByReviewAllow(Map<String, Object> reviewSearchMap){
 		return sqlSessionFactoryCompany.selectList(NS +".selectCompanyReviewListByReviewAllow", reviewSearchMap);
@@ -87,16 +91,19 @@ public class CompanyDao {
 		sqlMap.put("allow", allow);
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowTotalCount", sqlMap);
 	}
-	public int selectAllowSearchCount(String jobTopIndexCd){
-		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowSearchCount", jobTopIndexCd);
+	public int selectAllowSearchCount(String jobTopIndexCd, String searchCompanyName){
+		Map<String, Object> sqlMap = new HashMap<String, Object>();
+		sqlMap.put("jobTopIndexCd", jobTopIndexCd);
+		sqlMap.put("searchCompanyName", searchCompanyName);
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowSearchCount", sqlMap);
 	}
-/*
- * ----------------------------------------------------------------------------------------
- * 
- * 									   면접후기 관련
- * 
- * ----------------------------------------------------------------------------------------
- * */
+	/*
+	 * ----------------------------------------------------------------------------------------
+	 * 
+	 * 									   면접후기 관련
+	 * 
+	 * ----------------------------------------------------------------------------------------
+	 * */
 	//면접후기 비승인 리스트(관리자)
 	public List<CompanyInterviewVo> selectCompanyInterviewListByInterviewUnreceived(PageHelper pageHelper){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInterviewListByInterviewUnreceived", pageHelper);

@@ -1,0 +1,641 @@
+@CHARSET "EUC-KR";
+.pop_company_view { color: #222;text-align:left;font-size:13px;font-family: 'Malgun Gothic', '¸¼Àº °íµñ', 'NanumGothic', '³ª´®°íµñ', dotum, "µ¸¿ò";margin-bottom:84px}
+.pop_company_view p {margin:0;}
+.pop_company_view i {font-style:normal;}
+.pop_company_view a {text-decoration:none;color:#444;}
+.pop_company_view a:hover {color:#444;}
+.pop_company_view table th,
+.pop_company_view table td{font-family: 'Malgun Gothic', '¸¼Àº °íµñ', 'NanumGothic', '³ª´®°íµñ', dotum, "µ¸¿ò";}
+@media print {
+    .pop_company_view .company_info_header .gnb { display:none; }
+}
+.pop_company_view .dotted_paragraph{ position: relative;margin-bottom: 10px; padding-left: 5px;}
+.pop_company_view .dotted_paragraph:before{ content: ''; position: absolute; top: 9px; left: 0; width: 1px; height: 1px; line-height: 18px;background-color: #444;}
+.pop_company_view .company_info_header .gnb {position:fixed;top:0;left:0;z-index:1000;width:100%;height:58px;background-color:#424e5d;}
+.pop_company_view .company_info_header .gnb .inner {width:860px;margin:0 auto;}
+.pop_company_view .company_info_header .gnb .inner:after {display:block;clear:both;content:'';}
+.pop_company_view .company_info_header .gnb .tit {float:left;margin-top:18px;}
+.pop_company_view .company_info_header .gnb .tit_logo {float:left;margin-top:12px;}
+.pop_company_view .company_info_header .gnb .nav {float:right;width:673px;/*margin-top:15px;*/}
+.pop_company_view .company_info_header .gnb .nav ul {overflow:hidden;float:left;}
+.pop_company_view .company_info_header .gnb .nav ul li{float:left;width:120px;height:58px;}
+.pop_company_view .company_info_header .gnb .nav ul li .num1{background-position:0 0;}
+.pop_company_view .company_info_header .gnb .nav ul li .num2{background-position:-120px 0;}
+.pop_company_view .company_info_header .gnb .nav ul li .num3{background-position:-240px 0;}
+.pop_company_view .company_info_header .gnb .nav ul li .num4{background-position:-360px 0;}
+.pop_company_view .company_info_header .gnb .nav ul li .num5 {background-position:-480px 0;}
+.pop_company_view .company_info_header .gnb .nav ul li.on .num1 {background-position:0 -58px;}
+.pop_company_view .company_info_header .gnb .nav ul li.on .num2 {background-position:-120px -58px;}
+.pop_company_view .company_info_header .gnb .nav ul li.on .num3 {background-position:-240px -58px;}
+.pop_company_view .company_info_header .gnb .nav ul li.on .num4 {background-position:-360px -58px;}
+.pop_company_view .company_info_header .gnb .nav ul li.on .num5 {background-position:-480px -58px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled .num1 {background-position:0 -116px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled .num2 {background-position:-120px -116px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled .num3 {background-position:-240px -116px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled .num4 {background-position:-360px -116px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled .num5 {background-position:-480px -116px;}
+.pop_company_view .company_info_header .gnb .nav ul li a {display:block;width:120px;height:58px;}
+.pop_company_view .company_info_header .gnb .nav ul li span {display:inline-block;width:77px;height:39px;padding:19px 0 0 43px;background:url(//www.saraminimage.co.kr/ui/company_info/ico_companyview_gnb.png) 0 0 no-repeat;font-size:17px;font-family:"³ª´®°íµñ", "Nanum Gothic","¸¼Àº °íµñ","µ¸¿ò","dotum";color:#fff;letter-spacing:-1px;}
+.pop_company_view .company_info_header .gnb .nav ul li.on span {height:41px;padding-top:17px;font-size:18px;font-family:"³ª´®°íµñ", "Nanum Gothic","¸¼Àº °íµñ","µ¸¿ò","dotum";font-weight:bold;color:#8bacf8;}
+.pop_company_view .company_info_header .gnb .nav ul li .num1 {padding-left:27px;}
+.pop_company_view .company_info_header .gnb .nav ul li .num2 {padding-left:37px;}
+.pop_company_view .company_info_header .gnb .nav ul li.disabled span {font-size:17px;font-family:"³ª´®°íµñ", "Nanum Gothic","¸¼Àº °íµñ","µ¸¿ò","dotum";color:#68717c;}
+.pop_company_view .company_info_header .gnb .btn_top_go {float:right;width:32px;height:22px;margin-top:17px;padding-left:18px;background:#424e5d url(//www.saraminimage.co.kr/ui/company_info/arr_top_btn.png) 8px 9px no-repeat;border:1px solid #6a737f;font:11px gulim;color:#fff;line-height:24px;}
+.pop_company_view .company_info_header .top_cont {position: relative;*z-index: 100;padding:58px 0 22px;margin:0 auto;border-bottom:1px solid #e3e3e3;}
+.pop_company_view .company_info_header .top_cont .corp_logo {padding-top:44px;text-align:center;}
+.pop_company_view .company_info_header .top_cont .corp_logo img {margin-bottom:20px;}
+.pop_company_view .company_info_header .top_cont .corp_logo .ci_name {display:block;margin-top:-8px;margin-bottom:11px;font-size:48px;font-weight:bold;letter-spacing:-1px;}
+.pop_company_view .company_info_header .top_cont .ci_url {margin-bottom:20px;text-align:center;}
+.pop_company_view .company_info_header .top_cont .ci_url a { display: inline-block; *display: inline; *zoom: 1;line-height: 18px;font-size:15px; font-weight: bold;color:#555;}
+.pop_company_view .company_info_header .top_cont .ci_desc {margin-bottom:22px;}
+.pop_company_view .company_info_header .top_cont .ci_desc .txt {width:515px;margin:0 auto;text-align:center;font-size:14px;color:#444;line-height:20px;}
+.pop_company_view .company_info_header .top_cont .ci_desc .txt .power {font-weight:bold;color:#3e68d8;}
+.pop_company_view .company_info_header .top_cont .ci_desc .txt .welfare {font-weight:bold;color:#6b9d1f;}
+.pop_company_view .company_info_header .top_cont .ci_desc .txt .inner_txt {display:inline-block;margin-top:10px;}
+.pop_company_view .company_info_header .top_cont .corp_type_wrap {position:relative;display:block;clear:both;*zoom:1;width:860px;margin:0 auto;}
+.pop_company_view .company_info_header .top_cont .corp_type_wrap:after {display:block;clear:both;content:"";}
+.pop_company_view .company_info_header .top_cont .corp_type {float:left;}
+.pop_company_view .company_info_header .top_cont .corp_type ul {overflow:hidden;}
+.pop_company_view .company_info_header .top_cont .corp_type ul li {float:left;margin-right:8px; font-family: dotum, "µ¸¿ò";}
+.pop_company_view .company_info_header .top_cont .corp_type ul li .icon_tp1 {display:inline-block;width:40px;height:44px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_ico_corptype.png) 0 0 no-repeat;text-align:center;}
+.pop_company_view .company_info_header .top_cont .corp_type ul li .icon_tp1 p {padding-top:20px;font-size:11px;color:#676767;}
+.pop_company_view .company_info_header .top_cont .corp_type ul li .icon_tp2 {display:inline-block;width:40px;height:44px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_ico_corptype.png) 0 0 no-repeat;text-align:center;}
+.pop_company_view .company_info_header .top_cont .corp_type ul li .icon_tp2 p {padding-top:15px;padding-top:16px\9;font-size:11px;color:#676767;line-height:12px;}
+.pop_company_view .company_info_header .top_cont .btn_wrap {float:right;margin-top:13px;}
+.pop_company_view .company_info_header .top_cont .btn_wrap a {float:left;}
+.pop_company_view .company_info_header .top_cont .btn_wrap button.interested_corp span{overflow: visible;text-indent: 0;}
+.pop_company_view .company_info_header .top_cont .layer_maru {bottom:50px;right:0;}
+/*.pop_company_view .company_info_header .top_cont .btn_wrap .btn_alim {width:79px;height:28px;padding-left:29px;background:#fff url(//www.saraminimage.co.kr/ui/company_info/ico_alim_btn.png) 12px 9px no-repeat;border:1px solid #b4bffb;font-size:12px;color:#6d82f3;letter-spacing:-0.5px;line-height:30px;margin-right:8px;}
+.pop_company_view .company_info_header .top_cont .btn_wrap .btn_print {width:35px;height:28px;padding-left:29px;background:#fff url(//www.saraminimage.co.kr/ui/company_info/ico_print_btn.png) 12px 9px no-repeat;border:1px solid #bebebe;font-size:12px;color:#666;letter-spacing:-1px;line-height:30px;}*/
+.pop_company_view .company_info_header .top_cont .btn_wrap .btn_alim {position:relative;width:74px;height:29px;line-height: 29px;line-height: 32px\0;padding-left:31px;background:url(//www.saraminimage.co.kr/ui/open_recruit_knowhow/bg_alim_btn.png) 0 0 no-repeat;font-family:'±¼¸²',gulim;font-size:12px;color:#666;letter-spacing:-1px;text-decoration:none;}
+.pop_company_view .company_info_header .top_cont .btn_wrap .btn_alim img {position:absolute;top:7px;left:10px;}
+.pop_company_view .company_info_header .top_cont .btn_wrap .btn_print {width:61px;height:29px;line-height: 29px;line-height: 32px\0;margin-left:5px;background:url(//www.saraminimage.co.kr/ui/open_recruit_knowhow/bg_print_btn.png) 0 0 no-repeat;font-family:'±¼¸²',gulim;font-size:12px;color:#666;letter-spacing:-1px;text-indent:31px;text-decoration:none;}
+.pop_company_view .company_info_header .corp_summary {position:relative;margin-top:-1px;margin-bottom:1px;width:100%;height:166px;background-color:#99baff;}
+.pop_company_view .company_info_header .corp_summary .rgt_bg {position:absolute;z-index:1;top:0;left:50%;width:50%;height:166px;background-color:#8bacf8;}
+.pop_company_view .company_info_header .corp_summary ul {position:absolute;z-index:2;top:0;left:50%;overflow:hidden;width:860px;height:166px;margin-left:-430px;}
+.pop_company_view .company_info_header .corp_summary ul li {float:left;height:166px;text-align:center}
+.pop_company_view .company_info_header .corp_summary ul.type_col5 li {list-style:none; width:171px;}
+.pop_company_view .company_info_header .corp_summary ul.type_col5 li.col1 {border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col5 li.col2 {background-color:#8bacf8;border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col5 li.col3 {border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col5 li.col4 {background-color:#8bacf8;border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col4 li {width:214px;}
+.pop_company_view .company_info_header .corp_summary ul.type_col4 li.col1 {border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col4 li.col2 {background-color:#8bacf8;border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col4 li.col3{background-color:#99baff;border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col4 li.col4 {background-color:#8bacf8;}
+.pop_company_view .company_info_header .corp_summary ul.type_col3 li {width:286px;}
+.pop_company_view .company_info_header .corp_summary ul.type_col3 li.col1 {border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col3 li.col2 {background-color:#8bacf8;border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col2 li {width:429px;}
+.pop_company_view .company_info_header .corp_summary ul.type_col2 li.col1 {border-right:1px solid #a3c1ff;}
+.pop_company_view .company_info_header .corp_summary ul.type_col2 li.col2 {background-color:#8bacf8;}
+.pop_company_view .company_info_header .corp_summary ul li div {padding-top:20px;height:146px;}
+.pop_company_view .company_info_header .corp_summary ul li div i {display:block;height:20px;margin:0 auto;font-size:12px;line-height:19px;color:#fff;letter-spacing:-1px;font-style:normal;}
+.pop_company_view .company_info_header .corp_summary ul li div p {width:85%;margin:9px auto 0;font-size:18px;font-weight:bold;color:#fff;text-align:center;letter-spacing:-0.5px;}
+.pop_company_view .company_info_header .corp_summary ul li div p span {font-weight:normal;font-size:14px;}
+.pop_company_view .company_info_header .corp_summary ul li div.item1 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico1.png) 50% 105px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item1 i {width:42px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 0 no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item2 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico2.png) 50% 105px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item2 i {width:53px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -30px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item3 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico3.png) 50% 108px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item3 i {width:66px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -60px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item4 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico4.png) 50% 105px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item4 i {width:53px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -30px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item5 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico5.png) 50% 108px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item5 i {width:53px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -30px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item6 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico6.png) 50% 107px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item6 i {width:66px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -60px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item7 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico7.png) 50% 109px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item7 i {width:66px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -60px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item7 p {width:100px;}
+.pop_company_view .company_info_header .corp_summary ul li div.item8 {background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_ico8.png) 50% 112px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item8 i {width:66px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corpsummanry_round.png) 0 -60px no-repeat;}
+.pop_company_view .company_info_header .corp_summary ul li div.item8 p {width:100px;}
+.pop_company_view .company_info_header .corp_job_view {margin-top:-1px;height:29px;padding-top:17px;background-color:#f2f2f2;text-align:center;}
+.pop_company_view .company_info_header .corp_job_view .txt {display:inline;color:#727272;}
+.pop_company_view .company_info_header .corp_job_view .txt .point {font-weight:bold;color:#416ce1;}
+.pop_company_view .company_info_header .corp_job_view .btn {display:inline-block;margin-left:15px;padding-right:9px;background:url(//www.saraminimage.co.kr/ui/company_info/arr_jobview_btn.png) right 50% no-repeat;text-decoration:underline;color:#777;}
+.pop_company_view .company_info_header .corp_headhunting_txt .txt {padding-top:22px;background-color:#fff;text-align:center;color:#777;}
+.pop_company_view .company_info_header .corp_headhunting_txt .txt .bold {font-weight:bold;}
+.pop_company_view .company_info_header .corp_headhunting_txt .txt .point {color:#416ce1;}
+.pop_company_view .company_info_content {width:860px;margin:0 auto;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 colgroup .col1 {width:107px;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 colgroup .col2 {width:293px;*width:253px;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 colgroup .col3 {width:107px;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 colgroup .col4 {width:352px;*width:312px;}
+.pop_company_view .company_info_section1 .sec2 .table_row_type2 colgroup .col1 {width:464px;}
+.pop_company_view .company_info_section1 .sec2 .table_row_type2 colgroup .col2 {width:200px;}
+.pop_company_view .company_info_section1 .sec2 .table_row_type2 colgroup .col3 {width:194px;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 colgroup .col1 {width:278px;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 colgroup .col2 {width:144px;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 colgroup .col3 {width:13px}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 colgroup .col4 {width:278px;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 colgroup .col5 {width:144px;}
+.pop_company_view .company_info_section1 .sec4 .table_row_type2 colgroup .col1 {width:297px;}
+.pop_company_view .company_info_section1 .sec4 .table_row_type2 colgroup .col2 {width:277px;}
+.pop_company_view .company_info_section1 .sec4 .table_row_type2 colgroup .col3 {width:285px;}
+.pop_company_view .company_info_section1 .sec5 .table_row_type2 colgroup .col1 {width:171px;}
+.pop_company_view .company_info_section1 .sec5 .table_row_type2 colgroup .col2 {width:171px;}
+.pop_company_view .company_info_section1 .sec5 .table_row_type2 colgroup .col3 {width:171px;}
+.pop_company_view .company_info_section1 .sec5 .table_row_type2 colgroup .col4 {width:171px;}
+.pop_company_view .company_info_section1 .sec5 .table_row_type2 colgroup .col5 {width:171px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col1 {width:82px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col2 {width:224px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col3 {width:224px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col4 {width:224px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col5 {width:100px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col6 {width:150px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col7 {width:265px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col8 {width:265px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col9 {width:180px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col10 {width:155px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col11 {width:235px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col12 {width:235px;}
+.pop_company_view .company_info_section1 .sec8 .table_row_type2 colgroup .col13 {width:235px;}
+.pop_company_view .company_info_section1 .sec10 .table_col_type3 colgroup .col1 {width:174px;}
+.pop_company_view .company_info_section1 .sec10 .table_col_type3 colgroup .col2 {width:248px;*width:208px;}
+.pop_company_view .company_info_section1 .sec11 .table_row_type2 colgroup .col1 {width:194px;}
+.pop_company_view .company_info_section1 .sec11 .table_row_type2 colgroup .col2 {width:194px;}
+.pop_company_view .company_info_section1 .sec11 .table_row_type2 colgroup .col3 {width:470px;}
+.pop_company_view .company_info_section1 .sec12 .table_row_type2 colgroup .col1 {width:628px;*width:588px;}
+.pop_company_view .company_info_section1 .sec12 .table_row_type2 colgroup .col2 {width:229px;*width:189px;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 colgroup .col1 {width:130px;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 colgroup .col2 {width:180px;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 colgroup .col3 {width:190px;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 colgroup .col4 {width:180px;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 colgroup .col5 {width:174px;}
+.pop_company_view .company_info_section2 .sec3 .table_row_type2 colgroup .col1 {width:130px;}
+.pop_company_view .company_info_section2 .sec3 .table_row_type2 colgroup .col2 {width:180px;}
+.pop_company_view .company_info_section2 .sec3 .table_row_type2 colgroup .col3 {width:190px;}
+.pop_company_view .company_info_section2 .sec3 .table_row_type2 colgroup .col4 {width:180px;}
+.pop_company_view .company_info_section2 .sec3 .table_row_type2 colgroup .col5 {width:174px;}
+.pop_company_view .company_info_section3 .sec2 table colgroup .col1 {width:132px;}
+.pop_company_view .company_info_section3 .sec2 table colgroup .col2 {width:727px;*width:687px;}
+.pop_company_view .company_info_section4 .sec5 .table_row_type2 colgroup .col1 {width:164px;}
+.pop_company_view .company_info_section4 .sec5 .table_row_type2 colgroup .col2 {width:425px;*width:385px;}
+.pop_company_view .company_info_section4 .sec5 .table_row_type2 colgroup .col3 {width:149px;}
+.pop_company_view .company_info_section4 .sec5 .table_row_type2 colgroup .col4 {width:119px;}
+.pop_company_view .company_info_section5 .sec2 .table_row_type2 colgroup .col1 {width:414px;}
+.pop_company_view .company_info_section5 .sec2 .table_row_type2 colgroup .col2 {width:100px;}
+.pop_company_view .company_info_section5 .sec2 .table_row_type2 colgroup .col3 {width:110px;}
+.pop_company_view .company_info_section5 .sec2 .table_row_type2 colgroup .col4 {width:139px;}
+.pop_company_view .company_info_section5 .sec2 .table_row_type2 colgroup .col5 {width:94px;}
+.pop_company_view .company_info_section5 .sec3 .table_row_type2 colgroup .col1 {width:414px;}
+.pop_company_view .company_info_section5 .sec3 .table_row_type2 colgroup .col2 {width:100px;}
+.pop_company_view .company_info_section5 .sec3 .table_row_type2 colgroup .col3 {width:110px;}
+.pop_company_view .company_info_section5 .sec3 .table_row_type2 colgroup .col4 {width:139px;}
+.pop_company_view .company_info_section5 .sec3 .table_row_type2 colgroup .col5 {width:94px;}
+.pop_company_view .table_col_type1 table {width:100%;border-collapse:collapse;border-spacing:0;border-bottom:1px solid #e3e3e3;table-layout:fixed;}
+.pop_company_view .table_col_type1 th {padding:14px 0 14px;background-color:#f9f9f9;border:1px solid #e3e3e3;border-width:1px 1px 0 0;font-weight:normal;color:#666;text-align:center;}
+.pop_company_view .table_col_type1 td {padding:13px 20px 12px;border:1px solid #e3e3e3;border-width:1px 0 0 0;font-size:14px;word-break:break-all;color:#666;}
+.pop_company_view .table_row_type2 {width:100%;overflow:hidden;margin-left:-1px;}
+.pop_company_view .table_row_type2 table {width:100%;margin-left:1px;border-collapse:collapse;border-spacing:0;border-bottom:1px solid #e3e3e3;table-layout:fixed;}
+.pop_company_view .table_row_type2 th {padding:12px 0 11px;background-color:#f9f9f9;border-top:1px solid #e3e3e3;border-right:1px solid #e3e3e3;line-height: 14px;color:#666;font-weight:bold;text-align:center;}
+.pop_company_view .table_row_type2 td {padding:9px 10px 8px;border-top:1px solid #e3e3e3;border-right:1px solid #e3e3e3;line-height: 18px;word-break:break-all;text-align:center;}
+.pop_company_view .table_row_type2 td.lft { padding-right: 0;text-align:left;}
+.pop_company_view .table_row_type2 td.rgt { padding-left: 0;text-align:right;}
+.pop_company_view .table_row_type2 td .txt {font-size:11px;line-height:16px;}
+.pop_company_view .table_row_type2 td.bg_point {background-color:#feffee;}
+.pop_company_view .table_row_type2 td .point {font-weight:bold;}
+.pop_company_view .table_row_type2 td .ico_recommend {display:inline-block;width:28px;height:16px;margin-right:5px;padding-top:2px;background:url(//www.saraminimage.co.kr/ui/company_info/ico_txt_recommend.png) 0 0 no-repeat;text-indent:-9999px; vertical-align: top;}
+.pop_company_view .table_row_type2 td .ico_hot {display:inline-block;width:28px;height:16px;margin-right:5px;padding-top:2px;background:url(//www.saraminimage.co.kr/ui/company_info/ico_txt_hot.png) 0 0 no-repeat;text-indent:-9999px; vertical-align: top;}
+.pop_company_view .table_col_type3 table {width:100%;border-collapse:collapse;border-spacing:0;border-bottom:1px solid #e3e3e3;table-layout:fixed;}
+.pop_company_view .table_col_type3 th {padding:16px 0 13px;background-color:#f9f9f9;border:1px solid #e3e3e3;border-width:1px 1px 0 0;font-weight:bold;color:#666;text-align:center;line-height:18px;vertical-align:middle;}
+.pop_company_view .table_col_type3 td {padding:16px 20px 13px;border:1px solid #e3e3e3;border-width:1px 0 0 0;word-break:break-all;text-align:center;vertical-align:middle;line-height:18px;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 table {border-bottom:none;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 table td {border-bottom:1px solid #e3e3e3;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 td.line,
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 th.line{border-color:#fff;background:none;}
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 td.line2,
+.pop_company_view .company_info_section1 .sec3 .table_row_type2 th.line2{border-right:#fff;}
+.pop_company_view .ico_wrap {display:inline-block;position:relative;/*width:45px;*/}
+.pop_company_view .ico_wrap img {vertical-align:top;*vertical-align:middle;}
+.pop_company_view .ico_sns_wrap {display:inline-block;float:left;margin-right:6px;}
+.pop_company_view .ico_sns_wrap img {vertical-align:middle;}
+.pop_company_view .link_blog {display:inline-block;float:left;/*width:154px;*/margin-top:1px;padding-left:14px;background:url(//www.saraminimage.co.kr/ui/company_info/line_sns_blog.png) 4px 2px no-repeat;letter-spacing:-0.5px;word-break:break-all;}
+.pop_company_view .link_blog,
+.pop_company_view .link_blog:hover,
+.pop_company_view .link_site,
+.pop_company_view .link_site:hover {text-decoration:underline;}
+.pop_company_view .link_job_view .point {text-decoration:underline;font-weight:bold;color:#416ce1;}
+.pop_company_view .ico_kospi,
+.pop_company_view .ico_kosdaq,
+.pop_company_view .ico_konex {display:inline-block;width:40px;height:16px;margin-left:5px;}
+.pop_company_view .ico_employ,
+.pop_company_view .ico_sales {display:inline-block;width:40px;height:16px;*margin-left:5px;}
+.pop_company_view .ico_kospi img,
+.pop_company_view .ico_kosdaq img,
+.pop_company_view .ico_konex img,
+.pop_company_view .ico_employ img,
+.pop_company_view .ico_sales img {vertical-align:top;}
+.pop_company_view .ico_a1,
+.pop_company_view .ico_a2,
+.pop_company_view .ico_a3,
+.pop_company_view .ico_a4 {display:inline-block;width:40px;height:16px;margin-left:5px;}
+.pop_company_view .ico_grow {display:inline-block;width:6px;height:11px;margin-top: 3px;margin-left:3px;background:url(//www.saraminimage.co.kr/ui/company_info/arr_grow.png) 0 1px no-repeat;text-indent:-9999px;vertical-align: top;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 .position1 {position:relative;z-index:4;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 .position2 {position:relative;z-index:3;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 .position3 {position:relative;z-index:2;}
+.pop_company_view .company_info_section1 .sec1 .table_col_type1 .position4 {position:relative;z-index:1;}
+.pop_company_view .sec1 .standard_year {color:#888;font-size:11px;line-height:14px;letter-spacing:-0.5px;}
+.pop_company_view .ly_wrap {display:none;position:relative;}
+.pop_company_view .ico_wrap:hover .ly_wrap {display:block;*display:inline;}
+.pop_company_view .ly_wrap .ly_cont {position:absolute;top:3px;*top:19px;left:-181px;width:260px;z-index:10;background-color:#fff;border:1px solid #999;}
+.pop_company_view .ly_wrap .ly_cont .tit_wrap {position:relative;}
+.pop_company_view .ly_wrap .ly_cont .tit_wrap .tit {width:100%;height:42px;border-bottom:1px solid #ececec;}
+.pop_company_view .ly_wrap .ly_cont .tit_wrap .tit strong {display:inline-block;margin:15px;font-weight:bold;color:#222;}
+.pop_company_view .ly_wrap .ly_cont .tit_wrap .btn_close {display:none;position:absolute;top:12px;right:14px;width:18px;height:18px;background:url(//www.saraminimage.co.kr/ui/company_info/btn_ly_close.png) 0 0 no-repeat;}
+.pop_company_view .ly_wrap .ly_cont .tit_wrap .btn_close i {display:block;text-indent:-9999px;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap {padding:15px;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap .txt {font-size:12px;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap .txt .point {font-weight:bold;color:#416ce1;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap .list_cont {margin-top:10px;padding:13px 15px 10px 5px;background-color:#f9f9f9;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap .list_cont li {line-height:20px;}
+.pop_company_view .ly_wrap .ly_cont .cont_wrap .list_cont li .txt {font-size:11px;margin-left:10px;vertical-align:top;*vertical-align:middle;}
+.pop_company_view .btit{margin:69px 0 20px; height: 38px;font-size:38px;letter-spacing:-4px;line-height:31px;text-indent: -4px;}
+.pop_company_view .stit{margin:34px 0 7px;margin:34px 0 6px\9;font-size:18px;font-weight:bold;letter-spacing:-1px;}
+.pop_company_view .stit .point {color:#0000cc;}
+.pop_company_view .wrap_btn_indetail{ text-align: center;}
+.pop_company_view .wrap_btn_indetail:after{ content: ''; display: table; clear: both;}
+.pop_company_view .wrap_btn_indetail .btn_toggle_folding{ display: inline-block; *display: inline; *zoom: 1; padding-right: 5px; padding-left: 5px;min-width: 130px;}
+.pop_company_view .wrap_btn_indetail .btn_toggle_folding .name{ margin-left: 15px; vertical-align: top;}
+.pop_company_view .wrap_btn_indetail .btn_close_indetail{ float: right; margin-top: 15px;border: 0; padding-right: 15px; height: 18px; line-height: 18px; line-height: 21px\0; font-size: 12px; color: #444; text-decoration: underline; letter-spacing: -1px;background: url(//www.saraminimage.co.kr/ui/company_info/arr_up_indetail.png) 100% 50% no-repeat; cursor: pointer; vertical-align: top;}
+.pop_company_view .btn_toggle_folding{ display: block; margin: -1px auto 0;border: 1px solid #e3e3e3; padding: 5px 0 6px; min-width: 90px;color: #888; font: 12px/15px "Malgun Gothic", "¸¼Àº °íµñ", "NanumGothic", "³ª´®°íµñ"; letter-spacing: -1px;text-align: center;background-color: #f9f9f9; vertical-align: top; cursor: pointer;}
+.pop_company_view .btn_toggle_folding .name{ display: inline-block; *display: inline; *zoom: 1;padding-right: 15px; height: 15px; line-height: 15px; color: #444;background: url(//www.saraminimage.co.kr/ui/company_info/arr_down_indetail.png) 100% 7px no-repeat;}
+.pop_company_view .btn_toggle_folding .desc{ display: block;}
+.pop_company_view .btn_toggle_folding.open .name{ background-image: url(//www.saraminimage.co.kr/ui/company_info/arr_up_indetail.png);}
+.pop_company_view .folding .info_detail .sec2 .table_row_type2 td a {text-decoration:underline; }
+.pop_company_view .btn_folding_wrap {position:relative;}
+.pop_company_view .btn_folding_wrap .provide {position:absolute; top:7px; left:0; color:#999; font-family:dotum, "µ¸¿ò"; font-size:11px; letter-spacing:-1px;}
+.pop_company_view .btn_folding_wrap .provide:before {display:inline-block;margin-right:3px; font-size:12px; content:"¡Ø";}
+.pop_company_view .cert_mark { display:block;clear:both;*zoom:1;padding:15px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .cert_mark:after {display:block;clear:both;content:"";}
+.pop_company_view .cert_mark li {float:left;margin:5px 5px;margin:5px 3px\9;}
+.pop_company_view .cert_mark li .item {display:table;position:relative;width:108px;height:79px;background:#fff url(//www.saraminimage.co.kr/ui/company_info/ico_medal.png) 50% 9px no-repeat;border:1px solid #e3e3e3;text-align:center;}
+.pop_company_view .cert_mark li .item .tit {display:table-cell;padding-top:40px;height:40px; font-size: 12px;vertical-align:middle;}
+.pop_company_view .cert_mark li .item .tit span {font-size:11px;}
+.pop_company_view .cert_mark li .item .btn_tip {position:absolute;top:6px;right:7px;}
+.pop_company_view .cert_mark li .item .tip_cont {display:none;position:absolute;z-index:100;top:-117px;right:-80px;text-align:left;}
+.pop_company_view .cert_mark li .item .btn_tip:hover .tip_cont {display:block;}
+.pop_company_view .cert_mark li .item .tip_cont .tip_arr {display:block;position:absolute;bottom:-6px;right:80px;width:11px;height:7px;background:url(//www.saraminimage.co.kr/ui/company_info/arr_tip.png) no-repeat;}
+.pop_company_view .cert_mark li .item .tip_cont .tip_inner {width:200px;padding:13px 13px 16px;background-color:#fcfdce;border:1px solid #808080;}
+.pop_company_view .cert_mark li .item .tip_cont .tip_inner .tip_tit {font:bold 11px dotum;color:#666;}
+.pop_company_view .cert_mark li .item .tip_cont .tip_inner .tip_tit span {font-weight:normal;}
+.pop_company_view .cert_mark li .item .tip_cont .tip_inner .tip_txt {margin-top:10px;font:11px dotum;color:#666;}
+.pop_company_view .cert_mark li .item.num3 .tip_cont {top:-130px;}
+.pop_company_view .cert_mark li .item.num5 .tip_cont {top:-168px;}
+.pop_company_view .cert_mark li .item.num6 .tip_cont {top:-168px;}
+.pop_company_view .cert_mark li .item.num7 .tip_cont {top:-168px;}
+.pop_company_view .cert_mark li .item.num8 .tip_cont {top:-168px;}
+.pop_company_view .cert_mark li .item.num15 .tip_cont {top:-103px;}
+.pop_company_view .cert_mark li .item.num16 .tip_cont {top:-116px;}
+.pop_company_view .cert_mark li.lft .item .tip_cont {right:-110px;}
+.pop_company_view .cert_mark li.lft .item .tip_cont .tip_arr {right:110px;}
+.pop_company_view .cert_mark li.rgt .item .tip_cont {right:-15px;}
+.pop_company_view .cert_mark li.rgt .item .tip_cont .tip_arr {right:15px;}
+.pop_company_view .credit_report {display:block;clear:both;height:80px;padding:15px 0 15px 13px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .credit_report:after {display:block;clear:both;content:"";}
+.pop_company_view .credit_report li {float:left;margin:5px 7px 3px}
+.pop_company_view .credit_report li .item {display:block;position:relative;width:401px;height:68px;border:1px solid #e3e3e3;text-align:center;}
+.pop_company_view .credit_report li .item .btn_tip {position:absolute;top:6px;right:7px;}
+.pop_company_view .credit_report li .item .link {display:inline-block;margin-top:19px;padding:8px 0 5px 35px;background:url(//www.saraminimage.co.kr/ui/company_info/ico_credit_report.png) 0 0 no-repeat;font-size:14px;text-decoration:underline;}
+.pop_company_view .credit_report li .item .btn_tip {position:absolute;top:6px;right:7px;}
+.pop_company_view .credit_report li .item .tip_cont {display:none;position:absolute;top:-80px;right:-37px;z-index:1000;text-align:left;}
+.pop_company_view .credit_report li .item .btn_tip:hover .tip_cont {display:block;}
+.pop_company_view .credit_report li .item .tip_cont .tip_arr {display:block;position:absolute;bottom:-6px;right:38px;z-index:10;width:11px;height:7px;background:url(//www.saraminimage.co.kr/ui/company_info/arr_tip.png) no-repeat;}
+.pop_company_view .credit_report li .item .tip_cont .tip_inner {width:215px;padding:13px 13px 16px;background-color:#fcfdce;border:1px solid #808080;}
+.pop_company_view .credit_report li .item .tip_cont .tip_inner .tip_tit {font:bold 11px dotum;color:#666;}
+.pop_company_view .credit_report li .item .tip_cont .tip_inner .tip_txt {font:11px dotum;color:#666;}
+.pop_company_view .finance_summary {overflow:hidden;display:block;clear:both;width:100%;margin-left:1px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .finance_summary:after {display:block;clear:both;content:"";}
+.pop_company_view .finance_summary ul {width:100%;}
+.pop_company_view .finance_summary ul li {float:left;border-right:1px solid #e3e3e3;}
+.pop_company_view .finance_summary .type_col4 {margin-left:1px;}
+.pop_company_view .finance_summary .type_col4 li,
+.pop_company_view .finance_summary .type_col4 li .num{width:214px;}
+.pop_company_view .finance_summary .type_col3 {margin-left:0;width:861px;}
+.pop_company_view .finance_summary .type_col3 li,
+.pop_company_view .finance_summary .type_col3 li .num{width:286px;}
+.pop_company_view .finance_summary .type_col2 {width:864px;}
+.pop_company_view .finance_summary .type_col2 li,
+.pop_company_view .finance_summary .type_col2 li .num{width:431px;}
+.pop_company_view .finance_summary li .item {height:128px;margin:0 auto;text-align:center;}
+.pop_company_view .finance_summary li .tit {display:inline-block;width:100%;padding:14px 0 13px;background-color:#f9f9f9;border-bottom:1px solid #e3e3e3;text-align:center;font-weight:bold;color:#666;}
+.pop_company_view .finance_summary li .num {display:table-cell;padding:0 10px; height: 80px;font-weight:bold;font-size:18px; vertical-align: middle;}
+.pop_company_view .txt_finance_value{ height: 64px;line-height: 22px !important;font-size: 18px; font-weight: bold;}
+.pop_company_view .desc_excellent {width:100%;padding:8px 0 10px;background-color:#f8f2eb;border:1px solid #e3e3e3;border-width: 1px 0;text-align:center;}
+.pop_company_view .desc_excellent .txt {padding:0 30px;font-size:14px;font-weight:bold;color:#c69952;line-height:20px;}
+.pop_company_view .desc_excellent .txt .ico {display:inline-block;position:relative;width:18px;height:19px;text-align:left;}
+.pop_company_view .desc_excellent .txt .ico img {position:absolute;top:3px;left:0;}
+.pop_company_view .slales_income_capital {overflow:hidden;width:860px;margin-top:46px;}
+.pop_company_view .slales_income_capital .inner {overflow:hidden;width:880px;}
+.pop_company_view .slales_income_capital .inner_one .sales_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .slales_income_capital .inner_one .income_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .slales_income_capital .inner_one .capital_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .slales_income_capital .inner_one .bar5_graph,
+.pop_company_view .slales_income_capital .inner_one .bar4_graph,
+.pop_company_view .slales_income_capital .inner_one .bar3_graph,
+.pop_company_view .slales_income_capital .inner_one .bar2_graph,
+.pop_company_view .slales_income_capital .inner_one .bar1_graph {position:relative;width:858px;height:250px;margin-top:7px;border:1px solid #e3e3e3;}
+.pop_company_view .slales_income_capital .inner_one .bar_wrap {position:absolute;left:50%;bottom:19px;margin-left:-177px;}
+.pop_company_view .sales_info {width:421px;float:left;margin-right:18px;margin-bottom:10px;}
+.pop_company_view .sales_info .tit_wrap {overflow:hidden;}
+.pop_company_view .sales_info .tit_wrap .tit {float:left; height: 14px; line-height: 11px;font-weight:bold;font-size:14px;}
+.pop_company_view .sales_info .tit_wrap .unit {float:right; margin: 2px 1px 0 0;height: 12px; line-height: 9px;color:#888;font-size:11px;letter-spacing:-0.5px;}
+.pop_company_view .income_info {width:421px;float:left;margin-right:9px;margin-bottom:10px;}
+.pop_company_view .income_info .tit_wrap {overflow:hidden;}
+.pop_company_view .income_info .tit_wrap .tit {float:left; height: 14px; line-height: 11px;font-weight:bold;font-size:14px;}
+.pop_company_view .income_info .tit_wrap .unit {float:right; margin: 2px 1px 0 0;height: 12px; line-height: 9px;color:#888;font-size:11px;letter-spacing:-0.5px;}
+.pop_company_view .capital_info {width:421px;float:left;margin-right:9px;margin-bottom:10px;}
+.pop_company_view .capital_info .tit_wrap {overflow:hidden;}
+.pop_company_view .capital_info .tit_wrap .tit {float:left; height: 14px; line-height: 11px;font-weight:bold;font-size:14px;}
+.pop_company_view .capital_info .tit_wrap .unit {float:right; margin: 2px 1px 0 0;height: 12px; line-height: 9px;color:#888;font-size:11px;letter-spacing:-0.5px;}
+.pop_company_view .bar5_graph,
+.pop_company_view .bar4_graph,
+.pop_company_view .bar3_graph,
+.pop_company_view .bar2_graph,
+.pop_company_view .bar1_graph {position:relative;width:419px;height:250px;margin-top:7px;border:1px solid #e3e3e3;}
+.pop_company_view .bar5_graph .bar_wrap {width:357px;}
+.pop_company_view .bar5_graph .bar_wrap li {padding-left:68px;}
+.pop_company_view .bar4_graph .bar_wrap {width:354px;padding-left:3px;}
+.pop_company_view .bar4_graph .bar_wrap li {padding-left:87px;}
+.pop_company_view .bar3_graph .bar_wrap {width:314px;padding-left:43px;}
+.pop_company_view .bar3_graph .bar_wrap li {padding-left:91px;}
+.pop_company_view .bar2_graph .bar_wrap {width:288px;padding-left:69px;}
+.pop_company_view .bar2_graph .bar_wrap li {padding-left:130px;}
+.pop_company_view .bar1_graph .bar_wrap {width:224px;padding-left:133px;}
+.pop_company_view .bar1_graph .bar_wrap li {height:219px;}
+.pop_company_view .bar1_graph .bar_wrap li .num {color:#5e7af3;}
+.pop_company_view .bar1_graph .bar_wrap li .bg_color {width:61px;background-color:#5e7af3;}
+.pop_company_view .bar1_graph .bar_wrap li .year {font-weight:bold;color:#444;}
+.pop_company_view .bar_wrap {position:absolute;left:30px;bottom:20px;width:357px;height:219px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_bar_graph3.png) 0 38px repeat-x;}
+.pop_company_view .bar_wrap li {position:relative;float:left;height:219px;text-align:center;}
+.pop_company_view .bar {position:absolute;left:0;bottom:0;text-align:center;}
+.pop_company_view .bar .num {font-weight:bold;font-size:11px;color:#888;white-space:nowrap;width:90px;}
+.pop_company_view .bar .loss {margin-bottom:15px;}
+.pop_company_view .bar .bg_color {width:41px;margin:8px auto 0;background-color:#ccc}
+.pop_company_view .bar .year {margin-top:8px;font-size:11px;}
+.pop_company_view .bar_wrap li{ font-family: dotum, "µ¸¿ò";}
+.pop_company_view .bar_wrap li.last .num {color:#5e7af3;}
+.pop_company_view .bar_wrap li.last .bg_color {background-color:#5e7af3;}
+.pop_company_view .bar_wrap li.last .year {font-weight:bold;color:#444;}
+.pop_company_view .line_graph {width:419px;height:250px;margin-top:7px;border:1px solid #e3e3e3;}
+.pop_company_view .credit_report_small {margin-top:16px;}
+.pop_company_view .credit_report_small .btn {display:inline-block;margin-right:3px;padding-left:18px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_credit_report2.png) 0 0 no-repeat;}
+.pop_company_view .credit_report_small .btn:hover span {text-decoration:underline}
+.pop_company_view .credit_report_small .btn span {display:inline-block;padding-right: 18px; height: 30px; line-height: 29px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_credit_report2.png) right 0 no-repeat;font-size:12px;color:#666;}
+.pop_company_view .hidden_star_cont {overflow:hidden;}
+.pop_company_view .hidden_star_cont .table_col_type3 th {padding-left:66px;}
+.pop_company_view .hidden_star_cont .table_col_type3 th .txt {padding-top:21px;padding-bottom:21px;padding-left:83px;line-height:22px;background:url(//www.saraminimage.co.kr/ui/company_info/img_hidden_star.png) 0 0 no-repeat;font-weight:normal;text-align:left;}
+.pop_company_view .hidden_star_cont .table_col_type3 th .power {font-weight:bold;color:#3e68d8;}
+.pop_company_view .hidden_star_cont .table_col_type3 th .welfare {font-weight:bold;color:#6b9d1f;}
+.pop_company_view .hidden_star_cont .table_col_type3 td {text-align:left;line-height:22px;font-size: 13px;color: #222;}
+.pop_company_view .industrial_property {overflow:hidden;width:100%;margin-bottom:-10px;}
+.pop_company_view .industrial_property ul {width:880px;}
+.pop_company_view .industrial_property li {overflow:hidden;}
+.pop_company_view .industrial_property li .lft {float:left;}
+.pop_company_view .industrial_property li .rgt {margin-left:440px;}
+.pop_company_view .industrial_property .table_col_type3.lft,
+.pop_company_view .industrial_property .table_col_type3.rgt {width:422px;margin-bottom:8px;}
+.pop_company_view .industrial_property .table_col_type3 {width:860px;}
+.pop_company_view .industrial_property .table_col_type3 table {height:85px;}
+.pop_company_view .industrial_property .table_col_type3 th span {font-weight:normal;font-size:11px;color:#888;}
+.pop_company_view .industrial_property .item {display:table;overflow:hidden;width:422px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;margin-bottom:8px;text-align:left;}
+.pop_company_view .industrial_property .item .tit {display:table-cell;width:150px;height:66px;background-color:#f9f9f9;font-weight:bold;color:#666;vertical-align:middle;text-align:center;}
+.pop_company_view .industrial_property .item .tit span {font-weight:normal;font-size:11px;color:#888;}
+.pop_company_view .industrial_property .item .txt {display:table-cell;width:200px;height:66px;vertical-align:middle;text-align:center;}
+.pop_company_view .new_regeneration_energy .table_row_type2 td {padding:16px 19px;}
+.pop_company_view .new_regeneration_energy .table_row_type2 td span {display:inline-block;width:58px;height:24px;margin:4px 1px;line-height:21px;background-color:#fff;border:1px solid #dfdfdf;font-size:11px;text-align:center;}
+.pop_company_view .new_regeneration_energy .table_row_type2 td strong {font-size:14px;font-weight:bold;}
+.pop_company_view .desc_company_intro {width:100%;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .desc_company_intro .txt {margin:18px 18px;line-height:22px;}
+.pop_company_view .company_history_list {width:100%;border:1px solid #e3e3e3;border-width:1px 0 1px 0;padding:18px 18px;line-height: 22px;}
+.pop_company_view .company_history_list strong{ font-weight: bold;}
+.pop_company_view .company_history_list .list li .tit_bold{ font-weight: bold;}
+.pop_company_view .company_history_list .list li .tit_bold + .dotted_paragraph{ margin-top: -2px;line-height: 18px;}
+.pop_company_view .company_history_list .list li .tit_bold + .dotted_paragraph:before{ top: 7px;}
+.pop_company_view .desc_list_box {margin-top:10px;padding:15px 15px 12px;background-color:#f9f9f9;}
+.pop_company_view .desc_list_box li {font-size:11px;color:#888;line-height:24px;}
+.pop_company_view .company_info_section2 .btit {margin-bottom:35px;}
+.pop_company_view .starting_salary_info .tit_wrap {overflow:hidden;}
+.pop_company_view .starting_salary_info .tit_wrap .tit {float:left; height: 18px;line-height: 14px;font-weight:bold;font-size:18px;}
+.pop_company_view .starting_salary_info .tit_wrap .unit {float:right; margin: 6px 1px 0 0;height: 12px; line-height: 9px;font-size:11px;color:#888;letter-spacing:-0.5px;}
+.pop_company_view .starting_salary_info .inner_wrap {overflow:hidden}
+.pop_company_view .starting_salary_info .bar_graph {float:left;width:428px;}
+.pop_company_view .starting_salary_info .desc_salary_info {float:left;width:428px;height:250px;margin-top:7px;border:1px solid #e3e3e3;border-width:1px 1px 1px 0;text-align:center;}
+.pop_company_view .starting_salary_info .desc_salary_info .txt {margin:100px 0 10px;font-size:14px;}
+.pop_company_view .starting_salary_info .desc_salary_info .num {font-size:38px;letter-spacing:-2px;line-height:35px;}
+.pop_company_view .starting_salary_info .bar_wrap li {position:relative;float:left;height:219px;}
+.pop_company_view .starting_salary_info .bar {position:absolute;left:0;bottom:0;text-align:center;}
+.pop_company_view .starting_salary_info .bar .bg_color {margin-top:8px;width:41px;background-color:#ccc}
+.pop_company_view .mean_salary_info {margin-top:14px;}
+.pop_company_view .mean_salary_info .inner_wrap .tit_wrap {overflow:hidden;width:421px;}
+.pop_company_view .mean_salary_info .inner_one .tit_wrap {overflow:hidden;}
+.pop_company_view .mean_salary_info .tit_wrap .tit {float:left; height: 18px;line-height: 14px;font-weight:bold;font-size:18px;}
+.pop_company_view .mean_salary_info .tit_wrap .unit {float:right; margin: 6px 1px 0 0;height: 12px; line-height: 9px;font-size:11px;color:#888;letter-spacing:-0.5px;}
+.pop_company_view .mean_salary_info .inner_wrap {overflow:hidden}
+.pop_company_view .mean_salary_info .inner_wrap .bar_graph {float:left;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph {float:left;margin-left:18px;position:relative;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .line_graph_wrap {position:absolute;top:35px;left:45px;width:310px;height:195px;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info {position:absolute;top:20px;right:30px;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info span {position:relative;padding-left:17px;font-size:11px;font-weight:bold;font-family:"µ¸¿ò","dotum";}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info span .ico {position:absolute;top:-1px;left:0;display:inline-block;width:12px;height:12px;margin-right:5px;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info .ico_men {color:#5e7af3;margin-right:9px;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info .ico_men .ico {background-color:#5e7af3;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info .ico_woman {color:#ffa178;}
+.pop_company_view .mean_salary_info .inner_wrap .line_graph .ico_info .ico_woman .ico {background-color:#ffa178;}
+.pop_company_view .mean_salary_info .inner_one .sales_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .mean_salary_info .inner_one .income_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .mean_salary_info .inner_one .capital_info {width:860px;float:none;margin-right:0;margin-bottom:10px;}
+.pop_company_view .mean_salary_info .inner_one .bar5_graph,
+.pop_company_view .mean_salary_info .inner_one .bar4_graph,
+.pop_company_view .mean_salary_info .inner_one .bar3_graph,
+.pop_company_view .mean_salary_info .inner_one .bar2_graph,
+.pop_company_view .mean_salary_info .inner_one .bar1_graph {position:relative;width:858px;height:250px;margin-top:7px;border:1px solid #e3e3e3;}
+.pop_company_view .mean_salary_info .inner_one .bar_wrap {position:absolute;left:50%;bottom:19px;margin-left:-177px;}
+.pop_company_view .salary_desc_txt {width:858px;height:250px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_salery_desc.png) 0 0 no-repeat;border:1px solid #e5e5e5;}
+.pop_company_view .salary_desc_txt .txt {margin-top:103px;font-size:14px;text-align:center;line-height:22px;}
+.pop_company_view .salary_desc_txt .bold {font-size:16px;font-weight:bold;}
+.pop_company_view .salary_desc_txt .logintext {margin-top:91px;font-size:15px;color:#444;line-height:normal;font-weight:bold;text-align:center;letter-spacing:-1px;}
+.pop_company_view .salary_desc_txt .btn_login {width:118px;height:37px;display:-moz-inline-stack;display:inline-block;zoom:1;*display:inline;line-height:34px;margin:0 auto;background:#6b80f1;color:#fff;font-size:14px;font-weight:bold;border:none;margin-top:20px;cursor:pointer;letter-spacing:-1px;}
+
+.pop_company_view .salary_login {display:block;clear:both;*zoom:1;margin-top:10px;border:1px solid #e3e3e3;}
+.pop_company_view .salary_login:after {display:block;clear:both;content:"";}
+.pop_company_view .salary_login .desc_box {float:left;width:248px;height:69px;padding:30px 0 0 120px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_salery_txt.png) 26px 10px no-repeat;}
+.pop_company_view .salary_login .desc_box .bold {font-weight:bold;font-size:16px;}
+.pop_company_view .salary_login .desc_box .point {color:#84b83e;}
+.pop_company_view .salary_login .desc_box .txt {margin-top:8px;font-size:11px;color:#999;letter-spacing:-1px;}
+.pop_company_view .salary_login .desc_box .txt strong {font-weight:bold;}
+.pop_company_view .salary_login .login_box {float:left;margin-top:18px;height:67px;border-left:1px solid #eaeaea;}
+.pop_company_view .salary_login .login_box .login_form {display:block;clear:both;*zoon:1;position:relative;width:436px;height:32px;margin-top:2px;margin-left:20px;}
+.pop_company_view .salary_login .login_box .login_form:after {display:block;clear:both;content:"";}
+.pop_company_view .salary_login .login_box .login_form label {position: absolute;top:0;left:10px; height: 100%; line-height: 30px;color:#888;/*cursor:pointer;*/}
+.pop_company_view .salary_login .login_box .login_form .txt_tool {float:left;width:142px;height:13px;padding:0;margin:9px 0 0 9px;border:0 none;font-family:'µ¸¿ò',dotum,sans-serif;line-height:13px;line-height: 17px\0;letter-spacing:0;background-color:transparent;outline:0;}
+.pop_company_view .salary_login .login_box .login_form button{border:none;cursor:pointer;overflow:visible;white-space: nowrap;}
+.pop_company_view .salary_login .login_box .login_form .id_input_box {position:relative;display:block;float:left;width:162px;height:30px;background-color:#fdfdfd;border:1px solid #b1b1b1;}
+.pop_company_view .salary_login .login_box .login_form .pw_input_box {position:relative;display:block;float:left;width:162px;height:30px;margin-left:6px;background-color:#fdfdfd;border:1px solid #b1b1b1;}
+.pop_company_view .salary_login .login_box .login_form .btn_login {width:90px;height:32px;margin-left:12px;color:#fff;font-family:'µ¸¿ò',dotum,sans-serif;font-size:14px;font-weight:bold;background:url(//www.saraminimage.co.kr/ui/company_info/bg_login_btn.png) no-repeat 0 0;}
+.pop_company_view .salary_login .login_box .login_form .signup_forgotten {overflow:hidden;margin-top:6px;position:relative;line-height:16px;letter-spacing:-1px}
+.pop_company_view .salary_login .login_box .login_form .signup_forgotten a:hover {text-decoration:underline;}
+.pop_company_view .salary_login .login_box .login_form .signup_forgotten .sign_up {float:left;margin-right:10px;color:#555;}
+.pop_company_view .salary_login .login_box .login_form .signup_forgotten .forgotten {float:left;color:#555;font-weight:bold;}
+.pop_company_view .salary_login .login_box .login_form .signup_forgotten span {float:left;position:relative;top:1px;*top:-2px;margin-right:8px;width:1px;height:11px;background:url(//www.saraminimage.co.kr/ui/common/bg_vline.png) no-repeat 0 50%;}
+/* wmg-8762 autologin add start */
+.pop_company_view .salary_login .login_box .login_form .setting {position:relative;width:100%;margin-top:-3px;margin-bottom:2px;}
+.pop_company_view .salary_login .login_box .login_form .setting label {position:static;top:0;left:0;line-height:11px;padding-right:7px;}
+.pop_company_view .salary_login .login_box .login_form .setting .dsc_ly {display:block;position:absolute;bottom:20px;left:-11px;z-index:10;width:272px;height:51px;}
+.pop_company_view .salary_login .login_box .login_form .setting .dsc_ly .btn_ly_close {position:absolute;top:0;right:0;width:17px;height:17px;background:url(//www.saraminimage.co.kr/ui/common/btn_login_ly_close.png) 50% 50% no-repeat;text-indent:-9999px;}
+.pop_company_view .salary_login .login_box .login_form .setting .dsc_ly .dsc_arr {position:absolute;bottom:-2px;left:12px;width:13px;height:8px;background:url(//www.saraminimage.co.kr/ui/common/btn_login_ly_arr.png) 0 0 no-repeat;}
+.pop_company_view .salary_login .login_box .login_form .setting .dsc_ly .dsc_txt {padding:8px 10px 5px;background-color:#fff;border:1px solid #bababa;font-size:11px;color:#888;letter-spacing:-1px;line-height:16px;}
+.pop_company_view .salary_login .login_box .login_form .setting .dsc_ly .dsc_txt strong {font-weight:normal;color:#555;}
+/* wmg-8762 autologin add end */
+.pop_company_view .info_modify_go {margin-top:10px;text-align:right;font-size: 12px;}
+.pop_company_view .info_modify_go .txt {color:#888;}
+.pop_company_view .info_modify_go .link {color:#444;text-decoration:underline;}
+.pop_company_view .company_info_section2 .sec2 .table_row_type2 {margin-top:28px;}
+.pop_company_view .welfare_list_wrap {padding-left:132px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_welfare_list.png) 26px 20px no-repeat;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .welfare_list_wrap .welfare_list {min-height:95px;border-left:1px solid #e3e3e3;padding-bottom:25px;}
+.pop_company_view .welfare_list_wrap .welfare_list .row {overflow:hidden;display:block;clear:both;padding-top:25px;}
+.pop_company_view .welfare_list_wrap .welfare_list .row:after {display:block;clear:both;content:"";}
+.pop_company_view .welfare_list_wrap .welfare_list .row .paragraph{ margin: 0 20px 0 26px; line-height: 18px;}
+.pop_company_view .welfare_list_wrap .welfare_list .row .lft {float:left;width:334px;padding-left:26px;}
+.pop_company_view .welfare_list_wrap .welfare_list .row .rgt {margin-left:386px;width:334px;}
+.pop_company_view .welfare_list_wrap .welfare_list .row .tit {font-size:14px;font-weight:bold;}
+.pop_company_view .welfare_list_wrap .welfare_list .row .txt {margin-top:6px;line-height:18px;}
+.pop_company_view .corp_club {overflow:hidden;width:100%;margin-left:-1px;background:url(//www.saraminimage.co.kr/ui/company_info/bg_corp_club.png) 26px 20px no-repeat;}
+.pop_company_view .corp_club table {width:100%;min-height:118px;height:118px;margin-left:1px;border-collapse:collapse;border-spacing:0;border:1px solid #e3e3e3;border-width:1px 0 1px 0;table-layout:fixed;}
+.pop_company_view .corp_club table td {padding:0 20px;border-right:1px solid #e3e3e3;vertical-align:middle;line-height:18px;}
+.pop_company_view .corp_photo {border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .corp_photo .item {float:left;margin:12px 0 0 12px;}
+.pop_company_view .corp_photo .item img {display:block;}
+.pop_company_view .corp_photo .img_list4 {display:block;clear:both;*zoom:1;width:636px;margin:8px auto 20px;}
+.pop_company_view .corp_photo .img_list4:after {display:block;clear:both;content:"";}
+.pop_company_view .corp_photo .img_list3 {display:block;clear:both;*zoom:1;width:629px;margin:8px auto 20px;}
+.pop_company_view .corp_photo .img_list3:after {display:block;clear:both;content:"";}
+.pop_company_view .corp_photo .img_list2 {display:block;clear:both;*zoom:1;width:636px;margin:8px auto 20px;}
+.pop_company_view .corp_photo .img_list2:after {display:block;clear:both;content:"";}
+.pop_company_view .corp_photo .img_list1 {display:block;clear:both;*zoom:1;width:400px;margin:8px auto 20px;}
+.pop_company_view .corp_photo .img_list1:after {display:block;clear:both;content:"";}
+.pop_company_view .corp_map {position:relative;width:858px;height:457px;}
+.pop_company_view .corp_map .adr_wrap {position:absolute;top:0;left:0;z-index:10;width:860px;height:70px;background-color:#333;opacity:0.8;filter:alpha(opacity=80);text-align:center;}
+.pop_company_view .corp_map .adr_wrap .adr_txt {padding-top:17px;color:#fff;font-size:14px;}
+.pop_company_view .corp_map .adr_wrap .tel {color:#fff;font-size:14px;line-height:20px;}
+.pop_company_view .corp_map .adr_wrap .fax {color:#fff;font-size:14px;line-height:20px;}
+.pop_company_view .num_introduce {position:relative;padding:18px 0 18px 45px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .num_introduce .btn_prv {display:inline-block;position:absolute;top:38px;left:0;width:25px;height:48px;background:url(//www.saraminimage.co.kr/ui/company_info/btn_arr_prv.png) 0 0 no-repeat;text-indent:-9999px;}
+.pop_company_view .num_introduce .btn_nxt {display:inline-block;position:absolute;top:38px;right:0;width:25px;width:25px;height:48px;background:url(//www.saraminimage.co.kr/ui/company_info/btn_arr_nxt.png) 0 0 no-repeat;text-indent:-9999px;}
+.pop_company_view .num_introduce .inner_wrap {overflow:hidden;width:770px;}
+.pop_company_view .num_introduce .item_list {width:1570px;}
+.pop_company_view .num_introduce .item_list:after {display:block;clear:both;content:"";}
+.pop_company_view .num_introduce .item_list .item {float:left;margin-right:8px;width:249px;border:1px solid #e3e3e3;text-align:center;vertical-align:middle;}
+.pop_company_view .num_introduce .item_list .item .tit {display:inline-block;width:223px;padding:13px;background-color:#f9f9f9;word-break:break-all;}
+.pop_company_view .num_introduce .item_list .item .txt {display:inline-block;width:229px;padding:10px;font-size:28px;font-weight:bold;color:#5e7af3;letter-spacing:-2px;word-break:break-all;}
+.pop_company_view .company_info_section3 .sec6 {padding-bottom:30px;border-bottom:1px solid #e3e3e3;}
+.pop_company_view .talk_company_wrap {border-top:1px solid #e3e3e3;}
+.pop_company_view .talk_company_wrap .talk_company .bg_white {padding:16px 43px;background-color:#fff;}
+.pop_company_view .talk_company_wrap .talk_company .bg_gray {padding:16px 43px;background-color:#f9f9f9;}
+.pop_company_view .talk_company_wrap .talk_company .tit {float:left;width:157px;padding:10px 0;font-weight:normal;}
+.pop_company_view .talk_company_wrap .talk_company .cont {margin-left:157px;}
+.pop_company_view .talk_company_wrap .talk_company .cont .txt_point {display:inline;margin-right:7px;padding:9px 17px;background-color:#fff;border:1px solid #ddd;font-weight:bold;color:#5e7af3;line-height:35px;}
+.pop_company_view .talk_company_wrap .talk_company .cont .txt {display:inline;padding:9px 0;}
+.pop_company_view .talk_company_wrap .talk_company .bg_white,
+.pop_company_view .talk_company_wrap .talk_company .bg_gray,
+.pop_company_view .talk_company_wrap .talk_company .cont_wrap {display:block;clear:both;*zoom:1;}
+.pop_company_view .talk_company_wrap .talk_company .bg_white:after,
+.pop_company_view .talk_company_wrap .talk_company .bg_gray:after,
+.pop_company_view .talk_company_wrap .talk_company .cont_wrap:after {display:block;clear:both;content:"";}
+.pop_company_view .talk_company_wrap .talk_company .cont_wrap2 {margin-top:7px;font-size:12px;}
+.pop_company_view .count_txt_wrap {margin:22px 0 0 42px;}
+.pop_company_view .count_txt_wrap .tit {font-size:14px;}
+.pop_company_view .count_txt_wrap .tit .bold {font-weight:bold;font-size:16px;}
+.pop_company_view .count_txt_wrap .tit .point {color:#5e7af3;}
+.pop_company_view .count_txt_wrap .rank_list {margin-top:14px;}
+.pop_company_view .count_txt_wrap .rank_list li {line-height:20px;}
+.pop_company_view .count_txt_wrap .rank_list dl {display:block;clear:both;*zoom:1;}
+.pop_company_view .count_txt_wrap .rank_list dl:after {display:block;clear:both;content:"";}
+.pop_company_view .count_txt_wrap .rank_list dl .tit {float:left;width:56px;font-weight:bold;}
+.pop_company_view .count_txt_wrap .rank_list dl .txt {margin-left:56px;}
+.pop_company_view .count_txt_wrap .rank_list .rank1 {font-weight:bold;color:#5e7af3;}
+.pop_company_view .link_wrap {width:100%;margin-top:10px;text-align:right;}
+.pop_company_view .link_wrap .link_more {text-decoration:underline;letter-spacing:-0.5px; font-size: 12px;}
+.pop_company_view .company_info_section4 a:hover {text-decoration:underline;}
+.pop_company_view .seniortong_list {overflow:hidden;display:block;clear:both;padding:18px 0;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .seniortong_list:after {display:block;clear:both;content:"";}
+.pop_company_view .seniortong_list .img_wrap {float:left;width:227px;margin-left:20px;}
+.pop_company_view .seniortong_list .cont_list {float:left;width:593px;padding-left:20px;}
+.pop_company_view .seniortong_list .cont_list .tit {font-size:14px;font-weight:bold;line-height:18px;}
+.pop_company_view .seniortong_list .cont_list .desc {margin-top:7px;line-height:18px;}
+.pop_company_view .seniortong_list .cont_list .date {margin-top:7px;font-size:11px;color:#888;}
+.pop_company_view .open_recruit_list .cont_list .tit_wrap {padding:13px 20px;background-color:#f9f9f9;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .open_recruit_list .cont_list .tit_wrap a { display: inline-block; *display: inline; *zoom: 1; height: 20px; line-height: 20px; line-height: 23px\0;font-weight:bold;color:#666;}
+.pop_company_view .open_recruit_list .cont_list .tit_wrap .ico_ing {display:inline-block;width:52px;height:18px;margin-left:7px;line-height:16px;line-height:15px\9;/* for ~IE9 */background-color:#fff;border:1px solid #83a7f8;font-weight:normal;font-size:11px;color:#83a7f8;text-align:center;text-decoration:none; vertical-align: top;}
+.pop_company_view .open_recruit_list .cont_list .tit_wrap .ico_end {display:inline-block;width:52px;height:18px;margin-left:7px;line-height:16px;line-height:15px\9;/* for ~IE9 */background-color:#e8e8e8;border:1px solid #ccc;font-weight:normal;font-size:11px;color:#999;text-align:center;text-decoration:none; vertical-align: top;}
+.pop_company_view .open_recruit_list .cont_list .desc_cont {padding:30px 36px 28px;border:1px solid #e3e3e3;border-width:0 0 1px 0;text-align:center;line-height:18px;}
+.pop_company_view .open_recruit_list .cont_list .desc_cont .jsmr-logo {display:block;margin:0 auto 17px;text-align:center !important;}
+.pop_company_view .recruit_preview_list {position:relative;padding:18px 0 18px 45px;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .recruit_preview_list .btn_prv {display:inline-block;position:absolute;top:38px;left:0;width:25px;height:48px;background:url(//www.saraminimage.co.kr/ui/company_info/btn_arr_prv.png) 0 0 no-repeat;text-indent:-9999px;}
+.pop_company_view .recruit_preview_list .btn_nxt {display:inline-block;position:absolute;top:38px;right:0;width:25px;width:25px;height:48px;background:url(//www.saraminimage.co.kr/ui/company_info/btn_arr_nxt.png) 0 0 no-repeat;text-indent:-9999px;}
+.pop_company_view .recruit_preview_list .thum_list {overflow:hidden;}
+.pop_company_view .recruit_preview_list .thum_list:after {display:block;clear:both;content:"";}
+.pop_company_view .recruit_preview_list .thum_list .item {float:left;margin-right:10px;}
+.pop_company_view .recruit_preview_list .thum_list .item a {display:block;overflow:hidden;width:118px;height:90px;border:1px solid #e3e3e3;text-align:center;vertical-align:middle;}
+.pop_company_view .recruit_preview_list .thum_list .item img {width:auto;height:90px;}
+.pop_company_view .jobinfo_guide_list {overflow:hidden;display:block;clear:both;padding:18px 0;border:1px solid #e3e3e3;border-width:1px 0 1px 0;}
+.pop_company_view .jobinfo_guide_list:after {display:block;clear:both;content:"";}
+.pop_company_view .jobinfo_guide_list .img_wrap {display:table;float:left;width:227px;margin-left:20px;}
+.pop_company_view .jobinfo_guide_list .img_wrap a {display:inline-block;width:225px;padding:24px 0;border:1px solid #e3e3e3;text-align:center;}
+.pop_company_view .jobinfo_guide_list .img_wrap a img {width:auto;}
+.pop_company_view .jobinfo_guide_list .cont_list {float:left;width:593px;padding-left:20px;}
+.pop_company_view .jobinfo_guide_list .cont_list .tit {margin-top:10px;font-size:14px;font-weight:bold;line-height:20px;}
+.pop_company_view .jobinfo_guide_list .cont_list .date {margin-top:10px;font-size:11px;color:#888;}
+.pop_company_view .company_info_section5 .btit {margin-bottom:35px;}
+.pop_company_view .desc_jobview_list {width:100%;padding:15px 0;background-color:#f4f6fe;border:1px solid #d8dcf3;border-width:1px 0 1px 0;text-align:center;line-height:22px;}
+.pop_company_view .desc_jobview_list .txt .point {font-weight:bold;color:#416ce1;}
+.pop_company_view .company_info_section4 .sec5 .table_row_type2 .lft a {margin-right:10px;}
+.pop_company_view .jobview_list_ing .table_row_type2 td {padding:11px 0 10px;}
+.pop_company_view .jobview_list_ing .subject {margin:0 20px;text-align:left;}
+.pop_company_view .jobview_list_ing .subject a:hover {text-decoration:underline;}
+.pop_company_view .jobview_list_ing .subject a {position:relative;}
+.pop_company_view .jobview_list_ing .subject a img {position:absolute;top:-3px;left:5px;}
+.pop_company_view .jobview_list_ing .btn_scrap {position:relative;}
+.pop_company_view .jobview_list_ing .btn_scrap img {position:absolute;top:-3px;right:-20px;}
+.pop_company_view .jobview_list_ing .desc {margin-top:7px;margin-left:20px;font-size:11px;color:#999;text-align:left;}
+.pop_company_view .jobview_list_ing .desc i {font-size:11px;color:#ddd;}
+.pop_company_view .jobview_list_ing .btn_one_apply {display:inline-block;width:54px;height:20px;margin-top:3px;/*background-color:#ff8d5a;border:1px solid #ff8d5a;font-size:11px;color:#fbff41;text-align:center;line-height:19px;line-height:20px\9;*/}
+.pop_company_view .jobview_list_end .table_row_type2 td {padding:11px 0 10px;}
+.pop_company_view .jobview_list_end .subject {margin:0 20px;text-align:left;}
+.pop_company_view .jobview_list_end .subject a:hover {text-decoration:underline;}
+.pop_company_view .jobview_list_end .subject a { display: inline-block; *display: inline; *zoom: 1;position:relative; vertical-align: top;}
+.pop_company_view .jobview_list_end .subject [class^="scrap-"]{ display: inline-block; *display: inline; *zoom: 1;line-height: 0;}
+.pop_company_view .jobview_list_end .subject [class^="scrap-"] img{ vertical-align: top;}
+.pop_company_view .jobview_list_end .desc {margin-top:7px;margin-left:20px;font-size:11px;color:#999;text-align:left;}
+.pop_company_view .jobview_list_end .desc i {font-size:11px;color:#ddd;}
+.pop_company_view .jobview_list_end .btn_end_apply {display:inline-block;margin-top:3px;width:52px;height:18px;line-height:16px;line-height:15px\9;/* for ~IE9 */background-color:#e8e8e8;border:1px solid #ccc;font-size:11px;color:#999;text-align:center;}
+.pop_company_view .rec-paging {padding-top:25px;height:22px;}
+.pop_company_view .company_info_footer {width:860px;margin:55px auto 0;}
+.pop_company_view .company_info_footer .info_source {width:100%;padding:10px 0;background-color:#f9f9f9;color:#888;text-align:center;}
+.pop_company_view .company_info_footer .info_final_time {margin-top:30px;text-align:center;}
+.pop_company_view .company_info_footer .info_final_time .txt {font-size:16px;line-height:28px;}
+.pop_company_view .company_info_footer .info_final_time .txt .point {color:#0000cc;}
+.pop_company_view .company_info_footer .info_final_time .txt .bold {font-weight:bold;}
+.pop_company_view .company_info_footer .info_final_time .btn {display:block;width:145px;height:42px;margin:23px auto 0;background:url(//www.saraminimage.co.kr/ui/company_info/btn_final_time.png) no-repeat;}
+.pop_company_view .company_info_footer .info_final_time .btn span {display:block;text-indent:-9999px;}
+.pop_company_view .wrap_stit_content{border: 1px solid #e3e3e3; border-width: 1px 0; padding: 16px 19px; line-height: 22px;}
+.pop_company_view .wrap_stit_content .btn_toggle_folding{ position: absolute; bottom: -28px; left: 50%; margin-left: -45px;height: 28px;}
+.pop_company_view .wrap_folding_content{position: relative;}
+.pop_company_view .wrap_folding_content strong{ font-weight: bold;}
+.pop_company_view .wrap_folding_content .folding_content{ overflow: hidden;}
+.pop_company_view .wrap_folding_content .dotted_paragraph{ margin-top: 10px;margin-bottom: 0;}
+.pop_company_view .wrap_folding_content .dotted_paragraph:first-child{ margin-top: 0;}
+.pop_company_view .wrap_folding_content .dotted_paragraph:first-of-type{ margin-top: 0;}
+.pop_company_view .wrap_folding_content .content_source{ position: absolute; top: -20px; right: 0; height: 14px;line-height: 14px;font-size: 12px;}
+.pop_company_view .list_news{ border-top: 1px solid #e3e3e3;width: 100%;}
+.pop_company_view .list_news li{ position: relative; border: 1px solid #e3e3e3; border-width: 0 0 1px; padding: 0 80px 0 10px;font-size: 12px;}
+.pop_company_view .list_news li:hover{ background-color: #fafafa;}
+.pop_company_view .list_news li a{ display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;width: 100%;height: 42px; line-height: 42px; line-height: 46px\0;font-size: 12px; color: #666;}
+.pop_company_view .list_news li a:hover{ text-decoration: none;}
+.pop_company_view .list_news li .date{ position: absolute; top: 0; right: 12px; height: 42px; line-height: 42px; line-height: 46px\0; color: #999;}
+.pop_company_view table.map-area{ border: 1px solid #D8D8D8 !important;border-collapse: separate !important;}
+.pop_company_view table.map-area td{ border-width: 0 !important;}
+.pop_company_view table.map-area .map-area-footer{ border-top: 1px solid #D8D8D8 !important;}

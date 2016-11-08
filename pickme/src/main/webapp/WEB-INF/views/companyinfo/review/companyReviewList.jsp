@@ -8,16 +8,34 @@
 <link rel="stylesheet" href="/css/style.css">
 <script>
 	$(document).ready(function(){
+		const $searchBtn = $('#searchBtn');
+		const $searchCompanyName = $('#searchCompanyName');
+		const $searchjobTopIndex = $('#searchjobTopIndex');
+		
 		//분류로 검색
-		const $jobTopIndex = $('#jobTopIndex');
-		$jobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
-		$jobTopIndex.change(function(){
-			if($jobTopIndex.val() != "") {
-				location.href="/review/companyReviewListAllow?jobTopIndexCd="+$jobTopIndex.val();
+		$searchjobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
+		$searchCompanyName.val('${searchCompnayName}');
+		$searchjobTopIndex.change(function(){
+			console.log('test1');
+			if($searchjobTopIndex.val() != "") {
+				location.href="/review/companyReviewListAllow?jobTopIndexCd="+$searchjobTopIndex.val();
 			}else{
 				location.href="/review/companyReviewListAllow";
 			}    
 	    });
+		
+		$searchCompanyName.click(function(){
+			$searchCompanyName.val("");
+		});
+		
+		//기업명 검색
+		$searchBtn.click(function(){
+			if($searchCompanyName.val() != "" || $searchjobTopIndex.val() != "") {
+				location.href="/review/companyReviewListAllow?searchCompanyName="+$searchCompanyName.val()+"&jobTopIndexCd="+$searchjobTopIndex.val();
+			}else{
+				location.href="/review/companyReviewListAllow";
+			}    
+		});
 	});
 </script>
 <title>기업리뷰 승인 리스트</title>
@@ -31,15 +49,18 @@
 		<div class="companyReviewList">
 			<div class="row">
 				<div class="col-xs-3">
-					 <select class="form-control" name="jobTopIndexCd">
+					 <select class="form-control" id="searchjobTopIndex" name="jobTopIndexCd">
 					 	<option value="">직무분류</option>
 					 	<c:forEach var="jobTopIndexList" items="${jobTopIndexList}" >
 					 		<option value="${jobTopIndexList.jobTopIndexCd }">${jobTopIndexList.jobTopIndexName }</option>
 					 	</c:forEach>
 					 </select>
 				</div>
-				<div class="col-xs-3">
-					<input type="text" class="form-control" name="searchName" placeholder="기업명">
+				<div class="col-xs-2">
+					<input type="text" class="form-control" id="searchCompanyName" name="searchCompanyName" placeholder="기업명"/>
+				</div>
+				<div class="col-xs-2">			
+					<button class="btn .btn-default" id="searchBtn"><span class="glyphicon glyphicon-search"></span>검색</button>
 				</div>
 			</div>
 			<c:forEach var="reviewListAllow" items="${reviewListAllow}">
@@ -85,18 +106,18 @@
 		<div class="text-center">
 			<ul class="pager">
 				<c:if test="${page > 1}">
-					<li class="previous"><a href="/review/companyReviewListAllow?jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
+					<li class="previous"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
 				</c:if>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${page == i}">
-						<li><a href="/review/companyReviewListAllow?jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
+						<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
 					</c:if>
 					<c:if test="${page != i}">
-						<li><a href="/review/companyReviewListAllow?jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
+						<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${page < endPage}">
-					<li class="next"><a href="/review/companyReviewListAllow?jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
+					<li class="next"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
 				</c:if>
 			</ul>
 		</div>

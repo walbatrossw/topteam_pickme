@@ -45,14 +45,14 @@
 			<div class="row">
 				<div class="col-xs-8 quick">
 					<div class="row">
-						<a class="col-xs-6" href="#"><img src="/img/company/companylogo.png" width="200px"><p>기업정보</p></a>
-						<a class="col-xs-6" href="#"><img src="/img/company/reviewlogo.png" width="200px"><p>기업리뷰</p></a>
+						<a class="col-xs-6" href="/company/info"><img src="/img/company/companyinfologo.png" alt="기업정보 로고 이미지" width="200px"><p>기업정보</p></a>
+						<a class="col-xs-6" href="#"><img src="/img/company/reviewlogo.png" alt="기업리뷰 로고 이미지" width="200px"><p>기업리뷰</p></a>
 					</div>
 					<div class="row">
-						<a class="col-xs-6" href="#"><img src="/img/company/salarylogo.png" width="200px"><p>기업연봉</p></a>
-						<a class="col-xs-6" href="#"><img src="/img/company/interviewlogo.png" width="200px"><p>면접후기</p></a>
+						<a class="col-xs-6" href="#"><img src="/img/company/salarylogo.png" alt="기업연봉 로고 이미지" width="200px"><p>기업연봉</p></a>
+						<a class="col-xs-6" href="#"><img src="/img/company/interviewlogo.png" alt="면접후기 로고 이미지" width="200px"><p>면접후기</p></a>
 					</div>
-				</div>
+				</div> 
 				<div class="col-xs-6 toplist">
 					<ul id="list10">
 				    	<li class="bar"><h3>기업 평점 순위</h3></li>

@@ -53,25 +53,32 @@ public class CompanyService {
 	 * ---------------------------------------------------------------------------------*/ 
 	 
 	//기업리뷰목록(승인)
-	public Map<String, Object> getCompanyReviewAllowList(int page, String jobTopIndexCd){
+	public Map<String, Object> getCompanyReviewAllowList(int page, String jobTopIndexCd, String searchCompanyName){
 		//승인목록 페이지 처리
 		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
 		String tbName = "tb_company_review";
 		String tbColumn = "review_allow";
 		//승인상태값 1로 승인상태인것만 갯수를 얻어와서 마지막페이지 SET
-		if(jobTopIndexCd.equals("")){
+		if(jobTopIndexCd.equals("") && searchCompanyName.equals("")){
+			logger.info("null");
 			pageHelper.setLastPage(companyDao.selectAllowTotalCount(tbName, tbColumn, 1),MAX_LINE_COUNT);
 		}else{
-			pageHelper.setLastPage(companyDao.selectAllowSearchCount(jobTopIndexCd),MAX_LINE_COUNT);
+			logger.info("not null : {}", companyDao.selectAllowSearchCount(jobTopIndexCd, searchCompanyName));
+			pageHelper.setLastPage(companyDao.selectAllowSearchCount(jobTopIndexCd, searchCompanyName),MAX_LINE_COUNT);
 		}
+		//페이징 처리에서 시작페이지와 끝페이지
 		Map<String, Object> reviewAllowMap = new HashMap<String, Object>();
 		reviewAllowMap.put("startPage", pageHelper.startPage(page, MAX_PAGE_COUNT));
 		reviewAllowMap.put("endPage", pageHelper.endPage());
 		
+		//검색된 페이지 수와 검색조건들 맵
 		Map<String, Object> reviewSearchMap = new HashMap<String, Object>();
 		reviewSearchMap.put("pageHelp", pageHelper);
 		reviewSearchMap.put("jobTopIndexCd", jobTopIndexCd);
-		
+		reviewSearchMap.put("searchCompanyName", searchCompanyName);
+		logger.info("pageHelper {}", pageHelper.toString());
+		logger.info("jobTopIndexCd {}", jobTopIndexCd.toString());
+		logger.info("searchCompanyName {}", searchCompanyName.toString());
 		reviewAllowMap.put("reviewListAllow", companyDao.selectCompanyReviewListByReviewAllow(reviewSearchMap));
 		return reviewAllowMap;
 	}

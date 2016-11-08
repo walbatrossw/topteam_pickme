@@ -47,4 +47,11 @@ public class PageHelper {
     public void setLinePerPage(int linePerPage) {
         this.linePerPage = linePerPage;
     }
+    
+	@Override
+	public String toString() {
+		return "PageHelper [startRow=" + startRow + ", linePerPage=" + linePerPage + ", lastPage=" + lastPage
+				+ ", startPage=" + startPage + ", maxPageCount=" + maxPageCount + "]";
+	}
+    
 }

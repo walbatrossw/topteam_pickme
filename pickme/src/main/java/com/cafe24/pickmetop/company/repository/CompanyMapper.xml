@@ -115,7 +115,7 @@
 	<select id="selectCompanyReviewListByReviewAllow" parameterType="java.util.Map" resultType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
 		SELECT
 			review.company_review_cd as companyReviewCd,
-			(SELECT company_name FROM tb_company_info WHERE company_cd = review.company_cd) as companyName,
+			review.company_name as companyName,
 			(SELECT job_topindex_name FROM tb_job_topindex WHERE job_topindex_cd=review.job_topindex_cd) as jobTopIndexName,
 			review.review_comment as reviewComment,
 			review.review_strength as reviewStrength,
@@ -127,6 +127,9 @@
 			review.review_allow = 1
 		<if test='jobTopIndexCd != null and jobTopIndexCd != ""'>
 			AND review.job_topindex_cd = #{jobTopIndexCd}
+		</if>
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+			AND review.company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
 		</if>
 		ORDER BY
 			review.review_regdate DESC
@@ -152,15 +155,19 @@
     </select>
     
     <!-- 기업리뷰 분류 리스트 수 -->
-	<select id="selectAllowSearchCount" parameterType="String" resultType="Integer">
+	<select id="selectAllowSearchCount" parameterType="java.util.Map" resultType="Integer">
         SELECT
             COUNT(*)
         FROM 
         	tb_company_review
         WHERE
         	review_allow = 1
-        AND
-        	job_topindex_cd = #{jobTopIndexCd}	
+        <if test='jobTopIndexCd != null and jobTopIndexCd != ""'>
+			AND job_topindex_cd = #{jobTopIndexCd}
+		</if>
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+			AND company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
+		</if>
     </select>
     
 	<!-- 기업리뷰 디테일 -->

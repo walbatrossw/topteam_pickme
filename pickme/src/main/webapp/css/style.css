@@ -42,6 +42,9 @@ body {
 .sections .section_cont .visual ul li.list1 .txt	{top:260px; right:14px;}
 .sections .section_cont .visual ul li.list2 .txt	{top:260px; right:95px;}
 .sections .section_cont .visual ul li.list3 .txt	{top:260px; right:109px;}
+.quick{
+	padding-top: 20px;
+}
 .quick a{
 	font-size: 1.5em;
 	font-weight:bold;
@@ -144,12 +147,16 @@ body {
 }
 /*기업리뷰 승인리스트 관련*/
 .companyReviewList{
-	background-color: rgba(213,213,213,0.5);
+	background-color: rgba(213,213,213,0.1);
 	padding: 30px 40px 30px 40px;
 }
 .companyReviewList .col-xs-3{
 	padding-right: 5px;
 	padding-left: 12px;
+}
+.companyReviewList .col-xs-2{
+	padding-left: 0px;
+	padding-right: 0px;
 }
 .review{
 	border-radius: 10px;

@@ -28,6 +28,11 @@ public class CompanyController {
 		model.addAttribute("companyTotalRateList", companyService.getCompanyTotalRateTop());
 		return "/companyinfo/companymain";
 	}
+	@RequestMapping(value = "/company/info", method = RequestMethod.GET)
+	public String companyInfo(Locale locale, Model model) {
+		return "/companyinfo/companyinfoDetail";
+	}
+
 	//면접후기 비승인 리스트(관리자) 맵핑
 	@RequestMapping(value = "/interview/companyInterviewUnreceivedList", method = RequestMethod.GET)
 	public String companyInterviewUnreceivedList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
@@ -38,16 +43,21 @@ public class CompanyController {
 	
 	//기업리뷰 사용자리스트 맵핑
 	@RequestMapping(value = "/review/companyReviewListAllow", method = RequestMethod.GET)
-	public String companyReviewListAllow(Model model, @RequestParam(value="page", defaultValue="1") int page, @RequestParam(value="jobTopIndexCd", defaultValue="") String jobTopIndexCd) {
-		Map<String, Object> companyReviewMap = companyService.getCompanyReviewAllowList(page, jobTopIndexCd);
+	public String companyReviewListAllow(Model model, 
+				@RequestParam(value="page", defaultValue="1") int page, 
+				@RequestParam(value="jobTopIndexCd", defaultValue="") String jobTopIndexCd,
+				@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		logger.info("searchCompanyName : {}",searchCompanyName);
+		Map<String, Object> companyReviewMap = companyService.getCompanyReviewAllowList(page, jobTopIndexCd, searchCompanyName);
 		model.addAttribute("page", page);
 		logger.info("jobTopIndexCd : {}",jobTopIndexCd);
+		model.addAttribute("searchCompnayName", searchCompanyName);
 		model.addAttribute("jobTopIndexCd", jobTopIndexCd);	
 		model.addAttribute("jobTopIndexList",companyService.getJobTopIndexList());
 		model.addAttribute("reviewListAllow", companyReviewMap.get("reviewListAllow"));
-		logger.info("jobTopIndexCd : {}",companyReviewMap.get("reviewListAllow").toString());
+		logger.info("reviewListAllow : {}",companyReviewMap.get("reviewListAllow").toString());
 		model.addAttribute("startPage", companyReviewMap.get("startPage"));
-		model.addAttribute("endPage", companyReviewMap.get("endPage"));		
+		model.addAttribute("endPage", companyReviewMap.get("endPage"));
 		return "/companyinfo/review/companyReviewList";
 	}
 	//기업리뷰 삭제처리 맵핑
