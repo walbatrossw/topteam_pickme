@@ -1,4 +1,4 @@
- package com.cafe24.pickmetop.member.controller;
+package com.cafe24.pickmetop.member.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
-import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 import com.cafe24.pickmetop.member.repository.MemberDao;
 import com.cafe24.pickmetop.member.service.MemberService;
-
-import sun.text.normalizer.ICUBinary.Authenticate;
 
 
 
@@ -25,7 +22,7 @@ public class MemberController {
 	private  static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired	
-	 MemberService memberService;
+	private MemberService memberService;
 	MemberDao memberdao;
 	//01_01 �뜝�떦諭꾩삕�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃琉꾩삕�솕�뜝�룞�삕
 	@RequestMapping(value="/memberGeneralInsert")
@@ -42,19 +39,16 @@ public class MemberController {
 	//01_03  �씪諛섑쉶�썝 濡쒓렇�씤 泥섎━
 	@RequestMapping(value="/memberGeneralLogin")
 	public String memberGeneralLogin(Model model){
-		model.addAttribute("attributeValue", new MemberGeneralVo());
+		
 		return "/member/general/memberGeneralLogin";
 	}
 		@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
-	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model){
+	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model, HttpSession session){
 		MemberGeneralVo	member = memberService.selectmemberGeneral(memberGeneralVo);
-		logger.info("generalId {}" , member.getGeneralId());
-		logger.info("generalPw {}" , member.getGeneralPw());
-		model.addAttribute("generalId",member.getGeneralId());
-		model.addAttribute("generalPw",member.getGeneralPw());	
-		return "/index";
-		
-				
-	}
-			
+		if(member == null){
+			return "/member/general/memberGeneralLogin";
+		}
+		return "index";
+		}
 }
+	
