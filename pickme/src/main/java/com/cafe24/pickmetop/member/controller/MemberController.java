@@ -48,7 +48,7 @@ public class MemberController {
 		if(member == null){
 			return "/member/general/memberGeneralLogin";
 		}
-		return "index";
+		return "index2";
 		}
 }
 	
