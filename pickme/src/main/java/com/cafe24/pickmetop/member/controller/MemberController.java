@@ -43,7 +43,7 @@ public class MemberController {
 		return "/member/general/memberGeneralLogin";
 	}
 		@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
-	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model, HttpSession session){
+	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model){
 		MemberGeneralVo	member = memberService.selectmemberGeneral(memberGeneralVo);
 		if(member == null){
 			return "/member/general/memberGeneralLogin";
