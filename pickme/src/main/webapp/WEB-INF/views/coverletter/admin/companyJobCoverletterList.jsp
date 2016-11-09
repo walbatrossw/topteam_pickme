@@ -18,7 +18,7 @@
 		<div class="jumbotron">
 		 	<h2><strong>채용공고리스트</strong></h2>
 			 	<p>만약 자신만의 자기소개서를 원하신다면 직접 작성을 눌러주세요!!!</p>
-			 	<a class="btn btn-primary btn-lg" href="/companyJobCoverletterInsert" role="button">직접작성</a>
+			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접작성</a>
 		</div>
 		<div>
 			<h3><strong>채용공고 선택하기</strong></h3>

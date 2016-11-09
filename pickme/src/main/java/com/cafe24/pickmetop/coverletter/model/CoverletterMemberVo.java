@@ -1,6 +1,6 @@
 package com.cafe24.pickmetop.coverletter.model;
 
-import java.util.Date;
+import java.util.List;
 
 public class CoverletterMemberVo {
 	private String mCletterCd;
@@ -9,6 +9,8 @@ public class CoverletterMemberVo {
 	private String mCletterName;
 	private String mCletterRegdate;
 	private String mCletterModidate;
+	private List<CoverletterMemberArticleVo> coverletterMemberArticleVoList;
+	private List<CoverletterMemberArticleSaveVo> coverletterMemberArticleSaveVo;
 	public String getmCletterCd() {
 		return mCletterCd;
 	}
@@ -45,11 +47,26 @@ public class CoverletterMemberVo {
 	public void setmCletterModidate(String mCletterModidate) {
 		this.mCletterModidate = mCletterModidate;
 	}
+	public List<CoverletterMemberArticleVo> getCoverletterMemberArticleVoList() {
+		return coverletterMemberArticleVoList;
+	}
+	public void setCoverletterMemberArticleVoList(List<CoverletterMemberArticleVo> coverletterMemberArticleVoList) {
+		this.coverletterMemberArticleVoList = coverletterMemberArticleVoList;
+	}
+	public List<CoverletterMemberArticleSaveVo> getCoverletterMemberArticleSaveVo() {
+		return coverletterMemberArticleSaveVo;
+	}
+	public void setCoverletterMemberArticleSaveVo(List<CoverletterMemberArticleSaveVo> coverletterMemberArticleSaveVo) {
+		this.coverletterMemberArticleSaveVo = coverletterMemberArticleSaveVo;
+	}
 	@Override
 	public String toString() {
 		return "CoverletterMemberVo [mCletterCd=" + mCletterCd + ", recruitJobCd=" + recruitJobCd + ", loginId="
 				+ loginId + ", mCletterName=" + mCletterName + ", mCletterRegdate=" + mCletterRegdate
-				+ ", mCletterModidate=" + mCletterModidate + "]";
+				+ ", mCletterModidate=" + mCletterModidate + ", coverletterMemberArticleVoList="
+				+ coverletterMemberArticleVoList + ", coverletterMemberArticleSaveVo=" + coverletterMemberArticleSaveVo
+				+ "]";
 	}
+	
 	
 }

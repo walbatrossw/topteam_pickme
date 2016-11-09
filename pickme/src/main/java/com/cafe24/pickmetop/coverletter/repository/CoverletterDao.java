@@ -30,4 +30,8 @@ public class CoverletterDao {
 	public List<CoverletterCompanyJobVo> selectCoverletterCompanyJobList(){
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobList");
 	}
+	
+	public int insertMemberCoverletter(CoverletterMemberVo coverletterMemberVo){
+		return sqlSessionFactoryCoverletter.insert(nameSpace+".insertMemberCoverletter", coverletterMemberVo);
+	}
 }

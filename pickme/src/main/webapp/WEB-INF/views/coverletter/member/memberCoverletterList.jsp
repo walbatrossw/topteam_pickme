@@ -20,7 +20,7 @@
 			 	<p>여러분이 원하시는 기업의 채용공고를 검색하시거나, 선택하시려면 채용기업검색을 눌러주세요!!!</p>
 			 	<p>만약 자신만의 자기소개서를 원하신다면 직접 작성을 눌러주세요!!!</p>
 			 	<a class="btn btn-primary btn-lg" href="/companyJobCoverletterList" role="button">채용기업 검색하러가기</a>
-			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterArticleInsert" role="button">직접 작성하러가기</a>
+			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접 작성하러가기</a>
 		</div>
 		<div>
 			<h3>내가 작성한 자기소개서</h3>

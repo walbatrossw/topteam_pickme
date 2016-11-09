@@ -27,4 +27,9 @@ public class CoverletterService {
 	public List<CoverletterCompanyJobVo> getCompanyJobCoverletterList(){
 		return coverletterDao.selectCoverletterCompanyJobList();
 	}
+	
+	// 03 자기소개서 입력처리
+	public void addMemberCoverletter(CoverletterMemberVo coverletterMemberVo){
+		coverletterDao.insertMemberCoverletter(coverletterMemberVo);
+	}
 }

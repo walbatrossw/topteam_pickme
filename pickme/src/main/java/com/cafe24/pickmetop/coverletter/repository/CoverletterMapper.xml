@@ -52,4 +52,46 @@
 	ORDER BY
 		rc.recruit_enddate ASC
 	</select>
+
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+					03	회원의 자기소개서 입력화면	
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+ -->
+ 	<!-- 직무별 자기소개서 화면 --> 
+ 	<select id="">
+ 	SELECT
+ 		<foreach collection="resumeUniversityVoList" item="item" separator=" , ">
+		ci.company_name AS companyName,
+		jm.job_midindex_name AS midindexName,
+		rcj.recruit_job_jobdetail AS recruitJobDetail,
+		rc.recruit_enddate AS recruitEnddate,
+		ccj.c_cletter_article AS cCletterArticle
+		</foreach>
+	FROM 
+			tb_recruit_company rc
+	INNER JOIN	
+			tb_recruit_company_job rcj 
+	ON 
+			rc.company_cd = rcj.company_cd
+	INNER JOIN	
+			tb_company_info ci 
+	ON 
+			ci.company_cd = rcj.company_cd	
+	INNER JOIN	
+			tb_job_midindex jm 
+	ON 
+			jm.job_midindex_cd = rcj.job_midindex_cd 	
+	INNER JOIN
+			tb_cletter_company_job ccj 
+	ON
+			rcj.recruit_job_cd = ccj.recruit_job_cd
+	WHERE
+			ccj.c_cletter_article_cd = 'coverletter_cd_10'
+ 	
+ 	</select>
+ 	<!-- 직무별 자기소개서 화면처리 -->
+ 	<insert id="coverletterMemberVo" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo">
+ 		
+ 	</insert>	
 </mapper>
