@@ -39,8 +39,7 @@ public class RecruitService {
 	
 	//채용상세보기 
 	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
-		recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd);
-		return null;
+		return recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd);
 	}
 	
 	//IndustryTop 전체리스트
@@ -49,6 +48,7 @@ public class RecruitService {
 	}
 	//달력화면
 	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName){
+		logger.info("searchCompanyName : {}",searchCompanyName);
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
 		Calendar dday= Calendar.getInstance();	//오늘날짜
@@ -59,6 +59,8 @@ public class RecruitService {
 		}else if(ddayOption.equals("next")){
 			dday.set(ddayYear, ddayMonth,1);
 			dday.add(Calendar.MONTH, 1);//12월에서 +1하면 1월이 될수있도록 메서드를 사용
+		}else if(ddayOption.equals("search")){
+			dday.set(ddayYear, ddayMonth,1);
 		}
 		
 		//1일의 요일 : 앞부분 공백구하기
@@ -92,23 +94,32 @@ public class RecruitService {
 				oneDay.setMonth(dday.get(Calendar.MONTH)+1);
 				String scheduleDate = oneDay.getYear()+"-"+oneDay.getMonth()+"-"+oneDay.getDay();
 				
-				//기업명으로 기업코드검색
-				String searchCompanyCd = null;
-				if(searchCompanyName!=""){
-					searchCompanyCd= recruitDao.getCompanyCd(searchCompanyName);
-				}
 				Map<String, Object> companySearchMap = new HashMap<String, Object>();
-				companySearchMap.put("searchCompanyCd", searchCompanyCd);
+
 				companySearchMap.put("scheduleDate", scheduleDate);
-				//시작일 
-				List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
-				//종료일
-				List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(companySearchMap);
-				
-				beginScheduleList.addAll(EndScheduleList);
-				//두개의 스케쥴을 합침 
-				oneDay.setScheduleList(beginScheduleList);
-				
+				companySearchMap.put("searchCompanyName", searchCompanyName);
+				//검색어 없을때 전체리스트 보여줌 
+				if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
+					logger.info("여긴 들어와도됨");
+					//시작일 
+					List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
+					//종료일
+					List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(companySearchMap);
+					beginScheduleList.addAll(EndScheduleList);
+					//두개의 스케쥴을 합침 
+					oneDay.setScheduleList(beginScheduleList);
+				}
+				else if(!searchCompanyName.equals("")||!searchCompanyName.equals(null)){
+					
+					logger.info("일로들어오면 안돼!!!!!! searchCompanyName : {}  " ,searchCompanyName);
+					//시작일 
+					List<Recruit> beginScheduleList = recruitDao.searchScheduleListByBeginDate(companySearchMap);		
+					//종료일
+					List<Recruit> EndScheduleList = recruitDao.searchScheduleListByEndDate(companySearchMap);
+					beginScheduleList.addAll(EndScheduleList);
+					//두개의 스케쥴을 합침 
+					oneDay.setScheduleList(beginScheduleList);
+				}		
 				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑
 			//뒤의공백
 			}else {
@@ -228,7 +239,6 @@ public class RecruitService {
 			}
 			
 			//자기소개서항목입력 미완성
-			logger.info("coverletterCompanyJobVo.getCoverletterList().size() : {}",recruit.getRecruitList().get(1).getcCletterArticle().size());
 			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 				int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();

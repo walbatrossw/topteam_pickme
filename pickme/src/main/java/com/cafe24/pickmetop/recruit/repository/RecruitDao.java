@@ -29,8 +29,20 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	
+	//채용달력 종료일 검색
+	public List<Recruit> searchScheduleListByEndDate(Map companySearchMap){
+		return sqlSessionFactoryRecruit.selectList(NS+".searchScheduleListByEndDate",companySearchMap);
+	}
+
+	//채용달력 시작일 검색
+	public List<Recruit> searchScheduleListByBeginDate(Map companySearchMap){
+		return sqlSessionFactoryRecruit.selectList(NS+".searchScheduleListByBeginDate",companySearchMap);
+	}
+	
 	//디테일 
 	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
+		logger.info("recruitCompanyCd : {} ", recruitCompanyCd);
 		return sqlSessionFactoryRecruit.selectList(NS+".selectForRecruitCompanyDetail",recruitCompanyCd);
 	}
 	

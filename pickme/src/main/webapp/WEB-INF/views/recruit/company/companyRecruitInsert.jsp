@@ -170,9 +170,9 @@ $(document).ready(function(){
  	$('#recruitAdd').click(function(){	
 		console.log($('.cCletterArticle').eq(3).val());
 		
-		if($('#CompanyName').val()==''){
+		if($('#companyName').val()==''){
 			$('#error').text('기업명을 입력하세요');
-			$('#CompanyName').focus();	
+			$('#companyName').focus();	
 		}else if($('#recruitName').val()==''){
 			$('#error').text('공고명을 입력하세요');
 			$('#recruitName').focus();
@@ -224,7 +224,7 @@ $(document).ready(function(){
 			<div class="form-group" id="the-basics">
 				<label>채용기업</label>
 				<input class="typeahead" type="text" class="form-control"
-					name="CompanyName" id="CompanyName" placeholder="기업명을 입력하세요"
+					name="companyName" id="companyName" placeholder="기업명을 입력하세요"
 					value="${recruit.companyName}"> <span style="color: gray">*
 					검색내에 없는 기업일시 임시등록됩니다.</span>
 			</div>

@@ -31,9 +31,10 @@ public class RecruitController {
 	//디테일 
 	@RequestMapping(value="/recruitDetail")
 	public String recruitDetail(Model model,
-			@RequestParam(value="recruitCd", defaultValue="0") String recruitCompanyCd){
+			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd){
 		logger.info("recruitCd : {}",recruitCompanyCd);
-		model.addAttribute("companyInfoForDetail",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
+		logger.info("recruitCompanyInfoForDetail :{}",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
+		model.addAttribute("recruitCompanyInfoForDetail",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
 		return "/recruit/company/companyRecruitDetail"; 
 	}
 	/* 채용 삭제*/
@@ -45,7 +46,10 @@ public class RecruitController {
 							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption,
 							@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName){
 		logger.info("searchCompanyName:{}",searchCompanyName);
+
 		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,searchCompanyName);
+		
+		
 		model.addAttribute("oneDayList",map.get("oneDayList"));
 		model.addAttribute("ddayYear",map.get("ddayYear"));
 		model.addAttribute("ddayMonth",map.get("ddayMonth"));

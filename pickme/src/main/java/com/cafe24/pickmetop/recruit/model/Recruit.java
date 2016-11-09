@@ -8,48 +8,50 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 
 public class Recruit {
 
-	String CompanyName;
-	String CompanyCd;
-	String recruitName;
-	String recruitBegindate;
-	String recruitEnddate;
-	MultipartFile recruitJobFile;
-	List<String> jobMidIndexCd;
-	List<String> recruitJobWorkstatus;
-	List<String> recruitJobJobdetail;
-	List<String> recruitJobEducation;
-	List<CoverletterCompanyJobVo> cCletterArticle;
-	List<Recruit> recruitList;
-	String recruitCompanyCd;
-	String companySite;
-	String begin;
-	String end;
+	private String companyName;
+	private String companyCd;
+	private String recruitName;
+	private String recruitBegindate;
+	private String recruitEnddate;
+	private String recruitImgName;
+	private MultipartFile recruitJobFile;
+	private List<String> jobMidIndexCd;
+	private List<String> recruitJobWorkstatus;
+	private List<String> recruitJobJobdetail;
+	private List<String> recruitJobEducation;
+	private List<CoverletterCompanyJobVo> cCletterArticle;
+	private List<Recruit> recruitList;
+	private String recruitCompanyCd;
+	private String companySite;
+	private String begin;
+	private String end;
+	private String workStatus;
+	private String jobDetail;
 	
 	
-	
-	public String getCompanySite() {
-		return companySite;
+	public String getWorkStatus() {
+		return workStatus;
 	}
-	public void setCompanySite(String companySite) {
-		this.companySite = companySite;
+	public void setWorkStatus(String workStatus) {
+		this.workStatus = workStatus;
 	}
-	public String getRecruitCompanyCd() {
-		return recruitCompanyCd;
+	public String getJobDetail() {
+		return jobDetail;
 	}
-	public void setRecruitCompanyCd(String recruitCompanyCd) {
-		this.recruitCompanyCd = recruitCompanyCd;
+	public void setJobDetail(String jobDetail) {
+		this.jobDetail = jobDetail;
 	}
 	public String getCompanyName() {
-		return CompanyName;
+		return companyName;
 	}
 	public void setCompanyName(String companyName) {
-		CompanyName = companyName;
+		this.companyName = companyName;
 	}
 	public String getCompanyCd() {
-		return CompanyCd;
+		return companyCd;
 	}
 	public void setCompanyCd(String companyCd) {
-		CompanyCd = companyCd;
+		this.companyCd = companyCd;
 	}
 	public String getRecruitName() {
 		return recruitName;
@@ -68,6 +70,12 @@ public class Recruit {
 	}
 	public void setRecruitEnddate(String recruitEnddate) {
 		this.recruitEnddate = recruitEnddate;
+	}
+	public String getRecruitImgName() {
+		return recruitImgName;
+	}
+	public void setRecruitImgName(String recruitImgName) {
+		this.recruitImgName = recruitImgName;
 	}
 	public MultipartFile getRecruitJobFile() {
 		return recruitJobFile;
@@ -111,6 +119,18 @@ public class Recruit {
 	public void setRecruitList(List<Recruit> recruitList) {
 		this.recruitList = recruitList;
 	}
+	public String getRecruitCompanyCd() {
+		return recruitCompanyCd;
+	}
+	public void setRecruitCompanyCd(String recruitCompanyCd) {
+		this.recruitCompanyCd = recruitCompanyCd;
+	}
+	public String getCompanySite() {
+		return companySite;
+	}
+	public void setCompanySite(String companySite) {
+		this.companySite = companySite;
+	}
 	public String getBegin() {
 		return begin;
 	}
@@ -125,14 +145,16 @@ public class Recruit {
 	}
 	@Override
 	public String toString() {
-		return "Recruit [CompanyName=" + CompanyName + ", CompanyCd=" + CompanyCd + ", recruitName=" + recruitName
-				+ ", recruitBegindate=" + recruitBegindate + ", recruitEnddate=" + recruitEnddate + ", recruitJobFile="
-				+ recruitJobFile + ", jobMidIndexCd=" + jobMidIndexCd + ", recruitJobWorkstatus=" + recruitJobWorkstatus
-				+ ", recruitJobJobdetail=" + recruitJobJobdetail + ", recruitJobEducation=" + recruitJobEducation
-				+ ", cCletterArticle=" + cCletterArticle + ", recruitList=" + recruitList + ", begin=" + begin
-				+ ", end=" + end + "]";
+		return "Recruit [companyName=" + companyName + ", companyCd=" + companyCd + ", recruitName=" + recruitName
+				+ ", recruitBegindate=" + recruitBegindate + ", recruitEnddate=" + recruitEnddate + ", recruitImgName="
+				+ recruitImgName + ", recruitJobFile=" + recruitJobFile + ", jobMidIndexCd=" + jobMidIndexCd
+				+ ", recruitJobWorkstatus=" + recruitJobWorkstatus + ", recruitJobJobdetail=" + recruitJobJobdetail
+				+ ", recruitJobEducation=" + recruitJobEducation + ", cCletterArticle=" + cCletterArticle
+				+ ", recruitList=" + recruitList + ", recruitCompanyCd=" + recruitCompanyCd + ", companySite="
+				+ companySite + ", begin=" + begin + ", end=" + end + "]";
 	}
 	
+
 	
 	
 

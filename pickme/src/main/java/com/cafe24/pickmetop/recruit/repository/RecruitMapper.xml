@@ -3,6 +3,49 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
 	
+	<!-- 채용달력 시작일 검색 -->
+	<select id="searchScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="Map">	
+	SELECT  
+		company.company_cd as companyCd,
+		recruit.recruit_name as recruitName,
+		recruit.recruit_company_cd as recruitCompanyCd,
+		recruit.recruit_begindate as recruitBegindate , 
+		recruit.recruit_enddate as recruitEnddate,
+		recruit.recruit_regdate as recruitRegdate,
+		'begin' as 'begin'
+	FROM 
+		tb_recruit_company as recruit,
+		tb_company_info as company
+	where 
+	company.company_name LIKE CONCAT('%',#{searchCompanyName}, '%')
+	and 
+	recruit.company_cd = company.company_cd
+	and 
+	recruit.recruit_begindate= #{scheduleDate}
+	
+	</select> 
+	
+	<!-- 채용달력 종료일 검색 -->
+	 <select id="searchScheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="Map">	
+	SELECT  
+		company.company_cd as companyCd,
+		recruit.recruit_name as recruitName,
+		recruit.recruit_company_cd as recruitCompanyCd,
+		recruit.recruit_begindate as recruitBegindate , 
+		recruit.recruit_enddate as recruitEnddate,
+		recruit.recruit_regdate as recruitRegdate,
+		'end' as 'end'
+	FROM 
+		tb_recruit_company as recruit,
+		tb_company_info as company
+	where 
+	company.company_name  LIKE CONCAT('%',#{searchCompanyName}, '%')
+	and 
+	recruit.company_cd = company.company_cd
+	and 
+	recruit.recruit_enddate= #{scheduleDate}
+	
+	</select>
 	<!-- 디테일 기업정보 -->
 	<select id="selectForRecruitCompanyDetail" resultType="com.cafe24.pickmetop.recruit.model.Recruit">
 	SELECT 
@@ -10,39 +53,54 @@
 		company.company_name as companyName,
 		company.company_site as companySite,
 		recruit.recruit_begindate as recruitBegindate,
-		recruit.recruit_enddate as recruitEnddate
+		recruit.recruit_enddate as recruitEnddate,
+		recruitjop.recruit_job_workstatus as workStatus,
+		recruitjop.recruit_job_jobdetail as jobDetail,
+		recruitjop.recruit_job_file as recruitImgName
 	FROM 
 		tb_recruit_company as recruit ,
-		tb_company_info as company
+		tb_company_info as company,
+		tb_recruit_company_job as recruitjop
 	WHERE
-		recruit_company_cd = #{recruitCompanyCd} 
+		recruit.recruit_company_cd = #{recruitCompanyCd} 
 	AND 
 		company.company_cd = recruit.company_cd
+	AND 
+		recruitjop.company_cd = recruit.company_cd
 	</select>
 	
 	<!-- 와일드카드 쓰고 기업명으로 기업코드 찾기 -->
 	<select id="getCompanyCdWithWildCard" resultType="java.lang.String">
-		SELECT company_cd as companyCd
-		FROM tb_company_info 
-		WHERE company_name = '%'+#{companyName}+'%'
+		SELECT 
+			company_cd as companyCd
+		FROM
+			 tb_company_info 
+		WHERE 
+			company_name = '%'+#{companyName}+'%'
 	</select>
 	
 	<!-- 산업군 topindex 전체리스트 -->
 	<select id="selectAllTopIndustry" resultType="com.cafe24.pickmetop.admin.model.IndustryTopIndexVo">
-	SELECT industry_topindex_cd as industryTopindexCd, industry_topindex_name as industryTopindexName
-	FROM tb_industry_topindex
+	SELECT 
+		industry_topindex_cd as industryTopindexCd, 
+		industry_topindex_name as industryTopindexName
+	FROM 
+		tb_industry_topindex
 	</select>
 	
  	 <!-- tb_cletter_company_job의 총 열갯수 -->
 	<select id="getCountOfCoverletterJob" resultType="int">
-		 SELECT COUNT(c_cletter_article_cd) 
-		 FROM tb_cletter_company_job
+		 SELECT 
+		 	COUNT(c_cletter_article_cd) 
+		 FROM 
+		 	tb_cletter_company_job
 	</select> 
 	
 	<insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
 	INSERT INTO tb_cletter_company_job
-	(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
-	VALUES (#{cCletterArticleCd},#{recruitJobCd},#{cletterArticle})
+		(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
+	VALUES 
+		(#{cCletterArticleCd},#{recruitJobCd},#{cletterArticle})
 	</insert> 
 	
 	
@@ -59,8 +117,10 @@
 		recruit_modidate as recruitModidate, 
 		recruit_modify as recruitModify,
 		'end' as 'end'
-	FROM tb_recruit_company
-	WHERE recruit_enddate= #{scheduleDate}
+	FROM 
+		tb_recruit_company
+	WHERE 
+		recruit_enddate= #{scheduleDate}
 <!-- 		<if test='searchCompanyCd != null or searchCompanyCd != ""'>
 			AND company_cd = #{searchCompanyCd}
 		</if> -->
@@ -80,8 +140,10 @@
 		recruit_modidate as recruitModidate, 
 		recruit_modify as recruitModify,
 		'begin' as 'begin'
-	FROM tb_recruit_company
-	WHERE recruit_begindate= #{scheduleDate}
+	FROM 
+		tb_recruit_company
+	WHERE 
+		recruit_begindate= #{scheduleDate}
 <!-- 			<if test='searchCompanyCd != null or searchCompanyCd != ""'>
 			AND  company_cd = #{searchCompanyCd}
 			</if> -->
@@ -97,47 +159,66 @@
 	 
 	<!-- default 기업코드 열 갯수 -->
 	<select id="selectDefaultCd" resultType="int">
-		SELECT count(company_cd) 
-		FROM tb_company_info
-		where company_cd like '%de%'
+		SELECT 
+			COUNT(company_cd) 
+		FROM 
+			tb_company_info
+		WHERE 
+			company_cd like '%de%'
 	</select>
 
 	<!-- JobTopIndex 검색 -->
 	<select id="getJobTopIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobTopIndexVo">
-		SELECT job_topindex_cd as jobTopIndexCd, job_topindex_name as jobTopIndexName
-		FROM tb_job_topindex
+		SELECT 
+			job_topindex_cd as jobTopIndexCd,
+			job_topindex_name as jobTopIndexName
+		FROM 
+			tb_job_topindex
 	</select>
 
 	<!-- JobMidIndex 검색 -->
 	<select id="getJobMidIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobMidIndexVo">
-		 SELECT job_midindex_cd as jobMidindexCd ,job_topindex_cd as jobTopIndexCd, job_midindex_name as jobMidindexName 
-		 FROM tb_job_midindex
+		 SELECT 
+		 	job_midindex_cd as jobMidindexCd ,
+		 	job_topindex_cd as jobTopIndexCd, 
+		 	job_midindex_name as jobMidindexName 
+		 FROM 
+		 	tb_job_midindex
 	</select>
 	
 	
    	<!--  RecruitCompanyJob의 총 열갯수 -->
 	<select id="getCountOfRecruitJob" resultType="int">
-		 SELECT COUNT(recruit_job_education) 
-		 FROM tb_recruit_company_job
+		 SELECT 
+		 	COUNT(recruit_job_education) 
+		 FROM 
+		 	tb_recruit_company_job
 	</select>
 
    	<!--  RecruitCompany의 총 열갯수 -->
 	<select id="getCountOfRecruit" resultType="int">
-		 SELECT COUNT(recruit_modidate) 
-		 FROM tb_recruit_company
+		 SELECT 
+		 	COUNT(recruit_modidate) 
+		 FROM 
+		 	tb_recruit_company
 	</select>
 
 	<!-- 기업명으로 기업코드 찾기 -->
 	<select id="getCompanyCd" resultType="java.lang.String">
-		SELECT company_cd as companyCd
-		FROM tb_company_info 
-		WHERE company_name = #{companyName}
+		SELECT 
+			company_cd as companyCd
+		FROM 
+			tb_company_info 
+		WHERE 
+			company_name = #{companyName}
 	</select>
 	
 	<!-- 전체 기업명 검색 -->
 	<select id="selectCompany" resultType="java.lang.String"> 
-		SELECT company_name
-		FROM tb_company_info
+		SELECT 
+			company_name
+		FROM 
+			tb_company_info
 	</select>
 	
 	<!-- RecruitCompany 입력 -->
