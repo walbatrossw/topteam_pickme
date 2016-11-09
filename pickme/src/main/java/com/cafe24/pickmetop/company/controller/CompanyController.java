@@ -28,9 +28,26 @@ public class CompanyController {
 		model.addAttribute("companyTotalRateList", companyService.getCompanyTotalRateTop());
 		return "/companyinfo/companymain";
 	}
-	@RequestMapping(value = "/company/info", method = RequestMethod.GET)
-	public String companyInfo(Locale locale, Model model) {
-		return "/companyinfo/companyinfoDetail";
+	@RequestMapping(value = "/company/companyInfoDetail", method = RequestMethod.GET)
+	public String companyInfoDetail(Locale locale, Model model) {
+		return "/companyinfo/companyInfoDetail";
+	}
+	//기업정보페이지 맵핑
+	@RequestMapping(value = "/company/companyInfoList", method = RequestMethod.GET)
+	public String companyInfoList(Locale locale, Model model,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		Map<String, Object> companyInfoMap = companyService.getCompantInfoList(page, searchCompanyName);
+		logger.info("startPage: {}", companyInfoMap.get("startPage"));
+		logger.info("endPage: {}", companyInfoMap.get("endPage"));
+		logger.info("companyInfoList: {}", companyInfoMap.get("companyInfoList").toString());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("searchCompanyName", searchCompanyName);
+		model.addAttribute("startPage",companyInfoMap.get("startPage"));
+		model.addAttribute("endPage",companyInfoMap.get("endPage"));
+		model.addAttribute("companyInfoList", companyInfoMap.get("companyInfoList"));
+		return "/companyinfo/companyInfoList";
 	}
 
 	//면접후기 비승인 리스트(관리자) 맵핑
@@ -100,7 +117,7 @@ public class CompanyController {
 	//기업리뷰 등록화면 맵핑
 	@RequestMapping(value = "/review/companyReviewInsertForm", method = RequestMethod.GET)
 	public String companyReviewInsertForm(Model model) {
-		model.addAttribute("companyInfoList", companyService.getCompanyInfoList());
+		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
 		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
 		return "/companyinfo/review/companyReviewInsert";
 	}

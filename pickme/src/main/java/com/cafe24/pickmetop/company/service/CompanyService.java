@@ -25,10 +25,30 @@ public class CompanyService {
 	@Autowired
 	CompanyDao companyDao;
 	/*---------------------------------------------------------------------------------- 
-	 * 									기업메인 TOP
-	 * ---------------------------------------------------------------------------------*/ 
+	 * 									기업메인 관련
+	 * ---------------------------------------------------------------------------------*/
+	//기업 총점 Top10
 	public List<CompanyInfoVo> getCompanyTotalRateTop(){
 		return companyDao.selectCompanyByTotalRate();
+	}
+	/*---------------------------------------------------------------------------------- 
+	 * 									기업정보 페이지
+	 * ---------------------------------------------------------------------------------*/ 
+	//기업들의 모든 리스트 뷰 (기업명으로 검색가능)
+	public Map<String, Object> getCompantInfoList(int page, String searchCompanyName){
+		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
+		pageHelper.setLastPage(companyDao.selectCompanyInfoListCount(searchCompanyName), MAX_LINE_COUNT);
+		Map<String, Object> companyInfoMap = new HashMap<String, Object>();
+		Map<String, Object> companyoInfoSearchMap = new HashMap<String, Object>();
+		
+		companyoInfoSearchMap.put("pageHelp", pageHelper);
+		companyoInfoSearchMap.put("searchCompanyName", searchCompanyName);
+		
+		companyInfoMap.put("startPage", pageHelper.startPage(page, MAX_PAGE_COUNT));
+		companyInfoMap.put("endPage", pageHelper.endPage());
+		companyInfoMap.put("companyInfoList", companyDao.selectCompanyInfoList(companyoInfoSearchMap));
+		logger.info("listsize : {}", companyDao.selectCompanyInfoList(companyoInfoSearchMap).size());
+		return companyInfoMap;
 	}
 	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련
@@ -134,9 +154,9 @@ public class CompanyService {
 		return companyDao.insertCompanyReview(companyReviewVo);
 	}
 	
-	//기업정보 리스트목록 메서드
-	public List<CompanyInfoVo> getCompanyInfoList(){
-		return companyDao.selectCompanyInfoAllList();
+	//기업이름 리스트목록 메서드
+	public List<CompanyInfoVo> getCompanyNameList(){
+		return companyDao.selectCompanyNameList();
 	}
 	
 	//직무중분류 리스트 목록 메서드

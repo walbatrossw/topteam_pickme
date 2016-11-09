@@ -45,7 +45,7 @@
 			<div class="row">
 				<div class="col-xs-8 quick">
 					<div class="row">
-						<a class="col-xs-6" href="/company/info"><img src="/img/company/companyinfologo.png" alt="기업정보 로고 이미지" width="200px"><p>기업정보</p></a>
+						<a class="col-xs-6" href="/company/companyInfoList"><img src="/img/company/companyinfologo.png" alt="기업정보 로고 이미지" width="200px"><p>기업정보</p></a>
 						<a class="col-xs-6" href="#"><img src="/img/company/reviewlogo.png" alt="기업리뷰 로고 이미지" width="200px"><p>기업리뷰</p></a>
 					</div>
 					<div class="row">

@@ -34,6 +34,21 @@ public class CompanyDao {
 	public List<CompanyInfoVo> selectCompanyByTotalRate(){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyByTotalRate");
 	}
+	/*
+	 * ----------------------------------------------------------------------------------------
+	 * 
+	 * 									   기업정보페이지 관련
+	 * 
+	 * ----------------------------------------------------------------------------------------
+	 * */
+	public List<CompanyInfoVo> selectCompanyInfoList(Map<String, Object> companyInfoMap){
+		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInfoList", companyInfoMap);
+	}
+	public int selectCompanyInfoListCount(String searchCompanyName){
+		Map<String, Object> sqlMap = new HashMap<String, Object>();
+		sqlMap.put("searchCompanyName", searchCompanyName);
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyInfoListCount", sqlMap);
+	}
 
 	/*
 	 * ----------------------------------------------------------------------------------------
@@ -56,8 +71,8 @@ public class CompanyDao {
 	}
 	
 	//기업정보 테이블에서 기업이름 리스트 전체
-	public List<CompanyInfoVo> selectCompanyInfoAllList(){
-		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInfoAllList");
+	public List<CompanyInfoVo> selectCompanyNameList(){
+		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyNameList");
 	}
 	//직무중분류 테이블에서 리스트 전체
 	public List<JobTopIndexVo> selectJobTopIndexAllList(){

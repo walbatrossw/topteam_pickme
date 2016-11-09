@@ -19,6 +19,44 @@
 			companyTotalRate DESC
 		LIMIT 10
 	</select>
+	
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									기업 정보 페이지 관련
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->
+	<!-- 기업정보 페이지의 기업 리스트 목록 -->
+	<select id="selectCompanyInfoList" parameterType="java.util.Map" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
+		SELECT
+			info.company_name as companyName,
+			topindex.industry_topindex_name as industryTopIndexName,
+			substring(info.company_addr,1,2) as companyAddr,
+			(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd = info.company_cd) as reviewCount,
+			(SELECT COUNT(*) FROM tb_company_interview interview WHERE interview.company_cd = info.company_cd) as interviewCount,
+			(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_cd = info.company_cd) as salaryCount, 
+			info.company_total_rate as companyTotalRate
+		FROM
+			tb_company_info info, tb_industry_topindex topindex
+		WHERE
+			topindex.industry_topindex_cd = (SELECT industry_topindex_cd FROM tb_industry_midindex WHERE industry_midindex_cd = info.industry_midindex_cd)
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+			AND info.company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
+		</if>
+		ORDER BY companyTotalRate DESC
+		LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}	
+	</select>
+	
+	<select id="selectCompanyInfoListCount" parameterType="java.util.Map" resultType="Integer">
+        SELECT
+            COUNT(*)
+        FROM 
+        	tb_company_info
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+		WHERE
+			company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
+		</if>
+    </select>
+	
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 									기업리뷰 관련
@@ -74,7 +112,7 @@
 		 	company_name = #{companyName}
 	</select>
 	<!-- 기업정보리스트 -->
-	<select id="selectCompanyInfoAllList" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
+	<select id="selectCompanyNameList" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
 		SELECT
 			company_name as companyName
 		FROM
