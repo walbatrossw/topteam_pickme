@@ -640,6 +640,147 @@
 .pop_company_view table.map-area td{ border-width: 0 !important;}
 .pop_company_view table.map-area .map-area-footer{ border-top: 1px solid #D8D8D8 !important;}
 
+/* ±â¾÷¸ÞÀÎ °ü·Ã*/
+#head_lwrap {position:absolute; top:0; left:0; width:100%; z-index:20;}
+#head_lwrap .header_cont	{width:100%; position:relative; z-index:2;}
+#head_lwrap .header_cont .utilmenu	{position:absolute; top:10px; right:41px;}
+#head_lwrap .header_cont .utilmenu ul	{display:inline-block; margin:-1px 1px 0 0;}
+#head_lwrap .header_cont .utilmenu ul li	{display:inline; padding:0 6px 0 12px; vertical-align:middle;}
+#head_lwrap .header_cont .utilmenu ul li a {color:#fff;}
+#head_lwrap .header_cont .utilmenu ul li:first-child	{background:none;}
+#head_lwrap .header_cont h1	{position:absolute; top:30px; left:40px; color:#fff}
+#head_lwrap .header_cont .gnb	{padding:50px 41px 57px 0; margin-top: 20px;s}
+#head_lwrap .header_cont .gnb > ul	{width:100%; display:inline-block; text-align:right;}
+#head_lwrap .header_cont .gnb > ul > li	{display:inline-block; position:relative; width:165px; margin:0 0 0 -4px; text-align:center;}
+#head_lwrap .header_cont .gnb > ul > li > a	 {display:block; font-weight:bold; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò"; font-size:16px; color:#fff; padding:0 0 0 0; height:64px; overflow:hidden;}
+
+.sections	{width:100%; position:relative; overflow:hidden;}
+.sections .section_cont	{width:1200px; margin:0 auto;}
+.sections .section_cont .visual	 {height:560px;}
+.sections .section_cont .visual ul li .img	{position:absolute; top:0; left:50%; margin:0 0 0 -1200px;}
+.sections .section_cont .visual ul li .txt	{position:absolute; top:260px; right:0;}
+.sections .section_cont .visual ul li.list1 .txt	{top:260px; right:14px;}
+.sections .section_cont .visual ul li.list2 .txt	{top:260px; right:95px;}
+.sections .section_cont .visual ul li.list3 .txt	{top:260px; right:109px;}
+
+
+.sections2 .quick{
+	padding-top: 20px;
+}
+.sections2 .quick a{
+	font-size: 1.5em;
+	font-weight:bold;
+	text-align: center;
+}
+.sections2 .quick a:hover{
+	text-decoration: none;
+}
+.sections2 .toplist{
+	padding-top: 30px;
+	width: 350px;
+}
+.sections2 .toplist li{
+	float:left;
+	display:inline;
+	margin:0;
+	padding:0;
+}
+/* list 100 */
+#list10 {
+	float:left;
+	width:350px;
+	padding: 0px;
+	padding-top: 10px;
+}
+.list10_list {
+	float:left;
+	width:350px;
+	height:30px;
+	border-bottom:1px solid #e5e5e5;
+	overflow:hidden;
+	white-space:nowrap;
+}
+#listit1 {
+	float:left;
+	width:55px;
+	color:#444;
+	font-weight:bold;
+	padding-top:10px;
+	text-align: center;
+}
+#listit2 {
+	float:left;
+	width:160px;
+	color:#444;
+	font-weight:bold;
+	padding-top:10px;
+	text-align: center;
+}
+#listit3 {
+	float:left;
+	width:80px;
+	color:#444;
+	font-weight:bold;
+	padding-top:10px;
+}
+.list10_0 {
+	float:left;
+	width:55px;
+	height:20px;
+	color:#444;
+	text-align:center;
+	padding:2px 0 0 0;
+}
+.list10_1 {
+	float:left;
+	width:160px;
+	height:20px;
+	color:#444;
+	text-align:center;
+	padding:2px 0 0 10px;
+	overflow:hidden; 
+	white-space:nowrap;
+}
+.list10_2 {
+	float:left;
+	width:70px;
+	height:20px;
+	color:#444;
+	text-align:center;
+	padding:2px 0 0 10px;
+	overflow:hidden; 
+	white-space:nowrap;
+}
+
+
+/*±â¾÷Á¤º¸ ¸®½ºÆ®°ü·Ã*/
+
+/*Çì´õ*/
+#companyInfoList {position:absolute; top:0; left:0; width:100%; z-index:20;}
+#companyInfoList .header_cont	{width:100%; position:relative; z-index:2;}
+#companyInfoList .header_cont .utilmenu	{position:absolute; top:10px; right:41px;}
+#companyInfoList .header_cont .utilmenu ul	{display:inline-block; margin:-1px 1px 0 0;}
+#companyInfoList .header_cont .utilmenu ul li	{display:inline; padding:0 6px 0 12px; vertical-align:middle;}
+#companyInfoList .header_cont .utilmenu ul li a {color:#fff;}
+#companyInfoList .header_cont .utilmenu ul li:first-child	{background:none;}
+#companyInfoList .header_cont h1	{position:absolute; top:30px; left:40px; color:#fff}
+#companyInfoList .header_cont .gnb	{padding:50px 41px 57px 0; margin-top: 20px;s}
+#companyInfoList .header_cont .gnb > ul	{width:100%; display:inline-block; text-align:right;}
+#companyInfoList .header_cont .gnb > ul > li	{display:inline-block; position:relative; width:165px; margin:0 0 0 -4px; text-align:center;}
+#companyInfoList .header_cont .gnb > ul > li > a	 {display:block; font-weight:bold; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò"; font-size:16px; color:#fff; padding:0 0 0 0; height:64px; overflow:hidden;}
+
+#companyInfoList_wrapper .sections	{width:100%; position:relative; overflow:hidden;}
+#companyInfoList_wrapper .sections .section_cont	{width:1200px; margin:0 auto;}
+#companyInfoList_wrapper .sections .section_cont .visual	 {height:200px;}
+#companyInfoList_wrapper .sections .section_cont .visual ul li .img	{
+		position:absolute; top:0; left:50%; margin:0 0 0 -1200px;
+    	transform: translate(0%,-60%);
+	}
+#companyInfoList_wrapper .sections .section_cont .visual ul li .txt	{position:absolute; top:260px; right:0;}
+#companyInfoList_wrapper .sections .section_cont .visual ul li.list1 .txt	{top:260px; right:14px;}
+#companyInfoList_wrapper .sections .section_cont .visual ul li.list2 .txt	{top:260px; right:95px;}
+#companyInfoList_wrapper .sections .section_cont .visual ul li.list3 .txt	{top:260px; right:109px;}
+
 .list_companies {
     box-sizing: border-box;
     width: 100%;
@@ -693,6 +834,31 @@ article {
     color: #333;
 }
 .content_col2_4 {
+	text-align: center;
 	font-size: 1.2em;
     padding-top: 6px;
+}
+/*¹Ùµð*/
+.companyInfoList{
+	margin-top: 30px;
+}
+.star{
+	margin-top: 15px;
+}
+.starrating{
+	position:absolute;
+	transform: translate(-50%, -50%);
+	float: left;
+	height: 20px;
+	overflow: hidden;
+}
+
+/*ÆäÀÌÂ¡*/
+.pager .active a{
+	background-color: #337ab7;
+	color: #fff;
+}
+.pager .active a:hover{
+	background-color: #337ab7;
+	color: #fff;
 }

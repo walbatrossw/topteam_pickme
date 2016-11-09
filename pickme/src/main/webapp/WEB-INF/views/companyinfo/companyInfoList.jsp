@@ -24,10 +24,39 @@
 </head>
 <body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
-	<div class="container">
-		<div class="jumbotron text-center">
-			<h1>기업 리스트</h1>
+<!-- HEADER START -->
+	<div class="headers">
+		<div id="companyInfoList">
+			<div class="header_cont">
+				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
+				<h1><strong>기업목록</strong></h1>
+					<ul>
+						<li class="menu1"><a href="/review/companyReviewInsertForm">기업리뷰 등록</a></li>
+						<li class="menu2"><a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a></li>
+						<li class="menu3"><a href="review/companyReviewListAllow">기업리뷰 승인 목록</a></li>
+						<li class="menu4"><a href="/interview/companyInterviewUnreceivedList">면접후기 비승인 목록</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
+	</div>
+	<!-- //HEADER END -->
+	<div id="companyInfoList_wrapper">
+		<!-- 비주얼 이미지 start -->
+		<div class="sections" id="main_visual">
+			<div class="section_cont">
+				<div class="visual">
+					<ul>
+						<li class="list1">
+							<span class="img" style="z-index:2; opacity:1;"><img src="/img/company/companymain.png"/></span><!-- 비주얼 이미지1 -->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 비주얼 이미지 end -->
+	<div class="container">
 		<div class="companyInfoList">
 			<div class="row">
 				<div class="col-xs-2">
@@ -71,8 +100,13 @@
 												</p>
 											</div>
 											<div class="col-xs-4 content_col2_4">	
-												<p class="gf_row"><strong>기업 총 평점</strong></p>
-												<p><span class="gfvalue">${companyInfoList.companyTotalRate }</span></p>
+												<p><strong>기업 총 평점</strong></p>
+												<p><strong>${companyInfoList.companyTotalRate * 1.0 }</strong></p>
+												<div class="star">
+													<span class="starrating">
+														<img src="/img/company/starrating.png" style="transform: translate(0%, -${companyInfoList.companyTotalRate * 17}%);">
+													</span>	
+												</div>
 											</div>
 										</div>
 									</div>
@@ -90,13 +124,11 @@
 			<ul class="pager">
 				<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a><li>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<c:if test="${i < endPage && i >= startPage}">
-						
-						<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i-1}">${i }</a><li>	
-						
+					<c:if test="${page == i}">
+						<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a><li>
 					</c:if>
-					<c:if test="${i == endPage}">
-						<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i+1}">${i }</a><li>
+					<c:if test="${page != i}">
+						<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a><li>
 					</c:if>
 				</c:forEach>
 				<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
