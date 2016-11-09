@@ -25,7 +25,7 @@ public class MemberController {
 	private MemberService memberService;
 	MemberDao memberdao;
 	//01_01 �뜝�떦諭꾩삕�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃琉꾩삕�솕�뜝�룞�삕
-	@RequestMapping(value="/memberGeneralInsert")
+	@RequestMapping(value="/smemberGeneralInsert")
 	public String memberGeneralInsertt(){
 		return "/member/general/memberGeneralInsert"; 
 	}
@@ -42,13 +42,21 @@ public class MemberController {
 		
 		return "/member/general/memberGeneralLogin";
 	}
-		@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
+	//01_04 로그인 처리 완료
+	@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
 	public String memberGeneralLoginn(MemberGeneralVo memberGeneralVo, Model model){
-		MemberGeneralVo	member = memberService.selectmemberGeneral(memberGeneralVo);
-		if(member == null){
+	MemberGeneralVo	member = memberService.selectmemberGeneral(memberGeneralVo);
+	if(member == null){
 			return "/member/general/memberGeneralLogin";
 		}
 		return "index2";
+		}		
+		//01_05 로그 아웃
+		@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.POST)
+		public String memberGeneralLogout(HttpSession session){
+			session.removeAttribute("userId");
+			return "redirect:/";
 		}
 }
+
 	

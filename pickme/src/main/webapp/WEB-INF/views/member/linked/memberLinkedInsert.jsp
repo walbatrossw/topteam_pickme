@@ -184,7 +184,7 @@ $(document).ready(function(){
 
 </script>
 </head>
-
+s
 
 <form action="/memberLinkedInsert" class="signUp" id="signupForm"  method="post" >
    <div class="container">
@@ -201,8 +201,9 @@ $(document).ready(function(){
    <br>
 	<input type="submit" value="비밀번호찾기" class="signUpButton">
 	<br>
-   <input type="image" class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
-</form>
+     <input type="image" class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
+   
+   </form>
 
 </body>
 </html>

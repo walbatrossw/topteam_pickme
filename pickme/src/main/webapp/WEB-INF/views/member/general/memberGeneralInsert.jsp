@@ -180,8 +180,7 @@ $(document).ready(function(){
 	</div>
 	</div>			
 	<input type="submit" value="회원가입" class="signUpButton">
-	
-	<input type="image" class="signUpButton" value="회원가입" onclick="javascript:wondow.location='memberGeneralInsert'" src="/img/naver.jpg" width="100%" height="px" >
+	<input type="button" class="signUpButton" name="버튼" value="네이버로 가입" onclick="window.open('https://nid.naver.com/user2/join.nhn?m=init&lang=ko_KR')">   
     </form>
     
 </body>
