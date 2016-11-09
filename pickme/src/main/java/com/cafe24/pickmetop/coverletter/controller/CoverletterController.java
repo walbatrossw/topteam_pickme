@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 import com.cafe24.pickmetop.coverletter.service.CoverletterService;
@@ -32,9 +33,12 @@ public class CoverletterController {
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
 		return "/coverletter/admin/companyJobCoverletterList";
 	}
-	// 03 자기소개서 입력화면()
+	// 03 자기소개서 입력화면() = 하나의 기업채용공고 자기소개서 항목리스트 상세보기
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
-	public String memberCoverletterInsert(){
+	public String memberCoverletterInsert(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
+		model.addAttribute("memberCoverletterInsert", coverletterService.getCoverletterCompanyJobVo(recruitJobCd));
+		Logger.info("memberCoverletterInsert 자기소개서 입력화면 {}", model.toString());
+		Logger.info("recruitJobCd 기업직무코드 {}", recruitJobCd.toString());
 		return "/coverletter/member/memberCoverletterInsert";
 	}
 	// 04 자기소개서 입력처리()

@@ -39,7 +39,7 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>${i.count}</td>
-						<td><a href="/companyJobCoverletterInsert?companyName${companyJobCoverletterList.companyName}">${companyJobCoverletterList.companyName}</a></td>
+						<td><a href="/memberCoverletterInsert?=recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.companyName}</a></td>
 						<td>${companyJobCoverletterList.midindexName}</td>
 						<td>${companyJobCoverletterList.recruitJobDetail}</td>
 						<td>${companyJobCoverletterList.recruitEnddate}</td>

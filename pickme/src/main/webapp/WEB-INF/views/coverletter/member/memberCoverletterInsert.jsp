@@ -14,7 +14,19 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
+	//글자수 세기
+	$(function() {
+	    $('#content').keyup(function (e){
+	        var content = $(this).val();
+	        $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+	        $('#counter').html(content.length + '/500');
+	    });
+	    $('#content').keyup();
+	});
+
+	//날짜 UI
 	$( function() {
 	    $( "#datepicker" ).datepicker();
 	  } );
@@ -160,22 +172,23 @@
 						마감일자:<input type="text" class="form-control" id="datepicker" name="">
 					</div>
 				</div>
-				<hr>
+					<hr>
 				<div>
 					<textarea class="form-control" rows="2" id="" name="" style="resize:none">자기소개서 항목 : </textarea>
 				</div>
 				<div align="right">
-				자기소개서 문항을 반드시 확인해주세요
-				<a class="btn btn-default btn-xs" href="javascript:errorCoverletterPopupOpen()" role="button">오류문항신고</a>
+					자기소개서 문항을 반드시 확인해주세요
+					<a class="btn btn-default btn-xs" href="javascript:errorCoverletterPopupOpen()" role="button">오류문항신고</a>
 				</div>
-				<hr>
 				<div>
 					<div>
-						<textarea class="form-control" rows="10" id="" name="" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+						<textarea class="form-control" rows="10" id="content" name="" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 					</div>
 					<hr>
+				</div>
+				<div>
 					<div>
-						글자수 세기:
+						글자수 세기:<span id="counter">###</span>
 					</div>
 				</div>
 			</div>
