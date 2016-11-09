@@ -37,6 +37,9 @@ public class CompanyController {
 	public String companyInfoList(Locale locale, Model model,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		if(page < 1){
+			page = 1;
+		}
 		Map<String, Object> companyInfoMap = companyService.getCompantInfoList(page, searchCompanyName);
 		logger.info("startPage: {}", companyInfoMap.get("startPage"));
 		logger.info("endPage: {}", companyInfoMap.get("endPage"));
@@ -53,6 +56,9 @@ public class CompanyController {
 	//면접후기 비승인 리스트(관리자) 맵핑
 	@RequestMapping(value = "/interview/companyInterviewUnreceivedList", method = RequestMethod.GET)
 	public String companyInterviewUnreceivedList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+		if(page < 1){
+			page = 1;
+		}
 		model.addAttribute("page", page);
 		model.addAttribute("interviewUnreceivedMap", companyService.getCompanyInterviewUnreceivedList(page));
 		return "/companyinfo/interview/companyInterviewList";
@@ -64,6 +70,10 @@ public class CompanyController {
 				@RequestParam(value="page", defaultValue="1") int page, 
 				@RequestParam(value="jobTopIndexCd", defaultValue="") String jobTopIndexCd,
 				@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		
+		if(page < 1){
+			page = 1;
+		}
 		logger.info("searchCompanyName : {}",searchCompanyName);
 		Map<String, Object> companyReviewMap = companyService.getCompanyReviewAllowList(page, jobTopIndexCd, searchCompanyName);
 		model.addAttribute("page", page);
@@ -101,6 +111,9 @@ public class CompanyController {
 	//기업리뷰 비승인리스트(관리자)
 	@RequestMapping(value = "/review/companyReviewUnreceivedList", method = RequestMethod.GET)
 	public String companyReviewUnreceivedList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+		if(page < 1){
+			page = 1;
+		}
 		model.addAttribute("page", page);
 		model.addAttribute("reviewUnreceivedMap", companyService.getCompanyReviewUnreceivedList(page));
 		return "/companyinfo/review/companyReviewUnreceivedList";
