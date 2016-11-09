@@ -24,19 +24,19 @@ public class MemberController {
 	@Autowired	
 	private MemberService memberService;
 	MemberDao memberdao;
-	//01_01 �뜝�떦諭꾩삕�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃琉꾩삕�솕�뜝�룞�삕
+	//01_01 로그인 
 	@RequestMapping(value="/smemberGeneralInsert")
 	public String memberGeneralInsertt(){
 		return "/member/general/memberGeneralInsert"; 
 	}
-	//01_02 �뜝�떦諭꾩삕�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙃琉꾩삕泥섇뜝�룞�삕
+	//01_02 
 	@RequestMapping(value="/memberGeneralInsert", method = RequestMethod.POST)
 	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
 		memberService.addmemberGeneral(memberGeneralVo);
 		return "/index";
 	
 		}		
-	//01_03  �씪諛섑쉶�썝 濡쒓렇�씤 泥섎━
+	//01_03 
 	@RequestMapping(value="/memberGeneralLogin")
 	public String memberGeneralLogin(Model model){
 		
@@ -56,6 +56,8 @@ public class MemberController {
 		public String memberGeneralLogout(HttpSession session){
 			session.removeAttribute("userId");
 			return "redirect:/";
+		
+		
 		}
 }
 
