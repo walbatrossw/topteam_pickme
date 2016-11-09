@@ -31,7 +31,7 @@ public class CoverletterController {
 	public String companyJobCoverletterList(Model model){
 		model.addAttribute("companyJobCoverletterList", coverletterService.getCompanyJobCoverletterList());
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
-		return "/coverletter/admin/companyJobCoverletterList";
+		return "/coverletter/admin/companyJobCoverletterList"; 
 	}
 	// 03 자기소개서 입력화면() = 하나의 기업채용공고 자기소개서 항목리스트 상세보기
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
@@ -39,15 +39,15 @@ public class CoverletterController {
 		model.addAttribute("memberCoverletterInsert", coverletterService.getCoverletterCompanyJobVo(recruitJobCd));
 		Logger.info("memberCoverletterInsert 자기소개서 입력화면 {}", model.toString());
 		Logger.info("recruitJobCd 기업직무코드 {}", recruitJobCd.toString());
-		return "/coverletter/member/memberCoverletterInsert";
+		return "/coverletter/member/memberCoverletterInsert";                  
 	}
-	// 04 자기소개서 입력처리()
+	/*// 04 자기소개서 입력처리()
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.POST)
 	public String memberCoverletterInsert(Model model, CoverletterMemberVo coverletterMemberVo){
 		//model.addAttribute("memberCoverletterInsert", coverletterService.get)
 		coverletterService.addMemberCoverletter(coverletterMemberVo);
 		return "/coverletter/member/memberCoverletterInsert";
-	}
+	}*/
 	// 05 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
 	
 	// 06 자기소개서 삭제처리(리스트에서 바로 삭제처리)
