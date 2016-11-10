@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
+
 import com.cafe24.pickmetop.coverletter.service.CoverletterService;
 
 @Controller
@@ -33,22 +33,19 @@ public class CoverletterController {
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
 		return "/coverletter/admin/companyJobCoverletterList"; 
 	}
-	// 03 자기소개서 입력화면() = 하나의 기업채용공고 자기소개서 항목리스트 상세보기
+	// 03 자기소개서 입력화면(채용기업명/채용명/채용직무/채용마감일자)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
-	public String memberCoverletterInsert(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
-		model.addAttribute("memberCoverletterInsert", coverletterService.getCoverletterCompanyJobVo(recruitJobCd));
-		Logger.info("memberCoverletterInsert 자기소개서 입력화면 {}", model.toString());
+	public String companyOneJobInfo(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
+		model.addAttribute("companyOneJobInfo", coverletterService.getCompanyOneJobInfo(recruitJobCd));
+		Logger.info("companyOneJobInfo 자기소개서 입력화면 {}", model.toString());
 		Logger.info("recruitJobCd 기업직무코드 {}", recruitJobCd.toString());
 		return "/coverletter/member/memberCoverletterInsert";                  
 	}
-	/*// 04 자기소개서 입력처리()
-	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.POST)
-	public String memberCoverletterInsert(Model model, CoverletterMemberVo coverletterMemberVo){
-		//model.addAttribute("memberCoverletterInsert", coverletterService.get)
-		coverletterService.addMemberCoverletter(coverletterMemberVo);
-		return "/coverletter/member/memberCoverletterInsert";
-	}*/
-	// 05 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
+	// 04 자기소개서 입력화면(자소서항목리스트)
 	
-	// 06 자기소개서 삭제처리(리스트에서 바로 삭제처리)
+	// 05 자기소개서 입력처리
+	
+	// 06 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
+	
+	// 07 자기소개서 삭제처리(리스트에서 바로 삭제처리)
 }

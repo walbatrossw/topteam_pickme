@@ -28,13 +28,12 @@ public class CoverletterService {
 		return coverletterDao.selectCoverletterCompanyJobList();
 	}
 	
-	// 03 자기소개서 입력화면() = 하나의 기업채용공고 자기소개서 항목리스트 상세보기
-	public CoverletterCompanyJobVo getCoverletterCompanyJobVo(String recruitJobCd){
-		return coverletterDao.selectCoverletterCompanyJobByRecruitJobCd(recruitJobCd);
+	// 03 자기소개서 입력화면(채용기업명/채용명/채용직무/채용마감일자)
+	public CoverletterCompanyJobVo getCompanyOneJobInfo(String recruitJobCd){
+		logger.info("getCompanyOneJobInfo 자기소개서 입력화면{} ", recruitJobCd);	
+		return coverletterDao.selectCompanyOneJobInfoByRecruitJobCd(recruitJobCd);
+	
 	}
 	
-	// 03 자기소개서 입력처리
-	public void addMemberCoverletter(CoverletterMemberVo coverletterMemberVo){
-		coverletterDao.insertMemberCoverletter(coverletterMemberVo);
-	}
+	
 }

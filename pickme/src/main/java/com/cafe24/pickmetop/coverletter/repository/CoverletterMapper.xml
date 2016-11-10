@@ -26,30 +26,32 @@
  -->
 	<select id="selectCoverletterCompanyJobList" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
 	SELECT
-		ci.company_name AS companyName,
-		rcj.recruit_job_cd AS recruitJobCd,
-		jm.job_midindex_name AS midindexName,
-		rcj.recruit_job_jobdetail AS recruitJobDetail,
-		rc.recruit_enddate AS recruitEnddate,
-		rcj.recruit_job_workstatus AS recruitJobWorkstatus,
-		rcj.recruit_job_file AS recruitJobFile
+		rc.recruit_name AS recruitName, <!-- 채용명 -->
+		ci.company_name AS companyName, <!-- 회사명 -->
+		jm.job_midindex_name AS jobMidindexName, <!-- 직무대분류명 -->
+		rcj.recruit_job_cd AS recruitJobCd, <!-- 하나의 기업채용공고의 직무별 코드 -->
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
+		rcj.recruit_job_education AS recruitJobEducation, <!-- 학력 -->
+		rcj.recruit_job_workstatus AS recruitJobWorkstatus, <!-- 채용형태 -->
+		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
 	FROM 
 		tb_recruit_company rc
 	
-	INNER JOIN	
-		tb_recruit_company_job rcj 
-	ON 
-		rc.company_cd = rcj.company_cd
+	INNER JOIN
+		tb_recruit_company_job rcj
+	ON	
+		rc.recruit_company_cd = rcj.recruit_company_cd
 	
-	INNER JOIN	
-		tb_company_info ci 
-	ON 
-		ci.company_cd = rcj.company_cd	
+	INNER JOIN
+		tb_company_info ci
+	ON
+		rc.company_cd = ci.company_cd
 	
-	INNER JOIN	
-		tb_job_midindex jm 
-	ON 
-		jm.job_midindex_cd = rcj.job_midindex_cd 	
+	INNER JOIN
+		tb_job_midindex jm
+	ON
+		rcj.job_midindex_cd = jm.job_midindex_cd
+	
 	ORDER BY
 		rc.recruit_enddate ASC
 	</select>
@@ -59,38 +61,33 @@
 					03	회원의 자기소개서 입력화면	
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
  -->
- 	<!-- 직무별 자기소개서 화면 --> 
- 	<!-- <select id="selectCoverletterCompanyJobByRecruitJobCd" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
+ 	<!-- 채용기업명/채용명/채용직무/채용마감일자 --> 
+ 	<select id="selectCompanyOneJobInfoByRecruitJobCd" 
+ 			resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
  	SELECT
- 		ci.company_name AS companyName,
- 		rcj.recruit_job_cd AS recruitJobCd,
-		rcj.recruit_job_jobdetail AS recruitJobDetail,
-		rc.recruit_enddate AS recruitEnddate,
-		ccj.c_cletter_article AS cCletterArticle
+		rcj.recruit_job_cd AS recruitJobCd, <!-- 하나의 기업채용공고의 직무별 코드 -->
+		rc.recruit_name AS recruitName, <!-- 채용명 -->
+		ci.company_name AS companyName, <!-- 회사명 -->
+		jm.job_midindex_name AS jobMidindexName, <!-- 직무대분류명 -->
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
+		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
 	FROM 
 		tb_recruit_company rc
-	INNER JOIN	
-		tb_recruit_company_job rcj 
-	ON 
-		rc.company_cd = rcj.company_cd
-	INNER JOIN	
-		tb_company_info ci 
-	ON 
-		ci.company_cd = rcj.company_cd	
-	INNER JOIN	
-		tb_job_midindex jm 
-	ON 
-		jm.job_midindex_cd = rcj.job_midindex_cd 	
 	INNER JOIN
-		tb_cletter_company_job ccj 
+		tb_recruit_company_job rcj
+	ON	
+		rc.recruit_company_cd = rcj.recruit_company_cd
+	INNER JOIN
+		tb_company_info ci
 	ON
-		rcj.recruit_job_cd = ccj.recruit_job_cd
+		rc.company_cd = ci.company_cd
+	INNER JOIN
+		tb_job_midindex jm
+	ON
+		rcj.job_midindex_cd = jm.job_midindex_cd
+	
 	WHERE
-		rcj.recruit_job_cd = #{recruitJobCd}
+		rcj.recruit_job_cd = #{recruitJobCd}		
+ 	</select>
  	
- 	</select> -->
- 	<!-- 직무별 자기소개서 화면처리 -->
- 	<!-- <insert id="" parameterType="">
- 		
- 	</insert>	 -->
 </mapper>

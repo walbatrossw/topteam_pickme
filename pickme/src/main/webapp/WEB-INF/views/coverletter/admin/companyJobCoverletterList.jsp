@@ -18,7 +18,7 @@
 		<div class="jumbotron">
 		 	<h2><strong>채용공고리스트</strong></h2>
 			 	<p>만약 자신만의 자기소개서를 원하신다면 직접 작성을 눌러주세요!!!</p>
-			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접작성</a>
+			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접작성(미처리)</a>
 		</div>
 		<div>
 			<h3><strong>채용공고 선택하기</strong></h3>
@@ -27,25 +27,25 @@
 					<tr>
 						<th>체크</th>
 						<th>번호</th>
+						<th>채용명</th>
 						<th>회사명</th>
 						<th>직무대분류</th>
 						<th>상세직무</th>
-						<th>채용마감일</th>
+						<th>학력</th>
 						<th>채용형태</th>
-						<th>문항</th>
-						<th>공고</th>
+						<th>마감일</th>
 					</tr>
 					<c:forEach var="companyJobCoverletterList" items="${companyJobCoverletterList}" varStatus="i">
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>${i.count}</td>
-						<td><a href="/memberCoverletterInsert?=recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.companyName}</a></td>
-						<td>${companyJobCoverletterList.midindexName}</td>
-						<td>${companyJobCoverletterList.recruitJobDetail}</td>
-						<td>${companyJobCoverletterList.recruitEnddate}</td>
+						<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.recruitName}</a></td>
+						<td>${companyJobCoverletterList.companyName}</td>
+						<td>${companyJobCoverletterList.jobMidindexName}</td>
+						<td>${companyJobCoverletterList.recruitJobJobdetail}</td>
+						<td>${companyJobCoverletterList.recruitJobEducation}</td>
 						<td>${companyJobCoverletterList.recruitJobWorkstatus}</td>
-						<td><a href="/#">문항상세</a></td>
-						<td><a href="/#">채용상세</a></td>
+						<td>${companyJobCoverletterList.recruitEnddate}</td>
 					</tr>
 					</c:forEach>
 				</table>
