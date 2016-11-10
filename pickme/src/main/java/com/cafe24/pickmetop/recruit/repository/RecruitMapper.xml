@@ -257,7 +257,7 @@
 		INSERT INTO tb_recruit_company
 			(recruit_company_cd, company_cd, recruit_name, recruit_begindate, recruit_enddate, recruit_regdate, recruit_register, recruit_modidate, recruit_modify)
 		VALUES 
-			(#{recruitCompanyCd}, #{companyCd}, #{recruitName}, #{recruitBegindate}, #{recruitEnddate}, NOW(), #{recruitRegister}, NOW(),#{recruitModify})
+			(CONCAT('recruit_company_',LPAD((#{recruitCompanyCd}),4,'0')), #{companyCd}, #{recruitName}, #{recruitBegindate}, #{recruitEnddate}, NOW(), #{recruitRegister}, NOW(),#{recruitModify})
 	</insert>
 	 
 	 <!-- RecruitCompanyJob 입력 -->
@@ -265,7 +265,8 @@
 		INSERT INTO tb_recruit_company_job
 			(recruit_job_cd, recruit_company_cd, company_cd, job_midindex_cd, recruit_job_workstatus, recruit_job_jobdetail, recruit_job_education, recruit_job_file)
 		VALUES 
-			(#{recruitJobCd}, #{recruitCompanyCd},#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
+		
+			(CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')), #{recruitCompanyCd},#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
 	 </insert>
 
 </mapper>

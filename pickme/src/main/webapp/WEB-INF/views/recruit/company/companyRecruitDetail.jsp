@@ -11,8 +11,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+	 var value = '@Request.RequestContext.HttpContext.Session["id"]';
 	$('#bookmark').change(function(){
-		if($('#sessionId')==""){
+		//console.log("세션아이딘"+ $.session.get('id'));
+		console.log("세션아이딘"+ window.sessionStorage.getItem('id'));
+		console.log("세션아이디 $('#sessionId').val()"+$('#sessionId').val());
+		if($('#sessionId').val()==""||$('#sessionId').val()==null){
+			console.log("들어왔따!!");
+			location.href="/memberGeneralLogin";
 			$('#sessionIdCheck').text('로그인시에만 이용가능한 기능입니다');
 		}else{
 			if ($('#bookmark').is(':checked')) {
@@ -32,7 +38,9 @@ $(document).ready(function(){
 이예은
 <div class="container">
 	<h3>기업정보</h3> 
+	세션 : ${sessionScope.id}
 	<input type="hidden" id = "sessionId" value="${sessionScope.id}">
+	 
 	<table class="table table-striped">
 		<thead style="background-color: #7c9af9;font-weight: bolder;font-size: large;">
 			<tr>

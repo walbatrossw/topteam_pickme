@@ -36,7 +36,8 @@ public class RecruitService {
 	@Autowired
 	RecruitDao recruitDao;
 	String companyCd = "";
-	final String imgDir = "C:\\Users\\202-10\\Desktop\\new_git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+	
+	final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
 	//∫œ∏∂≈© »Æ¿Œ 
 	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
@@ -210,7 +211,7 @@ public class RecruitService {
 		int count = recruitDao.getCountOfRecruit() +1;
 		companyCd = "recruit_company_"+count;
 		
-		recruitCompany.setRecruitCompanyCd(companyCd);
+		recruitCompany.setRecruitCompanyCd(String.valueOf(count));
 		recruitCompany.setCompanyCd(recruit.getCompanyCd());
 		recruitCompany.setRecruitName(recruit.getRecruitName());
 		recruitCompany.setRecruitBegindate(recruit.getRecruitBegindate());
@@ -235,7 +236,7 @@ public class RecruitService {
 			recruitJobCd= "recruit_company_job_"+ count;
 			logger.info("recruit {}",recruit.toString());
 			RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
-			recruitCompanyJobVo.setRecruitJobCd(recruitJobCd);
+			recruitCompanyJobVo.setRecruitJobCd(String.valueOf(count));
 			recruitCompanyJobVo.setCompanyCd(recruit.getCompanyCd());
 			recruitCompanyJobVo.setRecruitCompanyCd(companyCd);
 			for(int j=0;j<recruit.getRecruitList().get(i).getJobMidIndexCd().size();j++){
