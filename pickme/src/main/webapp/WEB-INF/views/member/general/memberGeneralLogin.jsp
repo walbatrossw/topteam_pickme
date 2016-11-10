@@ -196,14 +196,11 @@ $(document).ready(function(){
     <label for="remember">자동 로그인</label>
     </div>
     <br></br>
-    <c:if test="${not empty errorMessage}">
-    <div class="control-group">
+        <div class="control-group">
     	<div class="controls">
-    		<div class="error">${erroressage}</div>
-    			
     	</div> 
       </div>
-      </c:if>
+     
       <div class="control-group">
    <input type="submit" value="로그인" class="signUpButton">
    </div>

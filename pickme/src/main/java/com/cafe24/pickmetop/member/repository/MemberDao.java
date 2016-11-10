@@ -1,11 +1,13 @@
 package com.cafe24.pickmetop.member.repository;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 import com.cafe24.pickmetop.member.model.*;
@@ -17,14 +19,29 @@ public class MemberDao {
 	@Resource(name="sqlSessionMember")
 	private SqlSessionTemplate sqlSessionFactoryMember;
 	
-	//ï¿½Ï¹ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// È¸¿ø ÀÔ·Â
 	public int insertMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
 	}
-	//ë¡œê·¸ì¸ ì²˜ë¦¬
+	
+	
+	// È¸¿ø ¼±ÅÃ
 	public MemberGeneralVo selectMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
 	}
+	
+	
+	// È¸¿ø ¸®½ºÆ®
+	public List<MemberGeneralVo> selectMemberGeneralList(Map<String, Object> map){
+		return sqlSessionFactoryMember.selectList(NS+".selectMemberGeneralList", map);
+	}
+	
+	// È¸¿ø Å×ÀÌºí¿¡¼­ È¸¿ø ¼ö 
+	public int selectTotalCount() {
+		return sqlSessionFactoryMember.selectOne(NS+".selectTotalCount");
+	}
+
+	
 	
 	public int insertMemberLinked(MemberLinkedVo memberLinkedVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberLinked", memberLinkedVo);
