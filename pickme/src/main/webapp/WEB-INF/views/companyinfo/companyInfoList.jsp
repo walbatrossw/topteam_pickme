@@ -24,15 +24,14 @@
 <title>기업리스트</title>
 </head>
 <body>
-	<jsp:include
-		page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 	<!-- HEADER START -->
 	<div class="headers">
 		<div id="companyInfoList">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
 					<h1>
-						<strong>기업정보</strong>
+						<a class="companyInfoMain" href="/companyInfo"><strong>기업정보</strong></a>
 					</h1>
 					<ul>
 						<li class="menu1">
@@ -42,7 +41,7 @@
 							<a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a>
 						</li>
 						<li class="menu3">
-							<a href="review/companyReviewListAllow">기업리뷰 승인 목록</a>
+							<a href="/review/companyReviewListAllow">기업리뷰 승인 목록</a>
 						</li>
 						<li class="menu4">
 							<a href="/interview/companyInterviewUnreceivedList">면접후기 비승인 목록</a>

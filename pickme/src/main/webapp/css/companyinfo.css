@@ -618,6 +618,7 @@
 #head_lwrap .header_cont .utilmenu ul li:first-child	{background:none;}
 #head_lwrap .header_cont h1	{position:absolute; top:30px; left:40px; color:#fff}
 #head_lwrap .header_cont .gnb	{padding:50px 41px 57px 0; margin-top: 20px;s}
+#head_lwrap .header_cont .gnb .companyInfoMain{text-decoration: none; color:#fff;}
 #head_lwrap .header_cont .gnb > ul	{width:100%; display:inline-block; text-align:right;}
 #head_lwrap .header_cont .gnb > ul > li	{display:inline-block; position:relative; width:165px; margin:0 0 0 -4px; text-align:center;}
 #head_lwrap .header_cont .gnb > ul > li > a	 {display:block; font-weight:bold; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò"; font-size:16px; color:#fff; padding:0 0 0 0; height:64px; overflow:hidden;}
@@ -750,6 +751,7 @@
 #companyInfoList .header_cont .utilmenu ul li:first-child	{background:none;}
 #companyInfoList .header_cont h1	{position:absolute; top:30px; left:40px; color:#fff}
 #companyInfoList .header_cont .gnb	{padding:50px 41px 57px 0; margin-top: 20px;s}
+#companyInfoList .header_cont .gnb .companyInfoMain{text-decoration: none; color:#fff;}
 #companyInfoList .header_cont .gnb > ul	{width:100%; display:inline-block; text-align:right;}
 #companyInfoList .header_cont .gnb > ul > li	{display:inline-block; position:relative; width:165px; margin:0 0 0 -4px; text-align:center;}
 #companyInfoList .header_cont .gnb > ul > li > a	 {display:block; font-weight:bold; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò"; font-size:16px; color:#fff; padding:0 0 0 0; height:64px; overflow:hidden;}
