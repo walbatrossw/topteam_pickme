@@ -26,6 +26,7 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.OneDay;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
+import com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
 import com.cafe24.pickmetop.recruit.repository.RecruitDao;
 
@@ -36,10 +37,41 @@ public class RecruitService {
 	RecruitDao recruitDao;
 	String companyCd = "";
 	final String imgDir = "C:\\Users\\202-10\\Desktop\\new_git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
-	
+	//북마크 확인 
+	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
+		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
+		//testId값
+		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
+		String checkBookmark=recruitDao.checkBookmarkByLoginId(recruitCompanyBookmarkVo);
+		if(checkBookmark!=null){
+			return "checkBookmark";
+		}
+		return "";
+	}
+	//북마크
+	public void insertBookmark(String recruitCompanyCd,String bookmarkChecked, HttpSession session){
+		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
+		//testId값
+		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
+		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo.toString());
+		logger.info("bookmarkChecked : {}",bookmarkChecked);
+		if(bookmarkChecked.equals("checked")){
+			//북마크 등록 
+			logger.info("bookmarkChecked : {}",bookmarkChecked);
+			recruitDao.insertBookmark(recruitCompanyBookmarkVo);
+		}else if(bookmarkChecked.equals("unchecked")){
+			//북마크 삭제
+			recruitDao.deleteBookmark(recruitCompanyBookmarkVo);
+		}
+		
+	}
 	//채용상세보기 
-	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
-		return recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd);
+	public Recruit selectForRecruitCompanyDetail(String recruitCompanyCd){
+			Recruit recruit = new Recruit();
+			recruit.setRecruitList(recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd));
+		return  recruit;
 	}
 	
 	//IndustryTop 전체리스트
@@ -241,12 +273,12 @@ public class RecruitService {
 			//자기소개서항목입력 미완성
 			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
-				int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
+/*				int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
 				numberOfCoverletter++;
-				String coverletterCd = "coverletter_cd_"+numberOfCoverletter;
+				String coverletterCd = "coverletter_cd_"+numberOfCoverletter;*/
 				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
 				cletterArticle.setRecruitJobCd(recruitJobCd);
-				cletterArticle.setcCletterArticleCd(coverletterCd);
+				//cletterArticle.setcCletterArticleCd(coverletterCd);
 				cletterArticle.setCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle());
 				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
 				recruitDao.insertCoverletterArticle(cletterArticle);

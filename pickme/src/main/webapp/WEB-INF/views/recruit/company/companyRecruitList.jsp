@@ -72,9 +72,13 @@ $(document).ready(function(){
 						</li>
 					</c:forEach>
 					<br/>
-		               <div><a href="#" class="btn btn-warning btn-sm">맞춤채용정보 등록하기</a></div>
+<%-- 		               <div>
+		               		 <center><a href="#" class="btn btn-warning btn-sm">맞춤채용정보 등록하기</a> </center>
+		               </div> --%>
 					<br/>
-		               <div ><a href="#" class="btn btn-warning btn-sm">내 채용공고보기</a></div>
+		               <div >
+		               		<center><a href="#" class="btn btn-warning btn-sm">내 채용공고보기</a></center>
+		               </div>
 
 	            	
 	            </ul>
@@ -87,7 +91,8 @@ $(document).ready(function(){
 		</h3>
   
 	        <input type="text" name="searchCompanyName" id="searchCompanyName" placeholder="기업이름으로 검색">
-	        <input type="button" id="companySearch" value="검색">
+	        <input type="button" id="companySearch" value="검색" class="btn btn-default">
+	        <a href="/recruit" style="float:right" class="btn btn-default">채용등록</a>
 	        
 		<table class="calendar-table table table-condensed table-tight" >
 			<thead>
