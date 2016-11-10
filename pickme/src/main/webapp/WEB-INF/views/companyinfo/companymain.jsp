@@ -71,7 +71,7 @@
 		<div id="head_lwrap">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
-				<h1><strong>기업정보</strong></h1>
+				<h1><a class="companyInfoMain" href="/companyInfo"><strong>기업정보</strong></a></h1>
 					<ul>
 						<li class="menu1">
 							<a href="/company/companyInfoList">기업정보</a>
@@ -95,19 +95,19 @@
 							<a href="#">연봉정보 </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/review/companyReviewInsertForm"> 연봉정보 등록 </a></li>
-									<li><a href="/review/companyReviewUnreceivedList"> 연봉정보 미승인 목록 </a></li>
-									<li><a href="/review/companyReviewListAllow">연봉정보 승인 목록 </a></li>
+									<li><a href="#"> 연봉정보 등록 </a></li>
+									<li><a href="#"> 연봉정보 미승인 목록 </a></li>
+									<li><a href="#">연봉정보 승인 목록 </a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="menu4">
-							<a href="/interview/companyInterviewUnreceivedList">면접후기</a>
+							<a href="#">면접후기</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/review/companyReviewInsertForm"> 면접후기 등록 </a></li>
-									<li><a href="/review/companyReviewUnreceivedList"> 면접후기 미승인 목록 </a></li>
-									<li><a href="/review/companyReviewListAllow">면접후기 승인 목록 </a></li>
+									<li><a href="#"> 면접후기 등록 </a></li>
+									<li><a href="/interview/companyInterviewUnreceivedList"> 면접후기 미승인 목록 </a></li>
+									<li><a href="#">면접후기 승인 목록 </a></li>
 								</ul>
 							</div>
 						</li>

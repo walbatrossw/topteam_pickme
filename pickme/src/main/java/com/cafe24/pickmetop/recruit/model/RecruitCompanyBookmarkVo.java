@@ -1,25 +1,31 @@
 package com.cafe24.pickmetop.recruit.model;
 
 public class RecruitCompanyBookmarkVo {
-	String MemberCustomBookmarkCd;
-	String LoginId;
-	String RecruitCompanyCd;
+	String memberCustomBookmarkCd;
+	String loginId;
+	String recruitCompanyCd;
 	public String getMemberCustomBookmarkCd() {
-		return MemberCustomBookmarkCd;
+		return memberCustomBookmarkCd;
 	}
 	public void setMemberCustomBookmarkCd(String memberCustomBookmarkCd) {
-		MemberCustomBookmarkCd = memberCustomBookmarkCd;
+		this.memberCustomBookmarkCd = memberCustomBookmarkCd;
 	}
 	public String getLoginId() {
-		return LoginId;
+		return loginId;
 	}
 	public void setLoginId(String loginId) {
-		LoginId = loginId;
+		this.loginId = loginId;
 	}
 	public String getRecruitCompanyCd() {
-		return RecruitCompanyCd;
+		return recruitCompanyCd;
 	}
 	public void setRecruitCompanyCd(String recruitCompanyCd) {
-		RecruitCompanyCd = recruitCompanyCd;
+		this.recruitCompanyCd = recruitCompanyCd;
 	}
+	@Override
+	public String toString() {
+		return "RecruitCompanyBookmarkVo [memberCustomBookmarkCd=" + memberCustomBookmarkCd + ", loginId=" + loginId
+				+ ", recruitCompanyCd=" + recruitCompanyCd + "]";
+	}
+	
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,8 +108,8 @@
 				<h2>나의 자기소개서!</h2>
 			</div>
 		</div>
-		<div class="row">
-    		<ul class="nav navbar-nav navbar-left">
+		<div class="col-sm-12">
+    		<ul class="nav navbar-nav navbar-collapse collapse">
     			<li>
     				<a class="btn btn-default navbar-btn" href="javascript:newCoverletterPopupOpen()" role="button">
     					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 새자소서
@@ -163,33 +164,55 @@
   		</div>
 		<hr>
 		<form id="memberCoverletterInsert" action="/memberCoverletterInsert" method="post">
-			<div class="row col-sm-12">
-				<div class="row col-sm-12">
-					<div class="row col-sm-6">
-						자소서이름:<input type="text" class="form-control"  id="" name="" value="나의 자소서 : 회사명/직무">
-					</div>
-					<div class="row col-sm-3">
-						마감일자:<input type="text" class="form-control" id="datepicker" name="">
-					</div>
-				</div>
-					<hr>
-				<div>
-					<textarea class="form-control" rows="2" id="" name="" style="resize:none">자기소개서 항목 : </textarea>
-				</div>
-				<div align="right">
-					자기소개서 문항을 반드시 확인해주세요
-					<a class="btn btn-default btn-xs" href="javascript:errorCoverletterPopupOpen()" role="button">오류문항신고</a>
+			<div class="col-sm-12">
+				<div class="row">
+					<table class="table table-striped col-sm-12">
+						<tr>
+							<th class="col-sm-6">자기소개서 이름</th>
+							<th class="col-sm-3">마감시간</th>
+							<th class="col-sm-3">D-DAY</th>
+						</tr>
+						<tr>
+							<td><input type="text" class="form-control"  id="" name="" value="${companyOneJobInfo.companyName} / ${companyOneJobInfo.recruitName} / ${companyOneJobInfo.recruitJobJobdetail}"></td>
+							<td><input type="text" class="form-control" id="datepicker" name="" value="${companyOneJobInfo.recruitEnddate}"></td>
+							<td>D-DAY추가예정</td>
+						</tr>
+					</table>
 				</div>
 				<div>
-					<div>
-						<textarea class="form-control" rows="10" id="content" name="" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
-					</div>
-					<hr>
-				</div>
-				<div>
-					<div>
-						글자수 세기:<span id="counter">###</span>
-					</div>
+					<table class="col-sm-12">
+						<tr>
+							<td>
+								문항
+							</td>
+							<td>
+								<div>
+									<textarea class="form-control" rows="2" id="" name="" style="resize:none">자기소개서 항목 : </textarea>
+								</div>
+								<div align="right">
+									자기소개서 문항을 반드시 확인해주세요
+									<a class="btn btn-default btn-xs" href="javascript:errorCoverletterPopupOpen()" role="button">오류문항신고</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								내용
+							</td>
+							<td>
+								<textarea class="form-control" rows="8" id="content" name="" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+							</td>
+							<td>
+								<div>
+								글자수 세기 :<span id="counter">###</span>
+								</div>
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</form>

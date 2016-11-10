@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=effda133d3bb5a8e9a0cfd6d830f5b2a&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=af18c779370b3b0bf9e9468a5c37224e&libraries=services"></script>
 <script>
 	$(document).ready(function() {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -52,6 +52,49 @@
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
+	<!-- HEADER START -->
+	<div class="headers">
+		<div id="companyInfoList">
+			<div class="header_cont">
+				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
+					<h1>
+						<a class="companyInfoMain" href="/companyInfo"><strong>기업정보</strong></a>
+					</h1>
+					<ul>
+						<li class="menu1">
+							<a href="/review/companyReviewInsertForm">기업리뷰</a>
+						</li>
+						<li class="menu2">
+							<a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a>
+						</li>
+						<li class="menu3">
+							<a href="/review/companyReviewListAllow">기업리뷰 승인 목록</a>
+						</li>
+						<li class="menu4">
+							<a href="/interview/companyInterviewUnreceivedList">면접후기 비승인 목록</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //HEADER END -->
+	<div id="companyInfoList_wrapper">
+		<!-- 비주얼 이미지 start -->
+		<div class="sections" id="main_visual">
+			<div class="section_cont">
+				<div class="visual">
+					<ul>
+						<li class="list1"><span class="img"
+							style="z-index: 2; opacity: 1;"><img
+								src="/img/company/companymain.png" /></span>
+						<!-- 비주얼 이미지1 --></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 비주얼 이미지 end -->
 	<div id="content_cominfo">
 		<!-- main body start -->
 		<div id="company_view" class="pop_company_view">

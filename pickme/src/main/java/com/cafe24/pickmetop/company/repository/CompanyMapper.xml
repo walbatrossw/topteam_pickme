@@ -89,6 +89,7 @@
 	<insert id="insertCompanyReview" parameterType="com.cafe24.pickmetop.company.model.CompanyReviewVo">
 		INSERT INTO tb_company_review(
 			company_cd,
+			company_name,
 			login_id,
 			job_topindex_cd,
 			review_workyear,
@@ -107,6 +108,7 @@
 			review_modidate
 		) VALUES (
 			#{companyCd},
+			#{companyName},
 			#{loginId},
 			#{jobTopIndexCd},
 			#{reviewWorkYear},

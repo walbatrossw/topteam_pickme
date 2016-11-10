@@ -18,6 +18,7 @@ import com.cafe24.pickmetop.company.model.CompanyInfoVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
 import com.cafe24.pickmetop.recruit.model.RecruitCompany;
+import com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo;
 import com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo;
 import com.cafe24.pickmetop.recruit.service.RecruitService;
 
@@ -28,7 +29,23 @@ public class RecruitDao {
 	@Autowired
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
-	
+	//북마크 확인 
+	public String checkBookmarkByLoginId(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
+		String aa = sqlSessionFactoryRecruit.selectOne(NS+".checkBookmarkByLoginId",recruitCompanyBookmarkVo);
+		logger.info("aa : {} ",aa);
+		
+		return sqlSessionFactoryRecruit.selectOne(NS+".checkBookmarkByLoginId",recruitCompanyBookmarkVo);
+	}
+	//북마크 삭제 
+	public int deleteBookmark(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
+		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo);
+		return sqlSessionFactoryRecruit.delete(NS+".deleteBookmark",recruitCompanyBookmarkVo);
+	}
+	//북마크 등록
+	public int insertBookmark(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
+		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo);
+		return sqlSessionFactoryRecruit.insert(NS+".insertBookmark",recruitCompanyBookmarkVo);
+	}
 	
 	//채용달력 종료일 검색
 	public List<Recruit> searchScheduleListByEndDate(Map companySearchMap){

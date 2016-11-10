@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
+import com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo;
 import com.cafe24.pickmetop.recruit.service.RecruitService;
 import com.cafe24.pickmetop.recruit.service.Commons;
 
@@ -28,13 +29,26 @@ public class RecruitController {
 	RecruitService recruitService;	
 	@Autowired
 	Commons commons;
+
 	//디테일 
 	@RequestMapping(value="/recruitDetail")
-	public String recruitDetail(Model model,
-			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd){
+	public String recruitDetail(Model model,HttpSession session,
+			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd,
+			@RequestParam(value="checked", defaultValue="") String bookmarkChecked){
 		logger.info("recruitCd : {}",recruitCompanyCd);
 		logger.info("recruitCompanyInfoForDetail :{}",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
 		model.addAttribute("recruitCompanyInfoForDetail",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
+		
+		//북마크 등록,삭제
+		logger.info("bookmarkChecked :{}",bookmarkChecked);
+		if(bookmarkChecked!=""){
+			recruitService.insertBookmark(recruitCompanyCd,bookmarkChecked,session);
+		}
+		//북마크 체크여부
+		String checkBookmark=recruitService.checkBookmarkByLoginId(session,recruitCompanyCd);
+		if(checkBookmark.equals("checkBookmark")){
+			model.addAttribute("checkBookmark","checkBookmark");
+		}
 		return "/recruit/company/companyRecruitDetail"; 
 	}
 	/* 채용 삭제*/

@@ -19,11 +19,11 @@
 		 	<h2>자기소개서</h2>
 			 	<p>여러분이 원하시는 기업의 채용공고를 검색하시거나, 선택하시려면 채용기업검색을 눌러주세요!!!</p>
 			 	<p>만약 자신만의 자기소개서를 원하신다면 직접 작성을 눌러주세요!!!</p>
-			 	<a class="btn btn-primary btn-lg" href="/companyJobCoverletterList" role="button">채용기업 검색하러가기</a>
-			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접 작성하러가기</a>
+			 	<a class="btn btn-primary btn-lg" href="/companyJobCoverletterList" role="button">채용기업 검색하러가기(처리상태)</a>
+			 	<a class="btn btn-primary btn-lg" href="/memberCoverletterInsert" role="button">직접 작성하러가기(미처리 상태)</a>
 		</div>
 		<div>
-			<h3>내가 작성한 자기소개서</h3>
+			<h3>내가 작성한 자기소개서(미처리 상태)</h3>
 			<table class="table table-striped">
 				<tr>
 					<th>번호</th>
@@ -37,7 +37,7 @@
 				<c:forEach var="memberCoverletterList" items="${memberCoverletterList}" varStatus="i">
 				<tr>
 					<td>${i.count}</td>
-					<td><a href="/memberCoverletterArticleDetail?mCletterCd=?${memberCoverletterList.mCletterCd}">${memberCoverletterList.mCletterName}</a></td>
+					<td><a href="/memberCoverletterArticleDetail?mCletterCd=${memberCoverletterList.mCletterCd}">${memberCoverletterList.mCletterName}</a></td>
 					<td>${memberCoverletterList.loginId}</td>
 					<td>${memberCoverletterList.mCletterRegdate}</td>
 					<td>${memberCoverletterList.mCletterModidate}</td>
