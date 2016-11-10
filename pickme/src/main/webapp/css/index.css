@@ -1,0 +1,235 @@
+@CHARSET "EUC-KR";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+.main {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+#myCarousel {
+	height: 100%;
+}
+/*메인화면 section옵션*/
+#section1 {
+	padding-right: 50px;
+	padding-top: 150px;
+	height: 100%;
+	color: #fff;
+	background-image: url("/img/main/calendar.jpg");
+	background-size: cover;
+}
+
+#section2 {
+	padding-right: 50px;
+	padding-top: 150px;
+	height: 100%;
+	color: #fff;
+	background-image: url("/img/main/resume.png");
+	background-size: cover;
+}
+
+#section3 {
+	padding-right: 50px;
+	padding-top: 150px;
+	height: 100%;
+	color: #fff;
+	background-image: url("/img/main/coverletter.jpg");
+	background-size: cover;
+}
+
+#section41 {
+	padding-top: 150px;
+	height: 100%;
+	color: #fff;
+	background-color: #00bcd4;
+}
+
+#section42 {
+	padding-top: 150px;
+	height: 100%;
+	color: #fff;
+	background-color: #009688;
+}
+
+.comment {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.comment p {
+	color: #ff6813;
+	font-family: 'Nanum Brush Script', serif;
+	display: table-cell;
+	text-align: right;
+	vertical-align: middle;
+	font-size: 2.5em;
+}
+.comment p strong {
+	font-size: 3.5em;
+}
+
+/* 기업메인 관련*/
+#head_lwrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 20;
+}
+
+#head_lwrap .header_cont {
+	width: 100%;
+	position: relative;
+	z-index: 2;
+}
+
+#head_lwrap .header_cont .utilmenu {
+	position: absolute;
+	top: 10px;
+	right: 41px;
+}
+
+#head_lwrap .header_cont .utilmenu ul {
+	display: inline-block;
+	margin: -1px 1px 0 0;
+}
+
+#head_lwrap .header_cont .utilmenu ul li {
+	display: inline;
+	padding: 0 6px 0 12px;
+	vertical-align: middle;
+}
+
+#head_lwrap .header_cont .utilmenu ul li a {
+	color: #fff;
+}
+
+#head_lwrap .header_cont .utilmenu ul li:first-child {
+	background: none;
+}
+
+#head_lwrap .header_cont h1 {
+	position: absolute;
+	top: 30px;
+	left: 40px;
+	color: #fff
+}
+
+#head_lwrap .header_cont .gnb {
+	padding: 50px 41px 5px 0;
+}
+
+#head_lwrap .header_cont .gnb .companyInfoMain {
+	text-decoration: none;
+	color: #fff;
+}
+
+#head_lwrap .header_cont .gnb>ul {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+
+#head_lwrap .header_cont .gnb>ul>li {
+	display: inline-block;
+	position: relative;
+	width: 165px;
+	margin: 0 0 0 -4px;
+	text-align: center;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>a {
+	text-decoration: none;
+	display: block;
+	font-family: 'Hanna', serif;
+	font-size: 2em;
+	color: #fff;
+	padding: 0 0 0 0;
+	height: 64px;
+	overflow: hidden;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>a:active {
+	background: none;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2 {
+	position: absolute;
+	top: 50px;
+	padding: 20px 0 0;
+	width: 100%;
+	display: none;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2>ul {
+	padding: 17px 0 0 12px;
+	height: 170px;
+	overflow: hidden;
+	background: url("../images/main/main_submenu_line.png") repeat-y 0 0;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2>ul>li {
+	text-align: left;
+	list-style: none;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2>ul>li>a {
+	text-align:center;
+	color: #000;
+	font-size: 1.2em;
+	display: block;
+	padding: 6px 0;
+	font-family: 'Hanna', serif;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2>ul>li>a:hover {
+	text-decoration: none;
+}
+
+#head_lwrap .header_cont .gnb>ul>li>.depth2>ul>li>a:active {
+	background: none;
+}
+
+#head_lwrap .header_cont .gnb>ul>li.on {
+	margin-right: -1px;
+	z-index: 2;
+	width: 170px;
+}
+
+#head_lwrap .header_cont .gnb>ul>li.on>.depth2 {
+	background: rgba(0, 0, 0, 0.0);
+}
+
+#head_lwrap .header_cont .gnb>ul>li.on>.depth2>ul {
+	
+}
+
+#head_lwrap .header_cont .gnb>ul>li.on>a {
+	color: #fff;
+}
+
+#head_lwrap .header_cont .gnb>ul>li.on>a img {
+	margin-top: -70px;
+}
+
+#head_lwrap.on .header_cont .gnb>ul>li>.depth2 {
+	display: block;
+}
+
+#head_lwrap .bg_submenu {
+	position: absolute;
+	top: 135px;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background: url("/img/main/main_bg.png") repeat-x 0 0;
+	z-index: 1;
+	opacity: 0.5;
+}
+
+#head_lwrap.on .bg_submenu {
+	height: 175px;
+}
