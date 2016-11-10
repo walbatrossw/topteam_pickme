@@ -25,6 +25,7 @@ public class CompanyInfoVo {
 	private int interviewCount;
 	private int salaryCount;
 	private String industryTopIndexName;
+	private String companyTypeName;
 	
 	public String getCompanyCd() {
 		return companyCd;
@@ -148,6 +149,12 @@ public class CompanyInfoVo {
 	public void setIndustryTopIndexName(String industryTopIndexName) {
 		this.industryTopIndexName = industryTopIndexName;
 	}
+	public String getCompanyTypeName() {
+		return companyTypeName;
+	}
+	public void setCompanyTypeName(String companyTypeName) {
+		this.companyTypeName = companyTypeName;
+	}
 	@Override
 	public String toString() {
 		return "CompanyInfoVo [companyCd=" + companyCd + ", industryMidindexCd=" + industryMidindexCd
@@ -157,8 +164,9 @@ public class CompanyInfoVo {
 				+ companyPhone + ", companyRegdate=" + companyRegdate + ", companyRegister=" + companyRegister
 				+ ", companyModidate=" + companyModidate + ", companyModify=" + companyModify + ", companyTotalRate="
 				+ companyTotalRate + ", reviewCount=" + reviewCount + ", interviewCount=" + interviewCount
-				+ ", salaryCount=" + salaryCount + ", industryTopIndexName=" + industryTopIndexName + "]";
+				+ ", salaryCount=" + salaryCount + ", industryTopIndexName=" + industryTopIndexName
+				+ ", compnayTypeName=" + companyTypeName + "]";
 	}
-	
+
 	
 }

@@ -46,6 +46,7 @@
 		LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}	
 	</select>
 	
+	<!-- 기업목록 카운터 -->
 	<select id="selectCompanyInfoListCount" parameterType="java.util.Map" resultType="Integer">
         SELECT
             COUNT(*)
@@ -55,6 +56,28 @@
 		WHERE
 			company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
 		</if>
+    </select>
+    
+    <!-- 기업정보 디테일 -->
+	<select id="selectCompanyInfoDetailByCompanyName" parameterType="String" resultType="com.cafe24.pickmetop.company.model.CompanyInfoVo">
+        SELECT
+           info.company_name as companyName,
+           info.company_ceo as companyCeo,
+           topindex.industry_topindex_name as industryTopIndexName,
+           (SELECT company_type_name FROM tb_company_type WHERE company_type_cd = info.company_type_cd) as companyTypeName,
+           company_birthdate as companyBirthdate,
+           company_sales as companySales,
+           company_site as companySite,
+           company_phone as companyPhone,
+           company_addr as companyAddr,
+           company_zipcode as companyZipcode,
+           IFNULL(info.company_total_rate/(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd=info.company_cd AND review.review_allow=1),0) as companyTotalRate 
+        FROM 
+        	tb_company_info info, tb_industry_topindex topindex
+		WHERE
+			topindex.industry_topindex_cd = (SELECT industry_topindex_cd FROM tb_industry_midindex WHERE industry_midindex_cd = info.industry_midindex_cd)
+		AND
+			company_name = #{searchCompanyName}
     </select>
 	
 <!-- 

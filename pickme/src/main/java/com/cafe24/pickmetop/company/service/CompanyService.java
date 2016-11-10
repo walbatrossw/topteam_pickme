@@ -50,6 +50,11 @@ public class CompanyService {
 		logger.info("listsize : {}", companyDao.selectCompanyInfoList(companyoInfoSearchMap).size());
 		return companyInfoMap;
 	}
+	//기업정보 디테일
+	public CompanyInfoVo getCompnayInfoDetail(String companyName){
+		return companyDao.selectCompanyInfoDetailByCompanyName(companyName);
+	}
+	
 	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련
 	 * ---------------------------------------------------------------------------------*/ 

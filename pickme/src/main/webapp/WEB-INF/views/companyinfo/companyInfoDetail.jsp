@@ -1,10 +1,52 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=effda133d3bb5a8e9a0cfd6d830f5b2a&libraries=services"></script>
+<script>
+	$(document).ready(function() {
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+	
+		// 주소로 좌표를 검색합니다
+		geocoder.addr2coord('${companyInfoDetail.companyAddr }', function(status, result) {
+	
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+	
+		        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+	
+	        	// 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+	
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new daum.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${companyInfoDetail.companyName }</div>'
+		        });
+	        	infowindow.open(map, marker);
+	
+	        	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	       		map.setCenter(coords);
+		    } 
+		});    
+	});
+</script>
 <link rel="stylesheet" href="/css/companyinfo.css">
 <title>Insert title here</title>
 </head>
@@ -17,17 +59,10 @@
 			<div class="company_info_header">
 				<div class="top_cont">
 					<h2 class="corp_logo">
-						<img id="경동제약㈜" alt="경동제약㈜"
-							src="http://webpds.saramin.co.kr/pds/united_company/logo/2046_.gif"
-							width="138" height="68"> <strong class="ci_name">경동제약㈜</strong>
+						<strong class="ci_name">${companyInfoDetail.companyName }</strong>
 					</h2>
 					<div class="ci_url">
-						<a href="http://www.kdpharma.co.kr" target="_blank">http://www.kdpharma.co.kr</a>
-					</div>
-					<div class="ci_desc">
-						<p class="txt">1975년 9월 9일에 설립된 제약·보건·바이오 업종의 양약,혈압강하제(디로핀지속정)
-							제조,수출/부동산 임대 사업을 하는 코스닥기업이며, 자본금은 135억 7,500만원 매출액은 1,518억
-							9,333만원 사원수는 525명입니다.</p>
+						<a href="${companyInfoDetail.companySite }" target="_blank">${companyInfoDetail.companySite }</a>
 					</div>
 				</div>
 				<!-- 기업형태 5개 -->
@@ -36,40 +71,40 @@
 						<li class="col1">
 							<div class="item1">
 								<i>업종</i>
-								<p>제약·보건·바이오</p>
+								<p>${companyInfoDetail.industryTopIndexName }</p>
 							</div>
 						</li>
 						<li class="col2">
 							<div class="item2">
 								<i>매출액</i>
 								<p>
-									1,518억<br> 9,333만원
+									${companyInfoDetail.companySales }
 								</p>
 							</div>
 						</li>
 						<li class="col3">
 							<div class="item3">
 								<i>기업형태</i>
-								<p>코스닥</p>
+								<p>${companyInfoDetail.companyTypeName }</p>
 							</div>
 						</li>
 						<li class="col4">
 							<div class="item4">
 								<i>설립일</i>
 								<p>
-									1975년<br>(업력 41년)
+									${companyInfoDetail.companyBirthdate }
 								</p>
 							</div>
 						</li>
 						<li class="col5">
 							<div class="item5">
-								<i>사원수</i>
-								<p>525명</p>
+								<i>평점</i>
+								<p>${companyInfoDetail.companyTotalRate *1.0}점</p>
 							</div>
 						</li>
 					</ul>
 				</div>
-				<!-- //기업형태 5개 -->
+			<!-- //기업형태 5개 -->
 			</div>
 			<!-- //company_info_header -->
 			<!-- company_info_content -->
@@ -94,97 +129,21 @@
 									<tbody>
 										<tr>
 											<th scope="row">기업명</th>
-											<td>경동제약㈜</td>
+											<td>${companyInfoDetail.companyName }</td>
 											<th scope="row">대표자명</th>
-											<td>류기성</td>
+											<td>${companyInfoDetail.companyCeo }</td>
 										</tr>
 										<tr>
 											<th scope="row">업종</th>
-											<td colspan="3">제약·보건·바이오</td>
-										</tr>
-										<tr>
-											<th scope="row">사업내용</th>
-											<td colspan="3">양약,혈압강하제(디로핀지속정) 제조,수출/부동산 임대</td>
+											<td colspan="3">${companyInfoDetail.industryTopIndexName }</td>
 										</tr>
 										<tr>
 											<th scope="row">기업형태</th>
-											<td colspan="3" class="position1">코스닥, 중견기업, 외국인 투자기업,
-												주식회사, 외부감사법인, 수출입 기업, 법인사업체 <a href="#none" class="ico_wrap">
-													<i class="ico_kosdaq"><img
-														src="//www.saraminimage.co.kr/ui/company_info/ico_kosdaq.png"
-														alt="코스닥"></i>
-													<div class="ly_wrap">
-														<div class="ly_cont">
-															<div class="tit_wrap">
-																<p class="tit">
-																	<strong>상장기업 등급기준</strong>
-																</p>
-																<span class="btn_close"><i>닫기</i></span>
-															</div>
-															<div class="cont_wrap">
-																<p class="txt">
-																	상장여부는 <strong class="point">기업의 외부평가</strong>를 가늠하는 척도가
-																	됩니다.
-																</p>
-																<ul class="list_cont">
-																	<li><i class="ico_kospi"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_kosp.png"
-																			alt="코스피"></i><span class="txt">유가증권시장 상장법인</span></li>
-																	<li><i class="ico_kosdaq"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_kosdaq.png"
-																			alt="코스닥"></i><span class="txt">코스닥시장 상장법인</span></li>
-																	<li><i class="ico_konex"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_konex.png"
-																			alt="코넥스"></i><span class="txt">코넥스시장 상장법인</span></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-											</a>
-											</td>
+											<td colspan="3" class="position1">${companyInfoDetail.companyTypeName }</td>
 										</tr>
 										<tr>
 											<th scope="row">설립일</th>
-											<td class="position2">1975년 9월 9일 (업력 41년) <a
-												href="#none" class="ico_wrap"> <i class="ico_a3"><img
-														src="//www.saraminimage.co.kr/ui/company_info/ico_a3.png"
-														alt="AAA"></i>
-													<div class="ly_wrap">
-														<div class="ly_cont">
-															<div class="tit_wrap">
-																<p class="tit">
-																	<strong>기업 나이(업력)등급기준</strong>
-																</p>
-																<span class="btn_close"><i>닫기</i></span>
-															</div>
-															<div class="cont_wrap">
-																<p class="txt">
-																	기업의 업력은 <strong class="point">기업의 안정도</strong>를 가늠하는
-																	척도가 됩니다.
-																</p>
-																<ul class="list_cont">
-																	<li><i class="ico_a4"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a4.png"
-																			alt="A+"></i><span class="txt">설립한 지 50년 이상
-																			장수기업</span></li>
-																	<li><i class="ico_a3"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a3.png"
-																			alt="AAA"></i><span class="txt">설립한 지 30년 이상
-																			중견기업</span></li>
-																	<li><i class="ico_a2"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a2.png"
-																			alt="AA"></i><span class="txt">설립한 지 20년 이상
-																			도약기업</span></li>
-																	<li><i class="ico_a1"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a1.png"
-																			alt="A"></i><span class="txt">설립한 지 10년 이상
-																			비상기업</span></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-											</a>
-											</td>
+											<td class="position2">${companyInfoDetail.companyBirthdate }</td>
 											<th scope="row">채용현황</th>
 											<td><a
 												href="javascript:scrollTo({'target':'#company_info_section5','speed':'100'});"
@@ -192,83 +151,12 @@
 										</tr>
 										<tr>
 											<th scope="row">사원수</th>
-											<td class="position3">525명 <span class="standard_year">(2015년
-													기준)</span> <a href="#none" class="ico_wrap"> <i class="ico_a2"><img
-														src="//www.saraminimage.co.kr/ui/company_info/ico_a2.png"
-														alt="AA"></i>
-													<div class="ly_wrap">
-														<div class="ly_cont">
-															<div class="tit_wrap">
-																<p class="tit">
-																	<strong>사원수 등급기준</strong>
-																</p>
-																<span class="btn_close"><i>닫기</i></span>
-															</div>
-															<div class="cont_wrap">
-																<p class="txt">
-																	기업의 사원수는 <strong class="point">기업의 규모</strong>를 가늠하는
-																	척도가 됩니다.
-																</p>
-																<ul class="list_cont">
-																	<li><i class="ico_a4"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a4.png"
-																			alt="A+"></i><span class="txt">사원수 1만명 이상</span></li>
-																	<li><i class="ico_a3"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a3.png"
-																			alt="AAA"></i><span class="txt">사원수 1000명 이상</span></li>
-																	<li><i class="ico_a2"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a2.png"
-																			alt="AA"></i><span class="txt">사원수 300명~999명
-																			이상</span></li>
-																	<li><i class="ico_a1"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a1.png"
-																			alt="A"></i><span class="txt">사원수 100명~299명
-																			이상</span></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-											</a> <i class="ico_employ"><img
-													src="//www.saraminimage.co.kr/ui/company_info/ico_employ.png"
-													alt="고용증가"></i>
+											<td class="position3">525명 <span class="standard_year">(2015년기준)</span>
 											</td>
 											<th scope="row">매출액</th>
-											<td class="position4">1,518억 9,333만원 <span
-												class="standard_year">(2015년 기준)</span> <a href="#none"
-												class="ico_wrap"> <i class="ico_a2"><img
-														src="//www.saraminimage.co.kr/ui/company_info/ico_a2.png"
-														alt="AA"></i>
-													<div class="ly_wrap">
-														<div class="ly_cont">
-															<div class="tit_wrap">
-																<p class="tit">
-																	<strong>매출액 등급기준</strong>
-																</p>
-																<span class="btn_close"><i>닫기</i></span>
-															</div>
-															<div class="cont_wrap">
-																<p class="txt">
-																	기업의 매출액은 <strong class="point">기업의 영업력</strong>을 가늠하는
-																	척도가 됩니다.
-																</p>
-																<ul class="list_cont">
-																	<li><i class="ico_a4"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a4.png"
-																			alt="A+"></i><span class="txt">매출액 1조 이상</span></li>
-																	<li><i class="ico_a3"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a3.png"
-																			alt="AAA"></i><span class="txt">매출액 5000억 이상</span></li>
-																	<li><i class="ico_a2"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a2.png"
-																			alt="AA"></i><span class="txt">매출액 1000억 이상</span></li>
-																	<li><i class="ico_a1"><img
-																			src="//www.saraminimage.co.kr/ui/company_info/ico_a1.png"
-																			alt="A"></i><span class="txt">매출액 100억 이상</span></li>
-																</ul>
-															</div>
-														</div>
-													</div>
-											</a>
+											<td class="position4">
+												<fmt:formatNumber value="${companyInfoDetail.companySales }" pattern="\#,억###.##"/>원
+												<span class="standard_year">(2015년 기준)</span> 
 											</td>
 										</tr>
 										<tr>
@@ -282,18 +170,19 @@
 										</tr>
 										<tr>
 											<th scope="row">대표전화</th>
-											<td>02-576-6121</td>
+											<td>${companyInfoDetail.companyPhone }</td>
 											<th scope="row">FAX</th>
-											<td>02-577-5195</td>
+											<td>${companyInfoDetail.companyPhone }</td>
 										</tr>
 										<tr>
 											<th scope="row">홈페이지</th>
-											<td colspan="3"><a href="http://www.kdpharma.co.kr"
-												class="link_site" target="_blank">http://www.kdpharma.co.kr</a></td>
+											<td colspan="3">
+												<a href="${companyInfoDetail.companySite }" class="link_site" target="_blank">${companyInfoDetail.companySite }</a>
+											</td>
 										</tr>
 										<tr>
 											<th scope="row">기업주소</th>
-											<td colspan="3">서울 관악구 인헌동 1659-5 경동제약빌딩</td>
+											<td colspan="3">${companyInfoDetail.companyAddr }</td>
 										</tr>
 									</tbody>
 								</table>
@@ -301,11 +190,28 @@
 						</div>
 					</div>
 				</div>
+			
+				<div id="company_info_section3" class="company_info_section3">   
+		        <!-- sec4 -->
+		        <div class="sec4">
+		        	<h4 class="stit">회사위치</h4>
+				        <div class="corp_map">
+				            <div class="adr_wrap">
+				                <p class="adr_txt">${companyInfoDetail.companyAddr }</p>
+				                <span class="tel">대표전화: ${companyInfoDetail.companyPhone }</span><span class="fax">/ FAX : ${companyInfoDetail.companyPhone }</span>
+							</div>
+				            <div class="api_wrap">
+				    			<div id="map" style="width:100%;height:400px;"></div>
+				            </div>
+				        </div>
+				    </div>
+	    			<!-- sec4 -->
+    			</div>
 			</div>
 		</div>
 		<!-- 기업정보뷰 end -->
-		<!-- main body end -->
 	</div>
+	<!-- main body end -->
 </body>
 <jsp:include
 	page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />

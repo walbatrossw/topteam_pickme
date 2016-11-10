@@ -29,9 +29,12 @@ public class CompanyController {
 		return "/companyinfo/companymain";
 	}
 	@RequestMapping(value = "/company/companyInfoDetail", method = RequestMethod.GET)
-	public String companyInfoDetail(Locale locale, Model model) {
+	public String companyInfoDetail(Locale locale, Model model,
+			@RequestParam(value="companyName") String companyName) {
+		model.addAttribute("companyInfoDetail", companyService.getCompnayInfoDetail(companyName));
 		return "/companyinfo/companyInfoDetail";
 	}
+	
 	//기업정보페이지 맵핑
 	@RequestMapping(value = "/company/companyInfoList", method = RequestMethod.GET)
 	public String companyInfoList(Locale locale, Model model,

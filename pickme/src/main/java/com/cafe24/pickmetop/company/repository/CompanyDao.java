@@ -44,12 +44,16 @@ public class CompanyDao {
 	public List<CompanyInfoVo> selectCompanyInfoList(Map<String, Object> companyInfoMap){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInfoList", companyInfoMap);
 	}
+	
 	public int selectCompanyInfoListCount(String searchCompanyName){
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
 		sqlMap.put("searchCompanyName", searchCompanyName);
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyInfoListCount", sqlMap);
 	}
-
+	
+	public CompanyInfoVo selectCompanyInfoDetailByCompanyName(String companyName){
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyInfoDetailByCompanyName", companyName);
+	}
 	/*
 	 * ----------------------------------------------------------------------------------------
 	 * 
