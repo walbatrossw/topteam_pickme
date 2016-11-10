@@ -25,6 +25,7 @@
       					<li><a href="/companyInfo">기업정보</a></li>
       					<li><a href="/memberGeneralInsert"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       					<li><a href="/memberGeneralLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      					
     				</ul>
   				</div>
 			</nav>

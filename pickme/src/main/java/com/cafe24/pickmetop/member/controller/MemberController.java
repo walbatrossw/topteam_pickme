@@ -72,7 +72,7 @@ public class MemberController {
 		 model.addAttribute("startPage",memberMap.get("startPage"));
 		 model.addAttribute("endPage", memberMap.get("endPage"));
 		
-		 return "/memberGeneralList";
+		 return "/member/general/memberGeneralList";
 	 }
 	 
 	

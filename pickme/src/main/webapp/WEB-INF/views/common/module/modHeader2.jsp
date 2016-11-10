@@ -25,6 +25,7 @@
       					<li><a href=""><span class="glyphicon glyphicon-user"></span>로그인성공</a></li>
       					<li><a href=""><span class="glyphicon glyphicon-user"></span>로그인아웃</a></li>
       					
+      					
     				</ul>
   				</div>
 			</nav>
