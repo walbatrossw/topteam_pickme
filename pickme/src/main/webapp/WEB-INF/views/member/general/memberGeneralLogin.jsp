@@ -189,7 +189,7 @@ $(document).ready(function(){
    <div class="container">
    
    <h1 class="signUpTitle">로그인</h1>
-   <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="login" required>
+   <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="admin@naver.com" required>
    <input type="password" id="generalPw" name="generalPw"  class="signUpInput" placeholder="비밀번호" value="0000" required>
   
     <input type="checkbox" id="remember" class="checkbox" checked>
