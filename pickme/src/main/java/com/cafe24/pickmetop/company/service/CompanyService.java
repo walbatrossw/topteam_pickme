@@ -142,10 +142,8 @@ public class CompanyService {
 	}
 	
 	//기업리뷰등록(사용자) 메서드
-	public int addCompanyReview(CompanyReviewVo companyReviewVo, String companyName){
-		logger.info("CompanyService -> companyName {}", companyName);
-		logger.info("CompanyService -> companyCd {}", companyDao.selectCompanyInfoByCompanyCd(companyName));
-		companyReviewVo.setCompanyCd(companyDao.selectCompanyInfoByCompanyCd(companyName));
+	public int addCompanyReview(CompanyReviewVo companyReviewVo){
+		companyReviewVo.setCompanyCd(companyDao.selectCompanyInfoByCompanyCd(companyReviewVo.getCompanyName()));
 		companyReviewVo.setLoginId("kji212@naver.com");
 		/*SimpleDateFormat setToday;
 		setToday = new SimpleDateFormat("yyyy-mm-dd");

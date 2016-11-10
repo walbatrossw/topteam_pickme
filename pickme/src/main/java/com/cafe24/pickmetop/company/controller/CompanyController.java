@@ -124,9 +124,9 @@ public class CompanyController {
 	
 	//±â¾÷¸®ºä µî·ÏÃ³¸® ¸ÊÇÎ
 	@RequestMapping(value = "/review/companyReviewInsert", method = RequestMethod.POST)
-	public String companyReviewInsert(CompanyReviewVo companyReviewVo, @RequestParam(value="companyName") String companyName){
+	public String companyReviewInsert(CompanyReviewVo companyReviewVo){
 		logger.info("command param companyReview:{}", companyReviewVo.toString());
-		companyService.addCompanyReview(companyReviewVo, companyName);
+		companyService.addCompanyReview(companyReviewVo);
 		return "/companyinfo/companymain";
 	}
 	
