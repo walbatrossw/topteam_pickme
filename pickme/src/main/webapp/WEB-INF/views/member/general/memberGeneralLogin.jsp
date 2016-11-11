@@ -159,35 +159,14 @@ input {
 </style>
 
 </head>
-<script type="text/javascript">  
-$(document).ready(function(){
-    var $email = $('#email');
-    var $password = $('#generalPw');
-    var $signUpButton = $('#signUpButton');
- 
-    $btSubmit.on('click', function(){
-        // 정규식 - 이메일 유효성 검사
-        var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-       
-     
- 
-        if( !$email.val() ){
-            alert('이메일주소를 입력 해 주세요');
-            $email.focus();
-            return false;
-        } else if(!regEmail.test($email.val())) {
-            alert('이메일 주소가 유효하지 않습니다');
-            $email.focus();
-            return false;
-        }
-    });
-});
+  
 
-</script>
+
+
+
 
 <form action="/memberGeneralLogin" class="signUp" id="signupForm"  method="post" >
-   <div class="container">
-   
+   <div class="container">   
    <h1 class="signUpTitle">로그인</h1>
    <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="admin@naver.com" required>
    <input type="password" id="generalPw" name="generalPw"  class="signUpInput" placeholder="비밀번호" value="0000" required>
