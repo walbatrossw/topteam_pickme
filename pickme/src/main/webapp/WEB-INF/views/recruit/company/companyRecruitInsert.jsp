@@ -127,7 +127,7 @@ $(document).ready(function(){
 						'</div>'+
 				 		'<div id="coverletter" class="form-group">'+
 				 			'<label>자기소개서 항목</label>'+
-				 			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
+				 			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
 				 		'</div>'+
 					 	'<hr>'+
 				 		'<div class="fieldCoverletter"></div>'+
@@ -154,7 +154,7 @@ $(document).ready(function(){
 		var index = $('.coverletterAddBtn').index(this);
 		console.log(second);
 		$('.fieldCoverletter').eq(index).append(											
-			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
 			
 		);
 	});
@@ -299,7 +299,7 @@ $(document).ready(function(){
 		 		<div id="coverletter" class="form-group">
 		 		<!-- 여기있는 항목은 list의0번째가 됩니다  -->
 		 			<label>자기소개서 항목</label>
-		 			<textarea class="cCletterArticle form-control" rows="2" name="recruitList[0].cCletterArticle[0].cletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
+		 			<textarea class="cCletterArticle form-control" rows="2" name="recruitList[0].cCletterArticle[0].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
 		 		</div>
 		 		<div class="fieldCoverletter"></div>
 		 		<div class="form-group">

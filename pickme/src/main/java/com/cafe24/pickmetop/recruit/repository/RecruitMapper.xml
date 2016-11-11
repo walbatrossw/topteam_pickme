@@ -131,7 +131,7 @@
 		(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
 	VALUES 
 	((select  CONCAT('coverletter_cd_', LPAD(IFNULL(MAX(substring(c_cletter_article_cd ,16)),0)+1,4,'0')) from tb_cletter_company_job as a), 
-		CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')),#{cletterArticle})
+		CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')),#{cCletterArticle})
 	</insert> 
 	
 	

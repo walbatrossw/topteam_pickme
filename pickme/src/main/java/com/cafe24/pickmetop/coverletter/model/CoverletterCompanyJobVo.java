@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CoverletterCompanyJobVo {
+	
 	private String recruitCompanyCd;
 	private String recruitName;
 	private String recruitEnddate;
@@ -13,7 +14,7 @@ public class CoverletterCompanyJobVo {
 	private String recruitJobEducation;
 	private String recruitJobWorkstatus;
 	private String cCletterArticleCd;
-	private String cletterArticle;	
+	private String cCletterArticle;	
 	private String companyName;
 	private String jobMidindexName;
 	private MultipartFile recruitJobFile;
@@ -67,10 +68,10 @@ public class CoverletterCompanyJobVo {
 		this.cCletterArticleCd = cCletterArticleCd;
 	}
 	public String getCletterArticle() {
-		return cletterArticle;
+		return cCletterArticle;
 	}
 	public void setCletterArticle(String cletterArticle) {
-		this.cletterArticle = cletterArticle;
+		this.cCletterArticle = cletterArticle;
 	}
 	public String getCompanyName() {
 		return companyName;
@@ -102,7 +103,7 @@ public class CoverletterCompanyJobVo {
 				+ ", recruitEnddate=" + recruitEnddate + ", recruitJobCd=" + recruitJobCd + ", recruitJobJobdetail="
 				+ recruitJobJobdetail + ", recruitJobEducation=" + recruitJobEducation + ", recruitJobWorkstatus="
 				+ recruitJobWorkstatus + ", cCletterArticleCd=" + cCletterArticleCd + ", cletterArticle="
-				+ cletterArticle + ", companyName=" + companyName + ", jobMidindexName=" + jobMidindexName
+				+ cCletterArticle + ", companyName=" + companyName + ", jobMidindexName=" + jobMidindexName
 				+ ", recruitJobFile=" + recruitJobFile + ", coverletterList=" + coverletterList + "]";
 	}
 	

@@ -29,8 +29,26 @@ public class RecruitController {
 	RecruitService recruitService;	
 	@Autowired
 	Commons commons;
-
-	//디테일 
+	
+	
+	/* 채용 수정 처리*/
+	@RequestMapping(value="/recruitUpdate")
+	public String recruitUpdate(){
+		
+		return "/recruit/company/companyRecruitUpdate";
+	}
+	
+	
+	/* 채용 수정 화면*/
+	@RequestMapping(value="/recruitUpdateForm")
+	public String recruitUpdateForm(
+			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd){
+		logger.info("recruitCompanyCd : {}",recruitCompanyCd);
+		return "/recruit/company/companyRecruitUpdate";
+	}
+	
+	
+	/* 채용 디테일*/
 	@RequestMapping(value="/recruitDetail")
 	public String recruitDetail(Model model,HttpSession session,
 			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd,
@@ -51,7 +69,8 @@ public class RecruitController {
 		}
 		return "/recruit/company/companyRecruitDetail"; 
 	}
-	/* 채용 삭제*/
+
+	
 	/* 채용 리스트               {} : 배열요청. */
 	@RequestMapping(value="/diary")
 	public String diary(Model model,
@@ -62,8 +81,7 @@ public class RecruitController {
 		logger.info("searchCompanyName:{}",searchCompanyName);
 
 		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,searchCompanyName);
-		
-		
+
 		model.addAttribute("oneDayList",map.get("oneDayList"));
 		model.addAttribute("ddayYear",map.get("ddayYear"));
 		model.addAttribute("ddayMonth",map.get("ddayMonth"));
@@ -76,6 +94,7 @@ public class RecruitController {
 		logger.info("recruitService.selectAllTopIndustry():{}",recruitService.selectAllTopIndustry());
 		return "/recruit/company/companyRecruitList";
 	}
+	
 	
 	/* 채용 입력 처리 */
 	@RequestMapping(value = "/recruitInsert", method = RequestMethod.POST)
@@ -113,6 +132,7 @@ public class RecruitController {
 		return "/recruit/company/companyRecruitInsert";
 		
 	}
+	
 	
 	/* 채용 입력 화면 */
 	@RequestMapping(value = "/recruit", method = RequestMethod.GET)
