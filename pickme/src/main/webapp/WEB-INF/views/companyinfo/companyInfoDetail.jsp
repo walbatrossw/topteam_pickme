@@ -1,3 +1,4 @@
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -7,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=af18c779370b3b0bf9e9468a5c37224e&libraries=services"></script>
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function() {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -50,7 +52,6 @@
 <link rel="stylesheet" href="/css/companyinfo.css">
 <title>Insert title here</title>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
 	<!-- HEADER START -->
 	<div class="headers">

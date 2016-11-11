@@ -13,37 +13,10 @@
 <link rel="stylesheet" href="/css/company/companyInterview.css">
 <script>
 	$(document).ready(function(){
-		//자동완성기능 관련
-		var availableTags = [];
-		<c:forEach var="companyInfoList" items="${companyInfoList}" >
-			availableTags.push("${companyInfoList.companyName}");
-		</c:forEach>
-		$('#companyName').autocomplete({
-		      source: availableTags,
-		      minLength : 1,
-		      focus: function( event, ui ) {
-				return false; 
-		    	event.preventDefault();
-		      }     
-		}).autocomplete("widget").addClass("fixed-height");
 		
-		//별점관련
-		$('.kv-svg').rating({
-	            theme: 'krajee-svg',
-	            filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
-	            emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
-		});
-		$('.kv-svg').on('change', function () {
-	    	console.log('Rating selected: ' + $(this).val());
-		});
-		
-		//등록버튼클릭 이벤트
-		$('#companyInterviewInsertBtn').click(function(){
-			$('#companyInterviewInsertForm').submit();
-		});
 	});
 </script>
-<title>기업리뷰 등록페이지</title>
+<title>면접후기 상세보기(관리자)</title>
 </head>
 <body>
 	<!-- HEADER START -->
@@ -91,9 +64,9 @@
 	<!-- 비주얼 이미지 end -->
 	<div class="container">
 		<div class="panel form">
-			<div class="panel-heading"><h3><strong>기업 면접후기 등록</strong></h3></div>
+			<div class="panel-heading"><h3><strong>면접후기</strong></h3></div>
 			<div class="panel-body">
-				<form action="/interview/companyInterviewInsert" id="companyInterviewInsertForm" class="insertForm" method="post">
+				<form action="/interview/companyInterviewAllow" id="companyInterviewInsertForm" class="insertForm" method="post">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-1">

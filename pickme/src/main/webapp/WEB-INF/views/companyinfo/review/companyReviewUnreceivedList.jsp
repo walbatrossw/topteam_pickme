@@ -1,11 +1,13 @@
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyCommon.css">
+<link rel="stylesheet" href="/css/company/companyReview.css">
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <!-- <script>
 	$(document).ready(function(){
 		const $tablehover = $('.tablehover');
@@ -16,7 +18,6 @@
 </script> -->
 <title>관리자 승인페이지(기업리뷰)</title>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <body>
 <!-- HEADER START -->
 	<div class="headers">
@@ -99,20 +100,16 @@
 		<!-- 페이징 -->
 		<div>
 			<ul class="pager">
-				<c:if test="${page > 1}">
-					<li class="previous"><a href="/review/companyReviewUnreceivedList?page=${page-1}">이전</a><li>
-				</c:if>
+				<li class="previous"><a href="/review/companyReviewUnreceivedList?page=${page-1}">이전</a><li>
 				<c:forEach var="i" begin="${reviewUnreceivedMap.startPage }" end="${reviewUnreceivedMap.endPage }">
 					<c:if test="${page == i}">
-						<li><a href="/review/companyReviewUnreceivedList?page=${i }">${i }</a><li>
+						<li class="active"><a href="/review/companyReviewUnreceivedList?page=${i }">${i }</a><li>
 					</c:if>
 					<c:if test="${page != i}">
 						<li><a href="/review/companyReviewUnreceivedList?page=${i }">${i }</a></li>
 					</c:if>
 				</c:forEach>
-				<c:if test="${page < reviewUnreceivedMap.endPage}">
-					<li class="next"><a href="/review/companyReviewUnreceivedList?page=${page+1}">다음</a></li>
-				</c:if>
+				<li class="next"><a href="/review/companyReviewUnreceivedList?page=${page+1}">다음</a></li>
 			</ul>
 		</div>
 	</div>

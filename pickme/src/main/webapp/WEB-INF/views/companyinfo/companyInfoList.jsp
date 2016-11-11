@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function() {
 		const $searchBtn = $('#searchBtn');
@@ -24,7 +24,6 @@
 <title>기업리스트</title>
 </head>
 <body>
-	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 	<!-- HEADER START -->
 	<div class="headers">
 		<div id="companyInfoList">
@@ -150,22 +149,16 @@
 		<!-- 페이징 -->
 		<div class="text-center">
 			<ul class="pager">
-				<li class="previous"><a
-					href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a>
-				<li><c:forEach var="i" begin="${startPage }" end="${endPage }">
+				<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a></li>
+				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 						<c:if test="${page == i}">
-							<li class="active"><a
-								href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a>
-							<li>
+							<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
 						</c:if>
 						<c:if test="${page != i}">
-							<li><a
-								href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a>
-							<li>
+							<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
 						</c:if>
-					</c:forEach>
-				<li class="next"><a
-					href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
+				</c:forEach>
+				<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
 			</ul>
 		</div>
 	</div>

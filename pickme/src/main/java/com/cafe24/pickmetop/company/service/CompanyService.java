@@ -58,6 +58,13 @@ public class CompanyService {
 	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련
 	 * ---------------------------------------------------------------------------------*/ 
+	//면접후기 등록
+	public int addCompnayInterview(CompanyInterviewVo companyInterviewVo){
+		companyInterviewVo.setCompanyCd(companyDao.selectCompanyInfoByCompanyCd(companyInterviewVo.getCompanyName()));
+		companyInterviewVo.setLoginId("kji212@naver.com");
+		return companyDao.insertCompanyInterview(companyInterviewVo);
+	}
+	
 	public Map<String, Object> getCompanyInterviewUnreceivedList(int page){
 		//비승인목록 페이지 처리
 		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);

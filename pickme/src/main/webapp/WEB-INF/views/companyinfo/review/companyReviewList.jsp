@@ -1,3 +1,4 @@
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -5,8 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyCommon.css">
+<link rel="stylesheet" href="/css/company/companyReview.css">
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function(){
 		const $searchBtn = $('#searchBtn');
@@ -15,7 +17,7 @@
 		
 		//분류로 검색
 		$searchjobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
-		$searchCompanyName.val('${searchCompnayName}');
+		$searchCompanyName.val("${searchCompnayName}");
 		$searchjobTopIndex.change(function(){
 			console.log('test1');
 			if($searchjobTopIndex.val() != "") {
@@ -42,7 +44,6 @@
 <title>기업리뷰 승인 리스트</title>
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <!-- HEADER START -->
 	<div class="headers">
 		<div id="companyInfoList">
@@ -149,12 +150,10 @@
 		<!-- 페이징 -->
 		<div class="text-center">
 			<ul class="pager">
-				<c:if test="${page > 1}">
-					<li class="previous"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
-				</c:if>
+				<li class="previous"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:if test="${page == i}">
-						<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">[${i }]</a><li>
+						<li class="active"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
 					</c:if>
 					<c:if test="${page != i}">
 						<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>

@@ -9,9 +9,9 @@
 <script src="/js/star-rating.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/css/star-rating.css" media="all" type="text/css"/>
 <link rel="stylesheet" href="/css/theme-krajee-svg.css" media="all" type="text/css"/>
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/companyinfo.css">
-
+<link rel="stylesheet" href="/css/company/companyCommon.css">
+<link rel="stylesheet" href="/css/company/companyReview.css">
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function(){
 		//자동완성기능 관련
@@ -97,7 +97,7 @@
 		<div class="panel form">
 			<div class="panel-heading"><h3><strong>기업 리뷰등록</strong></h3></div>
 			<div class="panel-body">
-				<form action="/review/companyReviewInsert" id="companyReviewInsertForm" method="post">
+				<form action="/review/companyReviewInsert" id="companyReviewInsertForm" class="insertForm" method="post">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-2">
@@ -157,28 +157,22 @@
 			 			<label for="companyName"> 경영진에게 바라는점 : </label>
 			 			<textarea class="form-control" name="reviewWish"></textarea> 
 			 		</div>
-			 		<div class="form-group">  
+			 		<div class="col-xs-4 form-group">  
 						<label for="companyName"> 승진기회가능성 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewPromotion" title="">
-			 		</div>
-			 		<div class="form-group">  
-						<label for="companyName"> 복지및급여 : </label> 
+			        	<label for="companyName"> 복지및급여 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewWelfare" title="">
 			 		</div>
-			 		<div class="form-group">  
+			 		<div class="col-xs-4 form-group">  
 						<label for="companyName"> 사내문화 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewCulture" title="">
-			 		</div>
-			 		<div class="form-group">  
-						<label for="companyName"> 업무와삶의균형 : </label> 
+			        	<label for="companyName"> 업무와삶의균형 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewBalance" title="">
 			 		</div>
-			 		<div class="form-group">  
+			 		<div class="col-xs-4 form-group">  
 						<label for="companyName"> 경영진 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewCeorate" title="">
-			 		</div>
-			 		<div class="form-group">
-						<label for="companyName"> CEO에대한견해 : </label> 
+			        	<label for="companyName"> CEO에대한견해 : </label> 
 			        	<input type="text" class="kv-svg rating-loading" value="1" data-size="xs" name="reviewCeosupport" title="">
 			 		</div>
 				</form>

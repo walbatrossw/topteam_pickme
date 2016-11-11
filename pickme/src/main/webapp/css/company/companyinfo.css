@@ -625,7 +625,7 @@
 #head_lwrap .header_cont .gnb > ul > li > a	 {text-decoration: none; display:block; font-weight:bold; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò"; font-size:19px; color:#fff; padding:0 0 0 0; height:64px; overflow:hidden;}
 #head_lwrap .header_cont .gnb > ul > li > a:active	{background:none;}
 #head_lwrap .header_cont .gnb > ul > li > .depth2	{position:absolute; top:50px; padding:3px 0 0; width:100%; display: none;}
-#head_lwrap .header_cont .gnb > ul > li > .depth2 > ul	 { padding:17px 0 0 12px; height:170px; overflow:hidden; background:url("../images/main/main_submenu_line.png") repeat-y 0 0;}
+#head_lwrap .header_cont .gnb > ul > li > .depth2 > ul	 { padding:17px 0 0 12px; height:170px; overflow:hidden; background:url("/img/company/main_submenu_line.png") repeat-y 0 0;}
 #head_lwrap .header_cont .gnb > ul > li > .depth2 > ul > li	 {text-align:left; list-style: none;}
 #head_lwrap .header_cont .gnb > ul > li > .depth2 > ul > li > a	 {color:#fff; font-size:15px; display:block; padding:6px 0; font-family:"Nanum Gothic","³ª´®°íµñ",dotum,"µ¸¿ò";}
 #head_lwrap .header_cont .gnb > ul > li > .depth2 > ul > li > a:hover	{text-decoration:underline;}

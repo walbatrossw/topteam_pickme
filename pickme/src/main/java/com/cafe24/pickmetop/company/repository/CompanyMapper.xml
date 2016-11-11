@@ -5,7 +5,9 @@
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									
 									기업 메인 페이지 관련
+									
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->
 	<!-- 기업 총평점 TOP10 -->
@@ -22,7 +24,9 @@
 	
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									
 									기업 정보 페이지 관련
+									
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->
 	<!-- 기업정보 페이지의 기업 리스트 목록 -->
@@ -82,7 +86,9 @@
 	
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									
 									기업리뷰 관련
+									
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->
 	<!-- 기업리뷰사용자 등록 -->
@@ -301,6 +307,37 @@
 									면접후기 관련 시작
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
 -->
+<!-- 면접후기 등록 -->
+	<insert id="insertCompanyInterview" parameterType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
+		INSERT INTO tb_company_interview(
+			login_id,
+			company_cd,
+			company_name,
+			job_topindex_cd,
+			interview_experience,
+			interview_summary,
+			interview_question,
+			interview_answer,
+			interview_level,
+			interview_passcheck,
+			interview_regdate,
+			interview_modidate
+		) VALUES (
+			#{loginId},
+			#{companyCd},
+			#{companyName},
+			#{jobTopIndexCd},
+			#{interviewExperience},
+			#{interviewSummary},
+			#{interviewQuestion},
+			#{interviewAnsewer},
+			#{interviewLevel},
+			#{interviewPasscheck},
+			now(),
+			now()
+		)
+	</insert>
+
 <!-- 면접후기 비승인 리스트 -->
 	<select id="selectCompanyInterviewListByInterviewUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
 		SELECT

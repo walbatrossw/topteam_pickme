@@ -1,0 +1,30 @@
+@CHARSET "EUC-KR";
+
+/*기업리뷰 입력폼*/
+.insertForm{
+	/* background-color: rgba(213,213,213,0.5); */
+	padding: 40px 40px 20px 40px;
+}
+.form .panel-heading{
+	/*background-color: rgba(83,255,76,1);*/
+	border-bottom:2px solid black;
+}
+.form .panel-end{
+	padding-top: 20px;
+	border-top: 2px solid black;
+}
+
+/*기업정보 Insert에서 기업이름 자동완성 부분*/
+.fixed-height {
+	width: 200px;
+	background-color: #fff;
+	padding: 1px;
+	max-height: 100px;
+	overflow: auto;
+}
+.ui-helper-hidden-accessible{
+	display: none;
+}
+#jobTopIndex{
+	width: 300px;
+}

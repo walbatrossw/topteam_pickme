@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <!--
 	Prologue by HTML5 UP
@@ -10,20 +12,17 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="/css/admin/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
-
 		<!-- Header -->
 			<div id="header">
-
 				<div class="top">
-
 					<!-- Logo -->
 						<div id="logo">
-							<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+							<span class="image avatar48"><img src="/img/admin//avatar.jpg" alt="" /></span>
 							<h1 id="title">Jane Doe</h1>
 							<p>Hyperspace Engineer</p>
 						</div>
@@ -105,13 +104,13 @@
 							<div class="row">
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic02.jpg" alt="" /></a>
 										<header>
 											<h3>Ipsum Feugiat</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic03.jpg" alt="" /></a>
 										<header>
 											<h3>Rhoncus Semper</h3>
 										</header>
@@ -119,13 +118,13 @@
 								</div>
 								<div class="4u 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic04.jpg" alt="" /></a>
 										<header>
 											<h3>Magna Nullam</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic05.jpg" alt="" /></a>
 										<header>
 											<h3>Natoque Vitae</h3>
 										</header>
@@ -133,13 +132,13 @@
 								</div>
 								<div class="4u$ 12u$(mobile)">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic06.jpg" alt="" /></a>
 										<header>
 											<h3>Dolor Penatibus</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="/img/admin//pic07.jpg" alt="" /></a>
 										<header>
 											<h3>Orci Convallis</h3>
 										</header>
@@ -158,7 +157,7 @@
 								<h2>About Me</h2>
 							</header>
 
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+							<a href="#" class="image featured"><img src="/img/admin//pic08.jpg" alt="" /></a>
 
 							<p>Tincidunt eu elit diam magnis pretium accumsan etiam id urna. Ridiculus
 							ultricies curae quis et rhoncus velit. Lobortis elementum aliquet nec vitae
@@ -212,13 +211,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollzer.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script src="/js/admin/jquery.min.js"></script>
+			<script src="/js/admin/jquery.scrolly.min.js"></script>
+			<script src="/js/admin/jquery.scrollzer.min.js"></script>
+			<script src="/js/admin/skel.min.js"></script>
+			<script src="/js/admin/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script src="/js/admin/main.js"></script>
 
 	</body>
 </html>

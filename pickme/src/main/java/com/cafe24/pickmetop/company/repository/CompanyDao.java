@@ -123,6 +123,10 @@ public class CompanyDao {
 	 * 
 	 * ----------------------------------------------------------------------------------------
 	 * */
+	//면접후기 등록
+	public int insertCompanyInterview(CompanyInterviewVo companyInterviewVo){
+		return sqlSessionFactoryCompany.insert(NS + ".insertCompanyInterview", companyInterviewVo);
+	}
 	//면접후기 비승인 리스트(관리자)
 	public List<CompanyInterviewVo> selectCompanyInterviewListByInterviewUnreceived(PageHelper pageHelper){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInterviewListByInterviewUnreceived", pageHelper);

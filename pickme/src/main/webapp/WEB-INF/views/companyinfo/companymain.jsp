@@ -1,3 +1,4 @@
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -5,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function() {
 		gnb_menu();
@@ -64,7 +65,6 @@
 </script>
 <title>Insert title here</title>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <body>
 	<!-- HEADER START -->
 	<div class="headers">
@@ -102,10 +102,10 @@
 							</div>
 						</li>
 						<li class="menu4">
-							<a href="#">면접후기</a>
+							<a href="/interview/companyInsertForm">면접후기</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="#"> 면접후기 등록 </a></li>
+									<li><a href="/interview/companyInsertForm"> 면접후기 등록 </a></li>
 									<li><a href="/interview/companyInterviewUnreceivedList"> 면접후기 미승인 목록 </a></li>
 									<li><a href="#">면접후기 승인 목록 </a></li>
 								</ul>
