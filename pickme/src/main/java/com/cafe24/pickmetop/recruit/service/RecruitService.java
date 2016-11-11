@@ -230,7 +230,6 @@ public class RecruitService {
 		for(int i=0; i<recruit.getRecruitList().size(); i++){
 			
 			//recruitJobCd = 문자열 + 증가하는 값
-			String recruitJobCd = "";
 			int countJop = recruitDao.getCountOfRecruitJob()+1;
 			//recruitJobCd= "recruit_company_job_"+ count;
 			logger.info("recruit {}",recruit.toString());
@@ -275,7 +274,7 @@ public class RecruitService {
 			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
-				cletterArticle.setRecruitJobCd(recruitJobCd);
+				cletterArticle.setRecruitJobCd(String.valueOf(countJop));
 				cletterArticle.setCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle());
 				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
 				recruitDao.insertCoverletterArticle(cletterArticle);

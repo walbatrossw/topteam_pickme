@@ -104,7 +104,7 @@ public class RecruitController {
 			}
 				recruitService.insertRecruitCompany(recruit,session);
 				recruitService.insertRecruitCompanyJob(recruit);	
-			return "companyRecruitList.jsp";
+			return "redirect:/diary";
 		//파일타입이 이미지가 아닐경우
 		}else{
 			model.addAttribute("errorMsg","콘텐츠타입 불일치");
