@@ -168,7 +168,7 @@ $(document).ready(function(){
 
 <body>
 
-<form action="/memberGeneralInsert" class="signUp" id="signupForm" method="post" >
+<form action="/memberGeneralInsert" class="signUp" id="signupForm" method="GET" >
 	<div class="container">
 	<div class="User">
 		<h1 class="signUpTitle">회 원 가 입</h1>
@@ -182,6 +182,6 @@ $(document).ready(function(){
 	<input type="submit" value="회원가입" class="signUpButton">
 	<input type="button" class="signUpButton" name="버튼" value="네이버로 가입" onclick="window.open('https://nid.naver.com/user2/join.nhn?m=init&lang=ko_KR')">   
     </form>
-    
+   
 </body>
 </html>
