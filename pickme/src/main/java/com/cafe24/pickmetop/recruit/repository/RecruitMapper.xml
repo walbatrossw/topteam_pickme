@@ -221,7 +221,7 @@
    	<!--  RecruitCompanyJob의 총 열갯수 -->
 	<select id="getCountOfRecruitJob" resultType="int">
 		 SELECT 
-		 	max(substring(recruit_job_cd,21))
+		 	ifnull(max(substring(recruit_job_cd,21)),0)
 		 FROM 
 		 	tb_recruit_company_job
 	</select>
@@ -229,7 +229,7 @@
    	<!--  RecruitCompany의 코드숫자중 가장 큰수 -->
 	<select id="getCountOfRecruit" resultType="int">
 		 SELECT 
-		 	max(substring(recruit_company_cd,17))
+		 	ifnull(max(substring(recruit_company_cd,17)),0)
 		 FROM 
 		 	tb_recruit_company
 	</select>
@@ -266,7 +266,9 @@
 			(recruit_job_cd, recruit_company_cd, company_cd, job_midindex_cd, recruit_job_workstatus, recruit_job_jobdetail, recruit_job_education, recruit_job_file)
 		VALUES 
 		
-			(CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')), #{recruitCompanyCd},#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
+			(CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')), CONCAT('recruit_company_',LPAD((#{recruitCompanyCd}),4,'0')),#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
+	 				
+	 
 	 </insert>
 
 </mapper>

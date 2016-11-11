@@ -35,8 +35,7 @@ public class RecruitService {
 	final static Logger logger = LoggerFactory.getLogger(RecruitService.class);
 	@Autowired
 	RecruitDao recruitDao;
-	String companyCd = "";
-	
+	int count = 0;
 	final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
 	//북마크 확인 
 	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
@@ -208,8 +207,8 @@ public class RecruitService {
 		
 		//객체내에 값setting
 		//RecruitCompanyCd를 문자열 + 증가하는수로 setting
-		int count = recruitDao.getCountOfRecruit() +1;
-		companyCd = "recruit_company_"+count;
+		count = recruitDao.getCountOfRecruit() +1;
+//		companyCd = "recruit_company_"+count;
 		
 		recruitCompany.setRecruitCompanyCd(String.valueOf(count));
 		recruitCompany.setCompanyCd(recruit.getCompanyCd());
@@ -232,13 +231,14 @@ public class RecruitService {
 			
 			//recruitJobCd = 문자열 + 증가하는 값
 			String recruitJobCd = "";
-			int count = recruitDao.getCountOfRecruitJob()+1;
-			recruitJobCd= "recruit_company_job_"+ count;
+			int countJop = recruitDao.getCountOfRecruitJob()+1;
+			//recruitJobCd= "recruit_company_job_"+ count;
 			logger.info("recruit {}",recruit.toString());
 			RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
-			recruitCompanyJobVo.setRecruitJobCd(String.valueOf(count));
+			recruitCompanyJobVo.setRecruitJobCd(String.valueOf(countJop));
 			recruitCompanyJobVo.setCompanyCd(recruit.getCompanyCd());
-			recruitCompanyJobVo.setRecruitCompanyCd(companyCd);
+			
+			recruitCompanyJobVo.setRecruitCompanyCd(String.valueOf(count));
 			for(int j=0;j<recruit.getRecruitList().get(i).getJobMidIndexCd().size();j++){
 			recruitCompanyJobVo.setJobMidindexCd(recruit.getRecruitList().get(i).getJobMidIndexCd().get(j));
 			recruitCompanyJobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(i).getRecruitJobWorkstatus().get(j));
@@ -271,15 +271,11 @@ public class RecruitService {
 				e.printStackTrace();
 			}
 			
-			//자기소개서항목입력 미완성
+			
 			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
-/*				int numberOfCoverletter = recruitDao.getCountOfCoverletterJob();
-				numberOfCoverletter++;
-				String coverletterCd = "coverletter_cd_"+numberOfCoverletter;*/
 				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
 				cletterArticle.setRecruitJobCd(recruitJobCd);
-				//cletterArticle.setcCletterArticleCd(coverletterCd);
 				cletterArticle.setCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle());
 				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
 				recruitDao.insertCoverletterArticle(cletterArticle);
