@@ -12,45 +12,67 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	//기업이름로 검색
+	//기업이름 검색
 	$('#companySearch').click(function(){
 		if($('#searchCompanyName').val() != "") {
 			location.href="/diary?ddayYear=${ddayYear}&ddayOption=search&ddayMonth=${ddayMonth}&searchCompanyName="+$('#searchCompanyName').val();
 		}else{
+			//검색시에 기본이 되는 매핑주소
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search";
 		}   
 	});
-/* 	
-	const $jobTopIndex = $('#jobTopIndex');
-	$jobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
-	$jobTopIndex.change(function(){
-		if($jobTopIndex.val() != "") {
-			location.href="/review/companyReviewListAllow?jobTopIndexCd="+$jobTopIndex.val();
+	//체크박스 검색
+	$('#checkSearchBtn').click(function(){
+		var jopList = new Array(); // 직무체크를 담을 array
+		var industryList = new Array();//산업군 체크를 담을 array
+		for(var i=0;i<$('.jobTopIndexCd:checked').length;i++){
+			jopList.push($('.jobTopIndexCd:checked').eq(i).val());
+		}
+		for(var i=0;i<$('.industryTopindexCd:checked').length;i++){
+			industryList.push($('.industryTopindexCd:checked').eq(i).val());
+		}
+		console.log("jopList : "+jopList);
+		console.log("industryList : "+industryList)
+		
+		location.href=
+			"/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&jobTopIndexCd="+jopList 
+			+"&industryTopindexCd="+industryList
+			+"&recruitJobWorkstatus="+$('.recruitJobWorkstatus:checked').val()
+	 });
+	
+	//북마크 보기 (체크박스형태로 다시 만들자 )
+	$('#bookmark').click(function(){
+		//로그인 안되어있으면 로그인 유도
+		if($('#sessionId').val()==""){
+			location.href="/memberGeneralLogin";
 		}else{
-			location.href="/review/companyReviewListAllow";
-		}    
-    }); 
-*/
+			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
+		}	
+	});
+		
 });
+
 </script>
 <title>Insert title here</title>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
 이예은
+<input type="hidden" id= "sessionId" value="${sessionScope.id}">
 <div id="wrapper">
 	<div class="container">
 	<!-- Sidebar -->
 	        <div id="sidebar-wrapper">
 	            <ul class="sidebar-nav">
 	            	<li>
+	            	${sessionScope.id}
 		                <h3>채용형태</h3>
 		            </li>
 		            <li>
-		                <input type="radio" name = "recruitJobWorkstatus" value="신입">신입
-		                <input type="radio" name = "recruitJobWorkstatus" value="경력">경력
-		                <input type="radio" name = "recruitJobWorkstatus" value="인턴">인턴
-		                <input type="radio" name = "recruitJobWorkstatus" value="계약직">계약직                        
+		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="신입">신입
+		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="경력">경력
+		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="인턴">인턴
+		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="계약직">계약직                        
 	            	</li>
 	            	<li>
 	                	<h3>직무선택</h3>
@@ -58,7 +80,7 @@ $(document).ready(function(){
 	               
 					<c:forEach var="jobTopIndex" items="${jobTopIndex}">
 						<li>
-							<input type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
+							<input class="jobTopIndexCd" type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
 						</li>
 					</c:forEach>
 					
@@ -68,16 +90,16 @@ $(document).ready(function(){
 		           
 	               	<c:forEach var="topIndustry" items="${topIndustry}">
 		                <li>
-							<input type="checkbox" value="${topIndustry.industryTopindexCd}">${topIndustry.industryTopindexName}
+							<input class="industryTopindexCd" type="checkbox" value="${topIndustry.industryTopindexCd}">${topIndustry.industryTopindexName}
 						</li>
 					</c:forEach>
 					<br/>
-<%-- 		               <div>
-		               		 <center><a href="#" class="btn btn-warning btn-sm">맞춤채용정보 등록하기</a> </center>
-		               </div> --%>
+		               <div>
+		               		<center> <a id="checkSearchBtn" class="btn btn-warning btn-sm">검색조건으로보기</a></center>
+		               </div> 
 					<br/>
 		               <div >
-		               		<center><a href="#" class="btn btn-warning btn-sm">내 채용공고보기</a></center>
+		               		<center><a id="bookmark" class="btn btn-warning btn-sm">내 북마크보기</a></center>
 		               </div>
 
 	            	

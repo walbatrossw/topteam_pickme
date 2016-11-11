@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.recruit.model.Recruit;
-import com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo;
 import com.cafe24.pickmetop.recruit.service.RecruitService;
 import com.cafe24.pickmetop.recruit.service.Commons;
 
@@ -73,14 +71,23 @@ public class RecruitController {
 	
 	/* 채용 리스트               {} : 배열요청. */
 	@RequestMapping(value="/diary")
-	public String diary(Model model,
+	public String diary(Model model,HttpSession session,
 							@RequestParam(value="ddayYear", defaultValue="0") int ddayYear,
 							@RequestParam(value="ddayMonth", defaultValue="0") int ddayMonth,
 							@RequestParam(value="ddayOption", defaultValue="default") String ddayOption,
-							@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName){
-		logger.info("searchCompanyName:{}",searchCompanyName);
+							@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName,
+							@RequestParam(value="bookmark", defaultValue="") String bookmark,
+							@RequestParam(value="jobTopIndexCd", defaultValue="") List<String> jobTopIndexCd,
+							@RequestParam(value="industryTopindexCd", defaultValue="") List<String> industryTopindexCd,
+							@RequestParam(value="recruitJobWorkstatus", defaultValue="") String recruitJobWorkstatus){
+		logger.info("검색어입력후 검색버튼 하면 searchCompanyName:{}",searchCompanyName);
+		logger.info("bookmark보기를 누르면 true:{}",bookmark);
+		logger.info("jobTopIndexCd[]:{}",jobTopIndexCd);
+		logger.info("industryTopindexCd[]:{}",industryTopindexCd);
+		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus);
 
-		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,searchCompanyName);
+		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,
+				searchCompanyName,bookmark,jobTopIndexCd,industryTopindexCd,recruitJobWorkstatus,session);
 
 		model.addAttribute("oneDayList",map.get("oneDayList"));
 		model.addAttribute("ddayYear",map.get("ddayYear"));
@@ -91,7 +98,6 @@ public class RecruitController {
 		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
 		//전체 산업군 대분류
 		model.addAttribute("topIndustry",recruitService.selectAllTopIndustry());
-		logger.info("recruitService.selectAllTopIndustry():{}",recruitService.selectAllTopIndustry());
 		return "/recruit/company/companyRecruitList";
 	}
 	

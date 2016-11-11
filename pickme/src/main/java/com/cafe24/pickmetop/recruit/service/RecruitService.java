@@ -79,7 +79,8 @@ public class RecruitService {
 		return recruitDao.selectAllTopIndustry();
 	}
 	//달력화면
-	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName){
+	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName
+			,String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus,HttpSession session){
 		logger.info("searchCompanyName : {}",searchCompanyName);
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
@@ -129,10 +130,39 @@ public class RecruitService {
 				Map<String, Object> companySearchMap = new HashMap<String, Object>();
 
 				companySearchMap.put("scheduleDate", scheduleDate);
-				companySearchMap.put("searchCompanyName", searchCompanyName);
+				if(!searchCompanyName.equals("")){
+					logger.info("들어오면안됨0");
+					companySearchMap.put("searchCompanyName", searchCompanyName);
+				}
 				//검색어 없을때 전체리스트 보여줌 
-				if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
-					logger.info("여긴 들어와도됨");
+				//String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus
+				logger.info("jobTopIndexCd : {} ",jobTopIndexCd);
+				logger.info("industryTopindexCd :{}",industryTopindexCd);
+				logger.info("recruitJobWorkstatus : {}",recruitJobWorkstatus);
+				logger.info("bookmark : {}",bookmark);
+				if(!bookmark.equals("")){
+					logger.info("들어오면안됨1");
+					companySearchMap.put("bookmark", bookmark);
+					companySearchMap.put("sessionLoginId",(String)session.getAttribute("id"));
+				}
+				if(jobTopIndexCd.size()!=0){
+					logger.info("들어오면안됨2");
+					//아 이거는 리스트니까 어떻게..
+					companySearchMap.put("jobTopIndexCd", jobTopIndexCd);
+				}
+				if(industryTopindexCd.size()!=0){
+					logger.info("들어오면안됨3");
+					companySearchMap.put("industryTopindexCd", industryTopindexCd);
+				}
+				if(!recruitJobWorkstatus.equals("")){
+					logger.info("들어오면안됨4");
+					companySearchMap.put("recruitJobWorkstatus", recruitJobWorkstatus);
+				}
+				//test
+				List<Recruit> beginScheduleList = recruitDao.selectListOnSearchKeyword(companySearchMap);
+				oneDay.setScheduleList(beginScheduleList);
+				
+				/*if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
 					//시작일 
 					List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
 					//종료일
@@ -142,8 +172,6 @@ public class RecruitService {
 					oneDay.setScheduleList(beginScheduleList);
 				}
 				else if(!searchCompanyName.equals("")||!searchCompanyName.equals(null)){
-					
-					logger.info("일로들어오면 안돼!!!!!! searchCompanyName : {}  " ,searchCompanyName);
 					//시작일 
 					List<Recruit> beginScheduleList = recruitDao.searchScheduleListByBeginDate(companySearchMap);		
 					//종료일
@@ -152,7 +180,7 @@ public class RecruitService {
 					//두개의 스케쥴을 합침 
 					oneDay.setScheduleList(beginScheduleList);
 				}		
-				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑
+				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑*/			
 			//뒤의공백
 			}else {
 				oneDay = new OneDay();

@@ -2,6 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
+	<!-- 검색리스트 종료일 테스트 -->
+ 	<!-- if절이 안먹는다 -->
+ <!-- 	얘가 이상한데서 변수가 막 겹친 그런걸수도 있으니까 맵퍼에 넣을때 변수 바꿔보게 -->
+ 	<select id="selectListOnSearchKeyword" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">
+		SELECT  
+			recruit.recruit_company_cd as recruitCompanyCd, 
+			recruit.company_cd as companyCd,
+			recruit.recruit_name as recruitName,
+			recruit.recruit_begindate as recruitBegindate , 
+			recruit.recruit_enddate as recruitEnddate,
+			recruit.recruit_regdate as recruitRegdate,
+			<if test='jobTopIndexCd != null or jobTopIndexCd != ""'>
+			job.job_midindex_cd,	
+			recruitjob.recruit_company_cd,
+			</if>
+			<if test='industryTopindexCd != null or industryTopindexCd != ""'>
+			industrymid.industry_midindex_cd,
+			company.company_cd,
+			</if> 
+			'end' as 'end'
+		FROM 
+			tb_recruit_company as recruit 
+ 			<if test='jobTopIndexCd != null or jobTopIndexCd!=""'>
+			,tb_job_midindex as job
+			,tb_recruit_company_job as recruitjob
+			</if>
+			<if test='industryTopindexCd != null or industryTopindexCd != ""'>
+			,tb_company_info as company
+			,tb_industry_midindex as industrymid 
+			</if> 
+		WHERE 
+			recruit.recruit_enddate= #{scheduleDate}
+			
+	</select> 
+	
+	
 	<!-- 북마크 체크 -->
 	<select id="checkBookmarkByLoginId" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo" resultType="String">
 		SELECT 
@@ -33,7 +69,7 @@
 	
 	
 	<!-- 채용달력 시작일 검색 -->
-	<select id="searchScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="Map">	
+	<select id="searchScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">	
 	SELECT  
 		company.company_cd as companyCd,
 		recruit.recruit_name as recruitName,
@@ -55,7 +91,7 @@
 	</select> 
 	
 	<!-- 채용달력 종료일 검색 -->
-	 <select id="searchScheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="Map">	
+	 <select id="searchScheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">	
 	SELECT  
 		company.company_cd as companyCd,
 		recruit.recruit_name as recruitName,

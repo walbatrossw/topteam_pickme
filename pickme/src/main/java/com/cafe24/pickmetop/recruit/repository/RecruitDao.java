@@ -29,6 +29,12 @@ public class RecruitDao {
 	@Autowired
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
+	//test 검색 & 리스트
+	public List<Recruit> selectListOnSearchKeyword(Map companySearchMap){
+		logger.info("cd : {}" ,companySearchMap.get("jobTopIndexCd"));
+		return sqlSessionFactoryRecruit.selectList(NS+".selectListOnSearchKeyword",companySearchMap);
+	}
+	
 	//북마크 확인 
 	public String checkBookmarkByLoginId(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
 		String aa = sqlSessionFactoryRecruit.selectOne(NS+".checkBookmarkByLoginId",recruitCompanyBookmarkVo);
