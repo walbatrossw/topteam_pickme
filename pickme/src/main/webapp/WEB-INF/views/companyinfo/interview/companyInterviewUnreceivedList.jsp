@@ -74,10 +74,10 @@
 			<h1>면접후기 미승인 리스트</h1>
 		</div>
 		<div class="table-responsive">
-			<table class="table">
+			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>승인대기번호</th>
+						<th>번호</th>
 						<th>기업코드</th>
 						<th>작성자</th>
 						<th>면접후기 간략</th>

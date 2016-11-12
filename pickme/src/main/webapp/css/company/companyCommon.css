@@ -5,6 +5,9 @@
 	background-color: rgba(213,213,213,0.5);
 	cursor:pointer;
 }
+.table thead tr th{
+	text-align: center;
+}
 
 /*±â¾÷¸®ºä ÀÔ·ÂÆû*/
 .insertForm{

@@ -261,7 +261,7 @@
 			review_ceosupport as reviewCeosupport,
 			review_regdate as reviewRegDate
 		FROM 
-			  tb_company_review review
+			tb_company_review review
 		WHERE
 			company_review_cd = #{companyReviewCd}	
 	</select>
@@ -353,7 +353,8 @@
 		ORDER BY
 			interview_regdate DESC
 		LIMIT #{startRow}, #{linePerPage}
-	</select>	
+	</select>
+		
 	<!-- 면접후기 상세보기 -->
 	<select id="selectCompanyInterviewDetailByCompanyInterviewCd" parameterType="Integer" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
 		SELECT	
@@ -364,7 +365,7 @@
 			(SELECT job_topindex_name FROM tb_job_topindex top WHERE top.job_topindex_cd = inter.job_topindex_cd) as jobTopIndexName,
 			inter.interview_experience as interviewExperience,
 			inter.interview_summary as interviewSummary,
-			inter.interview_question asinterviewQuestion,
+			inter.interview_question as interviewQuestion,
 			inter.interview_answer as interviewAnsewer,
 			inter.interview_level as interviewLevel,
 			inter.interview_passcheck as interviewPasscheck,
@@ -374,4 +375,24 @@
 		WHERE
 			interview_cd = #{interviewCd}
 	</select>
+	
+	<!-- 면접후기 승인처리 update -->
+	<update id="updateCompanyInterviewAllow" parameterType="java.util.Map">
+		UPDATE
+			tb_company_interview
+		SET
+			interview_allow = 1,
+			interview_allowdate = now(),
+			interview_grantor = #{loginId}
+		WHERE
+			interview_cd = #{interviewCd}
+	</update>
+	
+	<!-- 면접후기 삭제처리 -->
+	<delete id="deleteCompanyInterview" parameterType="Integer">
+		DELETE FROM
+			tb_company_interview
+		WHERE
+			interview_cd = #{interviewCd}
+	</delete>
 </mapper>

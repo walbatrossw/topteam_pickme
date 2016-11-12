@@ -68,9 +68,9 @@
 		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered">
-				<thead class="text-center">
+				<thead>
 					<tr>
-						<th>승인대기번호</th>
+						<th>번호</th>
 						<th>기업코드</th>
 						<th>작성자</th>
 						<th>기업한줄평</th>
@@ -80,7 +80,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="companyReviewList" items="${reviewUnreceivedMap.reviewListUnreceived}" varStatus="i">
-						<tr class="tablehover" onClick="location.href='/review/companyReviewDetail?companyReviewCd=${companyReviewList.companyReviewCd}'">
+						<tr class="tablehover" onClick="location.href='/review/companyReviewUnreceivedDetail?companyReviewCd=${companyReviewList.companyReviewCd}'">
 							<c:if test="${page > 1}">
 								<td>${i.count + (page-1) * 5}</td>
 							</c:if>

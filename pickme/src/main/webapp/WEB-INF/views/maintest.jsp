@@ -80,7 +80,7 @@
 		<div id="head_lwrap">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(0, 0, 0, 0.2);">
-				<h1><a class="companyInfoMain" href="/companyInfo"><strong>PickMe</strong></a></h1>
+				<h1><a class="companyInfoMain" href="/"><strong>PickMe</strong></a></h1>
 					<ul>
 						<li class="menu1">
 							<a href="/diary">채용공고</a>

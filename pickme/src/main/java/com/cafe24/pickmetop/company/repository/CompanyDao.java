@@ -135,4 +135,12 @@ public class CompanyDao {
 	public CompanyInterviewVo selectCompanyInterviewDetailByCompanyInterviewCd(int interviewCd){
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyInterviewDetailByCompanyInterviewCd", interviewCd);
 	}
+	//면접후기 승인 업데이트
+	public int updateCompanyInterviewAllow(Map<String, Object> allow){
+		return sqlSessionFactoryCompany.update(NS + ".updateCompanyInterviewAllow", allow);
+	}
+	//면접후기 삭제처리
+	public int deleteCompanyInterview(int interviewCd){
+		return sqlSessionFactoryCompany.delete(NS + ".deleteCompanyInterview", interviewCd);
+	}
 }

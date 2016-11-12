@@ -36,6 +36,7 @@ public class CompanyController {
 	@RequestMapping(value = "/company/companyInfoDetail", method = RequestMethod.GET)
 	public String companyInfoDetail(Locale locale, Model model,
 			@RequestParam(value="companyName") String companyName) {
+		logger.info("companyInfoDetail: {}", "들어왔니?");
 		model.addAttribute("companyInfoDetail", companyService.getCompnayInfoDetail(companyName));
 		return "/companyinfo/companyInfoDetail";
 	}
@@ -88,11 +89,21 @@ public class CompanyController {
 	}
 	//면접후기 사용자 디테일 화면 맵핑
 	
+	//면접후기 삭제처리 맵핑
+	@RequestMapping(value = "/interview/companyInterviewDelete", method = RequestMethod.GET)
+	public String companyInterviewDelete(@RequestParam(value="interviewCd") int interviewCd) {
+		companyService.delectCompanyInterview(interviewCd);
+		return "redirect:/interview/companyInterviewUnreceivedList";
+	}	
 	//면접후기 승인처리 맵핑
-	
+	@RequestMapping(value = "/interview/companyInterviewAllow", method = RequestMethod.GET)
+	public String companyInterviewAllow(@RequestParam(value="interviewCd") int interviewCd) {
+		companyService.updateCompanyInterviewAllow(interviewCd);
+		return "redirect:/interview/companyInterviewUnreceivedList";
+	}
 	//면접후기 승인리스트 맵핑
 	//면접후기 수정화면 맵핑
-	//면접후기 삭제처리 맵핑
+	
 	
 	
 	//면접후기 비승인 리스트(관리자) 맵핑
@@ -150,6 +161,13 @@ public class CompanyController {
 	}
 	
 	//기업리뷰 상세보기(관리자)
+	@RequestMapping(value = "/review/companyReviewUnreceivedDetail", method = RequestMethod.GET)
+	public String companyReviewUnreceivedDetail(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd) {
+		model.addAttribute("reviewDetail", companyService.getCompanyReviewDetail(companyReviewCd));
+		return "/companyinfo/review/companyReviewUnreceivedDetail";
+	}
+	
+	//기업리뷰 상세보기(사용자)
 	@RequestMapping(value = "/review/companyReviewDetail", method = RequestMethod.GET)
 	public String companyReviewDetail(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd) {
 		model.addAttribute("reviewDetail", companyService.getCompanyReviewDetail(companyReviewCd));

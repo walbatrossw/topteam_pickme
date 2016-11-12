@@ -127,7 +127,11 @@
 								<span><img src="/img/company/people.png" class="media-object"></span>
 							</div>
 							<div class="media-body">
-								<h4 class="media-heading">"${reviewListAllow.reviewComment }"</h4>
+								<h4 class="media-heading">
+									<a href="/review/companyReviewDetail?companyReviewCd=${reviewListAllow.companyReviewCd}">
+										"${reviewListAllow.reviewComment }"
+									</a>
+								</h4>
 							</div>
 						</div>
 					</div>

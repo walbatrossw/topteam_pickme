@@ -64,7 +64,7 @@ public class CompanyService {
 		companyInterviewVo.setLoginId("kji212@naver.com");
 		return companyDao.insertCompanyInterview(companyInterviewVo);
 	}
-	
+	//면접후기 비승인 목록
 	public Map<String, Object> getCompanyInterviewUnreceivedList(int page){
 		//비승인목록 페이지 처리
 		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
@@ -82,7 +82,17 @@ public class CompanyService {
 	public CompanyInterviewVo getCompanyInterviewDetail(int interviewCd){
 		return companyDao.selectCompanyInterviewDetailByCompanyInterviewCd(interviewCd);
 	}
-	
+	//면접후기 승인처리
+	public int updateCompanyInterviewAllow(int interviewCd){
+		Map<String, Object> allow = new HashMap<String, Object>();
+		allow.put("loginId", "admin");
+		allow.put("interviewCd", interviewCd);
+		return companyDao.updateCompanyInterviewAllow(allow);
+	}
+	//면접후기 삭제처리
+	public int delectCompanyInterview(int interviewCd){
+		return companyDao.deleteCompanyInterview(interviewCd);
+	}
 	
 	 /*---------------------------------------------------------------------------------- 
 	 * 									기업리뷰 관련
