@@ -80,7 +80,12 @@ public class CompanyController {
 		return "/companyinfo/companymain";
 	}
 	//면접후기 관리자 디테일 화면 맵핑
-	
+	@RequestMapping(value = "/interview/companyInterviewDetail", method = RequestMethod.GET)
+	public String companyInterviewDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
+		logger.info("companyInterviewDetail : {}",companyService.getCompanyInterviewDetail(interviewCd).toString());
+		model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
+		return "/companyinfo/interview/companyInterviewUnreceivedDetail";
+	}
 	//면접후기 사용자 디테일 화면 맵핑
 	
 	//면접후기 승인처리 맵핑

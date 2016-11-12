@@ -34,12 +34,6 @@
 } */
 
 
-/*기업리뷰 미승인리스트 관련*/
-.tablehover:hover{
-	background-color: rgba(213,213,213,0.5);
-	cursor:pointer;
-}
-
 /*기업리뷰 상세보기 관련*/
 #reviewRate{
 	margin-left: 15px;

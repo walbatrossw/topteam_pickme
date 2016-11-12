@@ -338,7 +338,7 @@
 		)
 	</insert>
 
-<!-- 면접후기 비승인 리스트 -->
+	<!-- 면접후기 비승인 리스트 -->
 	<select id="selectCompanyInterviewListByInterviewUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
 		SELECT
 			interview_cd as interviewCd,
@@ -354,4 +354,24 @@
 			interview_regdate DESC
 		LIMIT #{startRow}, #{linePerPage}
 	</select>	
+	<!-- 면접후기 상세보기 -->
+	<select id="selectCompanyInterviewDetailByCompanyInterviewCd" parameterType="Integer" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
+		SELECT	
+			inter.interview_cd as interviewCd,
+			inter.company_cd as companyCd,
+			inter.company_name as companyName,
+			login_id as loginId,
+			(SELECT job_topindex_name FROM tb_job_topindex top WHERE top.job_topindex_cd = inter.job_topindex_cd) as jobTopIndexName,
+			inter.interview_experience as interviewExperience,
+			inter.interview_summary as interviewSummary,
+			inter.interview_question asinterviewQuestion,
+			inter.interview_answer as interviewAnsewer,
+			inter.interview_level as interviewLevel,
+			inter.interview_passcheck as interviewPasscheck,
+			DATE_FORMAT(inter.interview_regdate, '%Y-%m-%d %H:%i') as interviewRegdate
+		FROM
+			tb_company_interview inter
+		WHERE
+			interview_cd = #{interviewCd}
+	</select>
 </mapper>

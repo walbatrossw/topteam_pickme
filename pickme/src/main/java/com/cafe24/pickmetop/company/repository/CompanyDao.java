@@ -131,4 +131,8 @@ public class CompanyDao {
 	public List<CompanyInterviewVo> selectCompanyInterviewListByInterviewUnreceived(PageHelper pageHelper){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInterviewListByInterviewUnreceived", pageHelper);
 	}
+	//면접후기 디테일
+	public CompanyInterviewVo selectCompanyInterviewDetailByCompanyInterviewCd(int interviewCd){
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyInterviewDetailByCompanyInterviewCd", interviewCd);
+	}
 }

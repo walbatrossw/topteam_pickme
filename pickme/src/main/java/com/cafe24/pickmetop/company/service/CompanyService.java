@@ -78,6 +78,10 @@ public class CompanyService {
 		interviewUnreceivedMap.put("interviewListUnreceived", companyDao.selectCompanyInterviewListByInterviewUnreceived(pageHelper));
 		return interviewUnreceivedMap;
 	}
+	//면접후기 디테일
+	public CompanyInterviewVo getCompanyInterviewDetail(int interviewCd){
+		return companyDao.selectCompanyInterviewDetailByCompanyInterviewCd(interviewCd);
+	}
 	
 	
 	 /*---------------------------------------------------------------------------------- 
