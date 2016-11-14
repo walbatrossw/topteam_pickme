@@ -85,7 +85,7 @@ public class CompanyController {
 	public String companyInterviewUnreceivedDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
 		logger.info("companyInterviewDetail : {}",companyService.getCompanyInterviewDetail(interviewCd).toString());
 		model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
-		return "/companyinfo/interview/companyInterviewUnreceivedDetail";
+		return "/admin/companyinfo/interview/companyInterviewUnreceivedDetail";
 	}
 	//면접후기 사용자 디테일 화면 맵핑
 	@RequestMapping(value = "/interview/companyInterviewDetail", method = RequestMethod.GET)
@@ -141,7 +141,7 @@ public class CompanyController {
 		}
 		model.addAttribute("page", page);
 		model.addAttribute("interviewUnreceivedMap", companyService.getCompanyInterviewUnreceivedList(page));
-		return "/companyinfo/interview/companyInterviewUnreceivedList";
+		return "/admin/companyinfo/interview/companyInterviewUnreceivedList";
 	}
 	
 	/*---------------------------------------------------------------------------------- 
@@ -191,7 +191,7 @@ public class CompanyController {
 	@RequestMapping(value = "/review/companyReviewUnreceivedDetail", method = RequestMethod.GET)
 	public String companyReviewUnreceivedDetail(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd) {
 		model.addAttribute("reviewDetail", companyService.getCompanyReviewDetail(companyReviewCd));
-		return "/companyinfo/review/companyReviewUnreceivedDetail";
+		return "/admin/companyinfo/review/companyReviewUnreceivedDetail";
 	}
 	
 	//기업리뷰 상세보기(사용자)
@@ -209,7 +209,7 @@ public class CompanyController {
 		}
 		model.addAttribute("page", page);
 		model.addAttribute("reviewUnreceivedMap", companyService.getCompanyReviewUnreceivedList(page));
-		return "/companyinfo/review/companyReviewUnreceivedList";
+		return "/admin/companyinfo/review/companyReviewUnreceivedList";
 	}
 	
 	//기업리뷰 등록처리 맵핑

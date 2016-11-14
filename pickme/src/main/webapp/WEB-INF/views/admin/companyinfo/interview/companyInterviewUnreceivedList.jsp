@@ -22,11 +22,9 @@
 	<script src="/js/admin/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/admin/jquery.equalHeight.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() 
-    	{ 
+	$(document).ready(function(){ 
       	  $(".tablesorter").tablesorter(); 
-   	 } 
-	);
+   	});
 	$(document).ready(function() {
 
 	//When page loads...
@@ -110,10 +108,54 @@
 	<section id="main" class="column">
 		<div class="container">
 			<div class="jumbotron text-center">
-				<h1>관리자 페이지 메인 </h1>
+				<h1>면접후기 미승인 리스트</h1>
 			</div>
-			
-			<!-- 관리자 페이지 추가할 내용은 이페이지를 복사해서 이안에 내용 삽입하시길 -->
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>기업코드</th>
+							<th>작성자</th>
+							<th>면접후기 간략</th>
+							<th>등록일</th>
+							<th>승인상태</th>
+						<tr>
+					</thead>
+					<tbody>
+						<c:forEach var="companyInterviewList" items="${interviewUnreceivedMap.interviewListUnreceived}" varStatus="i">
+							<tr class="tablehover" onClick="location.href='/interview/companyInterviewUnreceivedDetail?interviewCd=${companyInterviewList.interviewCd}'">
+								<c:if test="${page > 1}">
+									<td>${i.count + (page-1) * 5}</td>
+								</c:if>
+								<c:if test="${page <= 1}">
+									<td>${i.count}</td>
+								</c:if>
+								<td>${companyInterviewList.companyCd }</td>
+								<td>${companyInterviewList.loginId }</td>
+								<td>${companyInterviewList.interviewSummary }</td>
+								<td>${companyInterviewList.interviewRegDate }</td>
+								<td>미승인</td>
+							</tr>				
+						</c:forEach>
+					</tbody>
+				</table>	
+				<!-- 페이징 -->
+				<div class="text-center">
+					<ul class="pager">
+						<li class="previous"><a href="/interview/companyInterviewUnreceivedList?page=${page-1}">이전</a><li>
+						<c:forEach var="i" begin="${interviewUnreceivedMap.startPage }" end="${interviewUnreceivedMap.endPage }">
+							<c:if test="${page == i}">
+								<li class="active"><a href="/interview/companyInterviewUnreceivedList?page=${i }">${i }</a><li>
+							</c:if>
+							<c:if test="${page != i}">
+								<li><a href="/interview/companyInterviewUnreceivedList?page=${i }">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<li class="next"><a href="/interview/companyInterviewUnreceivedList?page=${page+1}">다음</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</section>
 
