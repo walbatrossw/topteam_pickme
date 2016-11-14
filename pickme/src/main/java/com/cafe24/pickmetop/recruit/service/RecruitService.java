@@ -129,11 +129,13 @@ public class RecruitService {
 				
 				Map<String, Object> companySearchMap = new HashMap<String, Object>();
 
-				companySearchMap.put("scheduleDate", scheduleDate);
+				
+			companySearchMap.put("scheduleDate", scheduleDate);
 				if(!searchCompanyName.equals("")){
 					logger.info("들어오면안됨0");
 					companySearchMap.put("searchCompanyName", searchCompanyName);
 				}
+				/*	
 				//검색어 없을때 전체리스트 보여줌 
 				//String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus
 				logger.info("jobTopIndexCd : {} ",jobTopIndexCd);
@@ -161,8 +163,10 @@ public class RecruitService {
 				//test
 				List<Recruit> beginScheduleList = recruitDao.selectListOnSearchKeyword(companySearchMap);
 				oneDay.setScheduleList(beginScheduleList);
+				*/
 				
-				/*if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
+				
+				if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
 					//시작일 
 					List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
 					//종료일
@@ -180,7 +184,7 @@ public class RecruitService {
 					//두개의 스케쥴을 합침 
 					oneDay.setScheduleList(beginScheduleList);
 				}		
-				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑*/			
+				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑		
 			//뒤의공백
 			}else {
 				oneDay = new OneDay();
