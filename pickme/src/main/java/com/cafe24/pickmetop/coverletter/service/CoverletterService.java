@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 import com.cafe24.pickmetop.coverletter.repository.CoverletterDao;
 
@@ -37,6 +39,14 @@ public class CoverletterService {
 		companyOneJobMap.put("companyOneJobArticleList", coverletterDao.selectListCletterArticleByJobCd(recruitJobCd));
 		return companyOneJobMap;
 	}
+
+	public void addCoverletter(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle,	CoverletterMemberArticleSaveVo saveRecord){
+		coverletterMember.setLoginId("walbatrossw@gmail.com");
+		coverletterDao.insertCoverletter(coverletterMember);
+		coverletterDao.insertCoverletterArticle(memberArticle);
+		coverletterDao.insertCoverletterSaveRecord(saveRecord);
+	}
 	
+	// 03_02 자기소개서 입력 처리(자기소개서 이름/마감시간/문항/내용)
 	
 }

@@ -110,10 +110,13 @@ function errorCoverletterPopupOpen(){
 	var popOption = "width=700, height=900, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 		window.open(popUrl,"",popOption);
 }
+
+ㅍㅁ
 </script>
 </head>
 <body>
 	<div id="wrapper">
+	<form id="coverletterAddForm" action="/memberCoverletterInsert" method="post">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 			<div class="navbar-default navbar-static-side" role="navigation">
@@ -204,8 +207,8 @@ function errorCoverletterPopupOpen(){
 		                                </thead>
 		                                <tbody>
 		                                   <tr>
-												<td><input type="text" class="form-control"  id="" name="" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
-												<td><input type="text" class="form-control" id="datepicker" name="" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
+												<td><input type="text" class="form-control"  id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
+												<td><input type="text" class="form-control" id="" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
 												<td>D-DAY추가예정</td>
 											</tr>
 										</tbody>
@@ -218,7 +221,7 @@ function errorCoverletterPopupOpen(){
 											</td>
 											<td>
 												<div>
-													<textarea class="form-control" rows="2" id="" name="" style="resize:none">${companyOneJobArticleList.cCletterArticle}</textarea>
+													<textarea class="form-control" rows="2" id="" name="coverletterMemberArticleVoList[0].cCletterArticle" style="resize:none">${companyOneJobArticleList.cCletterArticle}</textarea>
 												</div>
 												<div align="right">
 													자기소개서 문항을 반드시 확인해주세요
@@ -231,7 +234,7 @@ function errorCoverletterPopupOpen(){
 												${i.count}.	내용
 											</td>
 											<td>
-												<textarea class="form-control content" rows="8" id="content" name="" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+												<textarea class="form-control content" rows="8" id="content" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 											</td>
 										</tr>
 										<tr>
@@ -249,6 +252,8 @@ function errorCoverletterPopupOpen(){
 										</tr>
 		                            </table>
 		                            </c:forEach>
+		                            <input type="submit" class="btn btn-primary btn" id="coverletterAddBtn" value="자기소개서 저장"/>
+		                            <div style="display:none;"><input type="text" id="" name="recruitJobCd" value="${companyOneJobCletterInfo.recruitJobCd}"></div> 
 		                    	</div>
 		                	</div>
 		            	</div>
@@ -256,6 +261,7 @@ function errorCoverletterPopupOpen(){
 				</div>
 			</div>
 		</div>
+	</form>	
 	</div>
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>

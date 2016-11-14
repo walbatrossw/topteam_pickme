@@ -89,4 +89,71 @@
 		recruit_job_cd = #{recruitJobCd} <!-- 기업직무코드를 조건으로  select -->
 	ORDER BY c_cletter_article_cd ASC	
  	</select>
+ 	
+ 	<!-- 회원이 작성한 자기소개서정보 입력처리 -->
+ 	<insert id="insertCoverletter" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo">
+ 	INSERT INTO tb_cletter_member
+	(
+		m_cletter_cd, 
+		recruit_job_cd, 
+		login_id, 
+		m_cletter_name,
+		m_cletter_enddate, 
+		m_cletter_regdate, 
+		m_cletter_modidate
+	)VALUES(
+		(SELECT CONCAT('m_cletter_cd_', LPAD(IFNULL(MAX(substring(mcl.m_cletter_cd, 14)),0)+1,4,'0')) AS mCletterCdOrder FROM tb_cletter_member mcl ORDER BY mCletterCdOrder), 
+		#{recruitJobCd}, 
+		#{loginId}, 
+		#{mCletterName},
+		#{mCletterEnddate}, 
+		NOW(), 
+		NOW()
+	)
+ 	</insert>
+ 	<!-- 회원이 작성한 자기소개서 항목 입력처리 -->
+ 	<insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo">
+ 	INSERT INTO tb_cletter_member_article
+	(
+		m_cletter_article_cd, 
+		m_cletter_cd, 
+		c_cletter_article, 
+		m_cletter_article_content
+	)VALUES
+		<foreach collection="coverletterMemberArticleVoList" item="item" separator=" , ">
+	(
+		(SELECT CONCAT('m_article_cd_', LPAD(IFNULL(MAX(substring(mcla.m_cletter_article_cd, 14)),0)+1,4,'0')) AS mArticleCdOrder FROM tb_cletter_member_article mcla ORDER BY mArticleCdOrder), 
+		(SELECT CONCAT('m_cletter_cd_', max(substring(mcl.m_cletter_cd, 14))) FROM tb_cletter_member mcl), 
+		#{item.cCletterArticle}, 
+		#{item.mCletterArticleContent}
+	)
+ 		</foreach>
+ 	</insert>
+ 	<!-- 회원이 작성한 자기소개서 저장기록 입력처리 -->
+ 	<insert id="insertCoverletterSaveRecord" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo">
+ 	INSERT INTO tb_cletter_member_article_save
+	(
+		m_cletter_record_cd, 
+		m_cletter_cd, 
+		m_cletter_record_date
+	)VALUES(
+		(SELECT CONCAT('m_cletter_record_', LPAD(IFNULL(MAX(substring(mclas.m_cletter_record_cd, 18)),0)+1,4,'0')) AS mCletterRecordOrder FROM tb_cletter_member_article_save mclas ORDER BY mCletterRecordOrder),  
+		(SELECT CONCAT('m_cletter_cd_', max(substring(mcl.m_cletter_cd, 14))) FROM tb_cletter_member mcl),  
+		NOW()
+	)
+ 	</insert>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
 </mapper>

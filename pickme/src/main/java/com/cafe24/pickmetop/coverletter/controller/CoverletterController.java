@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 import com.cafe24.pickmetop.coverletter.service.CoverletterService;
 
 @Controller
@@ -45,7 +47,7 @@ public class CoverletterController {
 	}
 	// 03 자기소개서 입력화면(채용직무코드/채용기업명/채용명/직무중분류명/상세직무명/채용마감일자/기업자기소개서항목리스트)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
-	public String getCompanyOneJob(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
+	public String memberCoverletterInsertForm(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
 		Map<String, Object> companyOneJobCletter = coverletterService.getCompanyOneJobCletter(recruitJobCd);
 		Logger.info("자기소개서 입력화면 {}", model.toString());
 		model.addAttribute("companyOneJobCletterInfo", companyOneJobCletter.get("companyOneJobCletterInfo"));
@@ -54,8 +56,10 @@ public class CoverletterController {
 		Logger.info("companyOneJobArticleList : {}", companyOneJobCletter.get("companyOneJobArticleList").toString());
 		return "/coverletter/member/memberCoverletterInsert";
 	}
-	
-	// 06 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
-	
-	// 07 자기소개서 삭제처리(리스트에서 바로 삭제처리)
+	// 04 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
+	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.POST)
+	public String memberCoverletterInsert(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle, CoverletterMemberArticleSaveVo saveRecord){
+			coverletterService.addCoverletter(coverletterMember, memberArticle, saveRecord);
+		return "/coverletter/member/memberCoverletterInsert";
+	}
 }

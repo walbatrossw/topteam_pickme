@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 
 @Repository
@@ -44,4 +46,16 @@ public class CoverletterDao {
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectListCletterArticleByJobCd", recruitJobCd);
 	}
 	
+	// 03_03 자기소개서 입력처리
+	public int insertCoverletter(CoverletterMemberVo coverletterMember){
+		return sqlSessionFactoryCoverletter.insert(nameSpace + ".insertCoverletter", coverletterMember);
+	}
+	// 03_04 자기소개서 항목 입력처리
+	public int insertCoverletterArticle(CoverletterMemberArticleVo memberArticle){
+		return sqlSessionFactoryCoverletter.insert(nameSpace + ".insertCoverletterArticle", memberArticle);
+	}
+	// 03_05 자기소개서 저장기록 입력처리
+	public int insertCoverletterSaveRecord(CoverletterMemberArticleSaveVo saveRecord){
+		return sqlSessionFactoryCoverletter.insert(nameSpace + ".insertCoverletterSaveRecord", saveRecord);
+	}
 }
