@@ -89,10 +89,61 @@ public class ResumeDao {
 	public List<ResumeVo> selectResumeList(){
 		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeList");
 	}
+	
 	//03 이력서 상세보기
-	public ResumeVo selectResumeDetailByResumeCd(String resumeCd){
-		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeDetailByResumeCd", resumeCd);
+	public ResumeVo selectResumeDetailInfoByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeDetailInfoByResumeCd", resumeCd);
 	}
+	// 03_01 개인신상
+	public ResumePersonalVo selectResumePersonalByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumePersonalByResumeCd", resumeCd);
+	}
+	// 03_02 고등학교
+	public ResumeHighschoolVo selectResumeHighschoolByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeHighschoolByResumeCd", resumeCd);
+	}
+	// 03_03 대학교
+	public List<ResumeHighschoolVo> selectResumeUniversityByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeUniversityByResumeCd", resumeCd);
+	}
+	// 03_04 가족
+	public List<ResumeFamilyVo> selectResumeFamilyByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeFamilyByResumeCd", resumeCd);
+	}
+	// 03_05 병역
+	public ResumeMilitaryserviceVo selectResumeMilitaryserviceByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeMilitaryserviceByResumeCd", resumeCd);
+	}
+	// 03_06 자격증
+	public List<ResumeCertificateVo> selectResumeCertificateByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeCertificateByResumeCd", resumeCd);
+	}
+	// 03_07 경력사항
+	public List<ResumeCareerVo> selectResumeCareerByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeCareerByResumeCd", resumeCd);
+	}
+	// 03_08 어학능력
+	public List<ResumeLanguageVo> selectResumeLanguageByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeLanguageByResumeCd", resumeCd);
+	}
+	// 03_09 수상경력
+	public List<ResumeAwardVo> selectResumeAwardByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeAwardByResumeCd", resumeCd);
+	}
+	// 03_10 국내외연수
+	public List<ResumeTrainingVo> selectResumeTrainingByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeTrainingByResumeCd", resumeCd);
+	}
+	// 03_11 동아리
+	public List<ResumeClubVo> selectResumeClubByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeClubByResumeCd", resumeCd);
+	}
+	// 03_12 기타포트폴리오
+	public ResumeEtcVo selectResumeEtcByResumeCd(String resumeCd){
+		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeEtcByResumeCd", resumeCd);
+	}
+	
+	
 	
 	//이력서 수정
 	

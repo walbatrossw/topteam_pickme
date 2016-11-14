@@ -333,18 +333,244 @@
 			resume_modidate as resumeModidate
 		FROM
 			tb_resume
+		ORDER BY resume_regdate ASC	
 	</select>
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-									03 이력서 상세보기 
+									03 이력서 상세보기 START
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->	
 	
-	<!-- 03 이력서 상세보기 -->
-	<select id="selectResumeDetailByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeVo">
-			
+	<!-- 03_00 이력서 상세보기 -->
+	<select id="selectResumeDetailInfoByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeVo">
+	
+	SELECT 
+		r.resume_cd AS resumeCd, 
+		r.login_id AS loginId, 
+		r.resume_name AS resumeName, 
+		r.resume_regdate AS resumeRegdate, 
+		r.resume_modidate AS resumeModidate
+	FROM tb_resume r
+	WHERE
+		r.resume_cd = #{resumeCd}
+	
 	</select>
+	<!-- 03_01 개인신상 -->
+	<select id="selectResumePersonalByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumePersonalVo">
+	SELECT 
+		p.personal_cd AS personalCd, 
+		p.personal_korname AS personalKorname, 
+		p.personal_engname AS personalEngname, 
+		p.personal_birthdate AS personalBirthdate, 
+		p.personal_gender AS personalGender, 
+		p.personal_phone AS personalPhone, 
+		p.personal_cellphone AS personalCellphone, 
+		p.personal_email AS personalEmail, 
+		p.personal_sns AS personalSns, 
+		p.personal_addr AS personalAddr
+	FROM tb_resume_personal p
+	INNER JOIN tb_resume r
+	ON r.resume_cd = p.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_02 고등학교 -->
+	<select id="selectResumeHighschoolByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeHighschoolVo">
+	SELECT 
+		h.highschool_cd AS highschoolCd,  
+		h.highschool_name AS highschoolName, 
+		h.highschool_category AS highschoolCategory, 
+		h.highschool_begindate AS highschoolBegindate, 
+		h.highschool_enddate AS highschoolEnddate
+		
+	FROM tb_resume_highschool h
+	INNER JOIN tb_resume r
+	ON r.resume_cd = h.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	<!-- 03_03 대학교 -->
+	<select id="selectResumeUniversityByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeUniversityVo">
+	SELECT 
+		u.university_cd AS universityCd, 
+		u.university_name AS universityName, 
+		u.university_category AS universityCategory, 
+		u.university_begindate AS universityBegindate, 
+		u.university_enddate AS universityEnddate, 
+		u.university_major AS universityMajor, 
+		u.university_dmajorminor AS universityDmajorminor, 
+		u.university_dmajorminor_name AS universityDmajorminorName, 
+		u.university_credit AS universityCredit
+	FROM tb_resume_university u
+	INNER JOIN tb_resume r
+	ON r.resume_cd = u.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_04 가족 -->
+	<select id="selectResumeFamilyByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeFamilyVo">
+	SELECT 
+		f.family_cd AS familyCd, 
+		f.family_relation AS familyRelation, 
+		f.family_name AS familyName, 
+		f.family_birthdate AS familyBirthdate, 
+		f.family_education AS familyEducation, 
+		f.family_job AS familyJob, 
+		f.family_cohabit AS familyCohabit 
+	FROM tb_resume_family f
+	INNER JOIN tb_resume r
+	ON r.resume_cd = f.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_05 병역 -->
+	<select id="selectResumeMilitaryserviceByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeMilitaryserviceVo">
+	SELECT 
+		m.militaryservice_cd AS militaryserviceCd, 
+		m.militaryservice_state AS militaryserviceState, 
+		m.militaryservice_group AS militaryserviceGroup, 
+		m.militaryservice_level AS militaryserviceLevel, 
+		m.militaryservice_branch AS militaryserviceBranch, 
+		m.militaryservice_begindate AS militaryserviceBegindate, 
+		m.militaryservice_enddate AS militaryserviceEnddate
+	FROM tb_resume_militaryservice m
+	INNER JOIN tb_resume r
+	ON r.resume_cd = m.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_06 자격증 -->
+	<select id="selectResumeCertificateByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeCertificateVo">
+	SELECT 
+		cer.certificate_cd AS certificateCd, 
+		cer.certificate_idx AS certificateIdx, 
+		cer.certificate_name AS certificateName, 
+		cer.certificate_grade AS certificateGrade, 
+		cer.certificate_host AS certificateHost, 
+		cer.certificate_regnum AS certificateRegnum, 
+		cer.certificate_begindate AS certificateBegindate, 
+		cer.certificate_enddate AS certificateEnddate
+	FROM tb_resume_certificate cer
+	INNER JOIN tb_resume r
+	ON r.resume_cd = cer.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_07 경력사항 -->
+	<select id="selectResumeCareerByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeCareerVo">
+	SELECT 
+		car.career_cd AS careerCd, 
+		car.career_company AS careerCompany, 
+		car.career_begindate AS careerBegindate, 
+		car.career_enddate AS careerEnddate, 
+		car.career_period AS careerPeriod, 
+		car.career_resign AS careerResign, 
+		car.career_level AS careerLevel, 
+		car.career_department AS careerDepartment, 
+		car.career_task AS careerTask
+	FROM tb_resume_career car
+	INNER JOIN tb_resume r
+	ON r.resume_cd = car.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_08 어학능력 -->
+	<select id="selectResumeLanguageByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeLanguageVo">
+	SELECT 
+		l.language_cd AS languageCd, 
+		l.language_idx AS languageIdx, 
+		l.language_name AS languageName, 
+		l.language_test AS languageTest, 
+		l.language_grade AS languageGrade, 
+		l.language_level AS languageLevel, 
+		l.language_begindate AS languageBegindate, 
+		l.language_enddate AS languageEnddate, 
+		l.language_regnum AS languageRegnum, 
+		l.language_host AS languageHost
+	FROM tb_resume_language l
+	INNER JOIN tb_resume r
+	ON r.resume_cd = l.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_09 수상경력 -->
+	<select id="selectResumeAwardByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeAwardVo">
+	SELECT 
+		a.award_cd AS awardCd, 
+		a.award_name AS awardName, 
+		a.award_content AS awardContent, 
+		a.award_host AS awardHost, 
+		a.award_date AS awardDate
+	FROM tb_resume_award a
+	INNER JOIN tb_resume r
+	ON r.resume_cd = a.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_10 국내외연수 -->
+	<select id="selectResumeTrainingByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeTrainingVo">
+	SELECT 
+		t.training_cd AS trainingCd, 
+		t.training_country AS trainingCountry, 
+		t.training_academy AS trainingAcademy, 
+		t.training_begindate AS trainingBegindate, 
+		t.training_enddate AS trainingEnddate, 
+		t.training_content AS trainingContent
+	FROM tb_resume_training t
+	INNER JOIN tb_resume r
+	ON r.resume_cd = t.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	
+	</select>
+	
+	<!-- 03_11 동아리 -->
+	<select id="selectResumeClubByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeClubVo">
+	SELECT 
+		cl.club_cd AS clubCd, 
+		cl.club_name AS clubName, 
+		cl.club_host AS clubHost, 
+		cl.club_begindate AS clubBegindate, 
+		cl.club_enddate AS clubEnddate, 
+		cl.club_content AS clubContent
+	FROM tb_resume_club cl
+	INNER JOIN tb_resume r
+	ON r.resume_cd = cl.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+	
+	<!-- 03_12 기타포트폴리오 -->
+	<select id="selectResumeEtcByResumeCd" parameterType="String" resultType="com.cafe24.pickmetop.resume.model.ResumeEtcVo">
+	SELECT 
+		e.etc_cd AS etcCd, 
+		e.etc_title AS etcTitle, 
+		e.etc_content AS etcContent, 
+		e.etc_file AS etcFile, 
+		e.etc_begindate AS etcBegindate, 
+		e.etc_enddate AS etcEnddate
+	FROM tb_resume_etc e
+	INNER JOIN tb_resume r
+	ON r.resume_cd = e.resume_cd
+	WHERE
+		r.resume_cd = #{resumeCd}
+	</select>
+
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									03 이력서 상세보기 END
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->	
+
 	
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

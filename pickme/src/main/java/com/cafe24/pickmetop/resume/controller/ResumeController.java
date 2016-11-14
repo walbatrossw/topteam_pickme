@@ -2,6 +2,8 @@ package com.cafe24.pickmetop.resume.controller;
 
 
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,10 +75,25 @@ public class ResumeController {
 	
 	//04 이력서 상세보기 (이력서 리스트에서 이력서 이름 클릭시 상세보기 화면으로 이동)
 	@RequestMapping(value="/resumeDetail", method = RequestMethod.GET)
-	public String resumeDetail(Model model, @RequestParam(value="resumeCd") String resumeCd){
-		model.addAttribute("resumeDetail", resumeService.getResumeDetail(resumeCd));
-		Logger.info(model.toString());
-		Logger.info(resumeCd.toString());
+	public String resumeDetail(Model model,	@RequestParam(value="resumeCd") String resumeCd){
+		Logger.info("test {}", model.toString());
+		Map<String, Object> resumeDetail = resumeService.getResumeDetail(resumeCd);
+		Logger.info("이력서 정보 {}", resumeDetail.get("resumeDetailInfo").toString());
+		Logger.info("개인신상 {}", resumeDetail.get("resumePersonal").toString());
+		model.addAttribute("resumeDetailInfo", resumeDetail.get("resumeDetailInfo"));
+		model.addAttribute("resumePersonal", resumeDetail.get("resumePersonal"));
+		model.addAttribute("resumeHighschool", resumeDetail.get("resumeHighschools"));
+		model.addAttribute("resumeUniveristy", resumeDetail.get("resumeUniveristy"));
+		model.addAttribute("resumeFamily", resumeDetail.get("resumeFamily"));
+		model.addAttribute("resumeMilitaryservice", resumeDetail.get("resumeMilitaryservice"));
+		model.addAttribute("resumeCertificate", resumeDetail.get("resumeCertificate"));
+		model.addAttribute("resumeCareer", resumeDetail.get("resumeCareer"));
+		model.addAttribute("resumeLanguage", resumeDetail.get("resumeLanguage"));
+		model.addAttribute("resumeAward", resumeDetail.get("resumeAward"));
+		model.addAttribute("resumeTraining", resumeDetail.get("resumeTraining"));
+		model.addAttribute("resumeClub", resumeDetail.get("resumeClub"));
+		model.addAttribute("resumeEtc", resumeDetail.get("resumeEtc"));
+		
 		return "/resume/resumeDetail";
 	}
 	

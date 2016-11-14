@@ -21,73 +21,72 @@
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
-					02	기업채용공고의 자기소개서 리스트	
+					02	기업채용공고의 직무별 리스트
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
  -->
-	<select id="selectCoverletterCompanyJobList" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
+ 	<select id="selectCoverletterCompanyJobList" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo">
 	SELECT
-		rc.recruit_name AS recruitName, <!-- 채용명 -->
-		ci.company_name AS companyName, <!-- 회사명 -->
-		jm.job_midindex_name AS jobMidindexName, <!-- 직무대분류명 -->
-		rcj.recruit_job_cd AS recruitJobCd, <!-- 하나의 기업채용공고의 직무별 코드 -->
+		rc.recruit_name AS recruitName, <!-- 채용공고명 -->
+		ci.company_name AS companyName, <!-- 기업명 -->
+		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
+		rcj.recruit_job_cd AS recruitJobCd, <!-- 기업 직무별 코드 -->
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
-		rcj.recruit_job_education AS recruitJobEducation, <!-- 학력 -->
+		rcj.recruit_job_education AS recruitJobEducation, <!-- 채용학력 -->
 		rcj.recruit_job_workstatus AS recruitJobWorkstatus, <!-- 채용형태 -->
 		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
 	FROM 
 		tb_recruit_company rc
 	
-	INNER JOIN
-		tb_recruit_company_job rcj
-	ON	
-		rc.recruit_company_cd = rcj.recruit_company_cd
+	INNER JOIN tb_recruit_company_job rcj
+	ON rc.recruit_company_cd = rcj.recruit_company_cd
 	
-	INNER JOIN
-		tb_company_info ci
-	ON
-		rc.company_cd = ci.company_cd
+	INNER JOIN tb_company_info ci
+	ON rc.company_cd = ci.company_cd
 	
-	INNER JOIN
-		tb_job_midindex jm
-	ON
-		rcj.job_midindex_cd = jm.job_midindex_cd
+	INNER JOIN tb_job_midindex jm
+	ON rcj.job_midindex_cd = jm.job_midindex_cd
 	
-	ORDER BY
-		rc.recruit_enddate ASC
+	ORDER BY rc.recruit_enddate ASC
 	</select>
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
-					03	회원의 자기소개서 입력화면	
+					03	회원의 자기소개서 입력화면
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
  -->
- 	<!-- 채용기업명/채용명/채용직무/채용마감일자 --> 
- 	<select id="selectCompanyOneJobInfoByRecruitJobCd" 
- 			resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
- 	SELECT
-		rcj.recruit_job_cd AS recruitJobCd, <!-- 하나의 기업채용공고의 직무별 코드 -->
-		rc.recruit_name AS recruitName, <!-- 채용명 -->
-		ci.company_name AS companyName, <!-- 회사명 -->
-		jm.job_midindex_name AS jobMidindexName, <!-- 직무대분류명 -->
-		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
-		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
-	FROM 
-		tb_recruit_company rc
-	INNER JOIN
-		tb_recruit_company_job rcj
-	ON	
-		rc.recruit_company_cd = rcj.recruit_company_cd
-	INNER JOIN
-		tb_company_info ci
-	ON
-		rc.company_cd = ci.company_cd
-	INNER JOIN
-		tb_job_midindex jm
-	ON
-		rcj.job_midindex_cd = jm.job_midindex_cd
-	
-	WHERE
-		rcj.recruit_job_cd = #{recruitJobCd}		
+ 	<!-- 기업채용공고에서 하나의 직무를 선택하여 자기소개서 입력화면으로 이동할때 필요한 값들 select -->
+ 	<select id="selectOneCletterCompanyJobInfo" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo">
+ 	SELECT  
+		rcj.recruit_job_cd AS recruitJobCd, <!-- 기업직무별코드 -->
+		ci.company_name AS companyName, <!-- 채용공고명 -->
+		rc.recruit_name AS recruitName, <!-- 기업명 -->
+		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 채용상세직무 -->
+		rc.recruit_enddate AS recruitEnddate <!-- 채용마감일 -->
+	FROM tb_recruit_company rc <!-- 기업채용정보 tb -->
+		
+	INNER JOIN tb_recruit_company_job rcj <!-- 기업직무별채용정보 tb -->
+	ON rc.company_cd = rcj.company_cd <!-- 기업채용정보 : 기업직무별채용정보  -->
+		
+	INNER JOIN tb_job_midindex jm <!-- 직무중분류 tb -->
+	ON rcj.job_midindex_cd = jm.job_midindex_cd <!-- 기업직무별채용정보 : 직무중분류 -->
+		
+	INNER JOIN tb_company_info ci <!-- 기업정보 tb -->
+	ON rc.company_cd = ci.company_cd <!-- 기업채용정보 : 기업정보 -->
+		
+	WHERE rcj.recruit_job_cd = #{recruitJobCd} <!-- 기업직무코드를 조건으로  select join -->
  	</select>
  	
+ 	<!-- 기업채용공고에서 하나의 직무를 선택하여 자기소개서 입력화면으로 이동할때 필요한 자소서항목리스트 select -->
+ 	<select id="selectListCletterArticleByJobCd" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
+ 	SELECT 
+		c_cletter_article_cd AS cCletterArticleCd, <!-- 기업 자기소개서 항목코드 -->
+		recruit_job_cd AS recruitJobCd, <!-- 기업 직무별 코드 -->
+		c_cletter_article AS cCletterArticle <!-- 자소서항목 -->
+	FROM 
+		tb_cletter_company_job <!-- 기업 직무별 자기소개서 항목 tb -->
+	WHERE 
+		recruit_job_cd = #{recruitJobCd} <!-- 기업직무코드를 조건으로  select -->
+	ORDER BY c_cletter_article_cd ASC	
+ 	</select>
 </mapper>

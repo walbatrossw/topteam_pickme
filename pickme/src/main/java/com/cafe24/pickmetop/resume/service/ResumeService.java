@@ -1,6 +1,8 @@
 package com.cafe24.pickmetop.resume.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,9 +72,23 @@ public class ResumeService {
 		return resumeDao.selectResumeList();
 	}
 	
-	// 03_이력서 상세보기
-	public ResumeVo getResumeDetail(String resumeCd){
-		return resumeDao.selectResumeDetailByResumeCd(resumeCd);
+	// 03 이력서 상세보기
+	public Map<String, Object> getResumeDetail(String resumeCd){
+		Map<String, Object> resumeDatailMap = new HashMap<String, Object>();
+		resumeDatailMap.put("resumeDetailInfo", resumeDao.selectResumeDetailInfoByResumeCd(resumeCd));
+		resumeDatailMap.put("resumePersonal", resumeDao.selectResumePersonalByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeHighschool", resumeDao.selectResumeHighschoolByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeUniveristy", resumeDao.selectResumeUniversityByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeFamily", resumeDao.selectResumeFamilyByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeMilitaryservice", resumeDao.selectResumeMilitaryserviceByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeCertificate", resumeDao.selectResumeCertificateByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeCareer", resumeDao.selectResumeCareerByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeLanguage", resumeDao.selectResumeLanguageByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeAward", resumeDao.selectResumeAwardByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeTraining", resumeDao.selectResumeTrainingByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeClub", resumeDao.selectResumeClubByResumeCd(resumeCd));
+		resumeDatailMap.put("resumeEtc", resumeDao.selectResumeEtcByResumeCd(resumeCd));
+		return resumeDatailMap;
 	}
 	
 }

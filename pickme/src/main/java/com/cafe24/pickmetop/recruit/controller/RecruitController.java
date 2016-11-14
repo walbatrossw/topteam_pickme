@@ -110,7 +110,7 @@ public class RecruitController {
 		
 		logger.info("tes t{}",recruit.toString());
 		//Recruit내 필드의 리스트의 0번째 - List<CoverletterCompanyJobVo> cCletterArticle 의 0번째 이런식
-		logger.info("tes t{}",recruit.getRecruitList().get(0).getcCletterArticle().get(0).getCletterArticle());
+		logger.info("tes t{}",recruit.getRecruitList().get(0).getcCletterArticle().get(0).getcCletterArticle());
 		
 		//파일 타입이 이미지일경우 
 		if(result){

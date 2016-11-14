@@ -1,5 +1,7 @@
 package com.cafe24.pickmetop.coverletter.controller;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,14 @@ public class CoverletterController {
 	@Autowired
 	private CoverletterService coverletterService;
 	
+	
+	// 00 자기소개서 메인페이지
+	@RequestMapping(value="/coverletterIndex", method = RequestMethod.GET)
+	public String coverletterIndex(Model model){
+		Logger.info("자기소개서 메인페이지:{}" , model.toString());
+		return "/coverletter/coverletterIndex";
+	}
+	
 	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	@RequestMapping(value="/memberCoverletterList", method = RequestMethod.GET)
 	public String memberCoverletterList(Model model){
@@ -33,17 +43,17 @@ public class CoverletterController {
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
 		return "/coverletter/admin/companyJobCoverletterList"; 
 	}
-	// 03 자기소개서 입력화면(채용기업명/채용명/채용직무/채용마감일자)
+	// 03 자기소개서 입력화면(채용직무코드/채용기업명/채용명/직무중분류명/상세직무명/채용마감일자/기업자기소개서항목리스트)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
-	public String companyOneJobInfo(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
-		model.addAttribute("companyOneJobInfo", coverletterService.getCompanyOneJobInfo(recruitJobCd));
-		Logger.info("companyOneJobInfo 자기소개서 입력화면 {}", model.toString());
-		Logger.info("recruitJobCd 기업직무코드 {}", recruitJobCd.toString());
-		return "/coverletter/member/memberCoverletterInsert";                  
+	public String getCompanyOneJob(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
+		Map<String, Object> companyOneJobCletter = coverletterService.getCompanyOneJobCletter(recruitJobCd);
+		Logger.info("자기소개서 입력화면 {}", model.toString());
+		model.addAttribute("companyOneJobCletterInfo", companyOneJobCletter.get("companyOneJobCletterInfo"));
+		Logger.info("companyOneJobCletterInfo : {}", companyOneJobCletter.get("companyOneJobCletterInfo").toString());
+		model.addAttribute("companyOneJobArticleList", companyOneJobCletter.get("companyOneJobArticleList"));
+		Logger.info("companyOneJobArticleList : {}", companyOneJobCletter.get("companyOneJobArticleList").toString());
+		return "/coverletter/member/memberCoverletterInsert";
 	}
-	// 04 자기소개서 입력화면(자소서항목리스트)
-	
-	// 05 자기소개서 입력처리
 	
 	// 06 자기소개서 상세보기(수정화면과 동일, 저장기록리스트)
 	

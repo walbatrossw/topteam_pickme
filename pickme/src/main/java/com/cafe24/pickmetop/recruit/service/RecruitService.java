@@ -307,7 +307,7 @@ public class RecruitService {
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
 				cletterArticle.setRecruitJobCd(String.valueOf(countJop));
-				cletterArticle.setCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle());
+				cletterArticle.setcCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getcCletterArticle());
 				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
 				recruitDao.insertCoverletterArticle(cletterArticle);
 			}
