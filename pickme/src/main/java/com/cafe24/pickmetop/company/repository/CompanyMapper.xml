@@ -228,9 +228,9 @@
         SELECT
             COUNT(*)
         FROM 
-        	tb_company_review
+        	${tbName}
         WHERE
-        	review_allow = 1
+        	${tbColumn} = 1
         <if test='jobTopIndexCd != null and jobTopIndexCd != ""'>
 			AND job_topindex_cd = #{jobTopIndexCd}
 		</if>
@@ -345,7 +345,7 @@
 			company_cd as companyCd,
 			login_id as loginId,
 			interview_summary as interviewSummary,
-			interview_regdate as interviewRegdate
+			interview_regdate as interviewRegDate
 		FROM
 			tb_company_interview
 		WHERE
@@ -353,6 +353,31 @@
 		ORDER BY
 			interview_regdate DESC
 		LIMIT #{startRow}, #{linePerPage}
+	</select>
+	
+	<!-- 면접후기 승인 리스트 -->
+	<select id="selectCompanyInterviewListByInterviewAllow" parameterType="java.util.Map" resultType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
+		SELECT
+			interview.interview_cd as interviewCd,
+			interview.company_name as companyName,
+			(SELECT job_topindex_name FROM tb_job_topindex WHERE job_topindex_cd=interview.job_topindex_cd) as jobTopIndexName,
+			interview.interview_summary as interviewSummary,
+			interview.interview_question as interviewQuestion,
+			interview.interview_level as interviewLevel,
+			DATE_FORMAT(interview.interview_regdate, '%Y-%m-%d %H:%i') as interviewRegDate
+		FROM
+			tb_company_interview interview
+		WHERE
+			interview.interview_allow = 1
+		<if test='jobTopIndexCd != null and jobTopIndexCd != ""'>
+			AND interview.job_topindex_cd = #{jobTopIndexCd}
+		</if>
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+			AND interview.company_name LIKE CONCAT('%', #{searchCompanyName}, '%')
+		</if>
+		ORDER BY
+			interview.interview_regdate DESC
+        LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}
 	</select>
 		
 	<!-- 면접후기 상세보기 -->
@@ -369,7 +394,7 @@
 			inter.interview_answer as interviewAnsewer,
 			inter.interview_level as interviewLevel,
 			inter.interview_passcheck as interviewPasscheck,
-			DATE_FORMAT(inter.interview_regdate, '%Y-%m-%d %H:%i') as interviewRegdate
+			DATE_FORMAT(inter.interview_regdate, '%Y-%m-%d %H:%i') as interviewRegDate
 		FROM
 			tb_company_interview inter
 		WHERE

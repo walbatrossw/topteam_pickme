@@ -93,7 +93,7 @@
 		<div class="panel form">
 			<div class="panel-heading"><h3><strong>기업 면접후기 등록</strong></h3></div>
 			<div class="panel-body">
-				<form action="/interview/companyInterviewInsert" id="companyInterviewInsertForm" class="insertForm" method="post">
+				<form action="/interview/companyInterviewInsert" id="companyInterviewInsertForm" method="post">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-xs-1">

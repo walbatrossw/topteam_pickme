@@ -21,16 +21,16 @@
         <property name="username" value="pickmetop" />
         <property name="password" value="qwerty1205!" /> -->
        
-      	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+      	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" />
        	<property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
         <property name="username" value="pickmetop" />
-        <property name="password" value="qwerty1205!" />
+        <property name="password" value="qwerty1205!" /> -->
        	
        	<!--  박학철 집에서 작업용   -->
-       	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
+       	<property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
       	<property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
         <property name="username" value="root" />
-        <property name="password" value="java0000" />  -->
+        <property name="password" value="java0000" />
       
     </bean>
 	

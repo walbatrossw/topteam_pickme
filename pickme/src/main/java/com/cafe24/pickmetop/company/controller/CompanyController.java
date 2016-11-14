@@ -81,14 +81,19 @@ public class CompanyController {
 		return "/companyinfo/companymain";
 	}
 	//면접후기 관리자 디테일 화면 맵핑
-	@RequestMapping(value = "/interview/companyInterviewDetail", method = RequestMethod.GET)
-	public String companyInterviewDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
+	@RequestMapping(value = "/interview/companyInterviewUnreceivedDetail", method = RequestMethod.GET)
+	public String companyInterviewUnreceivedDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
 		logger.info("companyInterviewDetail : {}",companyService.getCompanyInterviewDetail(interviewCd).toString());
 		model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
 		return "/companyinfo/interview/companyInterviewUnreceivedDetail";
 	}
 	//면접후기 사용자 디테일 화면 맵핑
-	
+	@RequestMapping(value = "/interview/companyInterviewDetail", method = RequestMethod.GET)
+	public String companyInterviewDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
+		logger.info("companyInterviewDetail : {}",companyService.getCompanyInterviewDetail(interviewCd).toString());
+		model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
+		return "/companyinfo/interview/companyInterviewDetail";
+	}
 	//면접후기 삭제처리 맵핑
 	@RequestMapping(value = "/interview/companyInterviewDelete", method = RequestMethod.GET)
 	public String companyInterviewDelete(@RequestParam(value="interviewCd") int interviewCd) {
@@ -102,6 +107,28 @@ public class CompanyController {
 		return "redirect:/interview/companyInterviewUnreceivedList";
 	}
 	//면접후기 승인리스트 맵핑
+	@RequestMapping(value = "/interview/companyInterviewListAllow", method = RequestMethod.GET)
+	public String companyInterviewListAllow(Model model, 
+				@RequestParam(value="page", defaultValue="1") int page, 
+				@RequestParam(value="jobTopIndexCd", defaultValue="") String jobTopIndexCd,
+				@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		
+		if(page < 1){
+			page = 1;
+		}
+		logger.info("searchCompanyName : {}",searchCompanyName);
+		Map<String, Object> companyInterviewMap = companyService.getCompanyInterviewAllowList(page, jobTopIndexCd, searchCompanyName);
+		model.addAttribute("page", page);
+		logger.info("jobTopIndexCd : {}",jobTopIndexCd);
+		model.addAttribute("searchCompnayName", searchCompanyName);
+		model.addAttribute("jobTopIndexCd", jobTopIndexCd);	
+		model.addAttribute("jobTopIndexList",companyService.getJobTopIndexList());
+		model.addAttribute("interviewListAllow", companyInterviewMap.get("interviewListAllow"));
+		logger.info("interviewListAllow : {}",companyInterviewMap.get("interviewListAllow").toString());
+		model.addAttribute("startPage", companyInterviewMap.get("startPage"));
+		model.addAttribute("endPage", companyInterviewMap.get("endPage"));
+		return "/companyinfo/interview/companyInterviewList";
+	}
 	//면접후기 수정화면 맵핑
 	
 	

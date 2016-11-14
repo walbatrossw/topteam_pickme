@@ -78,7 +78,7 @@
 	<div class="container">
 		<div class="panel form">
 			<div class="panel-heading"><h3><strong>면접후기</strong></h3></div>
-			<div class="panel-body">
+			<div class="panel-body interviewDetail">
 				<div class="row">
 					<div class="col-xs-2">
 						<h4><label for="companyName">기업명 : </label></h4>

@@ -13,7 +13,7 @@ public class CompanyInterviewVo {
 	private int interviewPasscheck;
 	private int interviewLike;
 	private int interviewDislike;
-	private String interviewRegdate;
+	private String interviewRegDate;
 	private String interviewModidate;
 	private int interviewAllow;
 	private String interviewAllowdate;
@@ -94,11 +94,11 @@ public class CompanyInterviewVo {
 	public void setInterviewDislike(int interviewDislike) {
 		this.interviewDislike = interviewDislike;
 	}
-	public String getInterviewRegdate() {
-		return interviewRegdate;
+	public String getInterviewRegDate() {
+		return interviewRegDate;
 	}
-	public void setInterviewRegdate(String interviewRegdate) {
-		this.interviewRegdate = interviewRegdate;
+	public void setInterviewRegDate(String interviewRegDate) {
+		this.interviewRegDate = interviewRegDate;
 	}
 	public String getInterviewModidate() {
 		return interviewModidate;
@@ -144,7 +144,7 @@ public class CompanyInterviewVo {
 				+ ", interviewSummary=" + interviewSummary + ", interviewQuestion=" + interviewQuestion
 				+ ", interviewAnsewer=" + interviewAnsewer + ", interviewLevel=" + interviewLevel
 				+ ", interviewPasscheck=" + interviewPasscheck + ", interviewLike=" + interviewLike
-				+ ", interviewDislike=" + interviewDislike + ", interviewRegdate=" + interviewRegdate
+				+ ", interviewDislike=" + interviewDislike + ", interviewRegdate=" + interviewRegDate
 				+ ", interviewModidate=" + interviewModidate + ", interviewAllow=" + interviewAllow
 				+ ", interviewAllowdate=" + interviewAllowdate + ", interviewGrantor=" + interviewGrantor
 				+ ", companyName=" + companyName + ", jobTopIndexName=" + jobTopIndexName + "]";

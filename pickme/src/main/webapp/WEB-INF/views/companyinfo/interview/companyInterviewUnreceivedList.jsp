@@ -87,7 +87,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="companyInterviewList" items="${interviewUnreceivedMap.interviewListUnreceived}" varStatus="i">
-						<tr class="tablehover" onClick="location.href='/interview/companyInterviewDetail?interviewCd=${companyInterviewList.interviewCd}'">
+						<tr class="tablehover" onClick="location.href='/interview/companyInterviewUnreceivedDetail?interviewCd=${companyInterviewList.interviewCd}'">
 							<c:if test="${page > 1}">
 								<td>${i.count + (page-1) * 5}</td>
 							</c:if>
@@ -97,7 +97,7 @@
 							<td>${companyInterviewList.companyCd }</td>
 							<td>${companyInterviewList.loginId }</td>
 							<td>${companyInterviewList.interviewSummary }</td>
-							<td>${companyInterviewList.interviewRegdate }</td>
+							<td>${companyInterviewList.interviewRegDate }</td>
 							<td>미승인</td>
 						</tr>				
 					</c:forEach>

@@ -85,8 +85,8 @@
 							<a href="/review/companyReviewListAllow">기업리뷰</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/review/companyReviewInsertForm"> 기업리뷰 등록 </a></li>
-									<li><a href="/review/companyReviewUnreceivedList"> 기업리뷰 미승인 목록 </a></li>
+									<li><a href="/review/companyReviewInsertForm">기업리뷰 등록 </a></li>
+									<li><a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록 </a></li>
 									<li><a href="/review/companyReviewListAllow">기업리뷰 승인 목록 </a></li>
 								</ul>
 							</div>
@@ -95,8 +95,8 @@
 							<a href="#">연봉정보 </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="#"> 연봉정보 등록 </a></li>
-									<li><a href="#"> 연봉정보 미승인 목록 </a></li>
+									<li><a href="#">연봉정보 등록 </a></li>
+									<li><a href="#">연봉정보 미승인 목록 </a></li>
 									<li><a href="#">연봉정보 승인 목록 </a></li>
 								</ul>
 							</div>
@@ -105,9 +105,9 @@
 							<a href="/interview/companyInsertForm">면접후기</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/interview/companyInsertForm"> 면접후기 등록 </a></li>
-									<li><a href="/interview/companyInterviewUnreceivedList"> 면접후기 미승인 목록 </a></li>
-									<li><a href="#">면접후기 승인 목록 </a></li>
+									<li><a href="/interview/companyInsertForm">면접후기 등록 </a></li>
+									<li><a href="/interview/companyInterviewUnreceivedList">면접후기 미승인 목록 </a></li>
+									<li><a href="/interview/companyInterviewListAllow">면접후기 승인 목록 </a></li>
 								</ul>
 							</div>
 						</li>

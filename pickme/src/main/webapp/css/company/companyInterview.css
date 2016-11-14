@@ -1,11 +1,63 @@
 @CHARSET "EUC-KR";
 
-.row{
-	width: 70%;
-	margin-left: 20px;
+/*면접후기 승인리스트 관련*/
+.companyInterviewList{
+	background-color: rgba(213,213,213,0.1);
+	padding: 30px 40px 30px 40px;
+}
+.companyInterviewList .col-xs-3{
+	padding-right: 5px;
+	padding-left: 12px;
+}
+.companyInterviewList .col-xs-2{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.interview{
+	border-radius: 10px;
+	padding: 10px 20px 10px 20px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.3);	
+}
+.media{
+	margin-bottom: 20px;
+}
+#reviewComment .media-body{
+	padding-top: 20px;
+}
+.companyInterviewList .row{
+	margin-bottom: 20px;
+}
+.us_levbl_s {
+    position: relative;
+    background-position: 0 -1928px;
+    height: 7px;
+    width: 124px;
+}
+.us_levbl_s .bl_score {
+    background-position: 0 -1957px;
+    height: 7px;
+    width: 124px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    text-indent: -100000px;
+}
+.us_levbl_s, .bl_score{
+	background-image: url(/img/company/copy_img.png);
+}
+
+#companyInterviewInsertForm .row{
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	padding : 20px 0px 20px 0px;
-	border-bottom-width : ;
+}
+
+.interviewDetail .row{
+	width: 70%;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	padding : 20px 0px 20px 0px;
 }
 .col-xs-1{
 	width: 11%;

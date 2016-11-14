@@ -110,8 +110,10 @@ public class CompanyDao {
 		sqlMap.put("allow", allow);
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowTotalCount", sqlMap);
 	}
-	public int selectAllowSearchCount(String jobTopIndexCd, String searchCompanyName){
+	public int selectAllowSearchCount(String tbName, String tbColumn, String jobTopIndexCd, String searchCompanyName){
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
+		sqlMap.put("tbName", tbName);
+		sqlMap.put("tbColumn", tbColumn);
 		sqlMap.put("jobTopIndexCd", jobTopIndexCd);
 		sqlMap.put("searchCompanyName", searchCompanyName);
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowSearchCount", sqlMap);
@@ -130,6 +132,10 @@ public class CompanyDao {
 	//면접후기 비승인 리스트(관리자)
 	public List<CompanyInterviewVo> selectCompanyInterviewListByInterviewUnreceived(PageHelper pageHelper){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInterviewListByInterviewUnreceived", pageHelper);
+	}
+	//면접후기 승인 리스트
+	public List<CompanyInterviewVo> selectCompanyInterviewListByInterviewAllow(Map<String, Object> interviewSearchMap){
+		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanyInterviewListByInterviewAllow", interviewSearchMap);
 	}
 	//면접후기 디테일
 	public CompanyInterviewVo selectCompanyInterviewDetailByCompanyInterviewCd(int interviewCd){
