@@ -16,9 +16,7 @@
 		const $interviewExperience = $(".interviewExperience");
 		const $interviewLeve = $(".interviewLevel");
 		$interviewExperience.eq('${companyInterviewDetail.interviewExperience - 1}').addClass("active");
-		$interviewLeve.eq('${companyInterviewDetail.interviewLevel - 1}').addClass("active");
-		
-		
+		$interviewLeve.eq('${companyInterviewDetail.interviewLevel - 1}').addClass("active");	
 		
 	});
 </script>
@@ -92,7 +90,7 @@
 						<h4><label>면접경험 : </label></h4>
 					</div>
 					<div class="col-xs-5">
-						<ol class="progress">
+						<ol class="levelbar">
 							<li class="interviewExperience" data-step="1">긍정</li>
 						  	<li class="interviewExperience" data-step="2">보통</li>
 						  	<li class="interviewExperience" data-step="3">부정적</li>
@@ -123,7 +121,7 @@
 					<div class="form-grop">
 						<div class="col-xs-10">
 							<h4><label>면접 난이도 :</label></h4>
-							<ol class="progress">
+							<ol class="levelbar">
 								<li class="interviewLevel" data-step="1">매우 쉬움</li>
 							  	<li class="interviewLevel" data-step="2">쉬움</li>
 							  	<li class="interviewLevel" data-step="3">보통</li>

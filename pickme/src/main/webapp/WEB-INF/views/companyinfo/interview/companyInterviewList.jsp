@@ -124,19 +124,19 @@
 									</div>
 									<div class="levelTxt">
 										<c:if test="${interviewListAllow.interviewLevel == 1}">
-											<span>매우쉬움</span>
+											<span class="level1">매우쉬움</span>
 										</c:if>
 										<c:if test="${interviewListAllow.interviewLevel == 2}">
-											<span>쉬움</span>
+											<span class="level2">쉬움</span>
 										</c:if>
 										<c:if test="${interviewListAllow.interviewLevel == 3}">
-											<span>보통</span>
+											<span class="level3">보통</span>
 										</c:if>
 										<c:if test="${interviewListAllow.interviewLevel == 4}">
-											<span>어려움</span>
+											<span class="level4">어려움</span>
 										</c:if>
 										<c:if test="${interviewListAllow.interviewLevel == 5}">
-											<span>매우어려움</span>
+											<span class="level5">매우어려움</span>
 										</c:if>
 									</div>
 								</div>

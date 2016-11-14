@@ -21,55 +21,13 @@
 	});
 	
 	function gnb_menu() {
-		$(".menu1").mouseenter(function() {
+		$(".menu").mouseenter(function() {
 			$("#head_lwrap").addClass("on");
-			$(".menu1").addClass("on");
 		});
 		
-		$(".menu1").mouseleave(function() {
+		$(".menu").mouseleave(function() {
 			$("#head_lwrap").removeClass("on");
-			$(".menu1").removeClass("on");
-		});
-		
-		$(".menu2").mouseenter(function() {
-			$("#head_lwrap").addClass("on");
-			$(".menu2").addClass("on");
-		});
-		
-		$(".menu2").mouseleave(function() {
-			$("#head_lwrap").removeClass("on");
-			$(".menu2").removeClass("on");
-		});
-		
-		$(".menu3").mouseenter(function() {
-			$("#head_lwrap").addClass("on");
-			$(".menu3").addClass("on");
-		});
-		
-		$(".menu3").mouseleave(function() {
-			$("#head_lwrap").removeClass("on");
-			$(".menu3").removeClass("on");
-		});
-		
-		$(".menu4").mouseenter(function() {
-			$("#head_lwrap").addClass("on");
-			$(".menu4").addClass("on");
-		});
-		
-		$(".menu4").mouseleave(function() {
-			$("#head_lwrap").removeClass("on");
-			$(".menu4").removeClass("on");
-		});
-		
-		$(".menu5").mouseenter(function() {
-			$("#head_lwrap").addClass("on");
-			$(".menu5").addClass("on");
-		});
-		
-		$(".menu5").mouseleave(function() {
-			$("#head_lwrap").removeClass("on");
-			$(".menu5").removeClass("on");
-		});
+		});	
 	}
 </script>
 </head>
@@ -81,8 +39,9 @@
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(0, 0, 0, 0.2);">
 				<h1><a class="companyInfoMain" href="/"><strong>PickMe</strong></a></h1>
-					<ul>
-						<li class="menu1">
+				<h1 class="adminPage"><a class="companyInfoMain" href="/admin"><strong>관리자 페이지</strong></a></h1>
+					<ul class="menu">
+						<li>
 							<a href="/diary">채용공고</a>
 							<div class="depth2">
 								<ul>
@@ -90,7 +49,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="menu2">
+						<li>
 							<a href="/memberCoverletterList">자기소개서</a>
 							<div class="depth2">
 								<ul>
@@ -99,7 +58,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="menu3">
+						<li>
 							<a href="/freeboardInsert">자유게시판 </a>
 							<div class="depth2">
 								<ul>
@@ -109,7 +68,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="menu4">
+						<li>
 							<a href="/companyInfo">기업정보</a>
 							<div class="depth2">
 								<ul>

@@ -19,6 +19,8 @@
 	border-bottom:2px solid black;
 }
 .form .panel-end{
+	height: 80px;
+	padding-left: 20%;
 	padding-top: 20px;
 	border-top: 2px solid black;
 }

@@ -48,7 +48,28 @@
 .us_levbl_s, .bl_score{
 	background-image: url(/img/company/copy_img.png);
 }
+.level1{
+	font-weight: bold;
+	color: #00c73c;
+}
+.level2{
+	font-weight: bold;
+	color: #01a3e0;
+}
+.level3{
+	font-weight: bold;
+	color: #efefef;
+}
+.level4{
+	font-weight: bold;
+	color: #ff6813;
+}
+.level5{
+	font-weight: bold;
+	color: red;
+}
 
+/*면접후기 등록화면*/
 #companyInterviewInsertForm .row{
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	padding : 20px 0px 20px 0px;
@@ -63,12 +84,12 @@
 	width: 11%;
 }
 .col-xs-5 {
-    margin-left: 5%;
+    margin-left: auto;
     margin-right: auto;
 }
 
 /*면접후기 상세보기*/
-.progress {	
+.levelbar {	
 	background-color: #fff;
 	list-style: none;
 	margin: 0;
@@ -79,12 +100,12 @@
 	color: #849397;
 	text-align: center;
 }
-.progress > li {
+.levelbar > li {
   position: relative;
   display: table-cell;
   font-size: 0.9em;
 }
-.progress > li:before {
+.levelbar > li:before {
   content: attr(data-step);
   display: block;
   margin: 0 auto;
@@ -98,7 +119,7 @@
   position: relative;
   z-index: 1000;
 }
-.progress > li:after {
+.levelbar > li:after {
   content: '';
   position: absolute;
   display: block;
@@ -110,13 +131,13 @@
   margin-left: 1.5em\9;
   z-index: 1;
 }
-.progress > li:last-child:after {
+.levelbar > li:last-child:after {
   display: none;
 }
-.progress > li.active {
+.levelbar > li.active {
   color: #3498DB;
 }
-.progress > li.active:before {
+.levelbar > li.active:before {
   color: #FFF;
   background: #3498DB;
 }
