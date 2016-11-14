@@ -110,8 +110,6 @@ function errorCoverletterPopupOpen(){
 	var popOption = "width=700, height=900, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
 		window.open(popUrl,"",popOption);
 }
-
-ㅍㅁ
 </script>
 </head>
 <body>

@@ -20,7 +20,7 @@
 <script>
 </script>
 </head>
-<body>
+<body>  
 	<div id="wrapper">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
