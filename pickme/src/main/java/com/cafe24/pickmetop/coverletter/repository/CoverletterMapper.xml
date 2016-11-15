@@ -51,7 +51,7 @@
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
-					03	회원의 자기소개서 입력화면
+					03_01	회원의 자기소개서 입력화면
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
  -->
  	<!-- 기업채용공고에서 하나의 직무를 선택하여 자기소개서 입력화면으로 이동할때 필요한 값들 select -->
@@ -89,8 +89,13 @@
 		recruit_job_cd = #{recruitJobCd} <!-- 기업직무코드를 조건으로  select -->
 	ORDER BY c_cletter_article_cd ASC	
  	</select>
- 	
- 	<!-- 회원이 작성한 자기소개서정보 입력처리 -->
+<!-- 
+ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+					03_02 회원의 자기소개서 입력처리
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
+ --> 	
+ 
+ <!-- 회원이 작성한 자기소개서정보 입력처리 -->
  	<insert id="insertCoverletter" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo">
  	INSERT INTO tb_cletter_member
 	(
@@ -142,6 +147,56 @@
 		NOW()
 	)
  	</insert>
+ 	
+ <!-- 
+ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+					04_02 회원의 자기소개서 상세보기
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
+ --> 
+ 	<!-- 회원의 자기소개서 정보 -->
+ 	<select id="selectOneMemeberCoverletterInfo" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo">
+ 	SELECT 
+		m_cletter_cd AS mCletterCd, 
+		recruit_job_cd AS recruitJobCd, 
+		login_id AS loginId, 
+		m_cletter_name AS mCletterName, 
+		m_cletter_enddate AS mCletterEnddate, 
+		m_cletter_regdate AS mCletterRegdate, 
+		m_cletter_modidate AS mCletterModidate
+		
+	FROM tb_cletter_member
+		
+	WHERE m_cletter_cd = #{mCletterCd};
+ 	</select>
+ 	
+ 	<!-- 회원이 작성한 자기소개서 항목 및 내용 리스트 -->
+ 	<select id="selectMemeberCoverletterArticleList" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo">
+ 	SELECT 
+		cm.m_cletter_cd AS mCletterCd, 
+		cma.c_cletter_article AS cCletterArticle, 
+		cma.m_cletter_article_content AS mCletterArticleContent
+	FROM tb_cletter_member cm
+	
+	INNER JOIN tb_cletter_member_article cma
+	ON cm.m_cletter_cd = cma.m_cletter_cd
+		
+	WHERE cm.m_cletter_cd = #{mCletterCd};
+ 	</select>
+ 	
+ 	<!-- 회원이 작성한 자기소개서 저장기록 -->
+ 	<select id="selectMemeberCoverletterArticleSaveRecord" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo">
+ 	SELECT 
+		cm.m_cletter_cd AS mCletterCd, 
+		cmas.m_cletter_record_cd AS mCletterRecordCd, 
+		cmas.m_cletter_record_date AS mCletterRecordDate
+	FROM tb_cletter_member cm
+	
+	INNER JOIN tb_cletter_member_article_save cmas
+	ON cm.m_cletter_cd = cmas.m_cletter_cd	
+		
+	WHERE cm.m_cletter_cd = #{mCletterCd};
+ 	</select>
+ 	
  	
  	
  	

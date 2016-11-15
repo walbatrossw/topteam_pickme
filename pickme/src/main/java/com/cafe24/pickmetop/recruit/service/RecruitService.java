@@ -84,7 +84,7 @@ public class RecruitService {
 	
 	//달력화면
 	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName
-			,String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus,HttpSession session){
+			,String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,List<String> recruitJobWorkstatus,HttpSession session){
 		logger.info("searchCompanyName : {}",searchCompanyName);
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
@@ -145,22 +145,22 @@ public class RecruitService {
 					
 	
 				if(!bookmark.equals("")){
-					logger.info("들어오면안됨1");
+				
 					companySearchMap.put("bookmark", bookmark);
 					companySearchMap.put("sessionLoginId",(String)session.getAttribute("id"));
 				}
 				if(jobTopIndexCd.size()!=0){
-					logger.info("들어오면안됨2 : {}",jobTopIndexCd.get(0));
+					
 					//아 이거는 리스트니까 어떻게..
 					companySearchMap.put("jobTopIndexCd", jobTopIndexCd.toArray());
 				}
 				if(industryTopindexCd.size()!=0){
-					logger.info("들어오면안됨3");
+					
 					companySearchMap.put("industryTopindexCd", industryTopindexCd.toArray());
 				}
-				if(!recruitJobWorkstatus.equals("workStatusNull") || !(recruitJobWorkstatus=="workStatusNull")){
-					logger.info("들어오면안됨4 :{}",recruitJobWorkstatus);
-					companySearchMap.put("recruitJobWorkstatus", recruitJobWorkstatus);
+				if(recruitJobWorkstatus.size()!=0){
+					
+					companySearchMap.put("recruitJobWorkstatus", recruitJobWorkstatus.toArray());
 				}
 				if(!searchCompanyName.equals("") && bookmark.equals("")){
 					companySearchMap.put("searchCompanyName", searchCompanyName);
@@ -168,6 +168,7 @@ public class RecruitService {
 				//채용시작일 & 종료일 리스트
 				List<Recruit> beginScheduleList = recruitDao.selectBeginListOnSearchKeyword(companySearchMap);
 				List<Recruit> endScheduleList = recruitDao.selectEndListOnSearchKeyword(companySearchMap);
+				
 				beginScheduleList.addAll(endScheduleList);
 				//각 날짜별 채용시작, 종료 
 				oneDay.setScheduleList(beginScheduleList);	

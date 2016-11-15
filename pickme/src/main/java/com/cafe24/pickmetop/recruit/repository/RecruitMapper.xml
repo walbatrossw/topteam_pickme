@@ -39,7 +39,9 @@
 		</if>
 		<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" '>
 			AND 
-				recruitjob.recruit_job_workstatus = #{recruitJobWorkstatus}
+			<foreach item="status" index="index" collection="recruitJobWorkstatus" open="(recruitjob.recruit_job_workstatus = " close=")" separator=" or recruitjob.recruit_job_workstatus =  ">
+				#{status}
+			</foreach> 
 		</if>
 		 <if test=' jobTopIndexCd != null and jobTopIndexCd != ""'> 
 			<!-- 	<if test="jobTopIndexCd != null and !jobTopIndexCd.isEmpty"> -->
@@ -112,7 +114,9 @@
 			</if>
 			<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" '>
 				AND 
-					recruitjob.recruit_job_workstatus = #{recruitJobWorkstatus}
+				<foreach item="status" index="index" collection="recruitJobWorkstatus" open="(recruitjob.recruit_job_workstatus = " close=")" separator=" or recruitjob.recruit_job_workstatus =  ">
+					#{status}
+				</foreach> 
 			</if>
 			<if test=' jobTopIndexCd != null and jobTopIndexCd != ""'> 
 				<!-- 	<if test="jobTopIndexCd != null and !jobTopIndexCd.isEmpty"> -->
@@ -193,7 +197,8 @@
 		recruit.recruit_enddate as recruitEnddate,
 		recruitjop.recruit_job_workstatus as workStatus,
 		recruitjop.recruit_job_jobdetail as jobDetail,
-		recruitjop.recruit_job_file as recruitImgName
+		recruitjop.recruit_job_file as recruitImgName,
+		recruitjop.recruit_job_cd as recruitJobCd
 	FROM 
 		tb_recruit_company as recruit ,
 		tb_company_info as company,

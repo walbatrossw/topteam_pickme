@@ -27,8 +27,17 @@ public class Recruit {
 	private String end;
 	private String workStatus;
 	private String jobDetail;
+	private String recruitJobCd;
 	
 	
+	
+	
+	public String getRecruitJobCd() {
+		return recruitJobCd;
+	}
+	public void setRecruitJobCd(String recruitJobCd) {
+		this.recruitJobCd = recruitJobCd;
+	}
 	public String getWorkStatus() {
 		return workStatus;
 	}

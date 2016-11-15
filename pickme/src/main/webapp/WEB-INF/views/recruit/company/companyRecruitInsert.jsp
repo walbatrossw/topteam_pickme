@@ -4,8 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
 <!-- bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -101,61 +99,94 @@ $(document).ready(function(){
 			first++;
 			
 			var jobDetail = 
-					'<div id="job1"><hr/>'+
-						'<div class="form-group">'+
-						'직무선택 : '+
-							'<select name="jobTopIndexCd" class="jobTopIndexCd" >'+
-								'<option value="">대분류</option>'+
-								'<c:forEach var ="jobTopIndex" items="${jobTopIndex}">'+
-									'<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>'+
-								'</c:forEach>'+
-							'</select>'+							
-							'<select name="recruitList['+first+'].jobMidIndexCd" class="jobMidIndexCd">'+
-							 	'<option value="">소분류</option>'+ 
-							'</select>'+
+			'<label>각 직무별 채용입력</label>'+
+			'<div id="job">'+
+				'<table class="table table-striped">'+
+							'<tr>'+
+								'<td class="col-sm-3">직무선택</td>'+
+								'<td class="col-sm-3">'+
+									'<select name="jobTopIndexCd" class="jobTopIndexCd form-control">'+
+										'<option value="">대분류</option>'+
+									'	<c:forEach var="jobTopIndex" items="${jobTopIndex}">'+
+									'		<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>'+
+									'	</c:forEach>'+
+									'</select>'+ 
+								'</td>'+
+								'<td class="col-sm-3">'+
+									'<select name="recruitList['+first+'].jobMidIndexCd" class="jobMidIndexCd form-control">'+
+										'<option value="">소분류</option>'+
+									'</select>'+
+								'</td>'+
+							'<tr>'+
+							'<tr>'+
+								'<td class="col-sm-3">채용형태</td>'+
+								'<td class="col-sm-3" colspan="2">'+
+									'<select name="recruitList['+first+'].recruitJobWorkstatus"'+
+									'class="recruitJobWorkstatus form-control">'+
+									'<option value="신입">신입</option>'+
+									'<option value="경력">경력</option>'+
+									'<option value="인턴">인턴</option>'+
+									'<option value="계약직">계약직</option>'+
+								'</select>'+
+								'</td>'+
+							'<tr>'+
+							'<tr>'+
+								'<td class="col-sm-3">채용상세직무</td>'+
+								'<td class="col-sm-3" colspan="2">'+
+									'<input type="text" name="recruitList['+first+'].recruitJobJobdetail"'+
+									'class="recruitJobJobdetail form-control" placeholder="채용상세직무 입력">'+
+								'</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td class="col-sm-3">학력</td>'+
+								'<td class="col-sm-3" colspan="2">'+
+									'<select name="recruitList['+first+'].recruitJobEducation" class="recruitJobEducation form-control">'+
+										'<option value="학력무관">학력무관</option>'+
+										'<option value="고졸">고졸</option>'+
+										'<option value="전문대졸">전문대졸</option>'+
+										'<option value="4년대졸">4년대졸</option>'+
+									'</select>'+
+								'</td>'+
+							'</tr>'+
+						'</table>'+
+						'<div id="coverletter" class="form-group">'+
+							'<div>'+
+								'<table class="table table-striped">'+
+									'<tr>'+
+										'<td class="col-sm-3" colspan="3">'+
+											'자기소개서 항목'+
+											'<span id="coverletterWarn" style="color: gray"></span>'+
+											'<span style="float: right;">'+
+												'<input type="button"  class="coverletterAddBtn btn btn-primary" value="항목추가">'+
+												'<input type="button" class="coverletterDelBtn btn btn-defualt" value="항목삭제">'+
+											'</span>'+
+										'</td>'+
+									'</tr>'+
+								'</table>'+
+							'</div>'+
+							'<div>'+
+								'<table class="table table-striped">'+	
+									'<tr>'+
+										'<td class="col-sm-3" colspan="3">'+
+											'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" placeholder="자기소개서 항목 입력"></textarea>'+
+										'</td>'+
+									'</tr>'+
+								'</table>'+
+								'<div class="fieldCoverletter"></div>'+
+							'</div>'+
 						'</div>'+
-						'<div class="form-group">'+
-							'채용형태(선택)'+
-							'<select name="recruitList['+first+'].recruitJobWorkstatus" class="recruitJobWorkstatus">'+
-								'<option value="신입">신입</option>'+
-								'<option value="경력">경력</option>'+
-								'<option value="인턴">인턴</option>'+
-								'<option value="계약직">계약직</option>'+
-							'</select>'+
-						'</div>'+
-						'<div class="form-group">'+
-							'채용상세직무'+
-							'<input type="text" name="recruitList['+first+'].recruitJobJobdetail" class="recruitJobJobdetail form-control" >'+
-						'</div>'+
-						'<div class="form-group">'+
-							'학력'+
-							'<select name="recruitList['+first+'].recruitJobEducation" class="recruitJobEducation form-control" >'+
-								'<option value="학력무관">학력무관</option>'+
-								'<option value="고졸">고졸</option>'+
-								'<option value="전문대졸">전문대졸</option>'+
-								'<option value="4년대졸">4년대졸</option>'+
-							'</select>'+
-						'</div>'+
-				 		'<div id="coverletter" class="form-group">'+
-				 			'<label>자기소개서 항목</label>'+
-				 			'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'+
-				 		'</div>'+
-					 	'<hr>'+
-				 		'<div class="fieldCoverletter"></div>'+
-				 		'<hr>'+
-				 		'<div class="form-group">'+
-					 		'<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">'+
-					 		'<input type="button" class="coverletterDelBtn btn btn-default" value="항목삭제">'+
-				 		'</div>'+
-			 		'<hr>'+
-					'</div>'
+					'</div>'+
+				'</div>'
+			'</div>'+
+			'<br>';
+			
 			$('#jobDetail').append(jobDetail);
 		}
 	});
 	
 	/***********  직무 삭제 버튼***********/ 
 	$('#jobRemoveBtn').click(function(){
-		 $('#job1').last().remove();
+		 $('#job').last().remove();
 	});
 	
 	/*********** 자기소개서 항목 ***********/ 
@@ -170,13 +201,17 @@ $(document).ready(function(){
 	       		 } 
 			 }); 
 		 if(check==true){
-			 $('#coverletterWarn').text('모든항목 입력후 추가할수있습니다.');
+			 $('#coverletterWarn').text(' * 모든항목 입력후 추가할수있습니다.');
 		 }else{
 			console.log(second);
-			$('.fieldCoverletter').eq(index).append(											
-				'<textarea class="cCletterArticle form-control" rows="2" '
-				+'name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" '
-				+'placeholder="자기소개서 항목을 입력해주세요"></textarea>');
+			$('.fieldCoverletter').eq(index).append(
+					'<table class="table table-striped cCletterArticleTable">'
+						+'<tr>'
+							+'<td class="col-sm-3" colspan="3">'
+								+'<textarea class="cCletterArticle form-control" rows="2" name="recruitList['+first+'].cCletterArticle['+second+'].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>'
+							+'</td>'
+						+'</tr>'
+					+'</table>');
 		 }
 	});
 	//항목삭제
@@ -184,7 +219,7 @@ $(document).ready(function(){
 		//console.log(second);
 		var index = $('.coverletterDelBtn').index(this);
 		 //$('.cCletterArticle').eq(index).remove(); 
-		 $('.cCletterArticle').last().remove(); 
+		 $('.cCletterArticleTable').last().remove(); 
 	});
 		
 	/************ 등록버튼 클릭시 유효성검사 ************/
@@ -271,84 +306,108 @@ $(document).ready(function(){
 							<input type="date" name="recruitEnddate" id="recruitEnddate" class="form-control" value="${recruit.recruitEnddate}">
 						</td>
 					</tr>
+					<tr>
+						<td class="col-sm-3">
+							공고문(사진파일 1장)
+						</td>
+						<td class="col-sm-3" colspan="3" >
+							<div class="fileinput fileinput-new" data-provides="fileinput">
+				    			<input type="file" name="recruitJobFile" id="recruitJobFile" class="btn btn-default btn-file form-control" >
+				    			<span style="color: red">${errorMsg}</span>
+  							</div>
+						</td>
+					</tr>
 				</table>
-			<div class="form-group">
-				<label>공고문(사진파일 1장)</label>
-				<div class="fileinput fileinput-new" data-provides="fileinput">
-	    			<input type="file" name="recruitJobFile" id="recruitJobFile" class="btn btn-default btn-file form-control" >
-	    			<span style="color: red">${errorMsg}</span>
-  				</div> 
 			</div>
-			<table class="table table-striped">
-			</table>
-			<!-- 직무등록--하나 기본으로 보이고 추가누를시 추가됨 -->
-			<hr />
-			<h1>직무별 상세입력</h1>
-			<div id="job">
-				<div class="form-group">
-					<label>직무선택 </label> 
-					<select name="jobTopIndexCd" class="jobTopIndexCd form-control">
-						<option value="">대분류</option>
-						<c:forEach var="jobTopIndex" items="${jobTopIndex}">
-							<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>
-						</c:forEach>
-					</select> 
-					<select name="recruitList[0].jobMidIndexCd" class="jobMidIndexCd form-control">
-						<option value="">소분류</option>
-					</select>
+			<div class="row">
+				<div class="col-sm-12">
+					<h3>직무별 채용</h3>
+					<label>각 직무별 채용입력</label>
+					<table class="table table-striped">
+						<tr>
+							<td class="col-sm-3">직무선택</td>
+							<td class="col-sm-3">
+								<select name="jobTopIndexCd" class="jobTopIndexCd form-control">
+									<c:forEach var="jobTopIndex" items="${jobTopIndex}">
+										<option value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}</option>
+									</c:forEach>
+								</select> 
+							</td>
+							<td class="col-sm-3">
+								<select name="recruitList[0].jobMidIndexCd" class="jobMidIndexCd form-control">
+									<option value="">소분류</option>
+								</select>
+							</td>
+						<tr>
+						<tr>
+							<td class="col-sm-3">채용형태</td>
+							<td class="col-sm-3" colspan="2">
+								<select name="recruitList[0].recruitJobWorkstatus"
+								class="recruitJobWorkstatus form-control">
+								<option value="신입">신입</option>
+								<option value="경력">경력</option>
+								<option value="인턴">인턴</option>
+								<option value="계약직">계약직</option>
+							</select>
+							</td>
+						<tr>
+						<tr>
+							<td class="col-sm-3">채용상세직무</td>
+							<td class="col-sm-3" colspan="2">
+								<input type="text" name="recruitList[0].recruitJobJobdetail"
+								class="recruitJobJobdetail form-control" placeholder="채용상세직무 입력">
+							</td>
+						</tr>
+						<tr>
+							<td class="col-sm-3">학력</td>
+							<td class="col-sm-3" colspan="2">
+								<select name="recruitList[0].recruitJobEducation" class="recruitJobEducation form-control">
+									<option value="학력무관">학력무관</option>
+									<option value="고졸">고졸</option>
+									<option value="전문대졸">전문대졸</option>
+									<option value="4년대졸">4년대졸</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<div id="coverletter" class="form-group">
+						<div>
+							<table class="table table-striped">
+								<tr>
+									<td class="col-sm-3" colspan="3">
+										자기소개서 항목
+										<span id="coverletterWarn" style="color: gray"></span>
+										<span style="float: right;">
+											<input type="button"  class="coverletterAddBtn btn btn-primary" value="항목추가">
+											<input type="button" class="coverletterDelBtn btn btn-defualt" value="항목삭제">
+										</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div>
+							<table class="table table-striped">	
+								<tr>
+									<td class="col-sm-3" colspan="3">
+										<textarea class="cCletterArticle form-control" rows="2" name="recruitList[0].cCletterArticle[0].cCletterArticle" placeholder="자기소개서 항목 입력"></textarea>
+									</td>
+								</tr>
+							</table>
+							<div class="fieldCoverletter"></div>
+						</div>
+					</div>
 				</div>
-
-				<div class="form-group">
-					<label>채용형태(선택)</label> 
-					<select name="recruitList[0].recruitJobWorkstatus"
-						class="recruitJobWorkstatus form-control">
-						<option value="신입">신입</option>
-						<option value="경력">경력</option>
-						<option value="인턴">인턴</option>
-						<option value="계약직">계약직</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label>채용상세직무</label>
-					<input type="text" name="recruitList[0].recruitJobJobdetail"
-						class="recruitJobJobdetail form-control" placeholder="채용상세직무 입력">
-				</div>
-
-				<div class="form-group">
-					<label>학력 </label>
-					<select name="recruitList[0].recruitJobEducation"
-						class="recruitJobEducation form-control">
-						<option value="학력무관">학력무관</option>
-						<option value="고졸">고졸</option>
-						<option value="전문대졸">전문대졸</option>
-						<option value="4년대졸">4년대졸</option>
-					</select>
-				</div>
-		 		<div id="coverletter" class="form-group">
-		 		<!-- 여기있는 항목은 list의0번째가 됩니다  -->
-		 			<label>자기소개서 항목</label>
-		 			<textarea class="cCletterArticle form-control" rows="2" name="recruitList[0].cCletterArticle[0].cCletterArticle" placeholder="자기소개서 항목을 입력해주세요"></textarea>
-		 		</div>
-		 		<div class="fieldCoverletter"></div>
-		 		<div class="form-group">
-			 		<input type="button" class="coverletterAddBtn btn btn-primary" value="항목추가">
-			 		<input type="button" class="coverletterDelBtn btn btn-defualt" value="항목삭제">
-			 		<span id="coverletterWarn" style="color: red"></span>
-		 		</div>
-		 		<hr>
 			</div>
-
+			<br>
 			<div id="jobDetail"></div>
-
-			<hr />
 			<div class="form-group">
 				<input type="button"  class="coverletterAddBtn btn btn-primary" id="jobAddBtn" value="직무추가"> 
-				 <input type="button" class="coverletterAddBtn btn btn-primary" id="jobRemoveBtn" value="직무삭제">
-				 <span id="jobAddError" style="color: red"></span>
+				<input type="button" class="coverletterAddBtn btn btn-primary" id="jobRemoveBtn" value="직무삭제">
+				<span id="jobAddError" style="color: red"></span>
 			</div>
 
 			<div class="form-group">
-				<input type="button" id="recruitAdd" value="등록"> 
+				<input type="button" id="recruitAdd" class="btn btn-default" value="등록"> 
 				<span id="error" style="color: red"></span>
 			</div>
 		</form>

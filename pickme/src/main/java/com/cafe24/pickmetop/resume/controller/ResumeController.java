@@ -40,7 +40,7 @@ public class ResumeController {
 	public String resumeList(Model model){
 		model.addAttribute("resumeList", resumeService.getResumeList());
 		Logger.info("이력서 리스트 : {}", model.toString());
-		return "/resume/resumeList";
+		return "/resumeList";
 	}
 	
 	//02 이력서 입력화면(이력서 입력폼)
@@ -69,7 +69,7 @@ public class ResumeController {
 		Logger.info("기타,포트폴리오 입력 : {}", resumeEtcVo.toString());
 		resumeService.addResume(resumeVo, resumePersonalVo, resumeHighschoolVo, resumeUniversityVo, resumeFamilyVo, resumeMilitaryserviceVo, 
 				resumeCertificateVo, resumeCareerVo, resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo);
-		return "/resume/resumeList";
+		return "redirect:/resumeList";
 	}
 	
 	
@@ -82,7 +82,7 @@ public class ResumeController {
 		Logger.info("개인신상 {}", resumeDetail.get("resumePersonal").toString());
 		model.addAttribute("resumeDetailInfo", resumeDetail.get("resumeDetailInfo"));
 		model.addAttribute("resumePersonal", resumeDetail.get("resumePersonal"));
-		model.addAttribute("resumeHighschool", resumeDetail.get("resumeHighschools"));
+		model.addAttribute("resumeHighschool", resumeDetail.get("resumeHighschool"));
 		model.addAttribute("resumeUniveristy", resumeDetail.get("resumeUniveristy"));
 		model.addAttribute("resumeFamily", resumeDetail.get("resumeFamily"));
 		model.addAttribute("resumeMilitaryservice", resumeDetail.get("resumeMilitaryservice"));

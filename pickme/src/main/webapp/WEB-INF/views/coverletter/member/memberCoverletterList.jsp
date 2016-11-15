@@ -100,7 +100,7 @@
 		                                   	<c:forEach var="memberCoverletterList" items="${memberCoverletterList}" varStatus="i">
 											<tr>
 												<td>${i.count}</td>
-												<td><a href="/memberCoverletterArticleDetail?mCletterCd=${memberCoverletterList.mCletterCd}">${memberCoverletterList.mCletterName}</a></td>
+												<td><a href="/memberCoverletterDetail?mCletterCd=${memberCoverletterList.mCletterCd}">${memberCoverletterList.mCletterName}</a></td>
 												<td>${memberCoverletterList.loginId}</td>
 												<td>${memberCoverletterList.mCletterRegdate}</td>
 												<td>${memberCoverletterList.mCletterModidate}</td>

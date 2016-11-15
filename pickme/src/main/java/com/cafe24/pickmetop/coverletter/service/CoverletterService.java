@@ -32,21 +32,36 @@ public class CoverletterService {
 		return coverletterDao.selectCoverletterCompanyJobList();
 	}
 	
-	// 03 자기소개서 입력화면(채용기업명/채용명/채용직무/상세직무/채용마감일자, 채용직무의 자기소개서항목리스트)
+	// 03_01 자기소개서 입력화면(자기소개서이름(채용기업명+채용명+상세직무), 자기소개서 제출 마감일자, 채용직무의 자기소개서항목리스트)
 	public Map<String, Object> getCompanyOneJobCletter(String recruitJobCd){
 		Map<String, Object> companyOneJobMap = new HashMap<String, Object>();
 		companyOneJobMap.put("companyOneJobCletterInfo", coverletterDao.selectOneCletterCompanyJobInfo(recruitJobCd));
+		logger.info("companyOneJobCletterInfo {}", companyOneJobMap.toString());
 		companyOneJobMap.put("companyOneJobArticleList", coverletterDao.selectListCletterArticleByJobCd(recruitJobCd));
+		logger.info("companyOneJobArticleList {}", companyOneJobMap.toString());
 		return companyOneJobMap;
 	}
-
+	
+	// 03_02 자기소개서 입력 처리(자기소개서 이름/마감시간/문항/내용)
 	public void addCoverletter(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle,	CoverletterMemberArticleSaveVo saveRecord){
 		coverletterMember.setLoginId("walbatrossw@gmail.com");
 		coverletterDao.insertCoverletter(coverletterMember);
 		coverletterDao.insertCoverletterArticle(memberArticle);
 		coverletterDao.insertCoverletterSaveRecord(saveRecord);
+		logger.info("coverletterMember {}", coverletterMember.toString());
+		logger.info("memberArticle {}", memberArticle.toString());
+		logger.info("saveRecord {}", saveRecord.toString());
 	}
 	
-	// 03_02 자기소개서 입력 처리(자기소개서 이름/마감시간/문항/내용)
-	
+	// 03_02 자기소개서 상세보기
+	public Map<String, Object> getMemberCoverletter(String mCletterCd){
+		Map<String, Object> memberCoverletterMap = new HashMap<String, Object>();
+		memberCoverletterMap.put("memeberCoverletterInfo", coverletterDao.selectOneMemeberCoverletterInfo(mCletterCd));
+		logger.info("memeberCoverletterInfo {}", memberCoverletterMap.toString());
+		memberCoverletterMap.put("memeberCoverletterArticleList", coverletterDao.selectMemeberCoverletterArticleList(mCletterCd));
+		logger.info("memeberCoverletterArticleList {}", memberCoverletterMap.toString());
+		memberCoverletterMap.put("memeberCoverletterArticleSaveRecord", coverletterDao.selectMemeberCoverletterArticleSaveRecord(mCletterCd));
+		logger.info("memeberCoverletterArticleSaveRecord {}", memberCoverletterMap.toString());
+		return memberCoverletterMap;
+	}
 }
