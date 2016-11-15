@@ -69,7 +69,7 @@ public class ResumeController {
 		Logger.info("기타,포트폴리오 입력 : {}", resumeEtcVo.toString());
 		resumeService.addResume(resumeVo, resumePersonalVo, resumeHighschoolVo, resumeUniversityVo, resumeFamilyVo, resumeMilitaryserviceVo, 
 				resumeCertificateVo, resumeCareerVo, resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo);
-		return "/resume/resumeList";
+		return "redirect:/resumeList";
 	}
 	
 	

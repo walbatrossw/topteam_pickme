@@ -36,13 +36,13 @@ public class CoverletterDao {
 	
 	// 03_01 자기소개서 입력화면(채용기업명/채용명/채용직무/채용상세직무/채용마감일자)
 	public CoverletterCompanyJobInfoVo selectOneCletterCompanyJobInfo(String recruitJobCd){
-		logger.info("자소서입력화면 : 직무별 채용정보 {} ", recruitJobCd);
+		logger.info("자소서입력화면 : 직무별 채용정보 {} ", recruitJobCd.toString());
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectOneCletterCompanyJobInfo", recruitJobCd);
 	}
 	
 	// 03_02 자기소개서 입력화면(자기소개서 항목리스트)
 	public List<CoverletterCompanyJobVo> selectListCletterArticleByJobCd(String recruitJobCd){
-		logger.info("자소서입력화면: 자소서항목리스트 {}", recruitJobCd);
+		logger.info("자소서입력화면: 자소서항목리스트 {}", recruitJobCd.toString());
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectListCletterArticleByJobCd", recruitJobCd);
 	}
 	
@@ -57,5 +57,23 @@ public class CoverletterDao {
 	// 03_05 자기소개서 저장기록 입력처리
 	public int insertCoverletterSaveRecord(CoverletterMemberArticleSaveVo saveRecord){
 		return sqlSessionFactoryCoverletter.insert(nameSpace + ".insertCoverletterSaveRecord", saveRecord);
+	}
+	
+	// 04_01 회원의 자기소개서 정보
+	public CoverletterMemberVo selectOneMemeberCoverletterInfo(String mCletterCd){
+		logger.info("자기소개서 정보 : {}", mCletterCd.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectOneMemeberCoverletterInfo", mCletterCd);
+	}
+	
+	// 04_02 회원이 작성한 자기소개서 항목 및 내용 리스트
+	public List<CoverletterMemberArticleVo> selectMemeberCoverletterArticleList(String mCletterCd){
+		logger.info("자기소개서 항목 및 내용 리스트 : {}", mCletterCd.toString());
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectMemeberCoverletterArticleList", mCletterCd);
+	}
+	
+	// 04_03 회원이 작성한 자기소개서 저장기록
+	public CoverletterMemberArticleSaveVo selectMemeberCoverletterArticleSaveRecord(String mCletterCd){
+		logger.info("자기소개서 저장기록 : {}", mCletterCd.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
 }

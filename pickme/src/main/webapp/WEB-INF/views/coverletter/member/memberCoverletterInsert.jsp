@@ -219,7 +219,7 @@ function errorCoverletterPopupOpen(){
 											</td>
 											<td>
 												<div>
-													<textarea class="form-control" rows="2" id="" name="coverletterMemberArticleVoList[0].cCletterArticle" style="resize:none">${companyOneJobArticleList.cCletterArticle}</textarea>
+													<textarea class="form-control" rows="2" id="" name="coverletterMemberArticleVoList[${i.count-1}].cCletterArticle" style="resize:none">${companyOneJobArticleList.cCletterArticle}</textarea>
 												</div>
 												<div align="right">
 													자기소개서 문항을 반드시 확인해주세요
@@ -232,7 +232,7 @@ function errorCoverletterPopupOpen(){
 												${i.count}.	내용
 											</td>
 											<td>
-												<textarea class="form-control content" rows="8" id="content" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+												<textarea class="form-control content" rows="8" id="content" name="coverletterMemberArticleVoList[${i.count-1}].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 											</td>
 										</tr>
 										<tr>

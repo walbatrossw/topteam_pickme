@@ -61,8 +61,10 @@
 						</li>
 						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
+								<li><a href="/defaultCoverletterInsert?recruitJobCd=recruit_company_job_0001">자소서 새로쓰기</a></li>
 								<li><a href="/memberCoverletterList"> 내가 쓴 자소서</a></li>
 								<li><a href="/companyJobCoverletterList"> 채용기업 리스트</a></li>
+										
 							</ul>
 						</li>
 						<!-- 사이드 메뉴항목 -->
@@ -99,7 +101,7 @@
 		                                	</tr>
 		                                </thead>
 		                                <tbody>
-		                                   	<c:forEach var="companyJobCoverletterList" items="${companyJobCoverletterList}" varStatus="i">
+		                                	<c:forEach var="companyJobCoverletterList" items="${companyJobCoverletterList}" varStatus="i">
 											<tr>
 												<td>${i.count}</td>
 												<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.recruitName}</a></td>
