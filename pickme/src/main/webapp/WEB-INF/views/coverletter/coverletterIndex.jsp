@@ -68,7 +68,7 @@
 				</div>
 			</div>
 		</nav>
-		<!-- 사이드메뉴 전체 -->
+		<!-- 사이드메뉴 전체 END-->
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
