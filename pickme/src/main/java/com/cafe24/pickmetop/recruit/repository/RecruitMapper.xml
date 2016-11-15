@@ -2,43 +2,153 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
-	<!-- 검색리스트 종료일 테스트 -->
- 	<!-- if절이 안먹는다 -->
- <!-- 	얘가 이상한데서 변수가 막 겹친 그런걸수도 있으니까 맵퍼에 넣을때 변수 바꿔보게 -->
- 	<select id="selectListOnSearchKeyword" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">
+
+	<!-- 채용달력 검색&리스트 시작일  -->
+ 	<select id="selectBeginListOnSearchKeyword" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">
+	SELECT  
+		DISTINCT(recruit.recruit_company_cd) as recruitCompanyCd, 
+		recruit.company_cd as companyCd,
+		recruit.recruit_name as recruitName,
+		recruit.recruit_begindate as recruitBegindate , 
+		recruit.recruit_enddate as recruitEnddate,
+		recruit.recruit_regdate as recruitRegdate,
+		'begin' as 'begin'
+	FROM 
+		tb_recruit_company as recruit 
+		<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
+			,tb_recruit_company_job as recruitjob
+		</if>
+	 	<if test=' jobTopIndexCd != null and jobTopIndexCd != ""'>
+			,tb_job_midindex as job
+		</if>
+		<if test='industryTopindexCd != null and industryTopindexCd != "" or searchCompanyName != null and searchCompanyName != "" '>
+			,tb_company_info as company
+		</if>
+		<if test='industryTopindexCd != null and industryTopindexCd != ""'>
+			,tb_industry_midindex as industrymid
+		</if>
+		<if test='bookmark != null and bookmark != ""'>
+			,tb_recruit_company_bookmark as bookmark
+		</if>
+	
+	WHERE 
+		recruit.recruit_begindate= #{scheduleDate}
+		<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
+			AND
+				recruitjob.recruit_company_cd = recruit.recruit_company_cd
+		</if>
+		<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" '>
+			AND 
+				recruitjob.recruit_job_workstatus = #{recruitJobWorkstatus}
+		</if>
+		 <if test=' jobTopIndexCd != null and jobTopIndexCd != ""'> 
+			<!-- 	<if test="jobTopIndexCd != null and !jobTopIndexCd.isEmpty"> -->
+			And
+			<!-- 	job.job_topindex_cd = 'job07' -->
+			<foreach item="job" index="index" collection="jobTopIndexCd" open="(job.job_topindex_cd = " close=")" separator=" or job.job_topindex_cd =  ">
+				#{job}
+			</foreach> 
+			And 
+				job.job_midindex_cd = recruitjob.job_midindex_cd
+		</if>
+		<if test='industryTopindexCd != null and industryTopindexCd != ""'>
+			And
+			<foreach item="industry" index="index" collection="industryTopindexCd" open="(industrymid.industry_topindex_cd = " close=")" separator="or industrymid.industry_topindex_cd = ">
+				#{industry}
+			</foreach>
+			And 
+				industrymid.industry_midindex_cd = company.industry_midindex_cd
+			And
+				company.company_cd = recruit.company_cd
+		</if>
+		<if test='bookmark != null and bookmark != ""'>
+			And
+				bookmark.login_id = #{sessionLoginId}
+			And
+				bookmark.recruit_company_cd = recruit.recruit_company_cd
+		</if>
+		<if test='searchCompanyName != null and searchCompanyName != ""'>
+			And
+				company.company_name  LIKE CONCAT('%', #{searchCompanyName}, '%')
+			And
+				recruit.company_cd = company.company_cd
+		</if>
+	</select> 
+	
+	
+	<!-- 채용달력 검색&리스트 종료일  -->
+ 	<select id="selectEndListOnSearchKeyword" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">
 		SELECT  
-			recruit.recruit_company_cd as recruitCompanyCd, 
+			DISTINCT(recruit.recruit_company_cd) as recruitCompanyCd, 
 			recruit.company_cd as companyCd,
 			recruit.recruit_name as recruitName,
 			recruit.recruit_begindate as recruitBegindate , 
 			recruit.recruit_enddate as recruitEnddate,
 			recruit.recruit_regdate as recruitRegdate,
-			<if test='jobTopIndexCd != null or jobTopIndexCd != ""'>
-			job.job_midindex_cd,	
-			recruitjob.recruit_company_cd,
-			</if>
-			<if test='industryTopindexCd != null or industryTopindexCd != ""'>
-			industrymid.industry_midindex_cd,
-			company.company_cd,
-			</if> 
 			'end' as 'end'
 		FROM 
 			tb_recruit_company as recruit 
- 			<if test='jobTopIndexCd != null or jobTopIndexCd!=""'>
-			,tb_job_midindex as job
-			,tb_recruit_company_job as recruitjob
+			<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
+				,tb_recruit_company_job as recruitjob
 			</if>
-			<if test='industryTopindexCd != null or industryTopindexCd != ""'>
-			,tb_company_info as company
-			,tb_industry_midindex as industrymid 
-			</if> 
+		 	<if test=' jobTopIndexCd != null and jobTopIndexCd != ""'>
+				,tb_job_midindex as job
+			</if>
+			<if test='industryTopindexCd != null and industryTopindexCd != "" or searchCompanyName != null and searchCompanyName != "" '>
+				,tb_company_info as company
+			</if>
+			<if test='industryTopindexCd != null and industryTopindexCd != ""'>
+				,tb_industry_midindex as industrymid
+			</if>
+			<if test='bookmark != null and bookmark != ""'>
+				,tb_recruit_company_bookmark as bookmark
+			</if>
+		
 		WHERE 
 			recruit.recruit_enddate= #{scheduleDate}
-			
+			<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
+				AND
+					recruitjob.recruit_company_cd = recruit.recruit_company_cd
+			</if>
+			<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" '>
+				AND 
+					recruitjob.recruit_job_workstatus = #{recruitJobWorkstatus}
+			</if>
+			<if test=' jobTopIndexCd != null and jobTopIndexCd != ""'> 
+				<!-- 	<if test="jobTopIndexCd != null and !jobTopIndexCd.isEmpty"> -->
+				And
+				<!-- 	job.job_topindex_cd = 'job07' -->
+				<foreach item="job" index="index" collection="jobTopIndexCd" open="(job.job_topindex_cd = " close=")" separator=" or job.job_topindex_cd =  ">
+					#{job}
+				</foreach> 
+				And 
+					job.job_midindex_cd = recruitjob.job_midindex_cd
+			</if>
+			<if test='industryTopindexCd != null and industryTopindexCd != ""'>
+				And
+				<foreach item="industry" index="index" collection="industryTopindexCd" open="(industrymid.industry_topindex_cd = " close=")" separator="or industrymid.industry_topindex_cd = ">
+					#{industry}
+				</foreach>
+				And 
+					industrymid.industry_midindex_cd = company.industry_midindex_cd
+				And
+					company.company_cd = recruit.company_cd
+			</if>
+			<if test='bookmark != null and bookmark != ""'>
+				And
+					bookmark.login_id = #{sessionLoginId}
+				And
+					bookmark.recruit_company_cd = recruit.recruit_company_cd
+			</if>
+			<if test='searchCompanyName != null and searchCompanyName != ""'>
+				And
+					company.company_name  LIKE CONCAT('%', #{searchCompanyName}, '%')
+				And
+					recruit.company_cd = company.company_cd
+			</if>
 	</select> 
 	
-	
-	<!-- 북마크 체크 -->
+	<!-- loginId 로 북마크 검색 -->
 	<select id="checkBookmarkByLoginId" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo" resultType="String">
 		SELECT 
 			member_custom_bookmark_cd
@@ -49,7 +159,9 @@
 		AND 
 			recruit_company_cd=#{recruitCompanyCd}
 	</select>
-	<!-- 북마크삭제 -->
+	
+	
+	<!--loginId 북마크 삭제 -->
 	<delete id="deleteBookmark" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo">
 		DELETE FROM tb_recruit_company_bookmark 
 		WHERE 
@@ -57,7 +169,9 @@
 		AND 
 			recruit_company_cd=#{recruitCompanyCd}
 	</delete>
-	<!-- 북마크 등록 -->
+	
+	
+	<!-- loginId 북마크 등록 -->
 	<insert id="insertBookmark" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyBookmarkVo">
 		INSERT INTO tb_recruit_company_bookmark
 			(member_custom_bookmark_cd, login_id, recruit_company_cd)
@@ -66,52 +180,9 @@
 			#{loginId}, 
 			#{recruitCompanyCd})
 	</insert>
-	
-	
-	<!-- 채용달력 시작일 검색 -->
-	<select id="searchScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">	
-	SELECT  
-		company.company_cd as companyCd,
-		recruit.recruit_name as recruitName,
-		recruit.recruit_company_cd as recruitCompanyCd,
-		recruit.recruit_begindate as recruitBegindate , 
-		recruit.recruit_enddate as recruitEnddate,
-		recruit.recruit_regdate as recruitRegdate,
-		'begin' as 'begin'
-	FROM 
-		tb_recruit_company as recruit,
-		tb_company_info as company
-	WHERE 
-		company.company_name LIKE CONCAT('%',#{searchCompanyName}, '%')
-	AND 
-		recruit.company_cd = company.company_cd
-	AND 
-		recruit.recruit_begindate= #{scheduleDate}
-	
-	</select> 
-	
-	<!-- 채용달력 종료일 검색 -->
-	 <select id="searchScheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">	
-	SELECT  
-		company.company_cd as companyCd,
-		recruit.recruit_name as recruitName,
-		recruit.recruit_company_cd as recruitCompanyCd,
-		recruit.recruit_begindate as recruitBegindate , 
-		recruit.recruit_enddate as recruitEnddate,
-		recruit.recruit_regdate as recruitRegdate,
-		'end' as 'end'
-	FROM 
-		tb_recruit_company as recruit,
-		tb_company_info as company
-	WHERE 
-		company.company_name  LIKE CONCAT('%',#{searchCompanyName}, '%')
-	AND 
-		recruit.company_cd = company.company_cd
-	AND 
-		recruit.recruit_enddate= #{scheduleDate}
-	
-	</select>
-	<!-- 디테일 기업정보 -->
+
+
+	<!-- 기업정보  디테일 -->
 	<select id="selectForRecruitCompanyDetail" resultType="com.cafe24.pickmetop.recruit.model.Recruit">
 	SELECT 
 		recruit.company_cd as companyCd, 
@@ -135,15 +206,6 @@
 		recruitjop.company_cd = recruit.company_cd
 	</select>
 	
-	<!-- 와일드카드 쓰고 기업명으로 기업코드 찾기 -->
-	<select id="getCompanyCdWithWildCard" resultType="java.lang.String">
-		SELECT 
-			company_cd as companyCd
-		FROM
-			 tb_company_info 
-		WHERE 
-			company_name = '%'+#{companyName}+'%'
-	</select>
 	
 	<!-- 산업군 topindex 전체리스트 -->
 	<select id="selectAllTopIndustry" resultType="com.cafe24.pickmetop.admin.model.IndustryTopIndexVo">
@@ -154,14 +216,8 @@
 		tb_industry_topindex
 	</select>
 	
- 	 <!-- tb_cletter_company_job의 총 열갯수 -->
-	<!-- <select id="getCountOfCoverletterJob" resultType="int">
-		 SELECT 
-		 	COUNT(c_cletter_article_cd) 
-		 FROM 
-		 	tb_cletter_company_job
-	</select>  -->
 	
+	<!-- 자기소개서 항목등록  -->
 	<insert id="insertCoverletterArticle" parameterType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo">
 		INSERT INTO tb_cletter_company_job
 		(c_cletter_article_cd, recruit_job_cd, c_cletter_article)
@@ -169,72 +225,28 @@
 	((select  CONCAT('coverletter_cd_', LPAD(IFNULL(MAX(substring(c_cletter_article_cd ,16)),0)+1,4,'0')) from tb_cletter_company_job as a), 
 		CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')),#{cCletterArticle})
 	</insert> 
-	
-	
-	<!-- 채용달력 종료일 select -->
-	<select id="selectscheduleListByEndDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
-	SELECT 
-		recruit_company_cd as recruitCompanyCd , 
-		company_cd as companyCd,
-		recruit_name as recruitName, 
-		recruit_begindate as recruitBegindate , 
-		recruit_enddate as recruitEnddate, 
-		recruit_regdate as recruitRegdate , 
-		recruit_register as recruitRegister, 
-		recruit_modidate as recruitModidate, 
-		recruit_modify as recruitModify,
-		'end' as 'end'
-	FROM 
-		tb_recruit_company
-	WHERE 
-		recruit_enddate= #{scheduleDate}
 
-	ORDER BY recruit_company_cd
-	</select>
-	
-	<!-- 채용달력 시작일 select -->
-	<select id="selectScheduleListByBeginDate" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="String">	
-	SELECT 
-		recruit_company_cd as recruitCompanyCd , 
-		company_cd as companyCd,
-		recruit_name as recruitName, 
-		recruit_begindate as recruitBegindate , 
-		recruit_enddate as recruitEnddate, 
-		recruit_regdate as recruitRegdate , 
-		recruit_register as recruitRegister, 
-		recruit_modidate as recruitModidate, 
-		recruit_modify as recruitModify,
-		'begin' as 'begin'
-	FROM 
-		tb_recruit_company
-	WHERE 
-		recruit_begindate= #{scheduleDate}
-<!-- 		
-		<if test='searchCompanyCd != null or searchCompanyCd != ""'>
-			AND  company_cd = #{searchCompanyCd}
-		</if> 
-			-->
-	ORDER BY recruit_company_cd
-	</select>
-	
+
 	<!-- 임시기업등록 -->
 	<insert id="insertTemporaryCompany" parameterType="com.cafe24.pickmetop.recruit.model.Recruit">
 		INSERT INTO tb_company_info
 			(company_cd, company_name)
-		VALUES (#{CompanyCd},#{CompanyName})
+		VALUES (CONCAT('default_',LPAD((#{CompanyCd}),4,'0')),#{companyName})
 	 </insert>
 	 
-	<!-- default 기업코드 열 갯수 -->
+	 
+	<!-- 임시 기업코드 열 갯수 -->
 	<select id="selectDefaultCd" resultType="int">
 		SELECT 
-			COUNT(company_cd) 
+			IFNULL(COUNT(company_cd),0) 
 		FROM 
 			tb_company_info
 		WHERE 
 			company_cd like '%de%'
 	</select>
 
-	<!-- JobTopIndex 검색 -->
+
+	<!-- JobTopIndex 전체 리스트 -->
 	<select id="getJobTopIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobTopIndexVo">
 		SELECT 
 			job_topindex_cd as jobTopIndexCd,
@@ -243,7 +255,8 @@
 			tb_job_topindex
 	</select>
 
-	<!-- JobMidIndex 검색 -->
+
+	<!-- JobMidIndex 전체 리스트 -->
 	<select id="getJobMidIndexCd" resultType="com.cafe24.pickmetop.admin.model.JobMidIndexVo">
 		 SELECT 
 		 	job_midindex_cd as jobMidindexCd ,
@@ -254,13 +267,14 @@
 	</select>
 	
 	
-   	<!--  RecruitCompanyJob의 총 열갯수 -->
+   	<!--  RecruitCompanyJob의 코드숫자중 가장큰수  -->
 	<select id="getCountOfRecruitJob" resultType="int">
 		 SELECT 
 		 	ifnull(max(substring(recruit_job_cd,21)),0)
 		 FROM 
 		 	tb_recruit_company_job
 	</select>
+
 
    	<!--  RecruitCompany의 코드숫자중 가장 큰수 -->
 	<select id="getCountOfRecruit" resultType="int">
@@ -270,7 +284,8 @@
 		 	tb_recruit_company
 	</select>
 
-	<!-- 기업명으로 기업코드 찾기 -->
+
+	<!-- 자동완성 기업명으로 기업코드 찾기 -->
 	<select id="getCompanyCd" resultType="java.lang.String">
 		SELECT 
 			company_cd as companyCd
@@ -280,6 +295,7 @@
 			company_name = #{companyName}
 	</select>
 	
+	
 	<!-- 전체 기업명 검색 -->
 	<select id="selectCompany" resultType="java.lang.String"> 
 		SELECT 
@@ -287,6 +303,7 @@
 		FROM 
 			tb_company_info
 	</select>
+	
 	
 	<!-- RecruitCompany 입력 -->
 	<insert id="insertRecruit" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompany">
@@ -296,6 +313,7 @@
 			(CONCAT('recruit_company_',LPAD((#{recruitCompanyCd}),4,'0')), #{companyCd}, #{recruitName}, #{recruitBegindate}, #{recruitEnddate}, NOW(), #{recruitRegister}, NOW(),#{recruitModify})
 	</insert>
 	 
+	 
 	 <!-- RecruitCompanyJob 입력 -->
 	 <insert id="insertRecruitJob" parameterType="com.cafe24.pickmetop.recruit.model.RecruitCompanyJobVo">
 		INSERT INTO tb_recruit_company_job
@@ -303,8 +321,5 @@
 		VALUES 
 		
 			(CONCAT('recruit_company_job_',LPAD((#{recruitJobCd}),4,'0')), CONCAT('recruit_company_',LPAD((#{recruitCompanyCd}),4,'0')),#{companyCd}, #{jobMidindexCd},#{recruitJobWorkstatus},#{recruitJobJobdetail},#{recruitJobEducation},#{recruitJobFile})
-	 				
-	 
 	 </insert>
-
 </mapper>

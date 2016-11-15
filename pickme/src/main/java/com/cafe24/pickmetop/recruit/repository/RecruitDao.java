@@ -29,41 +29,37 @@ public class RecruitDao {
 	@Autowired
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
-	//test 검색 & 리스트
-	public List<Recruit> selectListOnSearchKeyword(Map companySearchMap){
-		logger.info("cd : {}" ,companySearchMap.get("jobTopIndexCd"));
-		return sqlSessionFactoryRecruit.selectList(NS+".selectListOnSearchKeyword",companySearchMap);
+	
+	//달력 전체 시작일 리스트& 검색
+	public List<Recruit> selectBeginListOnSearchKeyword(Map companySearchMap){
+		return sqlSessionFactoryRecruit.selectList(NS+".selectBeginListOnSearchKeyword",companySearchMap);
 	}
 	
-	//북마크 확인 
+	//달력 전체 종료일 리스트& 검색
+	public List<Recruit> selectEndListOnSearchKeyword(Map companySearchMap){
+		logger.info("cd : {}" ,companySearchMap.get("jobTopIndexCd"));
+		return sqlSessionFactoryRecruit.selectList(NS+".selectEndListOnSearchKeyword",companySearchMap);
+	}
+	
+	//loginId로 북마크 확인 
 	public String checkBookmarkByLoginId(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
 		String aa = sqlSessionFactoryRecruit.selectOne(NS+".checkBookmarkByLoginId",recruitCompanyBookmarkVo);
 		logger.info("aa : {} ",aa);
 		
 		return sqlSessionFactoryRecruit.selectOne(NS+".checkBookmarkByLoginId",recruitCompanyBookmarkVo);
 	}
-	//북마크 삭제 
+	//loginId 북마크 삭제 
 	public int deleteBookmark(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
 		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo);
 		return sqlSessionFactoryRecruit.delete(NS+".deleteBookmark",recruitCompanyBookmarkVo);
 	}
-	//북마크 등록
+	//loginId 북마크 등록
 	public int insertBookmark(RecruitCompanyBookmarkVo recruitCompanyBookmarkVo){
 		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo);
 		return sqlSessionFactoryRecruit.insert(NS+".insertBookmark",recruitCompanyBookmarkVo);
 	}
 	
-	//채용달력 종료일 검색
-	public List<Recruit> searchScheduleListByEndDate(Map companySearchMap){
-		return sqlSessionFactoryRecruit.selectList(NS+".searchScheduleListByEndDate",companySearchMap);
-	}
-
-	//채용달력 시작일 검색
-	public List<Recruit> searchScheduleListByBeginDate(Map companySearchMap){
-		return sqlSessionFactoryRecruit.selectList(NS+".searchScheduleListByBeginDate",companySearchMap);
-	}
-	
-	//디테일 
+	//채용 디테일 
 	public List<Recruit> selectForRecruitCompanyDetail(String recruitCompanyCd){
 		logger.info("recruitCompanyCd : {} ", recruitCompanyCd);
 		return sqlSessionFactoryRecruit.selectList(NS+".selectForRecruitCompanyDetail",recruitCompanyCd);
@@ -73,21 +69,12 @@ public class RecruitDao {
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectAllTopIndustry");
 	}
-	//채용달력 종료일 select 
-	public List<Recruit> selectscheduleListByEndDate(Map companySearchMap){
-		return sqlSessionFactoryRecruit.selectList(NS+".selectscheduleListByEndDate",companySearchMap);
-	}
 
-	//채용달력 시작일 select 
-	public List<Recruit> selectScheduleListByBeginDate(Map companySearchMap){
-		return sqlSessionFactoryRecruit.selectList(NS+".selectScheduleListByBeginDate",companySearchMap);
-	}
-	
-	//CoverletterJob의 총열갯수 
+	//CoverletterJob의 마지막코드 
 	public int getCountOfCoverletterJob(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfCoverletterJob");
 	}
-	//자소서항목입력
+	//자소서 항목입력
 	public int insertCoverletterArticle(CoverletterCompanyJobVo cletterArticle){
 		return sqlSessionFactoryRecruit.insert(NS+".insertCoverletterArticle",cletterArticle);
 	}
@@ -96,7 +83,7 @@ public class RecruitDao {
 		return sqlSessionFactoryRecruit.insert(NS+".insertTemporaryCompany",recruit);
 	}
 	
-	//default기업코드 열갯수 
+	//임시기업코드 열갯수 
 	public int selectDefaultCd(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".selectDefaultCd");
 	}
@@ -111,12 +98,12 @@ public class RecruitDao {
 		return sqlSessionFactoryRecruit.selectList(NS+".getJobMidIndexCd");
 	}
 	
-	//RecruitCompanyJob의 전체갯수 검색
+	//RecruitCompanyJob의 마지막 Code
 	public int getCountOfRecruitJob(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfRecruitJob");
 	}
 	
-	//RecruitCompany 전체 입력갯수를 검색
+	//RecruitCompany 의 마지막 Code
 	public int getCountOfRecruit(){
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCountOfRecruit");
 	}
@@ -126,18 +113,18 @@ public class RecruitDao {
 		return sqlSessionFactoryRecruit.selectOne(NS+".getCompanyCd",companyName);
 	}
 	
-	//전체 기업명을 검색
+	//전체 기업명
 	public List<String> selectCompany(){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectCompany");
 	}
 	
-	//RecruitCompanyJob입력 
+	//RecruitCompanyJob 입력 
 	public int insertRecruitJob(RecruitCompanyJobVo recruitCompanyJobVo){
 		return sqlSessionFactoryRecruit.insert(NS+".insertRecruitJob",recruitCompanyJobVo);
 	}
 	
 	
-	//RecruitCompany입력
+	//RecruitCompany 입력
 	public int insertRecruitCompany(RecruitCompany recruitCompany){
 		return sqlSessionFactoryRecruit.insert(NS+".insertRecruit",recruitCompany);
 	}

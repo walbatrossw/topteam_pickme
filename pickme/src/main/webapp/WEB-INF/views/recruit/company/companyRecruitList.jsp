@@ -12,6 +12,54 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+	//배열로 받아온 data로 checkBox checked하기 
+	var jobList = new Array();
+	<c:forEach items="${jobTopIndexCd}" var="jobTopIndexCd">
+	jobList.push("${jobTopIndexCd}")
+	</c:forEach> 
+
+    $(".jobTopIndexCd").each(function(){
+      var jobTopIndexCd = $(this).attr("value");
+      for(var i=0; i<jobList.length; i++){
+          if( jobList[i] == jobTopIndexCd ){
+              $(this).attr("checked", "checked");
+          }
+      }
+    });
+   //채용형태 체크
+     var workStatus = $('#workStatus').val();
+     console.log("workStatus"+workStatus);
+     
+     $(".recruitJobWorkstatus").each(function(){
+       var recruitJobWorkstatus = $(this).attr("value");
+       for(var j=0; j<recruitJobWorkstatus.length; j++){
+           if( recruitJobWorkstatus == workStatus ){
+               $(this).attr("checked", "checked");
+           }
+       }
+     });
+   //산업군체크
+   	var industryList = new Array();
+	<c:forEach items="${industryTopindexCd}" var="industryTopindexCd">
+	industryList.push("${industryTopindexCd}")
+	</c:forEach> 
+
+    $(".industryTopindexCd").each(function(){
+      var industryTopindexCd = $(this).attr("value");
+      for(var i=0; i<industryList.length; i++){
+          if( industryList[i] == industryTopindexCd ){
+              $(this).attr("checked", "checked");
+          }
+      }
+    });
+     
+
+	//  받아온 데이터 체크하기 
+/* 	var splitCode = $("#splitCode").val().split(',');
+	for (var idx in splitCode) {
+		 $("input[name=box][value=" + splitCode[idx] + "]").attr("checked", true); 
+	} */
+	
 	//기업이름 검색
 	$('#companySearch').click(function(){
 		if($('#searchCompanyName').val() != "") {
@@ -33,17 +81,24 @@ $(document).ready(function(){
 		}
 		console.log("jopList : "+jopList);
 		console.log("industryList : "+industryList)
-		
+		var workStatus = $('.recruitJobWorkstatus:checked').val();
+		var str = '';
+		console.log(workStatus);
+		if(jQuery.type(workStatus) == 'undefined'){
+			workStatus = 'workStatusNull';
+		console.log("아저씨 여기에요 : "+workStatus);
+		}
 		location.href=
 			"/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&jobTopIndexCd="+jopList 
 			+"&industryTopindexCd="+industryList
-			+"&recruitJobWorkstatus="+$('.recruitJobWorkstatus:checked').val()
+			+"&recruitJobWorkstatus="+workStatus;
 	 });
+
 	
 	//북마크 보기 (체크박스형태로 다시 만들자 )
 	$('#bookmark').click(function(){
 		//로그인 안되어있으면 로그인 유도
-		if($('#sessionId').val()==""){
+		if($('#sessionId').val()==""||$('#sessionId').val()==null){
 			location.href="/memberGeneralLogin";
 		}else{
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
@@ -58,7 +113,10 @@ $(document).ready(function(){
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
 이예은
-<input type="hidden" id= "sessionId" value="${sessionScope.id}">
+세션 : ${sessionScope.id}
+
+<input type="hidden" id="workStatus" value="${recruitJobWorkstatus}" />
+<input type="hidden" id = "sessionId" value="${sessionScope.id}">
 <div id="wrapper">
 	<div class="container">
 	<!-- Sidebar -->
@@ -68,7 +126,7 @@ $(document).ready(function(){
 	            	${sessionScope.id}
 		                <h3>채용형태</h3>
 		            </li>
-		            <li>
+		            <li>	
 		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="신입">신입
 		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="경력">경력
 		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="인턴">인턴
@@ -77,13 +135,12 @@ $(document).ready(function(){
 	            	<li>
 	                	<h3>직무선택</h3>
 	                </li>
-	               
+					 
 					<c:forEach var="jobTopIndex" items="${jobTopIndex}">
-						<li>
-							<input class="jobTopIndexCd" type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
-						</li>
-					</c:forEach>
-					
+							<li>
+							<input name ="box" class="jobTopIndexCd" type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
+							</li>
+					</c:forEach> 
 	           		<li>
 		               <h3>산업군</h3>
 		            </li>
@@ -94,13 +151,12 @@ $(document).ready(function(){
 						</li>
 					</c:forEach>
 					<br/>
-		               <div>
-		               		<center> <a id="checkSearchBtn" class="btn btn-warning btn-sm">검색조건으로보기</a></center>
-		               </div> 
-					<br/>
-		               <div >
-		               		<center><a id="bookmark" class="btn btn-warning btn-sm">내 북마크보기</a></center>
-		               </div>
+					<li>
+						<div class="btn-group btn-group-xs">
+						  <button type="button" id="checkSearchBtn"class="btn btn-warning">검색조건으로보기</button>
+						  <button type="button" id="bookmark"class="btn btn-warning">내 북마크보기</button>
+						</div>
+					</li>
 
 	            	
 	            </ul>

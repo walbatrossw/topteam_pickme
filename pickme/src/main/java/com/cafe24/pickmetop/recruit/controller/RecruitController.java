@@ -69,7 +69,7 @@ public class RecruitController {
 	}
 
 	
-	/* 채용 리스트               {} : 배열요청. */
+	/* 채용 리스트 */
 	@RequestMapping(value="/diary")
 	public String diary(Model model,HttpSession session,
 							@RequestParam(value="ddayYear", defaultValue="0") int ddayYear,
@@ -80,12 +80,20 @@ public class RecruitController {
 							@RequestParam(value="jobTopIndexCd", defaultValue="") List<String> jobTopIndexCd,
 							@RequestParam(value="industryTopindexCd", defaultValue="") List<String> industryTopindexCd,
 							@RequestParam(value="recruitJobWorkstatus", defaultValue="") String recruitJobWorkstatus){
+		
 		logger.info("검색어입력후 검색버튼 하면 searchCompanyName:{}",searchCompanyName);
 		logger.info("bookmark보기를 누르면 true:{}",bookmark);
 		logger.info("jobTopIndexCd[]:{}",jobTopIndexCd);
 		logger.info("industryTopindexCd[]:{}",industryTopindexCd);
 		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus);
-
+		
+		//jquery의 문자열로 유효성검사가 안돼서 이렇게 했음
+		if(recruitJobWorkstatus.equals("workStatusNull")){
+			recruitJobWorkstatus="workStatusNull";
+			logger.info("recruitJobWorkstatus2:{}",recruitJobWorkstatus);
+		}
+		
+		//날짜와 채용정보 select
 		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,
 				searchCompanyName,bookmark,jobTopIndexCd,industryTopindexCd,recruitJobWorkstatus,session);
 
@@ -93,9 +101,16 @@ public class RecruitController {
 		model.addAttribute("ddayYear",map.get("ddayYear"));
 		model.addAttribute("ddayMonth",map.get("ddayMonth"));
 		model.addAttribute("today",map.get("today"));
-
+		
+		//체크항목 표시하기위해 
+		model.addAttribute("jobTopIndexCd",jobTopIndexCd);
+		logger.info("jobTopIndexCd2:{}",jobTopIndexCd);
+		model.addAttribute("industryTopindexCd",industryTopindexCd);
+		model.addAttribute("recruitJobWorkstatus",recruitJobWorkstatus);
+		
 		//전체 직무 대분류
 		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
+		
 		//전체 산업군 대분류
 		model.addAttribute("topIndustry",recruitService.selectAllTopIndustry());
 		return "/recruit/company/companyRecruitList";
@@ -119,10 +134,9 @@ public class RecruitController {
 			recruit.setCompanyCd(companyCd);
 			if(companyCd==null){//db내에 입력하고자하는 기업이 없을때 
 				//임의의 코드값을 만든다
-				int a = recruitService.selectDefaultCd() +1;
-				String newConpanyCd = "default" + a;
+				int defaultNum = recruitService.selectDefaultCd() +1;
 				//코드값을 vo에 셋팅한다 
-				recruit.setCompanyCd(newConpanyCd);
+				recruit.setCompanyCd(String.valueOf(defaultNum));
 				//기업 table에 임의의 코드값과 화면에서 입력받은 기업명을 insert한다.
 				recruitService.insertTemporaryCompany(recruit);
 				logger.info("recruit.getCompanyCd(): {}",recruit.getCompanyCd());

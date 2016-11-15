@@ -37,11 +37,12 @@ public class RecruitService {
 	RecruitDao recruitDao;
 	int count = 0;
 	final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
-	//북마크 확인 
+	//북마크 체크여부 확인 
 	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
 		//testId값
 		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		
 		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
 		String checkBookmark=recruitDao.checkBookmarkByLoginId(recruitCompanyBookmarkVo);
 		if(checkBookmark!=null){
@@ -49,11 +50,12 @@ public class RecruitService {
 		}
 		return "";
 	}
-	//북마크
+	//북마크 등록, 삭제
 	public void insertBookmark(String recruitCompanyCd,String bookmarkChecked, HttpSession session){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
 		//testId값
 		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		
 		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
 		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo.toString());
 		logger.info("bookmarkChecked : {}",bookmarkChecked);
@@ -78,6 +80,8 @@ public class RecruitService {
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return recruitDao.selectAllTopIndustry();
 	}
+	
+	
 	//달력화면
 	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName
 			,String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus,HttpSession session){
@@ -114,12 +118,15 @@ public class RecruitService {
 		int beginSpace= preLastDay -(firstWeek-2);
 		int endSpace=1;
 		for(int i =0; i<listSize;i++){
+			//날짜별 채용정보를 담을 객체
 			OneDay oneDay;
 			//앞의공백
 			if(i<(firstWeek-1)){
 				oneDay = new OneDay();
 				oneDay.setDay(beginSpace);
 				beginSpace++;
+			
+			 
 			}else if(i<endDay+(firstWeek-1)){
 				oneDay = new OneDay();
 				oneDay.setDay((i+1)-(firstWeek-1));
@@ -128,63 +135,43 @@ public class RecruitService {
 				String scheduleDate = oneDay.getYear()+"-"+oneDay.getMonth()+"-"+oneDay.getDay();
 				
 				Map<String, Object> companySearchMap = new HashMap<String, Object>();
-
+				companySearchMap.put("scheduleDate", scheduleDate);
 				
-			companySearchMap.put("scheduleDate", scheduleDate);
-				if(!searchCompanyName.equals("")){
-					logger.info("들어오면안됨0");
-					companySearchMap.put("searchCompanyName", searchCompanyName);
-				}
-				/*	
-				//검색어 없을때 전체리스트 보여줌 
-				//String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,String recruitJobWorkstatus
-				logger.info("jobTopIndexCd : {} ",jobTopIndexCd);
-				logger.info("industryTopindexCd :{}",industryTopindexCd);
-				logger.info("recruitJobWorkstatus : {}",recruitJobWorkstatus);
+				logger.info("jobTopIndexCd : {} ",jobTopIndexCd.size());
+				logger.info("industryTopindexCd :{}",industryTopindexCd.size());
+				logger.info("recruitJobWorkstatus :{}",recruitJobWorkstatus);
 				logger.info("bookmark : {}",bookmark);
+				
+					
+	
 				if(!bookmark.equals("")){
 					logger.info("들어오면안됨1");
 					companySearchMap.put("bookmark", bookmark);
 					companySearchMap.put("sessionLoginId",(String)session.getAttribute("id"));
 				}
 				if(jobTopIndexCd.size()!=0){
-					logger.info("들어오면안됨2");
+					logger.info("들어오면안됨2 : {}",jobTopIndexCd.get(0));
 					//아 이거는 리스트니까 어떻게..
-					companySearchMap.put("jobTopIndexCd", jobTopIndexCd);
+					companySearchMap.put("jobTopIndexCd", jobTopIndexCd.toArray());
 				}
 				if(industryTopindexCd.size()!=0){
 					logger.info("들어오면안됨3");
-					companySearchMap.put("industryTopindexCd", industryTopindexCd);
+					companySearchMap.put("industryTopindexCd", industryTopindexCd.toArray());
 				}
-				if(!recruitJobWorkstatus.equals("")){
-					logger.info("들어오면안됨4");
+				if(!recruitJobWorkstatus.equals("workStatusNull") || !(recruitJobWorkstatus=="workStatusNull")){
+					logger.info("들어오면안됨4 :{}",recruitJobWorkstatus);
 					companySearchMap.put("recruitJobWorkstatus", recruitJobWorkstatus);
 				}
-				//test
-				List<Recruit> beginScheduleList = recruitDao.selectListOnSearchKeyword(companySearchMap);
-				oneDay.setScheduleList(beginScheduleList);
-				*/
-				
-				
-				if(searchCompanyName.equals("")||searchCompanyName.equals(null)){
-					//시작일 
-					List<Recruit> beginScheduleList = recruitDao.selectScheduleListByBeginDate(companySearchMap);		
-					//종료일
-					List<Recruit> EndScheduleList = recruitDao.selectscheduleListByEndDate(companySearchMap);
-					beginScheduleList.addAll(EndScheduleList);
-					//두개의 스케쥴을 합침 
-					oneDay.setScheduleList(beginScheduleList);
+				if(!searchCompanyName.equals("") && bookmark.equals("")){
+					companySearchMap.put("searchCompanyName", searchCompanyName);
 				}
-				else if(!searchCompanyName.equals("")||!searchCompanyName.equals(null)){
-					//시작일 
-					List<Recruit> beginScheduleList = recruitDao.searchScheduleListByBeginDate(companySearchMap);		
-					//종료일
-					List<Recruit> EndScheduleList = recruitDao.searchScheduleListByEndDate(companySearchMap);
-					beginScheduleList.addAll(EndScheduleList);
-					//두개의 스케쥴을 합침 
-					oneDay.setScheduleList(beginScheduleList);
-				}		
-				//oneDay와 diary테이블 ResultSet반복시키며 비교매핑		
+				//채용시작일 & 종료일 리스트
+				List<Recruit> beginScheduleList = recruitDao.selectBeginListOnSearchKeyword(companySearchMap);
+				List<Recruit> endScheduleList = recruitDao.selectEndListOnSearchKeyword(companySearchMap);
+				beginScheduleList.addAll(endScheduleList);
+				//각 날짜별 채용시작, 종료 
+				oneDay.setScheduleList(beginScheduleList);	
+			
 			//뒤의공백
 			}else {
 				oneDay = new OneDay();
@@ -196,6 +183,7 @@ public class RecruitService {
 		OneDay today = new OneDay();
 		Calendar getToDay= Calendar.getInstance();	
 		today.setDay(getToDay.get(Calendar.DATE));
+		//month는 0번째부터 시작하기때문에 1을 더해줌
 		today.setMonth(getToDay.get(Calendar.MONTH)+1);
 		today.setYear(getToDay.get(Calendar.YEAR));
 		map.put("oneDayList", oneDayList);
@@ -235,13 +223,13 @@ public class RecruitService {
 	public void insertRecruitCompany(Recruit recruit,HttpSession session){
 		//test id값
 		String id = (String) session.getAttribute("id");
+		
 		RecruitCompany recruitCompany = new RecruitCompany();
 		
-		//객체내에 값setting
-		//RecruitCompanyCd를 문자열 + 증가하는수로 setting
+		//RecruitCompanyCd내에 코드중 가장 큰숫자를 select
 		count = recruitDao.getCountOfRecruit() +1;
-//		companyCd = "recruit_company_"+count;
 		
+		//객체내에 값setting
 		recruitCompany.setRecruitCompanyCd(String.valueOf(count));
 		recruitCompany.setCompanyCd(recruit.getCompanyCd());
 		recruitCompany.setRecruitName(recruit.getRecruitName());
@@ -261,9 +249,9 @@ public class RecruitService {
 		logger.info("recruit.getRecruitJobEducation() : {} " ,recruit.getRecruitJobEducation());
 		for(int i=0; i<recruit.getRecruitList().size(); i++){
 			
-			//recruitJobCd = 문자열 + 증가하는 값
+			//recruitJobCd중 가장 큰수 select
 			int countJop = recruitDao.getCountOfRecruitJob()+1;
-			//recruitJobCd= "recruit_company_job_"+ count;
+			
 			logger.info("recruit {}",recruit.toString());
 			RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
 			recruitCompanyJobVo.setRecruitJobCd(String.valueOf(countJop));
@@ -277,7 +265,7 @@ public class RecruitService {
 			recruitCompanyJobVo.setRecruitJobEducation(recruit.getRecruitList().get(i).getRecruitJobEducation().get(j));
 			}
 			
-			//file이름 
+			//file이름 = originalFilename + currentTimeMillis
 			MultipartFile recruitImgs = recruit.getRecruitJobFile();
 			String saveFileName = recruit.getRecruitJobFile().getOriginalFilename().substring(0,recruit.getRecruitJobFile().getOriginalFilename().length()-4);
 
@@ -294,7 +282,7 @@ public class RecruitService {
 			logger.info("fullFileName : {}", fullFileName);
 			File saveFile = new File(fullFileName);
 			try {
-				// img가 saveFile로 이동
+			// img가 saveFile로 이동
 				recruitImgs.transferTo(saveFile);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -302,8 +290,8 @@ public class RecruitService {
 				e.printStackTrace();
 			}
 			
-			
-			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   // coverletterList의 길이만큼 돌려야하는데
+			//자기소개서 항목 등록
+			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   
 				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
 				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
 				cletterArticle.setRecruitJobCd(String.valueOf(countJop));
