@@ -12,55 +12,62 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	//배열로 받아온 data로 checkBox checked하기 
-	var jobList = new Array();
+	
+	/* 배열로 받아온 data로 checkBox checked하기  */
+	//직무 체크
+	var jobCheckedList = new Array();
 	<c:forEach items="${jobTopIndexCd}" var="jobTopIndexCd">
-	jobList.push("${jobTopIndexCd}")
+		jobCheckedList.push("${jobTopIndexCd}")
 	</c:forEach> 
 
     $(".jobTopIndexCd").each(function(){
-      var jobTopIndexCd = $(this).attr("value");
-      for(var i=0; i<jobList.length; i++){
-          if( jobList[i] == jobTopIndexCd ){
-              $(this).attr("checked", "checked");
-          }
-      }
+		var jobTopIndexCd = $(this).attr("value");
+		for(var i=0; i<jobCheckedList.length; i++){
+		    if( jobCheckedList[i] == jobTopIndexCd ){
+		        $(this).attr("checked", "checked");
+		    }
+		}
     });
-   //채용형태 체크
-     var workStatus = $('#workStatus').val();
-     console.log("workStatus"+workStatus);
+  //채용형태 체크
+	var workStatusCheckedList = new Array();
+	<c:forEach items="${recruitJobWorkstatus}" var="recruitJobWorkstatus">
+		workStatusCheckedList.push("${recruitJobWorkstatus}")
+	</c:forEach>
+     console.log("workStatusCheckedList"+workStatusCheckedList);
      
-     $(".recruitJobWorkstatus").each(function(){
-       var recruitJobWorkstatus = $(this).attr("value");
-       for(var j=0; j<recruitJobWorkstatus.length; j++){
-           if( recruitJobWorkstatus == workStatus ){
-               $(this).attr("checked", "checked");
-           }
-       }
-     });
+	$(".recruitJobWorkstatus").each(function(){
+		var recruitJobWorkstatus = $(this).attr("value");
+		for(var j=0; j<workStatusCheckedList.length; j++){
+			if( workStatusCheckedList[j] == recruitJobWorkstatus ){
+				$(this).attr("checked", "checked");
+			}
+		}
+	});
    //산업군체크
-   	var industryList = new Array();
+   	var industryCheckedList = new Array();
 	<c:forEach items="${industryTopindexCd}" var="industryTopindexCd">
-	industryList.push("${industryTopindexCd}")
+		industryCheckedList.push("${industryTopindexCd}")
 	</c:forEach> 
 
-    $(".industryTopindexCd").each(function(){
-      var industryTopindexCd = $(this).attr("value");
-      for(var i=0; i<industryList.length; i++){
-          if( industryList[i] == industryTopindexCd ){
-              $(this).attr("checked", "checked");
-          }
-      }
+	$(".industryTopindexCd").each(function(){
+	var industryTopindexCd = $(this).attr("value");
+		for(var i=0; i<industryCheckedList.length; i++){
+		    if( industryCheckedList[i] == industryTopindexCd ){
+		        $(this).attr("checked", "checked");
+			}
+		}
     });
-     
-
-	//  받아온 데이터 체크하기 
-/* 	var splitCode = $("#splitCode").val().split(',');
-	for (var idx in splitCode) {
-		 $("input[name=box][value=" + splitCode[idx] + "]").attr("checked", true); 
-	} */
 	
-	//기업이름 검색
+	
+	/* 기업이름 검색 */
+	$('#searchCompanyName').change(function(){
+		if($('#searchCompanyName').val() != "") {
+			location.href="/diary?ddayYear=${ddayYear}&ddayOption=search&ddayMonth=${ddayMonth}&searchCompanyName="+$('#searchCompanyName').val();
+		}else{
+			//검색시에 기본이 되는 매핑주소
+			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search";
+		}   
+	});
 	$('#companySearch').click(function(){
 		if($('#searchCompanyName').val() != "") {
 			location.href="/diary?ddayYear=${ddayYear}&ddayOption=search&ddayMonth=${ddayMonth}&searchCompanyName="+$('#searchCompanyName').val();
@@ -69,33 +76,33 @@ $(document).ready(function(){
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search";
 		}   
 	});
+	
+	
 	//체크박스 검색
 	$('#checkSearchBtn').click(function(){
+		/* 화면에서 받아오는 체크리스트 값 리스트 */
 		var jopList = new Array(); // 직무체크를 담을 array
 		var industryList = new Array();//산업군 체크를 담을 array
+		var workStatusList = new Array();//채용형태를 담을 array 
+		
 		for(var i=0;i<$('.jobTopIndexCd:checked').length;i++){
 			jopList.push($('.jobTopIndexCd:checked').eq(i).val());
 		}
 		for(var i=0;i<$('.industryTopindexCd:checked').length;i++){
 			industryList.push($('.industryTopindexCd:checked').eq(i).val());
 		}
+		for(var j=0;j<$('.recruitJobWorkstatus:checked').length;j++){
+			workStatusList.push($('.recruitJobWorkstatus:checked').eq(j).val());
+		} 
 		console.log("jopList : "+jopList);
 		console.log("industryList : "+industryList)
-		var workStatus = $('.recruitJobWorkstatus:checked').val();
-		var str = '';
-		console.log(workStatus);
-		if(jQuery.type(workStatus) == 'undefined'){
-			workStatus = 'workStatusNull';
-		console.log("아저씨 여기에요 : "+workStatus);
-		}
 		location.href=
 			"/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&jobTopIndexCd="+jopList 
 			+"&industryTopindexCd="+industryList
-			+"&recruitJobWorkstatus="+workStatus;
+			+"&recruitJobWorkstatus="+workStatusList;
 	 });
-
 	
-	//북마크 보기 (체크박스형태로 다시 만들자 )
+	//북마크 보기 
 	$('#bookmark').click(function(){
 		//로그인 안되어있으면 로그인 유도
 		if($('#sessionId').val()==""||$('#sessionId').val()==null){
@@ -104,7 +111,14 @@ $(document).ready(function(){
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
 		}	
 	});
-		
+	
+/* 	$('#industryCheck').change(function(){
+		if($('#industryCheck:checked')){
+			$('.industryTopindexCd').attr("checked",true);
+		}else{
+			$('.industryTopindexCd').attr("checked",false);
+		}
+	}) */
 });
 
 </script>
@@ -123,37 +137,44 @@ $(document).ready(function(){
 	        <div id="sidebar-wrapper">
 	            <ul class="sidebar-nav">
 	            	<li>
-	            	${sessionScope.id}
-		                <h3>채용형태</h3>
+		                <h3>
+		                	<!-- <input type="checkbox" id="workStatusCheck"> -->
+		                	채용형태
+		                </h3>
 		            </li>
-		            <li>	
-		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="신입">신입
-		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="경력">경력
-		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="인턴">인턴
-		                <input type="radio" class="recruitJobWorkstatus" name = "recruitJobWorkstatus" value="계약직">계약직                        
+		            <li>
+		            <c:forEach var="workStatueArray" items="${workStatueArray}">
+		            	<input type="checkbox" class="recruitJobWorkstatus checkboxes" name = "recruitJobWorkstatus" value="${workStatueArray}">${workStatueArray}
+		            </c:forEach>	
 	            	</li>
 	            	<li>
-	                	<h3>직무선택</h3>
+	                	<h3>
+		                	<!-- <input type="checkbox" id="jobCheck"> -->
+		                	직무선택
+	                	</h3>
 	                </li>
 					 
 					<c:forEach var="jobTopIndex" items="${jobTopIndex}">
 							<li>
-							<input name ="box" class="jobTopIndexCd" type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
+							<input class="jobTopIndexCd checkboxes" type="checkbox" value="${jobTopIndex.jobTopIndexCd}">${jobTopIndex.jobTopIndexName}
 							</li>
 					</c:forEach> 
 	           		<li>
-		               <h3>산업군</h3>
+		               <h3>
+			              <!--  <input type="checkbox" id="industryCheck"> -->
+			               산업군
+		               </h3>
 		            </li>
 		           
 	               	<c:forEach var="topIndustry" items="${topIndustry}">
 		                <li>
-							<input class="industryTopindexCd" type="checkbox" value="${topIndustry.industryTopindexCd}">${topIndustry.industryTopindexName}
+							<input class="industryTopindexCd checkboxes" type="checkbox" value="${topIndustry.industryTopindexCd}">${topIndustry.industryTopindexName}
 						</li>
 					</c:forEach>
 					<br/>
 					<li>
 						<div class="btn-group btn-group-xs">
-						  <button type="button" id="checkSearchBtn"class="btn btn-warning">검색조건으로보기</button>
+						  <button type="button" id="checkSearchBtn"class="btn btn-warning">검색조건으로 보기</button>
 						  <button type="button" id="bookmark"class="btn btn-warning">내 북마크보기</button>
 						</div>
 					</li>

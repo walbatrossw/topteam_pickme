@@ -1,5 +1,6 @@
 package com.cafe24.pickmetop.recruit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -79,19 +80,60 @@ public class RecruitController {
 							@RequestParam(value="bookmark", defaultValue="") String bookmark,
 							@RequestParam(value="jobTopIndexCd", defaultValue="") List<String> jobTopIndexCd,
 							@RequestParam(value="industryTopindexCd", defaultValue="") List<String> industryTopindexCd,
-							@RequestParam(value="recruitJobWorkstatus", defaultValue="") String recruitJobWorkstatus){
+							@RequestParam(value="recruitJobWorkstatus", defaultValue="") List<String> recruitJobWorkstatus){
 		
 		logger.info("검색어입력후 검색버튼 하면 searchCompanyName:{}",searchCompanyName);
 		logger.info("bookmark보기를 누르면 true:{}",bookmark);
-		logger.info("jobTopIndexCd[]:{}",jobTopIndexCd);
-		logger.info("industryTopindexCd[]:{}",industryTopindexCd);
+		logger.info("jobTopIndexCd[]:{}",jobTopIndexCd.size());
+		logger.info("industryTopindexCd[]:{}",industryTopindexCd.size());
+		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus.size());
 		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus);
 		
+		//전체 직무 대분류
+		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
+		List<String> jobStringList = new ArrayList();
+		for(int i=0;i<recruitService.getJobTopIndexCd().size();i++){
+			jobStringList.add(recruitService.getJobTopIndexCd().get(i).getJobTopIndexCd());
+		}
+		logger.info("jobStringList :{}", jobStringList);
+		
+		//전체 산업군 대분류
+		model.addAttribute("topIndustry",recruitService.selectAllTopIndustry());
+		List<String> IndustryStringList = new ArrayList();
+		for(int j=0;j<recruitService.selectAllTopIndustry().size();j++){
+			IndustryStringList.add(recruitService.selectAllTopIndustry().get(j).getIndustryTopindexCd());
+		}
+		logger.info("IndustryStringList : {}",IndustryStringList);
+		
+		//채용형태리스트
+		List<String> workStatueArray = new ArrayList();
+		workStatueArray.add("신입");
+		workStatueArray.add("경력");
+		workStatueArray.add("인턴");
+		workStatueArray.add("계약직");
+		
+		model.addAttribute("workStatueArray",workStatueArray);
+		logger.info("workStatueArray : {}",workStatueArray);
+		
+		if(recruitJobWorkstatus.size()==0){
+			logger.info("왜들어와!!recruitJobWorkstatus.size() : {}",recruitJobWorkstatus.size());
+			recruitJobWorkstatus=workStatueArray;
+		}
+		
+		if(jobTopIndexCd.size()==0){
+			jobTopIndexCd=jobStringList;
+		}
+		
+		if(industryTopindexCd.size()==0){
+			industryTopindexCd=IndustryStringList;
+		}
+		logger.info("jobTopIndexCd :{}", jobTopIndexCd);
+		
 		//jquery의 문자열로 유효성검사가 안돼서 이렇게 했음
-		if(recruitJobWorkstatus.equals("workStatusNull")){
+/*		if(recruitJobWorkstatus.equals("workStatusNull")){
 			recruitJobWorkstatus="workStatusNull";
 			logger.info("recruitJobWorkstatus2:{}",recruitJobWorkstatus);
-		}
+		}*/
 		
 		//날짜와 채용정보 select
 		Map<String,Object> map = recruitService.getOneDayList(ddayYear,ddayMonth,ddayOption,
@@ -107,13 +149,11 @@ public class RecruitController {
 		logger.info("jobTopIndexCd2:{}",jobTopIndexCd);
 		model.addAttribute("industryTopindexCd",industryTopindexCd);
 		model.addAttribute("recruitJobWorkstatus",recruitJobWorkstatus);
+
+
 		
-		//전체 직무 대분류
-		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
-		
-		//전체 산업군 대분류
-		model.addAttribute("topIndustry",recruitService.selectAllTopIndustry());
 		return "/recruit/company/companyRecruitList";
+		
 	}
 	
 	
