@@ -38,7 +38,7 @@
 		<div id="head_lwrap">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(0, 0, 0, 0.2);">
-				<h1><a class="companyInfoMain" href="/"><strong>PickMe</strong></a></h1>
+				<h1><a class="companyInfoMain" href="/"><img src="/img/main/pickme_logo4.png" width="200px;"></a></h1>
 				<h1 class="adminPage"><a class="companyInfoMain" href="/admin"><strong>관리자 페이지</strong></a></h1>
 					<ul class="menu">
 						<li>

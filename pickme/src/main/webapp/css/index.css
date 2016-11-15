@@ -225,12 +225,12 @@
 	display: block;
 	
 	-webkit-animation-name: menu;
-    -webkit-animation-duration: 0.3s;
-    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-timing-function: ease;
     -webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes menu {
-    0%   {top: 0px;}
+    0%   {top: 10px;}
     100% {top: 50px;}
 }
 #head_lwrap .bg_submenu {
@@ -251,12 +251,12 @@
 	opacity: 0.8;	
 	
 	-webkit-animation-name: bg_submenu;
-    -webkit-animation-duration: 0.5s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-fill-mode: forwards ;
+    -webkit-animation-duration: 0.7s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-fill-mode: forwards;
 }
 @-webkit-keyframes bg_submenu {
-    0%   {width: 10%;}
+    0%   {width: 0%;}
     100% {width: 100%;}
 }
 

@@ -168,6 +168,7 @@
 		SELECT
 			company_review_cd as companyReviewCd,
 			company_cd as companyCd,
+			company_name as companyName,
 			login_id as loginId,
 			review_comment as reviewComment,
 			review_regdate as reviewRegDate
@@ -343,6 +344,7 @@
 		SELECT
 			interview_cd as interviewCd,
 			company_cd as companyCd,
+			company_name as companyName,
 			login_id as loginId,
 			interview_summary as interviewSummary,
 			interview_regdate as interviewRegDate
