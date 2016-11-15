@@ -13,6 +13,10 @@
 	padding-left: 0px;
 	padding-right: 0px;
 }
+.companyInterviewList .col-xs-6{
+	width: 16%;
+	float: right;
+}
 .interview{
 	border-radius: 10px;
 	padding: 10px 20px 10px 20px;

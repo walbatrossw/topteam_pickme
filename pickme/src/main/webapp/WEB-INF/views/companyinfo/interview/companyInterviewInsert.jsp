@@ -1,4 +1,5 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/companyinfo/module/companyInfoHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -46,49 +47,6 @@
 <title>기업리뷰 등록페이지</title>
 </head>
 <body>
-	<!-- HEADER START -->
-	<div class="headers">
-		<div id="companyInfoList">
-			<div class="header_cont">
-				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
-					<h1>
-						<a class="companyInfoMain" href="/companyInfo"><strong>기업정보</strong></a>
-					</h1>
-					<ul>
-						<li class="menu1">
-							<a href="/review/companyReviewInsertForm">기업리뷰</a>
-						</li>
-						<li class="menu2">
-							<a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a>
-						</li>
-						<li class="menu3">
-							<a href="/review/companyReviewListAllow">기업리뷰 승인 목록</a>
-						</li>
-						<li class="menu4">
-							<a href="/interview/companyInterviewUnreceivedList">면접후기 비승인 목록</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //HEADER END -->
-	<div id="companyInfoList_wrapper">
-		<!-- 비주얼 이미지 start -->
-		<div class="sections" id="main_visual">
-			<div class="section_cont">
-				<div class="visual">
-					<ul>
-						<li class="list1"><span class="img"
-							style="z-index: 2; opacity: 1;"><img
-								src="/img/company/companymain.png" /></span>
-						<!-- 비주얼 이미지1 --></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 비주얼 이미지 end -->
 	<div class="container">
 		<div class="panel form">
 			<div class="panel-heading"><h3><strong>기업 면접후기 등록</strong></h3></div>

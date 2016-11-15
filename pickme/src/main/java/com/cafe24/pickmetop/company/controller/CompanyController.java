@@ -68,7 +68,7 @@ public class CompanyController {
 	 * 
 	 * ---------------------------------------------------------------------------------*/	
 	//면접후기 등록화면 맵핑
-	@RequestMapping(value = "/interview/companyInsertForm", method = RequestMethod.GET)
+	@RequestMapping(value = "/interview/companyInterviewInsertForm", method = RequestMethod.GET)
 	public String companyInterviewInsertForm(Model model) {
 		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
 		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());

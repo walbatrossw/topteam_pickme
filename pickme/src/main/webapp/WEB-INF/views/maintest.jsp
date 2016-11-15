@@ -38,7 +38,7 @@
 		<div id="head_lwrap">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(0, 0, 0, 0.2);">
-				<h1><a class="companyInfoMain" href="/"><img src="/img/main/pickme_logo4.png" width="200px;"></a></h1>
+				<h1><a class="companyInfoMain" href="/"><img src="/img/main/pickme_logo.png" width="200px;"></a></h1>
 				<h1 class="adminPage"><a class="companyInfoMain" href="/admin"><strong>관리자 페이지</strong></a></h1>
 					<ul class="menu">
 						<li>
@@ -72,9 +72,9 @@
 							<a href="/companyInfo">기업정보</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/companyInfo">기업정보 </a></li>
-									<li><a href="/companyInfo">기업리뷰 </a></li>
-									<li><a href="/companyInfo">연봉정보</a></li>
+									<li><a href="/company/companyInfoList">기업정보 </a></li>
+									<li><a href="/review/companyReviewListAllow">기업리뷰 </a></li>
+									<li><a href="/interview/companyInterviewListAllow">연봉정보</a></li>
 									<li><a href="/companyInfo">면접후기</a></li>
 								</ul>
 							</div>

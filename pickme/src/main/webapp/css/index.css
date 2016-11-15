@@ -113,7 +113,7 @@
 
 #head_lwrap .header_cont h1 {
 	position: absolute;
-	top: 30px;
+	top: -10px;
 	left: 40px;
 	color: #fff
 }

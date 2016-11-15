@@ -1,4 +1,5 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/companyinfo/module/companyInfoHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -11,18 +12,9 @@
 <link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function(){
-		const $btnSuccess = $('.btn-success');
-		const $btnDanger = $('.btn-danger');
-		
-		$btnSuccess.click(function(){
-			location.href = "/review/companyReviewAllow?companyReviewCd=${reviewDetail.companyReviewCd}";
-		});
-		$btnDanger.click(function(){
-			location.href = "/review/companyReviewDelete?companyReviewCd=${reviewDetail.companyReviewCd}";
-		});
 	});
 </script>
-<title>Insert title here</title>
+<title>기업리뷰</title>
 </head>
 <body>
 	<div class="container">
@@ -159,14 +151,6 @@
     				</div>
 				</div>
 			</div>	<!-- row -->
-			<div class="row">
-				<div class="col-xs-6">
-					<button type="button" class="btn btn-primary btn-block btn-success">승인</button>
-				</div>
-				<div class="col-xs-6">
-					<button type="button" class="btn btn-primary btn-block btn-danger">삭제</button>
-				</div>
-			</div>	<!-- row -->		
 		</div><!-- companyReviewDetail -->
 	</div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>	

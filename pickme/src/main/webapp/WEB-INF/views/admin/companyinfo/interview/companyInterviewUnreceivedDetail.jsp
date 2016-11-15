@@ -35,7 +35,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/admin/module/adminHeader.jsp"/>	
 	<section id="main" class="column">
 		<div class="container">
-			<div class="panel form">
+			<div class="panel detail">
 				<div class="panel-heading"><h3><strong>면접후기</strong></h3></div>
 				<div class="panel-body interviewDetail">
 					<div class="row">

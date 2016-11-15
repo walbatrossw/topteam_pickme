@@ -1,4 +1,5 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/companyinfo/module/companyInfoHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
 		const $searchBtn = $('#searchBtn');
 		const $searchCompanyName = $('#searchCompanyName');
 		const $searchjobTopIndex = $('#searchjobTopIndex');
+		const $insertBtn = $('#insertBtn');
 	
 		$searchjobTopIndex.val("${jobTopIndexCd}").attr("selected","selected");
 		$searchCompanyName.val("${searchCompnayName}");
@@ -38,55 +40,16 @@
 				location.href="/interview/companyInterviewListAllow";
 			}    
 		});
+		//면접후기쓰로가기
+		$insertBtn.click(function(){
+			location.href="/interview/companyInterviewInsertForm";
+		});
 		
 	});
 </script>
 <title>면접후기 리스트</title>
 </head>
 <body>
-	<!-- HEADER START -->
-	<div class="headers">
-		<div id="companyInfoList">
-			<div class="header_cont">
-				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
-					<h1>
-						<a class="companyInfoMain" href="/companyInfo"><strong>기업정보</strong></a>
-					</h1>
-					<ul>
-						<li class="menu1">
-							<a href="/review/companyReviewInsertForm">기업리뷰</a>
-						</li>
-						<li class="menu2">
-							<a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a>
-						</li>
-						<li class="menu3">
-							<a href="/review/companyReviewListAllow">기업리뷰 승인 목록</a>
-						</li>
-						<li class="menu4">
-							<a href="/interview/companyInterviewUnreceivedList">면접후기 비승인 목록</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //HEADER END -->
-	<div id="companyInfoList_wrapper">
-		<!-- 비주얼 이미지 start -->
-		<div class="sections" id="main_visual">
-			<div class="section_cont">
-				<div class="visual">
-					<ul>
-						<li class="list1"><span class="img"
-							style="z-index: 2; opacity: 1;"><img
-								src="/img/company/companymain.png" /></span>
-						<!-- 비주얼 이미지1 --></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- 비주얼 이미지 end -->
 	<div class="container">
 		<div class="container">
 			<div class="jumbotron text-center">
@@ -107,6 +70,9 @@
 					</div>
 					<div class="col-xs-2">			
 						<button class="btn .btn-default" id="searchBtn"><span class="glyphicon glyphicon-search"></span>검색</button>
+					</div>
+					<div class="col-xs-6">
+						<button class="btn .btn-default" id="insertBtn">면접후기 쓰로가기</button>
 					</div>
 				</div>
 				<c:forEach var="interviewListAllow" items="${interviewListAllow}">
