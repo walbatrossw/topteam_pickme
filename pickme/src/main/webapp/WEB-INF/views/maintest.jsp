@@ -30,7 +30,7 @@
 		});	
 	}
 </script>
-</head>
+</head> 
 
 <body>
 <!-- HEADER START -->
