@@ -22,8 +22,9 @@
 	$(document).ready(function(){
 		$('#resumeAddBtn').click(function(){
 			if($("#resumeName").val() ==  ""){
-				$("#error").text("이력서 이름을 입력해주세요");
+				$("#resumeNameError").text("이력서 이름은 반드시 입력해야 합니다");
 				$("#resumeName").focus();
+				return false;
 			} else {
 				$("#resumeAddForm").submit();
 			}	
@@ -463,12 +464,13 @@
 								<div class="col-sm-5">
 									<p>이력서 이름을 반드시 입력해주세요</p>
 									<input type="text" class="form-control" id="resumeName" name="resumeName" placeholder="이력서 이름을 입력해주세요">
+									<span id="resumeNameError" style="color: red"></span>
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-sm-2">
-									<h4 align="center">증명사진</h4>
+									<h4 align="center"><strong>증명사진</strong></h4>
 									<table class="table table-striped table-bordered table-hover">
 										<tr align="center">
 											<td>
@@ -486,7 +488,7 @@
 									</table>
 								</div>
 								<div class="col-sm-10">
-									<h4>개인신상정보</h4>
+									<h4><strong>개인신상정보</strong></h4>
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">한글이름</th>
@@ -529,7 +531,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>고등학교</h4>
+									<h4><strong>고등학교</strong></h4>
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">학교명</th>
@@ -556,7 +558,7 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>대학교</h4>
+									<h4><strong>대학교</strong></h4>
 									<div id="university">
 										<table class="table table-striped table-bordered table-hover">
 											<tr>
@@ -619,7 +621,7 @@
 							</div>
 							<div class="row" >
 								<div class="col-sm-12">
-								<h4>가족사항</h4>
+								<h4><strong>가족사항</strong></h4>
 									<div id="family">
 										<table class="table table-striped table-bordered table-hover">
 												<tr>
@@ -656,7 +658,7 @@
 							</div>	
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>병역사항</h4>
+									<h4><strong>병역사항</strong></h4>
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-1">병역구분</th>

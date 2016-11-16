@@ -139,8 +139,9 @@
 						<li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level"> 
 								<li><a href="#"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li> <!-- /memberCoverletterSave -->
-								<li><a href="#"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li> <!-- /memberCoverletterList -->
-								<li><a href="#"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li> <!-- /memberCoverletterSaveRecord -->
+								<li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li> <!-- /memberCoverletterList -->
+								<li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li> <!-- /memberCoverletterSaveRecord -->
+								
 							</ul>
 						</li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
@@ -157,7 +158,7 @@
 				</div>
 			</div>
 		</nav>
-		<!-- 사이드메뉴 전체 -->
+		<!-- 사이드메뉴 전체 END-->
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
@@ -294,7 +295,32 @@
 				</div>
 			</div>
 		</div>
-	</form>	
+	</form>
+	<iframe src="http://www.w3schools.com" width="300px">
+	</iframe>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	  <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">저장기록 리스트</h4>
+	        </div>
+	        
+	        <div class="modal-body">
+	          <iframe src="#" height="900px" width="1600px"></iframe>
+	        </div>
+	        
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>	
 	</div>
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
