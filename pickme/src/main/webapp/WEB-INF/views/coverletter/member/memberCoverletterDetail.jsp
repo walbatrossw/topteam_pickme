@@ -58,21 +58,21 @@
 								<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 나의 지원분야(서비스준비중)</a></li>
 							</ul>
 						</li>
-						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
 								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
 								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
-						<li><a href="forms.html"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="/memberCoverletterSave"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li>
 								<li><a href="/memberCoverletterList"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li>
 								<li><a href="/memberCoverletterSaveRecord"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li>
 							</ul>
 						</li>
-						<li><a href="forms.html"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="/coverletterPrint"><i class="fa fa-print fa-fw"></i> 인쇄하기</a></li>
 								<li><a href="/coverletterExport"><i class="fa fa-mail-forward fa-fw"></i> 내보내기</a></li>

@@ -57,7 +57,7 @@
 								<li><a href="#"> 나의 지원분야(서비스준비중)</a></li>
 							</ul>
 						</li>
-						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
 								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>

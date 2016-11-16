@@ -322,18 +322,25 @@
 			</div>
 		</div>
 	</form>
-		<!-- Modal -->
+		<!-- 불러오기 Modal -->
 		<div class="modal fade" id="importModal" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-			          	<h4 class="modal-title">내가 쓴 자소서 리스트</h4>
+			          	<h4 class="modal-title">불러오기</h4>
 			        </div>
 		
 					<div class="modal-body">
-						<!-- <iframe src="" height="" width="1600px"></iframe> -->
+						<div class="check panel panel-default">
+							<div class="panel-heading">
+                        		<strong>나의 자소서 리스트</strong>
+							</div>
+	                    	<div class="panel-body">
+	                    		<iframe src="/memberCoverletterListForModal" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    	</div>
+                    	</div>
 					</div>
 		
 			        <div class="modal-footer">
@@ -342,25 +349,33 @@
 				</div>
 		    </div>
 		</div>
+		<!-- 불러오기 Modal -->
+		<!-- 저장기록 Modal -->
 		<div class="modal fade" id="saveRecordModal" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-			          	<h4 class="modal-title">나의 저장기록 리스트</h4>
+			          	<h4 class="modal-title">저장기록</h4>
 			        </div>
-		
 					<div class="modal-body">
-						<!-- <iframe src="" height="" width="1600px"></iframe> -->
+						<div class="check panel panel-default">
+							<div class="panel-heading">
+                        		<strong>내가 저장한 자소서 기록</strong>
+							</div>
+	                    	<div class="panel-body">
+	                    		<iframe src="/memberCoverletterSaveRecord" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    	</div>
+                    	</div>
 					</div>
-		
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			        </div>
 				</div>
 		    </div>
 		</div>
+		<!-- 저장기록 Modal -->
 	</div>
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>

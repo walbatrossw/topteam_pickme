@@ -76,4 +76,5 @@ public class CoverletterDao {
 		logger.info("자기소개서 저장기록 : {}", mCletterCd.toString());
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
+	
 }

@@ -48,9 +48,8 @@
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
-								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
+								<li><a href="/resumeList"><i class="fa fa-th-list fa-fw"></i> 나의 이력서 리스트</a></li>
+								<li><a href="/resumeInsert"><i class="fa fa-pencil fa-fw"></i> 이력서 새로 쓰기</a></li>
 							</ul>
 						</li>	
 						<li>
@@ -60,10 +59,11 @@
 								<li><a href="#"> 나의 지원분야(서비스준비중)</a></li>
 							</ul>
 						</li>
-						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterList"> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"> 채용기업 리스트</a></li>
+								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
+								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
+								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
 						<!-- 사이드 메뉴항목 -->
@@ -72,6 +72,7 @@
 			</div>
 		</nav>
 		<!-- 사이드메뉴 전체 -->
+		<!-- 본문 전체 -->
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
@@ -118,6 +119,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- 본문 전체 -->
 	</div>
 </body>
 </html>

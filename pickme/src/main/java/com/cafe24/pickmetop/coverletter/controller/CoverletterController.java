@@ -30,12 +30,20 @@ public class CoverletterController {
 		return "/coverletter/coverletterIndex";
 	}
 	
-	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
+	// 01_01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 리스트페이지 맵핑
 	@RequestMapping(value="/memberCoverletterList", method = RequestMethod.GET)
 	public String memberCoverletterList(Model model){
 		model.addAttribute("memberCoverletterList", coverletterService.getMemberCoverletterList());
 		Logger.info("회원자기소개서 리스트 : {}", model.toString());
 		return "/coverletter/member/memberCoverletterList";
+	}
+	
+	// 01_02 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 모달페이지 맵핑
+	@RequestMapping(value="/memberCoverletterListForModal", method = RequestMethod.GET)
+	public String memberCoverletterListForMordal(Model model){
+		model.addAttribute("memberCoverletterListForModal", coverletterService.getMemberCoverletterList());
+		Logger.info("회원자기소개서 리스트 for Mordal : {}", model.toString());
+		return "/coverletter/member/memberCoverletterListForModal";
 	}
 	
 	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
@@ -81,4 +89,13 @@ public class CoverletterController {
 		Logger.info("memeberCoverletterArticleSaveRecord{}", model.toString());
 		return "/coverletter/member/memberCoverletterDetail";
 	}
+	
+	/*// 05 회원이 작성한 자기소개서 저장기록 리스트 : 모달페이지 맵핑
+	@RequestMapping(value="/memberCoverletterSaveRecordList", method = RequestMethod.GET)
+	public String memberCoverletterSaveRecordList(Model model, @RequestParam(value="mCletterCd") String mCletterCd){
+		Map<String, Object> memberCoverletter = coverletterService.getMemberCoverletter(mCletterCd);
+		model.addAttribute("memberCoverletterSaveRecordList", memberCoverletter.get("selectMemeberCoverletterArticleSaveRecordList"));
+		Logger.info("회원이 작성한 자기소개서 저장기록 리스트 {}", model.toString());
+		return "/coverletter/member/memberCoverletterSaveRecordList"; 
+	}*/
 }
