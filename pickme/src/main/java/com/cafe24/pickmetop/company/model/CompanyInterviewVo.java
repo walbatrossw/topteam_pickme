@@ -14,9 +14,9 @@ public class CompanyInterviewVo {
 	private int interviewLike;
 	private int interviewDislike;
 	private String interviewRegDate;
-	private String interviewModidate;
+	private String interviewModiDate;
 	private int interviewAllow;
-	private String interviewAllowdate;
+	private String interviewAllowDate;
 	private String interviewGrantor;
 	
 	private String companyName;
@@ -100,11 +100,11 @@ public class CompanyInterviewVo {
 	public void setInterviewRegDate(String interviewRegDate) {
 		this.interviewRegDate = interviewRegDate;
 	}
-	public String getInterviewModidate() {
-		return interviewModidate;
+	public String getInterviewModiDate() {
+		return interviewModiDate;
 	}
-	public void setInterviewModidate(String interviewModidate) {
-		this.interviewModidate = interviewModidate;
+	public void setInterviewModiDate(String interviewModiDate) {
+		this.interviewModiDate = interviewModiDate;
 	}
 	public int getInterviewAllow() {
 		return interviewAllow;
@@ -112,11 +112,11 @@ public class CompanyInterviewVo {
 	public void setInterviewAllow(int interviewAllow) {
 		this.interviewAllow = interviewAllow;
 	}
-	public String getInterviewAllowdate() {
-		return interviewAllowdate;
+	public String getInterviewAllowDate() {
+		return interviewAllowDate;
 	}
-	public void setInterviewAllowdate(String interviewAllowdate) {
-		this.interviewAllowdate = interviewAllowdate;
+	public void setInterviewAllowDate(String interviewAllowDate) {
+		this.interviewAllowDate = interviewAllowDate;
 	}
 	public String getInterviewGrantor() {
 		return interviewGrantor;
@@ -145,8 +145,8 @@ public class CompanyInterviewVo {
 				+ ", interviewAnsewer=" + interviewAnsewer + ", interviewLevel=" + interviewLevel
 				+ ", interviewPasscheck=" + interviewPasscheck + ", interviewLike=" + interviewLike
 				+ ", interviewDislike=" + interviewDislike + ", interviewRegdate=" + interviewRegDate
-				+ ", interviewModidate=" + interviewModidate + ", interviewAllow=" + interviewAllow
-				+ ", interviewAllowdate=" + interviewAllowdate + ", interviewGrantor=" + interviewGrantor
+				+ ", interviewModidate=" + interviewModiDate + ", interviewAllow=" + interviewAllow
+				+ ", interviewAllowdate=" + interviewAllowDate + ", interviewGrantor=" + interviewGrantor
 				+ ", companyName=" + companyName + ", jobTopIndexName=" + jobTopIndexName + "]";
 	}
 	

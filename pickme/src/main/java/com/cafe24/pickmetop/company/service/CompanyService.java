@@ -56,6 +56,30 @@ public class CompanyService {
 	}
 	
 	/*---------------------------------------------------------------------------------- 
+	* 									연봉정보 관련
+	* ---------------------------------------------------------------------------------*/ 
+	//연봉정보 등록
+	public int addCompanySalary(CompanySalaryVo companySalaryVo){
+		companySalaryVo.setCompanyCd(companyDao.selectCompanyInfoByCompanyCd(companySalaryVo.getCompanyName()));
+		companySalaryVo.setLoginId("kji212@naver.com");
+		return companyDao.insertCompanySalary(companySalaryVo);
+	}
+	//연봉정보 비승인 목록
+	public Map<String, Object> getCompanySalaryUnreceivedList(int page){
+		//비승인목록 페이지 처리
+		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
+		//승인상태값 0로 비승인상태인것만 갯수를 얻어와서 마지막페이지 SET
+		String tbName = "tb_company_salary";
+		String tbColumn = "salary_allow";
+		pageHelper.setLastPage(companyDao.selectAllowTotalCount(tbName, tbColumn, 0),MAX_LINE_COUNT);
+		Map<String, Object> salaryUnreceivedMap = new HashMap<String, Object>();
+		salaryUnreceivedMap.put("startPage", pageHelper.startPage(page, MAX_PAGE_COUNT));
+		salaryUnreceivedMap.put("endPage", pageHelper.endPage());
+		salaryUnreceivedMap.put("interviewListUnreceived", companyDao.selectCompanySalaryListBySalaryUnreceived(pageHelper));
+		return salaryUnreceivedMap;
+	}
+	
+	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련
 	 * ---------------------------------------------------------------------------------*/ 
 	//면접후기 등록
@@ -124,9 +148,9 @@ public class CompanyService {
 		return companyDao.deleteCompanyInterview(interviewCd);
 	}
 	
-	 /*---------------------------------------------------------------------------------- 
-	 * 									기업리뷰 관련
-	 * ---------------------------------------------------------------------------------*/ 
+	/*---------------------------------------------------------------------------------- 
+	* 									기업리뷰 관련
+	* ---------------------------------------------------------------------------------*/ 
 	 
 	//기업리뷰목록(승인)
 	public Map<String, Object> getCompanyReviewAllowList(int page, String jobTopIndexCd, String searchCompanyName){

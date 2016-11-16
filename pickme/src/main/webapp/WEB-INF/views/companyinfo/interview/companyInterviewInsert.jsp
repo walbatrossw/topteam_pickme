@@ -28,16 +28,6 @@
 		      }     
 		}).autocomplete("widget").addClass("fixed-height");
 		
-		//별점관련
-		$('.kv-svg').rating({
-	            theme: 'krajee-svg',
-	            filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
-	            emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
-		});
-		$('.kv-svg').on('change', function () {
-	    	console.log('Rating selected: ' + $(this).val());
-		});
-		
 		//등록버튼클릭 이벤트
 		$('#companyInterviewInsertBtn').click(function(){
 			$('#companyInterviewInsertForm').submit();

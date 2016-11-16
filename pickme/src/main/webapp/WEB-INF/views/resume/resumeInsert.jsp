@@ -4,32 +4,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이력서 및 자기소개서 메인페이지</title>
+<title>이력서 입력페이지</title>
 <link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="css/coverletter/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-<link href="css/coverletter/plugins/timeline/timeline.css" rel="stylesheet">
+<link href="css/coverletter/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 <link href="css/coverletter/sb-admin.css" rel="stylesheet">
 <script src="js/coverletter/jquery-1.10.2.js"></script>
 <script src="js/coverletter/bootstrap.min.js"></script>
 <script src="js/coverletter/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/coverletter/plugins/morris/raphael-2.1.0.min.js"></script>
-<script src="js/coverletter/plugins/morris/morris.js"></script>
+<script src="js/coverletter/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/coverletter/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="js/coverletter/sb-admin.js"></script>
-<script src="js/coverletter/demo/dashboard-demo.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	//유효성 검사(이력서 이름만, 나머지는 null허용)
 	$(document).ready(function(){
 		$('#resumeAddBtn').click(function(){
 			if($("#resumeName").val() ==  ""){
-				$("#error").text("이력서 이름을 입력해주세요");
+				$("#resumeNameError").text("이력서 이름은 반드시 입력해야 합니다");
 				$("#resumeName").focus();
+				return false;
 			} else {
 				$("#resumeAddForm").submit();
 			}	
@@ -56,7 +51,7 @@
 		$universityAddBtn.click(function(){
 			univerNum++;
 			$('#fieldUniversity').append(
-				'<table class="university table table-striped">'+
+				'<table class="university table table-striped table-bordered table-hover">'+
 					'<tr>'+
 						'<th class="col-sm-3">분류</th>'+
 						'<th class="col-sm-3">학교명</th>'+
@@ -122,7 +117,7 @@
 		$familyAddBtn.click(function(){
 			familyNum++;
 			$('#fieldFamily').append(
-				'<table class="family table table-striped">'+
+				'<table class="family table table-striped table-bordered table-hover">'+
 					'<tr>'+
 						'<th class="col-sm-2">관계</th>'+
 						'<th class="col-sm-2">이름</th>'+
@@ -162,7 +157,7 @@
 		$certificateAddBtn.click(function(){
 			certifiNum++;
 			$('#fieldCertificate').append(
-				'<table class="certificate table table-striped">'+
+				'<table class="certificate table table-striped table-bordered table-hover">'+
 					'<tr>'+
 						'<th class="col-sm-2">자격증명</th>'+
 						'<th class="col-sm-2">등급</th>'+
@@ -199,7 +194,7 @@
 		$careerAddBtn.click(function(){
 			careerNum++;
 			$('#fieldCareer').append(
-				'<table class="career table table-striped">'+
+				'<table class="career table table-striped table-bordered table-hover">'+
 					'<tr>'+
 						'<th class="col-sm-2">회사명</th>'+
 						'<th class="col-sm-2">직급</th>'+
@@ -244,7 +239,7 @@
 			$languageAddBtn.click(function(){
 				langNum++;
 				$('#fieldLanguage').append(
-					'<table class="language table table-striped">'+
+					'<table class="language table table-striped table-bordered table-hover">'+
 						'<tr>'+
 							'<th class="col-sm-3">외국어명</th>'+
 							'<th class="col-sm-3">회화구사수준</th>'+
@@ -304,7 +299,7 @@
 			$awardAddBtn.click(function(){
 				awardNum++;
 				$('#fieldAward').append(
-					'<table class="award table table-striped">'+
+					'<table class="award table table-striped table-bordered table-hover">'+
 						'<tr>'+
 							'<th class="col-sm-3">수상명</th>'+
 							'<th class="col-sm-4">수상내용</th>'+
@@ -335,7 +330,7 @@
 			$trainingAddBtn.click(function(){
 				trainingNum++;
 				$('#fieldTraining').append(
-					'<table class="training table table-striped">'+
+					'<table class="training table table-striped table-bordered table-hover">'+
 						'<tr>'+
 							'<th class="col-sm-3">국가</th>'+
 							'<th class="col-sm-3">기관/단체</th>'+
@@ -373,7 +368,7 @@
 			$clubAddBtn.click(function(){
 				clubNum++;
 				$('#fieldClub').append(
-					'<table class="club table table-striped">'+
+					'<table class="club table table-striped table-bordered table-hover">'+
 						'<tr>'+
 							'<th class="col-sm-1">활동명</th>'+
 							'<th class="col-sm-1">주관기관</th>'+
@@ -431,7 +426,7 @@
 						<!-- 왼쪽상단 검색폼 -->
 						<!-- 사이드 메뉴항목 -->
 						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 및 자소서 메인</a>
+							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자기소개서 Main</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
@@ -449,8 +444,9 @@
 						</li>
 						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterList"> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"> 채용기업 리스트</a></li>
+								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
+								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
+								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
 						<!-- 사이드 메뉴항목 -->
@@ -462,19 +458,20 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">나의 이력서 및 자소서</h1>
+					<h1 class="page-header">이력서</h1>
 					<form id="resumeAddForm" action="/resumeInsert" method="post" enctype="multipart/form-data">	
 							<div class="row">
 								<div class="col-sm-5">
-									<h3>나의 이력서</h3>
+									<p>이력서 이름을 반드시 입력해주세요</p>
 									<input type="text" class="form-control" id="resumeName" name="resumeName" placeholder="이력서 이름을 입력해주세요">
+									<span id="resumeNameError" style="color: red"></span>
 								</div>
 							</div>
 							<hr>
 							<div class="row">
 								<div class="col-sm-2">
-									<h4 align="center">증명사진</h4>
-									<table class="table table-striped">
+									<h4 align="center"><strong>증명사진</strong></h4>
+									<table class="table table-striped table-bordered table-hover">
 										<tr align="center">
 											<td>
 												<div class="fileinput fileinput-new" data-provides="fileinput">
@@ -491,8 +488,8 @@
 									</table>
 								</div>
 								<div class="col-sm-10">
-									<h4>개인신상정보</h4>
-									<table class="table table-striped">
+									<h4><strong>개인신상정보</strong></h4>
+									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">한글이름</th>
 											<th class="col-sm-3">영문이름</th>
@@ -534,8 +531,8 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>고등학교</h4>
-									<table class="table table-striped">
+									<h4><strong>고등학교</strong></h4>
+									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">학교명</th>
 											<th class="col-sm-3">분류</th>
@@ -561,9 +558,9 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>대학교</h4>
+									<h4><strong>대학교</strong></h4>
 									<div id="university">
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-3">분류</th>
 												<th class="col-sm-3">학교명</th>
@@ -624,9 +621,9 @@
 							</div>
 							<div class="row" >
 								<div class="col-sm-12">
-								<h4>가족사항</h4>
+								<h4><strong>가족사항</strong></h4>
 									<div id="family">
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 												<tr>
 													<th class="col-sm-2">관계</th>
 													<th class="col-sm-2">이름</th>
@@ -661,8 +658,8 @@
 							</div>	
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>병역사항</h4>
-									<table class="table table-striped">
+									<h4><strong>병역사항</strong></h4>
+									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-1">병역구분</th>
 											<th class="col-sm-1">군별</th>
@@ -725,7 +722,7 @@
 								<div class="col-sm-12">
 									<h4>자격증</h4>
 									<div id="certificate">
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 												<tr>
 													<th class="col-sm-2">자격증명</th>
 													<th class="col-sm-2">등급</th>
@@ -759,7 +756,7 @@
 								<div class="col-sm-12">
 									<h4>경력사항</h4>
 									<div id="career">
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-2">회사명</th>
 												<th class="col-sm-2">직급</th>
@@ -802,7 +799,7 @@
 								<div class="col-sm-12">
 									<h4>어학능력</h4>
 									<div id="language">	
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-3">외국어명</th>
 												<th class="col-sm-3">회화구사수준</th>
@@ -860,7 +857,7 @@
 								<div class="col-sm-12">
 									<h4>수상경력</h4>
 									<div id="award">
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-3">수상명</th>
 												<th class="col-sm-4">수상내용</th>
@@ -889,7 +886,7 @@
 								<div class="col-sm-12">
 									<h4>국내외 연수 및 교육</h4>
 									<div id="training">	
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-3">국가</th>
 												<th class="col-sm-3">기관/단체</th>
@@ -925,7 +922,7 @@
 								<div class="col-sm-12">
 									<h4>동아리(동호회) 및 대외활동</h4>
 									<div id="club">	
-										<table class="table table-striped">
+										<table class="table table-striped table-bordered table-hover">
 											<tr>
 												<th class="col-sm-1">활동명</th>
 												<th class="col-sm-1">주관기관</th>
@@ -961,7 +958,7 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h4>기타 및 포트폴리오</h4>
-									<table class="table table-striped">
+									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">포트폴리오 및 기타사항</th>
 											<th class="col-sm-1">시작일자</th>

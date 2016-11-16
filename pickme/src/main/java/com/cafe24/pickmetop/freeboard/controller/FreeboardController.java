@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FreeboardController {
 	final static Logger Logger = LoggerFactory.getLogger(FreeboardController.class);
 	
-	
+	//입력처리
 	@RequestMapping(value="/freeboardInsert", method = RequestMethod.GET)
 	public String freeboardInsert(){
-		return "/freeboard/freeboardInsert";
+		return "redirect:/freeboardList";
 	}
+
 	
+	//리스트
+	@RequestMapping(value="/freeboardList", method = RequestMethod.GET)
+	public String freeboardList(){
+		return "/freeboard/freeboardList";
+	}
 	
 }

@@ -149,4 +149,20 @@ public class CompanyDao {
 	public int deleteCompanyInterview(int interviewCd){
 		return sqlSessionFactoryCompany.delete(NS + ".deleteCompanyInterview", interviewCd);
 	}
+	/*
+	 * ----------------------------------------------------------------------------------------
+	 * 
+	 * 									  연봉정보 관련
+	 * 
+	 * ----------------------------------------------------------------------------------------
+	 * */
+	//연봉정보 등록
+	public int insertCompanySalary(CompanySalaryVo companySalaryVo){
+		return sqlSessionFactoryCompany.insert(NS + ".insertCompanySalary", companySalaryVo);
+	}
+	//연봉정보 미승인 리스트
+	public List<CompanySalaryVo> selectCompanySalaryListBySalaryUnreceived(PageHelper pageHelper){
+		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanySalaryListBySalaryUnreceived", pageHelper);
+	}
+	
 }

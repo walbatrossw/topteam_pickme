@@ -39,7 +39,7 @@
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(0, 0, 0, 0.2);">
 				<h1><a class="companyInfoMain" href="/"><img src="/img/main/pickme_logo.png" width="200px;"></a></h1>
-				<h1 class="adminPage"><a class="companyInfoMain" href="/admin"><strong>관리자 페이지</strong></a></h1>
+				<h1 class="adminPage"><a class="companyInfoMain" href="/admin"><strong>관리자 PAGE</strong></a></h1>
 					<ul class="menu">
 						<li>
 							<a href="/diary">채용공고</a>
@@ -50,11 +50,11 @@
 							</div>
 						</li>
 						<li>
-							<a href="/memberCoverletterList">자기소개서</a>
+							<a href="/memberCoverletterList">이력서 & 자소서</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/memberCoverletterList">자기소개서 </a></li>
 									<li><a href="/resumeList">이력서 </a></li>
+									<li><a href="/memberCoverletterList">자기소개서 </a></li>
 								</ul>
 							</div>
 						</li>

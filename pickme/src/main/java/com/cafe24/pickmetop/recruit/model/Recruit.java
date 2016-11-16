@@ -7,48 +7,59 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 
 public class Recruit {
-
+	
+	private List<Recruit> recruitList;
+	private List<RecruitCompanyJobVo> jobVo;
 	private String companyName;
 	private String companyCd;
+	private String recruitCompanyCd;
 	private String recruitName;
 	private String recruitBegindate;
 	private String recruitEnddate;
 	private String recruitImgName;
+	
+	private String recruitJobCd;
+	private String workStatus;
+	private String jobDetail;
+	private String jobMidIndexCds;
+	
+	private String cCletterArticleCd;
+	private String cCletterRecruitJobCd;
+	private String cCletterArticles;
+	
 	private MultipartFile recruitJobFile;
 	private List<String> jobMidIndexCd;
 	private List<String> recruitJobWorkstatus;
 	private List<String> recruitJobJobdetail;
 	private List<String> recruitJobEducation;
 	private List<CoverletterCompanyJobVo> cCletterArticle;
-	private List<Recruit> recruitList;
-	private String recruitCompanyCd;
+	
 	private String companySite;
 	private String begin;
 	private String end;
-	private String workStatus;
-	private String jobDetail;
-	private String recruitJobCd;
+
+
 	
-	
-	
-	
-	public String getRecruitJobCd() {
-		return recruitJobCd;
+	public List<RecruitCompanyJobVo> getJobVo() {
+		return jobVo;
 	}
-	public void setRecruitJobCd(String recruitJobCd) {
-		this.recruitJobCd = recruitJobCd;
+	public void setJobVo(List<RecruitCompanyJobVo> jobVo) {
+		this.jobVo = jobVo;
 	}
-	public String getWorkStatus() {
-		return workStatus;
+	public String getJobMidIndexCds() {
+		return jobMidIndexCds;
 	}
-	public void setWorkStatus(String workStatus) {
-		this.workStatus = workStatus;
+	public void setJobMidIndexCds(String jobMidIndexCds) {
+		this.jobMidIndexCds = jobMidIndexCds;
 	}
-	public String getJobDetail() {
-		return jobDetail;
+	public void setcCletterArticleCd(String cCletterArticleCd) {
+		this.cCletterArticleCd = cCletterArticleCd;
 	}
-	public void setJobDetail(String jobDetail) {
-		this.jobDetail = jobDetail;
+	public void setcCletterRecruitJobCd(String cCletterRecruitJobCd) {
+		this.cCletterRecruitJobCd = cCletterRecruitJobCd;
+	}
+	public void setcCletterArticles(String cCletterArticles) {
+		this.cCletterArticles = cCletterArticles;
 	}
 	public String getCompanyName() {
 		return companyName;
@@ -152,20 +163,48 @@ public class Recruit {
 	public void setEnd(String end) {
 		this.end = end;
 	}
+	public String getWorkStatus() {
+		return workStatus;
+	}
+	public void setWorkStatus(String workStatus) {
+		this.workStatus = workStatus;
+	}
+	public String getJobDetail() {
+		return jobDetail;
+	}
+	public void setJobDetail(String jobDetail) {
+		this.jobDetail = jobDetail;
+	}
+	public String getRecruitJobCd() {
+		return recruitJobCd;
+	}
+	public void setRecruitJobCd(String recruitJobCd) {
+		this.recruitJobCd = recruitJobCd;
+	}
+	public String getcCletterArticleCd() {
+		return cCletterArticleCd;
+	}
+	public String getcCletterRecruitJobCd() {
+		return cCletterRecruitJobCd;
+	}
+	public String getcCletterArticles() {
+		return cCletterArticles;
+	}
 	@Override
 	public String toString() {
-		return "Recruit [companyName=" + companyName + ", companyCd=" + companyCd + ", recruitName=" + recruitName
-				+ ", recruitBegindate=" + recruitBegindate + ", recruitEnddate=" + recruitEnddate + ", recruitImgName="
-				+ recruitImgName + ", recruitJobFile=" + recruitJobFile + ", jobMidIndexCd=" + jobMidIndexCd
-				+ ", recruitJobWorkstatus=" + recruitJobWorkstatus + ", recruitJobJobdetail=" + recruitJobJobdetail
-				+ ", recruitJobEducation=" + recruitJobEducation + ", cCletterArticle=" + cCletterArticle
-				+ ", recruitList=" + recruitList + ", recruitCompanyCd=" + recruitCompanyCd + ", companySite="
-				+ companySite + ", begin=" + begin + ", end=" + end + "]";
+		return "Recruit [recruitList=" + recruitList + ", companyName=" + companyName + ", companyCd=" + companyCd
+				+ ", recruitCompanyCd=" + recruitCompanyCd + ", recruitName=" + recruitName + ", recruitBegindate="
+				+ recruitBegindate + ", recruitEnddate=" + recruitEnddate + ", recruitImgName=" + recruitImgName
+				+ ", recruitJobCd=" + recruitJobCd + ", workStatus=" + workStatus + ", jobDetail=" + jobDetail
+				+ ", jobMidIndexCds=" + jobMidIndexCds + ", cCletterArticleCd=" + cCletterArticleCd
+				+ ", cCletterRecruitJobCd=" + cCletterRecruitJobCd + ", cCletterArticles=" + cCletterArticles
+				+ ", recruitJobFile=" + recruitJobFile + ", jobMidIndexCd=" + jobMidIndexCd + ", recruitJobWorkstatus="
+				+ recruitJobWorkstatus + ", recruitJobJobdetail=" + recruitJobJobdetail + ", recruitJobEducation="
+				+ recruitJobEducation + ", cCletterArticle=" + cCletterArticle + ", companySite=" + companySite
+				+ ", begin=" + begin + ", end=" + end + "]";
 	}
-	
 
 	
 	
-
 	
 }

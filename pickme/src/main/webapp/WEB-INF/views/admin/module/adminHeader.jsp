@@ -87,6 +87,7 @@
 		<ul class="toggle">
 			<li class="fa fa-arrow-circle-right"><a href="/review/companyReviewUnreceivedList">기업리뷰 미승인 목록</a></li>
 			<li class="fa fa-arrow-circle-right"><a href="/interview/companyInterviewUnreceivedList">면접후기 미승인 목록</a></li>
+			<li class="fa fa-arrow-circle-right"><a href="/salary/companySalarywUnreceivedList">연봉정보 미승인 목록</a></li>
 		</ul>
 		<h3>Users</h3>
 		<ul class="toggle">

@@ -40,7 +40,7 @@ public class ResumeController {
 	public String resumeList(Model model){
 		model.addAttribute("resumeList", resumeService.getResumeList());
 		Logger.info("이력서 리스트 : {}", model.toString());
-		return "/resumeList";
+		return "/resume/resumeList";
 	}
 	
 	//02 이력서 입력화면(이력서 입력폼)

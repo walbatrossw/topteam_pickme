@@ -284,8 +284,8 @@
 			tb_company_info 
 		SET
 			company_total_rate = (SELECT a.total 
-		FROM (SELECT (c.company_total_rate + r.review_rate) as total from tb_company_info c, tb_company_review r
-				where r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
+									FROM (SELECT (c.company_total_rate + r.review_rate) as total from tb_company_info c, tb_company_review r
+									where r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
 										
 		WHERE company_cd = (SELECT company_cd FROM tb_company_review  WHERE company_review_cd = #{companyReviewCd})
 	</update>
@@ -304,9 +304,11 @@
 -->
 
 <!-- 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-									면접후기 관련 시작
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									
+									면접후기 관련
+									
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->
 <!-- 면접후기 등록 -->
 	<insert id="insertCompanyInterview" parameterType="com.cafe24.pickmetop.company.model.CompanyInterviewVo">
@@ -422,4 +424,70 @@
 		WHERE
 			interview_cd = #{interviewCd}
 	</delete>
+	
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									
+									연봉정보 관련
+									
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->
+	<insert id="insertCompanySalary" parameterType="com.cafe24.pickmetop.company.model.CompanySalaryVo">
+		INSERT INTO tb_company_salary(
+			login_id,
+			company_cd,
+			company_name,
+			job_topindex_cd,
+			salary_workstate,
+			salary_worklevel,
+			salary_basepay,
+			salary_wrokstatus,
+			salary_period,
+			salary_sum,
+			salary_regdate,
+			salary_modidate
+		) VALUES (
+			#{loginId},
+			#{companyCd},
+			#{companyName},
+			#{jobTopIndexCd},
+			#{salaryWorkstate},
+			#{salaryWorklevel},
+			#{salaryBasepay},
+			#{salaryWorkstatus},
+			#{salaryPeriod},
+			#{salarySum},
+			now(),
+			now()
+		)
+	</insert>
+	
+	<!-- 연봉정보 비승인 리스트 -->
+	<select id="selectCompanySalaryListBySalaryUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanySalaryVo">
+		SELECT
+			salary_cd as salaryCd,
+			company_cd as companyCd,
+			company_name as companyName,
+			login_id as loginId,
+			salary_worklevel as salaryWorklevel,
+			salary_basepay as salaryBasepay,
+			salary_regdate as salaryRegDate
+		FROM
+			tb_company_salary
+		WHERE
+			salary_allow = 0
+		ORDER BY
+			salary_regdate DESC
+		LIMIT #{startRow}, #{linePerPage}
+	</select>
+	
+	<!-- 연봉정보 통계테이블에 업데이트 -->
+	<update id="updateCompanyStatisticsSalary" parameterType="java.util.Map">
+		UPDATE
+			tb_company_statistics
+		SET
+			${tbColumn} =  #{salaryBasepay} + (SELECT ${tbColumn} FROM tb_company_statistics WHERE company_name = #{companyName})
+		WHERE
+			company_name = #{companyName}
+	</update>
 </mapper>

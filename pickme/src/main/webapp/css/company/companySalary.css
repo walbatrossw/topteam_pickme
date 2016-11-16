@@ -1,0 +1,24 @@
+@CHARSET "EUC-KR";
+
+#companySalaryInsertForm{
+	float: left;
+    width: 70%;
+	padding: 40px 40px 20px 40px;
+}
+#companySalaryInsertForm .row{
+	padding : 0px 0px 20px 0px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#companySalaryInsertForm .col-xs-1{
+	padding: 10px 0px 0px 0px;
+}
+#companySalaryInsertForm {
+}
+.sidebanner{
+	float: right;
+	width: 30%;
+}
+.sidebanner .banner{
+	width: 100%;
+}

@@ -61,6 +61,35 @@ public class CompanyController {
 		model.addAttribute("companyInfoList", companyInfoMap.get("companyInfoList"));
 		return "/companyinfo/companyInfoList";
 	}
+	/*---------------------------------------------------------------------------------- 
+	 * 
+	 * 									연봉정보 관련 맵핑
+	 * 
+	 * ---------------------------------------------------------------------------------*/	
+	//연봉정보 등록화면
+	@RequestMapping(value = "/salary/companySalaryInsertForm", method = RequestMethod.GET)
+	public String companySalaryInsertForm(Model model) {
+		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
+		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
+		return "/companyinfo/salary/companySalaryInsert";
+	}
+	//연봉정보 등록처리
+	@RequestMapping(value = "/salary/companySalaryInsert", method = RequestMethod.POST)
+	public String companySalaryInsert(CompanySalaryVo companySalaryVo){
+		logger.info("command param companyReview:{}", companySalaryVo.toString());
+		companyService.addCompanySalary(companySalaryVo);
+		return "redirect:/companyInfo";
+	}
+	//연봉정보 비승인 리스트(관리자) 맵핑
+	@RequestMapping(value = "/salary/companySalarywUnreceivedList", method = RequestMethod.GET)
+	public String companySalaryUnreceivedList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+		if(page < 1){
+			page = 1;
+		}
+		model.addAttribute("page", page);
+		model.addAttribute("salaryUnreceivedMap", companyService.getCompanySalaryUnreceivedList(page));
+		return "/admin/companyinfo/salary/companySalaryUnreceivedList";
+	}
 	
 	/*---------------------------------------------------------------------------------- 
 	 * 
@@ -78,7 +107,7 @@ public class CompanyController {
 	@RequestMapping(value = "/interview/companyInterviewInsert", method = RequestMethod.POST)
 	public String companyInterviewInsert(Model model, CompanyInterviewVo companyInterviewVo) {
 		companyService.addCompnayInterview(companyInterviewVo);
-		return "/companyinfo/companymain";
+		return "redirect:/companyInfo";
 	}
 	//면접후기 관리자 디테일 화면 맵핑
 	@RequestMapping(value = "/interview/companyInterviewUnreceivedDetail", method = RequestMethod.GET)
@@ -217,7 +246,7 @@ public class CompanyController {
 	public String companyReviewInsert(CompanyReviewVo companyReviewVo){
 		logger.info("command param companyReview:{}", companyReviewVo.toString());
 		companyService.addCompanyReview(companyReviewVo);
-		return "/companyinfo/companymain";
+		return "redirect:/companyInfo";
 	}
 	
 	//기업리뷰 등록화면 맵핑

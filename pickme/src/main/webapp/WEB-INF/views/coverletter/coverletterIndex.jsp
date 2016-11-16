@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이력서 및 자기소개서 메인페이지</title>
+<title>이력서 & 자기소개서 Main</title>
 <link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="css/coverletter/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
 						<!-- 왼쪽상단 검색폼 -->
 						<!-- 사이드 메뉴항목 -->
 						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 및 자소서 메인</a>
+							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자기소개서 Main</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
@@ -59,8 +59,9 @@
 						</li>
 						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterList"> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"> 채용기업 리스트</a></li>
+								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
+								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
+								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
 						<!-- 사이드 메뉴항목 -->

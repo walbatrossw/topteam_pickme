@@ -55,12 +55,6 @@ public class CoverletterController {
 		Logger.info("companyOneJobCletterInfo : {}", companyOneJobCletter.get("companyOneJobCletterInfo").toString());
 		model.addAttribute("companyOneJobArticleList", companyOneJobCletter.get("companyOneJobArticleList"));
 		Logger.info("companyOneJobArticleList : {}", companyOneJobCletter.get("companyOneJobArticleList").toString());
-		// 일반자기소개서로 맵핑
-		/*if(recruitJobCd.equals("recruit_company_job_0001")){
-			model.addAttribute("companyOneJobCletterInfo", companyOneJobCletter.get("companyOneJobCletterInfo").toString());
-			model.addAttribute("companyOneJobArticleList", companyOneJobCletter.get("companyOneJobArticleList"));
-			return "/coverletter/member/defaultCoverletterInsert";
-		}*/
 		return "/coverletter/member/memberCoverletterInsert";
 	}
 	

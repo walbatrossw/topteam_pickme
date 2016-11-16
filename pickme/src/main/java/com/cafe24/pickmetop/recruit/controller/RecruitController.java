@@ -40,9 +40,10 @@ public class RecruitController {
 	
 	/* 채용 수정 화면*/
 	@RequestMapping(value="/recruitUpdateForm")
-	public String recruitUpdateForm(
+	public String recruitUpdateForm(Model model,
 			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd){
 		logger.info("recruitCompanyCd : {}",recruitCompanyCd);
+		model.addAttribute("updateList",recruitService.recruitUpdateForm(recruitCompanyCd));
 		return "/recruit/company/companyRecruitUpdate";
 	}
 	
