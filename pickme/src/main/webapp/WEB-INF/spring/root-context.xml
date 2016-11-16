@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -16,23 +15,23 @@
 	
 	<!-- Database Setting -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        
-        
-      	<!-- <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8"/>
-        <property name="username" value="pickmetop" />
-        <property name="password" value="qwerty1205!" /> -->
-       
-      	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-       	<property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property name="username" value="pickmetop" />
-        <property name="password" value="qwerty1205!" />
+    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    
+    <!-- CAFE24 배포용 -->
+   	<!--  <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8"/>
+    <property name="username" value="pickmetop" />
+    <property name="password" value="qwerty1205!" /> -->
+    
+	<!-- KSMART 작업용 -->
+    <property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
+    <property name="username" value="pickmetop" />
+    <property name="password" value="qwerty1205!" />
        	
-       	<!--  박학철 집에서 작업용   -->
-       	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
-      	<property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property name="username" value="root" />
-        <property name="password" value="java0000" /> -->
-      
+    <!--  로컬DB작업용   -->
+    <!-- <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
+    <property name="username" value="root" />
+    <property name="password" value="java0000" /> -->
+
     </bean>
 	
 	<!-- transaction manager -->    
@@ -112,118 +111,4 @@
 	<!-- Mapper Setting -->
 	
 </beans>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- 예은이 가추가한것 
-	<mvc:default-servlet-handler/>
-	 -->
-	
-	<!-- Database Setting -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        
-        
-      	<!-- <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8"/>
-        <property name="username" value="pickmetop" />
-        <property name="password" value="qwerty1205!" /> -->
-       
-      	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-       	<property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property name="username" value="pickmetop" />
-        <property name="password" value="qwerty1205!" />
-       	
-       	<!--  박학철 집에서 작업용   -->
-       	<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> 
-      	<property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property name="username" value="root" />
-        <property name="password" value="java0000" /> -->
-      
-    </bean>
-	
-	<!-- transaction manager -->    
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<!-- Mapper Setting -->
-    
-    <!-- 관리자 -->
-    <bean id="sqlSessionFactoryAdmin" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/admin/repository/AdminMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionAdmin" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryAdmin" />
-	</bean>
-	
-	<!-- 회원 관리 -->
-    <bean id="sqlSessionFactoryMember" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/member/repository/MemberMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionMember" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryMember" />
-	</bean>
-	
-	<!-- 채용 관리 -->
-	<!-- 예은이 가추가한것 
-	<mybatis:scan base-package="com.cafe24.pickmetop.recruit.repository.RecruitMapper" factory-ref="SqlSessionFactoryReCruit"  />
-	 -->
-   <bean id="sqlSessionFactoryRecruit" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/recruit/repository/RecruitMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionRecruit" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryRecruit" />
-	</bean> 
-	
-	<!-- 이력서 관리 -->
-    <bean id="sqlSessionFactoryResume" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/resume/repository/ResumeMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionResume" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryResume" />
-	</bean>
-	
-	<!-- 자기소개서 관리 -->
-    <bean id="sqlSessionFactoryCoverletter" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/coverletter/repository/CoverletterMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionCoverletter" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryCoverletter" />
-	</bean>
-	
-	<!-- 기업정보 관리 -->
-    <bean id="sqlSessionFactoryCompany" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/company/repository/CompanyMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionCompany" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryCompany" />
-	</bean>
-	
-	<!-- 자유게시판 관리 -->
-    <bean id="sqlSessionFactoryFreeboard" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/freeboard/repository/FreeboardMapper.xml"/>
-    </bean>
-    <bean id="sqlSessionFreeboard" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryCoverletter" />
-	</bean>
-	
-	<!-- Mapper Setting -->
-	
-</beans>
->>>>>>> branch 'master' of https://github.com/walbatrossw/topteam_pickme.git
+

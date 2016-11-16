@@ -41,7 +41,7 @@
 			}    
 		});
 		
-		//기업리뷰 쓰로가기
+		//기업리뷰 쓰러가기
 		$insertBtn.click(function(){
 			location.href="/review/companyReviewInsertForm";
 		});
@@ -71,7 +71,7 @@
 					<button class="btn .btn-default" id="searchBtn"><span class="glyphicon glyphicon-search"></span>검색</button>
 				</div>
 				<div class="col-xs-6">
-					<button class="btn .btn-default" id="insertBtn">기업리뷰 쓰로가기</button>
+					<button class="btn .btn-default" id="insertBtn">기업리뷰 쓰러가기</button>
 				</div>
 			</div>
 			<c:forEach var="reviewListAllow" items="${reviewListAllow}">

@@ -88,6 +88,29 @@
 			articleNum--;
 			$article.last().remove();
 		});
+		
+		const $cletterCheckBtn = $('#cletterCheckBtn');
+		$cletterCheckBtn.click(function(){
+			$('#fieldcoverletterCheck').append(
+				'<div class="check panel panel-default">'+
+					'<div class="panel-heading">'+
+                        	'<strong>맞춤법 검사</strong>'+
+					'</div>'+
+                    '<div class="panel-body">'+
+                    	'<iframe src="http://164.125.7.61/speller/" height="720" width="855px" frameborder="0" framespacing="0"></iframe>'+
+                    '</div>'+
+                    '<div class="panel-footer">'+
+                    '<button type="button" id="cletterCheckRemove" class="btn btn-default btn-sm"><i class="fa fa-times "></i> 닫기</button>'+
+                   '</div>'+
+                '</div>'
+			);
+		});
+		const $cletterCheckRemove = $('#cletterCheckRemove');
+		$cletterCheckRemove.on('click', function(){
+			const $check = $('.check');
+			$check.remove();
+		});
+		
 	});
 </script>
 </head>
@@ -148,7 +171,7 @@
 							<ul class="nav nav-second-level">
 								<li><a href="#"><i class="fa fa-print fa-fw"></i> 인쇄하기</a></li> <!-- /coverletterPrint -->
 								<li><a href="#"><i class="fa fa-mail-forward fa-fw"></i> 내보내기</a></li> <!-- /coverletterExport -->
-								<li><a href="#"><i class="fa fa-check-square-o fa-fw"></i>맞춤법검사</a></li> <!-- /coverletterCheck -->
+								<li id="cletterCheckBtn"><a href="#"><i class="fa fa-check-square-o fa-fw"></i>맞춤법검사</a></li> <!-- /coverletterCheck -->
 								<li><a href="#"><i class="fa fa-pencil-square fa-fw"></i>메모장</a></li> <!-- /memberCoverletterMemo -->
 								<li><a href="#"><i class="fa fa-file-pdf-o fa-fw"></i>합격자소서</a></li> <!-- /passCoverlettrList -->
 							</ul>
@@ -165,7 +188,7 @@
 					<h1 class="page-header">나의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-lg-6">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
@@ -178,9 +201,9 @@
 		                            <table class="table table-striped table-bordered table-hover" id="">
 		                                <thead>
 		                                    <tr>
-		                                        <th class="col-sm-6">자기소개서 이름</th>
-												<th class="col-sm-3">마감시간</th>
-												<th class="col-sm-3">D-DAY</th>
+		                                        <th class="col-sm-2">자기소개서 이름</th>
+												<th class="col-sm-2">마감시간</th>
+												<th class="col-sm-1">D-DAY</th>
 		                                	</tr>
 		                                </thead>
 		                                <tbody>
@@ -191,7 +214,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<c:set var="recruitJobCd" value="recruit_company_job_0001" />
+									<c:set var="recruitJobCd" value="recruit_company_job_0001"/>
 										<c:choose>
 											<c:when test="${companyOneJobCletterInfo.recruitJobCd eq 'recruit_company_job_0001'}">
 												<div id="article">
@@ -292,6 +315,9 @@
 		                	</div>
 		            	</div>
 		        	</div>
+					<div class="div-responsive col-lg-5" id="fieldcoverletterCheck" align="center">
+						
+					</div>
 				</div>
 			</div>
 		</div>
