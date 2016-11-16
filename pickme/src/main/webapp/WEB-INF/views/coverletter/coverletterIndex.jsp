@@ -72,9 +72,12 @@
 		<!-- 사이드메뉴 전체 END-->
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-6">
 					<h1 class="page-header">나의 이력서 및 자소서(나의 정보페이지)</h1>
+					<div class="jumbotron">
 					나의 지원현황/채용마감임박리스트 10/게시판 답글등등 보여주기 구현예정
+					
+					</div>
 				</div>
 			</div>
 		</div>

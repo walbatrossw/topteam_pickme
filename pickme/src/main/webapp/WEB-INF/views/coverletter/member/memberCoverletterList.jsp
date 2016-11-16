@@ -76,13 +76,13 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">나의 이력서 및 자소서</h1>
+					<h1 class="page-header">${memberCoverletterList[0].loginId}님의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
-		                        	<h4>나의 이력서</h4>
+		                        	<h4>나의 자기소개서</h4>
 		                        </div>
 		                        <div class="panel-body">
 		                        <div class="table-responsive">
