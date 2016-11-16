@@ -3,6 +3,41 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
 
+	<!-- 수정화면 -->
+	<select id="recruitUpdateForm" parameterType="java.lang.String" resultType="com.cafe24.pickmetop.recruit.model.Recruit" >
+		SELECT 
+			company.company_name as companyName,
+			recruit.company_cd as companyCd, 
+			recruit.recruit_company_cd as recruitCompanyCd,
+			recruit.recruit_name as recruitName,
+			recruit.recruit_begindate as recruitBegindate,
+			recruit.recruit_enddate as recruitEnddate,
+			
+			recruitjob.recruit_job_cd as recruitJobCd,
+			recruitjob.job_midindex_cd as jobMidIndexCd,
+			recruitjob.recruit_job_workstatus as workStatus,
+			recruitjob.recruit_job_jobdetail as jobDetail,
+			recruitjob.recruit_job_file as recruitImgName,
+			
+			letter.c_cletter_article_cd as cCletterArticleCd,
+			letter.recruit_job_cd as cCletterRecruitJobCd ,
+			letter.c_cletter_article as cCletterArticles 
+		FROM 
+			tb_recruit_company as recruit ,
+			tb_company_info as company,
+			tb_recruit_company_job as recruitjob,
+			tb_cletter_company_job as letter
+		WHERE
+			recruit.recruit_company_cd = 'recruit_company_0011'
+		AND 
+			company.company_cd = recruit.company_cd
+		AND 
+			recruitjob.company_cd = recruit.company_cd
+		AND
+			recruitjob.recruit_job_cd = letter.recruit_job_cd;
+	</select>
+
+
 	<!-- 채용달력 검색&리스트 시작일  -->
  	<select id="selectBeginListOnSearchKeyword" resultType="com.cafe24.pickmetop.recruit.model.Recruit" parameterType="java.util.Map">
 	SELECT  
@@ -234,9 +269,11 @@
 
 	<!-- 임시기업등록 -->
 	<insert id="insertTemporaryCompany" parameterType="com.cafe24.pickmetop.recruit.model.Recruit">
-		INSERT INTO tb_company_info
-			(company_cd, company_name)
-		VALUES (CONCAT('default_',LPAD((#{CompanyCd}),4,'0')),#{companyName})
+	INSERT INTO tb_company_info
+	(company_cd, company_name)
+	VALUES(
+ 		(select  CONCAT('cpy', LPAD(IFNULL(MAX(substring(company_cd ,4)),0)+1,4,'0')) from tb_company_info as num),#{companyName}
+	)
 	 </insert>
 	 
 	 

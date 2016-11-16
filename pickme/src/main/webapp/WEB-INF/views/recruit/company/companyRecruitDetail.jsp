@@ -33,7 +33,7 @@ $(document).ready(function(){
 <body>
 이예은
 <div class="container">
-<%-- <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a> --%>
+ <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a>
 	<h3>기업정보</h3> 
 	세션 : ${sessionScope.id}
 	<input type="hidden" id = "sessionId" value="${sessionScope.id}">

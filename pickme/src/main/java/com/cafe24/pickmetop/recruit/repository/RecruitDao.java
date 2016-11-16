@@ -30,6 +30,12 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//수정화면
+	public List<Recruit> recruitUpdateForm(String recruitCompanyCd){
+		return sqlSessionFactoryRecruit.selectList(NS+".recruitUpdateForm",recruitCompanyCd);
+	}
+	
+	
 	//달력 전체 시작일 리스트& 검색
 	public List<Recruit> selectBeginListOnSearchKeyword(Map companySearchMap){
 		return sqlSessionFactoryRecruit.selectList(NS+".selectBeginListOnSearchKeyword",companySearchMap);

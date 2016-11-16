@@ -37,6 +37,47 @@ public class RecruitService {
 	RecruitDao recruitDao;
 	int count = 0;
 	final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+	
+	
+	
+	//수정화면
+	public Recruit recruitUpdateForm(String recruitCompanyCd){
+		Recruit recruit = new Recruit();
+		List<RecruitCompanyJobVo> jobVoList = new ArrayList<RecruitCompanyJobVo>();
+		recruit.setRecruitList(recruitDao.recruitUpdateForm(recruitCompanyCd));		
+		logger.info("꺄아ㅏㅏㅏㅏㅏㅏ : {}",recruit.getRecruitList().get(0).getWorkStatus());
+		for(int i =0;i<recruit.getRecruitList().size()-1;i++){
+			logger.info(" 0 : {}",recruit.getRecruitList().get(i).getRecruitJobCd());
+			if(!recruit.getRecruitList().get(i).getRecruitJobCd().equals(recruit.getRecruitList().get(i+1).getRecruitJobCd())){
+				logger.info(" 왜들어와..1 : {}",recruit.getRecruitList().get(i).getRecruitJobCd());
+				logger.info(" 왜들어와..2 : {}",recruit.getRecruitList().get(i+1).getRecruitJobCd());
+				RecruitCompanyJobVo jobVo = new RecruitCompanyJobVo();
+				jobVo.setRecruitJobCd(recruit.getRecruitList().get(i).getRecruitJobCd());
+				jobVo.setJobMidindexCd(recruit.getRecruitList().get(i).getJobMidIndexCds());
+				jobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(i).getWorkStatus());
+				jobVo.setRecruitJobJobdetail(recruit.getRecruitList().get(i).getJobDetail());
+				logger.info("jobVoList.size() : {}",jobVoList.size());
+				jobVoList.add(jobVo);
+			}
+		}
+		int a =recruit.getRecruitList().size()-1;
+		if(recruit.getRecruitList().get(a) != null){
+			RecruitCompanyJobVo jobVo = new RecruitCompanyJobVo();
+			logger.info("recruit.getRecruitList().size() : {}",recruit.getRecruitList().size());
+			
+			jobVo.setRecruitJobCd(recruit.getRecruitList().get(a).getRecruitJobCd());
+			jobVo.setJobMidindexCd(recruit.getRecruitList().get(a).getJobMidIndexCds());
+			jobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(a).getWorkStatus());
+			jobVo.setRecruitJobJobdetail(recruit.getRecruitList().get(a).getJobDetail());
+			
+			jobVoList.add(jobVo);
+		}
+		recruit.setJobVo(jobVoList);
+		
+		return recruit;
+	}
+	
+	
 	//북마크 체크여부 확인 
 	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
@@ -76,7 +117,7 @@ public class RecruitService {
 		return  recruit;
 	}
 	
-	//IndustryTop 전체리스트
+	//산업군 전체리스트
 	public List<IndustryTopIndexVo> selectAllTopIndustry(){
 		return recruitDao.selectAllTopIndustry();
 	}
