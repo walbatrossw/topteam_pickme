@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>나의 이력서</title>
+<title>나의 이력서 리스트</title>
 <link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
 <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="css/coverletter/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
@@ -43,7 +43,7 @@
 						<!-- 왼쪽상단 검색폼 -->
 						<!-- 사이드 메뉴항목 -->
 						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 및 자소서 메인</a>
+							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자기소개서 Main</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
@@ -61,8 +61,9 @@
 						</li>
 						<li><a href="forms.html"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterList"> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"> 채용기업 리스트</a></li>
+								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
+								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
+								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
 						<!-- 사이드 메뉴항목 -->
@@ -74,13 +75,15 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">나의 이력서 및 자소서</h1>
+					<h3 class="page-header">이력서 리스트</h3>
 				</div>
 					<div class="row">
 		                <div class="col-lg-12">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
-		                        	<h4>나의 이력서</h4>
+		                        	<h4>${resumeList[0].loginId}님의 이력서</h4>
+		                        	<p><strong>P!ckME</strong>는 지원자스펙분석 서비스를 지원할 예정입니다</p>
+		                        	<p>나의 이력서를 작성하시면 같은 기업, 같은 직무의 지원자들의 <strong>스펙을 분석해드립니다</strong></p>
 		                        </div>
 		                        <div class="panel-body">
 		                        <div class="table-responsive">
@@ -89,7 +92,6 @@
 		                                    <tr>
 		                                        <th>번호</th>
 												<th>이력서이름</th>
-												<th>작성자</th>
 												<th>등록일</th>
 												<th>수정일</th>
 												<th>수정</th>
@@ -101,7 +103,6 @@
 											<tr>
 												<td>${i.count}</td>
 												<td><a href="/resumeDetail?resumeCd=${resumeList.resumeCd}">${resumeList.resumeName}</a></td>
-												<td>${resumeList.loginId}</td>
 												<td>${resumeList.resumeRegdate}</td>
 												<td>${resumeList.resumeModidate}</td>
 												<td class="rowlink-skip"><a href="#">수정</a></td>
