@@ -285,7 +285,7 @@
 		SET
 			company_total_rate = (SELECT a.total 
 									FROM (SELECT (c.company_total_rate + r.review_rate) as total from tb_company_info c, tb_company_review r
-									where r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
+									WHERE r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
 										
 		WHERE company_cd = (SELECT company_cd FROM tb_company_review  WHERE company_review_cd = #{companyReviewCd})
 	</update>
@@ -519,10 +519,13 @@
 		UPDATE
 			tb_company_statistics
 		SET
-			${tbColumn} = (SELECT view.${tbColumn} + (SELECT salary_basepay FROM tb_company_salary WHERE salary_cd = #{salaryCd}) FROM tb_company_statistics view WHERE view.company_name = #{companyName})
+			${tbColumn} = (SELECT merger.total 
+							FROM(SELECT (salary.salary_basepay + statistics.${tbColumn}) as total 
+							FROM tb_company_salary salary, tb_company_statistics statistics WHERE salary.salary_cd = #{salaryCd} AND statistics.company_name = #{companyName}) merger) 
 		WHERE
 			company_name = #{companyName}
 	</update>
+	<!-- 연봉정보 통계리스트  -->
 	
 	<!-- 연봉정보 삭제처리 -->
 	<delete id="deleteCompanySalary" parameterType="Integer">

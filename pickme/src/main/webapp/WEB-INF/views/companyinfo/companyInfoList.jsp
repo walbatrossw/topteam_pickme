@@ -65,7 +65,7 @@
 												</p>
 												<p>
 													<span class="us_stxt_1">${companyInfoList.industryTopIndexName }</span>
-													<span class="vbar">|</span> <span class="us_stxt_1">경기</span><br>
+													<span class="vbar">|</span> <span class="us_stxt_1">${companyInfoList.companyAddr }</span><br>
 												</p>
 												<p class="row_end">
 													<a
