@@ -296,16 +296,18 @@ body .container .content .signup-cont {
 						                    <label for="generalId">이메일</label>
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="generalPw">비밀번호 </label>
+                						    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호확인">
+                						    <label for="generalPw">비밀번호 </label>
                 						    <input type="text" name="generalNick" id="generalNick" class="inpt" required="required" placeholder="닉네임">
+                						    
                 						    <label for="generalNick">닉네임 </label>
-						                    <input type="checkbox" id="remember" class="checkbox" checked>
-						                    <label for="generalPw">비밀번호 확인</label>
-						                    <div class="submit-wrap">
-							                        <input type="submit" value="Sign in" class="submit">
-							                        <a href="#" class="more">비밀 번호 찾을까?</a>
-						                    </div>
-        					        </form>
-    				        </div>
+						                     <div class="submit-wrap">
+							                        <input type="submit"  value="회원가입" class="submit" >
+							                 </div>
+							      </form>
+							     </div>
+    	
+    				        
     				        <div class="signup-cont cont">
                 <form action="/memberGeneralLogin" method="post" enctype="multipart/form-data">
 						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
@@ -315,8 +317,8 @@ body .container .content .signup-cont {
 						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 확인">
                 						    <label for="password">Your password</label>
 						                    <div class="submit-wrap">
-							                        <input type="submit" value="Sign up" class="submit">
-							                        <a href="#" class="more">Terms and conditions</a>
+							                        <input type="submit" value="로그인" class="submit">
+							                        <a href="#" class="more">비밀번호 찾을래?</a>
 						                    </div>
         					        </form>
           					  </div>
