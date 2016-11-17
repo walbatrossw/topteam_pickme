@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +23,20 @@
       					<li><a href="/coverletterIndex">이력서 & 자기소개서</a></li>
       					<li><a href="/freeboardList">자유게시판</a></li>
       					<li><a href="/companyInfo">기업정보</a></li>
-      					<li><a href="/memberGeneralInsert"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      					<li><a href="/memberGeneralLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      					
+      					
+      					<li class="hiddenNavWrap">
+      			    <c:if test="${empty sessionScope.generalId}">
+      					<li><a href="/memberGeneralInsert">회원가입</a>
+      				</c:if>
+      				 <c:if test="${empty sessionScope.generalId}">
+      					<li><a href="/memberGeneralLogin">로그인</a>
+      				</c:if>	
+      				<c:if test="${not empty sessionScope.generalId}">
+      					<li><a href="/memberGeneralUpdate=${sessionScope.generalId}">내 정보</a></li>
+      					<li><a href="/memberGeneralLogout=${sessionScope.generalId}">로그아웃</a></li>
+      				     				
+      				</c:if>	
       				</ul>
   				</div>
 			</nav>
