@@ -1,27 +1,18 @@
 package com.cafe24.pickmetop.member.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Locale;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 import com.cafe24.pickmetop.member.repository.MemberDao;
 import com.cafe24.pickmetop.member.service.MemberService;
@@ -29,7 +20,8 @@ import com.cafe24.pickmetop.member.service.MemberService;
 
 
 @Controller
-@SessionAttributes("generalId")
+
+@Scope
 public class MemberController {
 	private  static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -37,10 +29,15 @@ public class MemberController {
 	private MemberService memberService;
 	MemberDao memberdao;
 	
-	//01_01 회원 가입 페이지
-	@RequestMapping(value="/smemberGeneralInsert")
-	public String memberGeneralInsertt(Locale locale, Model model){
-		return "/member/general/memberGeneralInsert"; 
+	// 회원가입 폼
+	@RequestMapping(value="/memberGeneralInsert")
+	public String memberGeneralInsertt(){
+		return "/member/general/memberGeneralInsert";
+	}
+	// 로그인 폼
+	@RequestMapping(value="/memberGeneralLogin")
+	public String memberGeneralLoginn(){
+		return "/member/general/memberGeneralLogin";
 	}
 	
 	//01_02 회원 가입후 메인 페이지
@@ -48,57 +45,36 @@ public class MemberController {
 	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
 		memberService.addmemberGeneral(memberGeneralVo);
 		return "/index";
-	
-		}		
-	//01_03 회원 로그인
-	@RequestMapping(value="/memberGeneralLogin")
-	public String memberGeneralLogin(Model model){
-		
-		return "/member/general/memberGeneralLogin";
 	}
-	@RequestMapping("/Session.sp")
-		public String gender(Model model) {
-		model.addAttribute("generalId", "admin@naer.com");
-		model.addAttribute("className", this.getClass());
-		return "/index.jsp";
-	}
-	
-	
-	//01_04 회원 로그인 처리 완료
-	@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
-	public ModelAndView memberGeneralLoginn(MemberGeneralVo memberGeneralVo, HttpSession session, HttpServletRequest request, HttpServletResponse response)throws IOException{
-		ModelAndView mv = new ModelAndView();
-		MemberGeneralVo	loginmember = memberService.selectmemberGeneral(memberGeneralVo);
-	
-	if(loginmember != null){
-		session.setAttribute("memberGeneralLogin", loginmember);
 
-	}else{
-		PrintWriter out = (PrintWriter)response.getWriter();
-		out.print("<script>alert('아이디 또는 비밀번호가 틀렸습니다');</script>");
-		out.flush();
+		
+	// 회원 로그인 처리 완료
+	@RequestMapping(value="/memberGeneralLogin", method = RequestMethod.POST)
+	public String memberGeneralLogin(HttpServletRequest request,
+			@RequestParam(value="generalId") String generalId,
+			@RequestParam(value="generalPw") String generalPw) {
+		Map<String, String> memberGeneralLogin = memberService.selectMemberCheck(generalId, generalPw);
+				
+		if(memberGeneralLogin != null){
+			HttpSession session  = request.getSession(true);
+			
+			session.setAttribute("generalId", generalId);
+			session.setAttribute("generalPw",  generalPw);
+			
+			session.setAttribute("generalNick", memberGeneralLogin.get("generalNick"));
+			session.setAttribute("generalLevel", memberGeneralLogin.get("generalLevel"));
+		}
+		return "/index";
+
 	}
-	String redirectPage = request.getParameter("url");
-	if(redirectPage == null){
-		redirectPage = "/index";
-	}
-	if(request.getParameter("page")!=null){
-		String page = request.getParameter("page");
-		redirectPage = redirectPage + "?page="+ page;
-	}
-	mv.setViewName(redirectPage);
-	return mv;
-}
-	
 
 	//01_05 로그 아웃 페이지
-	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.POST)
+	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.GET)
 	public String memberGeneralLogout(HttpSession session){
 	session.invalidate();
 	return "/index";
 		}
-	
-	
+		
 	
 	//01_06 사용자 리스트
 	 @RequestMapping(value="/memberGeneralList", method=RequestMethod.GET)
@@ -113,6 +89,8 @@ public class MemberController {
 		
 		 return "/member/general/memberGeneralList";
 	 }
+	 
+	 
 	 
 }
 

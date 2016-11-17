@@ -6,6 +6,8 @@
 <%
 	session.invalidate();
 %>
+
+
 <script type="text/javascript">
 	alert("·Î±×¾Æ¿ô");
 	location.href ="<%= request.getContextPath() %>/resume/index.jsp ";
