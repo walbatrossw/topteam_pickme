@@ -75,11 +75,11 @@
 		<!-- 본문 전체 -->
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-8">
 					<h1 class="page-header">${memberCoverletterList[0].loginId}님의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-8">
+		                <div class="col-lg-10">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<h4>나의 자기소개서</h4>
@@ -91,10 +91,8 @@
 		                                    <tr>
 		                                        <th>번호</th>
 												<th>자소서이름</th>
-												<th>아이디</th>
 												<th>자소서등록시간</th>
 												<th>자소서수정시간</th>
-												<th>수정</th>
 												<th>삭제</th>
 		                                	</tr>
 		                                </thead>
@@ -103,10 +101,8 @@
 											<tr>
 												<td>${i.count}</td>
 												<td><a href="/memberCoverletterDetail?mCletterCd=${memberCoverletterList.mCletterCd}">${memberCoverletterList.mCletterName}</a></td>
-												<td>${memberCoverletterList.loginId}</td>
 												<td>${memberCoverletterList.mCletterRegdate}</td>
 												<td>${memberCoverletterList.mCletterModidate}</td>
-												<td class="rowlink-skip"><a href="/memberCoverletterArticleUpdate?mCletterCd=?${memberCoverletterList.mCletterCd}">수정</a></td>
 												<td class="rowlink-skip"><a href="/memberCoverletterArticleDetail?mCletterCd=?${memberCoverletterList.mCletterCd}">삭제</a></td>
 											</tr>
 											</c:forEach>

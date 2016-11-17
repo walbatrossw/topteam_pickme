@@ -22,7 +22,6 @@
 </head>
 <body>
 	<div id="wrapper">
-	<form id="coverletterAddForm" action="/memberCoverletterInsert" method="post">
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 			<div class="navbar-default navbar-static-side" role="navigation">
@@ -68,8 +67,8 @@
 						<li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="/memberCoverletterSave"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li>
-								<li><a href="/memberCoverletterList"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li>
-								<li><a href="/memberCoverletterSaveRecord"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li>
+								<li><a href="#"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li>
+								<li><a href="/memberCoverletterSaveRecordList"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li>
 							</ul>
 						</li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
@@ -154,6 +153,14 @@
 										</tr>
 		                            </table>
 		                            </c:forEach>
+		                            <div>
+									     <button type="button" class="btn btn-default">
+									     	<a href="memberCoverletterUpdateForm?mCletterCd=${memeberCoverletterInfo.mCletterCd}">
+									     		<i class="fa fa-exchange fa-fw">
+									     		</i> 수정하기
+									     	</a>  
+									     </button>
+								    </div>
 		                        </div>
 		                	</div>
 		            	</div>
@@ -161,7 +168,60 @@
 				</div>
 			</div>
 		</div>
-	</form>	
+	<!-- 불러오기 Modal -->
+		<div class="modal fade" id="importModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h4 class="modal-title">불러오기</h4>
+			        </div>
+		
+					<div class="modal-body">
+						<div class="check panel panel-default">
+							<div class="panel-heading">
+                        		<strong>나의 자소서 리스트</strong>
+							</div>
+	                    	<div class="panel-body">
+	                    		<iframe src="/memberCoverletterListForModal" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    	</div>
+                    	</div>
+					</div>
+		
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+		    </div>
+		</div>
+		<!-- 불러오기 Modal -->
+		<!-- 저장기록 Modal -->
+		<div class="modal fade" id="saveRecordModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h4 class="modal-title">저장기록</h4>
+			        </div>
+					<div class="modal-body">
+						<div class="check panel panel-default">
+							<div class="panel-heading">
+                        		<strong>내가 저장한 자소서 기록</strong>
+							</div>
+	                    	<div class="panel-body">
+	                    		<iframe src="#" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    	</div>
+                    	</div>
+					</div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+		    </div>
+		</div>
+		<!-- 저장기록 Modal -->	
 	</div>
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>

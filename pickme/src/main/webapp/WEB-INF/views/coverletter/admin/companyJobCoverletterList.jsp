@@ -74,11 +74,11 @@
 		<!-- 사이드메뉴 전체 -->
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-10">
 					<h1 class="page-header">채용기업 리스트</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-lg-10">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 기업 직무별 자기소개서 문항을 제공하고 있습니다.</p>
@@ -95,7 +95,7 @@
 												<th>회사명</th>
 												<th>직무대분류</th>
 												<th>상세직무</th>
-												<th>채용형태</th>
+												<th class="col-sm-1">채용형태</th>
 												<th>마감일</th>
 		                                	</tr>
 		                                </thead>

@@ -38,7 +38,7 @@ $(document).ready(function() {
 					<tr>
 						<td><input type="checkbox" value="/memberCoverletterSaveRecordList?mCletterCd=${memberCoverletterSaveRecordList.mCletterCd}"></td>
 						<td>${i.count}</td>
-						<td>${selectMemeberCoverletterArticleSaveRecordList.mCletterRecordDate}</td>
+						<td>${memberCoverletterSaveRecordList.mCletterRecordDate}</td>
 					</tr>
 				</c:forEach>
 				</tbody>

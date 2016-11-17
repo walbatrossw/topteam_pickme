@@ -16,15 +16,23 @@
 <script src="js/coverletter/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="js/coverletter/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="js/coverletter/sb-admin.js"></script>
+
+<script src="/js/datetimepicker/moment.js"></script>
+<script src="/js/datetimepicker/transition.js"></script>
+<script src="/js/datetimepicker/collapse.js"></script>
+<script src="/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/datetimepicker/ko.js"></script>
+<link rel="stylesheet" href="/css/datetimepicker/bootstrap-datetimepicker.css"/>
+
 <script>
-	//글자수 세기
+		//글자수 세기
 	$(document).ready(function(){
 		$(function(){
 			$('textarea.content').keyup(function(){
 			bytesHandler(this);
 			});
 		});
-	
+		
 		function getTextLength(str) {
 			var len = 0;
 			for (var i = 0; i < str.length; i++) {
@@ -40,9 +48,9 @@
 			var text = $(obj).val();
 			$('span.bytes').text(getTextLength(text));
 		}
-	
-		var articleNum = 0;
-		
+		/* 항목 추가 및 삭제 */
+		// 항목추가하기
+		var articleNum = 0; 
 		const $articleAddBtn = $('#articleAddBtn');
 		$articleAddBtn.click(function(){
 			articleNum++;
@@ -82,36 +90,27 @@
 	           '</table>'
 			);
 		});
+		// 항목 삭제하기
 		const $articleDelBtn = $('#articleDelBtn');
 		$articleDelBtn.on('click', function(){
 			const $article = $('.article');
 			articleNum--;
 			$article.last().remove();
 		});
+		$(function () {
+            $('#mCletterEnddate').datetimepicker({
+            	locale: 'ko',
+            	format: 'LLL'
+            });
+        });
 		
-		const $cletterCheckBtn = $('#cletterCheckBtn');
-		$cletterCheckBtn.click(function(){
-			$('#fieldcoverletterCheck').append(
-				'<div class="check panel panel-default">'+
-					'<div class="panel-heading">'+
-                        	'<strong>맞춤법 검사</strong>'+
-					'</div>'+
-                    '<div class="panel-body">'+
-                    	'<iframe src="http://164.125.7.61/speller/" height="720" width="855px" frameborder="0" framespacing="0"></iframe>'+
-                    '</div>'+
-                    '<div class="panel-footer">'+
-                    '<button type="button" id="cletterCheckRemove" class="btn btn-default btn-sm"><i class="fa fa-times "></i> 닫기</button>'+
-                   '</div>'+
-                '</div>'
-			);
-		});
-		const $cletterCheckRemove = $('#cletterCheckRemove');
-		$cletterCheckRemove.on('click', function(){
-			const $check = $('.check');
-			$check.remove();
-		});
-		
-	});
+		$(function () {
+            $('#ddayPicker').datetimepicker({
+            	locale: 'ko',
+            	format: 'LLL'
+            });
+        });
+   });
 </script>
 </head>
 <body>
@@ -171,7 +170,12 @@
 							<ul class="nav nav-second-level">
 								<li><a href="#"><i class="fa fa-print fa-fw"></i> 인쇄하기</a></li> <!-- /coverletterPrint -->
 								<li><a href="#"><i class="fa fa-mail-forward fa-fw"></i> 내보내기</a></li> <!-- /coverletterExport -->
-								<li id="cletterCheckBtn"><a href="#"><i class="fa fa-check-square-o fa-fw"></i>맞춤법검사</a></li> <!-- /coverletterCheck -->
+								<li>
+									<a href="javascript:void(0);" onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
+										<i class="fa fa-check-square-o fa-fw">
+										</i> 맞춤법 검사
+									</a>
+								</li>
 								<li><a href="#"><i class="fa fa-pencil-square fa-fw"></i>메모장</a></li> <!-- /memberCoverletterMemo -->
 								<li><a href="#"><i class="fa fa-file-pdf-o fa-fw"></i>합격자소서</a></li> <!-- /passCoverlettrList -->
 							</ul>
@@ -188,7 +192,7 @@
 					<h1 class="page-header">나의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-6">
+		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
@@ -203,14 +207,14 @@
 		                                    <tr>
 		                                        <th class="col-sm-2">자기소개서 이름</th>
 												<th class="col-sm-2">마감시간</th>
-												<th class="col-sm-1">D-DAY</th>
-		                                	</tr>
+												<th class="col-sm-2">자소서 제출 마감시간</th>
+											</tr>
 		                                </thead>
 		                                <tbody>
-		                                   <tr>
-												<td><input type="text" class="form-control"  id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
-												<td><input type="text" class="form-control" id="" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
-												<td>D-DAY추가예정</td>
+		                                	<tr>
+												<td><input type="text" class="form-control" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
+												<td><input type="text" class="form-control" id="mCletterEnddate" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
+												<td><input type="text" class="form-control" id="ddayPicker" name="" value=""></td>
 											</tr>
 										</tbody>
 									</table>
@@ -315,9 +319,6 @@
 		                	</div>
 		            	</div>
 		        	</div>
-					<div class="div-responsive col-lg-5" id="fieldcoverletterCheck" align="center">
-						
-					</div>
 				</div>
 			</div>
 		</div>
@@ -365,7 +366,7 @@
                         		<strong>내가 저장한 자소서 기록</strong>
 							</div>
 	                    	<div class="panel-body">
-	                    		<iframe src="/memberCoverletterSaveRecord" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    		<iframe src="/memberCoverletterSaveRecordList" height="720" width="840px" frameborder="0" framespacing="0"></iframe>
 	                    	</div>
                     	</div>
 					</div>

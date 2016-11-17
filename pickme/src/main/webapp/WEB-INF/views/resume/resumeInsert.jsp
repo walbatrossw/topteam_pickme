@@ -457,7 +457,7 @@
 		<!-- 사이드메뉴 전체 -->
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-10">
 					<h1 class="page-header">이력서</h1>
 					<form id="resumeAddForm" action="/resumeInsert" method="post" enctype="multipart/form-data">	
 							<div class="row">

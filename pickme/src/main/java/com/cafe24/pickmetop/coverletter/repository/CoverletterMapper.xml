@@ -62,7 +62,7 @@
 		rc.recruit_name AS recruitName, <!-- 기업명 -->
 		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 채용상세직무 -->
-		rc.recruit_enddate AS recruitEnddate <!-- 채용마감일 -->
+		DATE_FORMAT(rc.recruit_enddate, '%Y년 %m월 %d일 %p %H시 %i분') as recruitEnddate
 	FROM tb_recruit_company rc <!-- 기업채용정보 tb -->
 		
 	INNER JOIN tb_recruit_company_job rcj <!-- 기업직무별채용정보 tb -->
@@ -111,7 +111,7 @@
 		#{recruitJobCd}, 
 		#{loginId}, 
 		#{mCletterName},
-		#{mCletterEnddate}, 
+		#{mCletterEnddate}, <!-- 자바에서 변환한뒤에 처리해주면되징 -->
 		NOW(), 
 		NOW()
 	)
@@ -196,17 +196,6 @@
 		
 	WHERE cm.m_cletter_cd = #{mCletterCd};
  	</select>
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
  	
  	
  	
