@@ -33,8 +33,8 @@
       					<li><a href="/memberGeneralLogin">로그인</a>
       				</c:if>	
       				<c:if test="${not empty sessionScope.generalId}">
-      					<li><a href="/memberGeneralUpdate=${sessionScope.generalId}">내 정보</a></li>
-      					<li><a href="/memberGeneralLogout=${sessionScope.generalId}">로그아웃</a></li>
+      					<li><a href="/memberGeneralUpdate">내 정보</a></li>
+      					<li><a href="/memberGeneralLogout">로그아웃</a></li>
       				     				
       				</c:if>	
       				</ul>

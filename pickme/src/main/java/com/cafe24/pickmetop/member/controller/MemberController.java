@@ -29,18 +29,18 @@ public class MemberController {
 	private MemberService memberService;
 	MemberDao memberdao;
 	
-	// 회원가입 폼
+	// 일반 회원가입 
 	@RequestMapping(value="/memberGeneralInsert")
 	public String memberGeneralInsertt(){
 		return "/member/general/memberGeneralInsert";
 	}
-	// 로그인 폼
+	// 일반 회원 로그인
 	@RequestMapping(value="/memberGeneralLogin")
 	public String memberGeneralLoginn(){
 		return "/member/general/memberGeneralLogin";
 	}
 	
-	//01_02 회원 가입후 메인 페이지
+	// 회원 가입후 메인 페이지
 	@RequestMapping(value="/memberGeneralInsert", method = RequestMethod.POST)
 	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
 		memberService.addmemberGeneral(memberGeneralVo);
@@ -72,9 +72,16 @@ public class MemberController {
 	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.GET)
 	public String memberGeneralLogout(HttpSession session){
 	session.invalidate();
-	return "/index";
+	
+	return "redirect:/";
 		}
 		
+	
+	// 내정보 수정
+	@RequestMapping(value="/memberGeneralUpdate", method = RequestMethod.GET)
+	public String memberGeneralUpdate(HttpSession session){
+		return "/member/general/memberGeneralUpdate";
+	}
 	
 	//01_06 사용자 리스트
 	 @RequestMapping(value="/memberGeneralList", method=RequestMethod.GET)
