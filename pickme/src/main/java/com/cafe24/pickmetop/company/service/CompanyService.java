@@ -78,6 +78,35 @@ public class CompanyService {
 		salaryUnreceivedMap.put("interviewListUnreceived", companyDao.selectCompanySalaryListBySalaryUnreceived(pageHelper));
 		return salaryUnreceivedMap;
 	}
+	//연봉정보 디테일
+	public CompanySalaryVo getCompnaySalaryDetail(int salaryCd){
+		return companyDao.selectCompanySalaryDetailBySalaryCd(salaryCd);
+	}
+	//연봉승인 처리
+	public int updateCompanySalaryAllow(int salaryCd, String salaryWorklevel, String companyName){
+		Map<String, Object> sqlMap = new HashMap<String, Object>();
+		String tbColumn = "";
+		sqlMap.put("loginId", "admin");
+		sqlMap.put("salaryCd", salaryCd);
+		companyDao.updateCompanySalaryAllow(sqlMap);
+		
+		if(salaryWorklevel.equals("부장")){
+			tbColumn = "company_statistics_salary_bj";
+		}else if(salaryWorklevel.equals("차장")){
+			tbColumn = "company_statistics_salary_cj";
+		}else if(salaryWorklevel.equals("과장")){
+			tbColumn = "company_statistics_salary_gj";
+		}else if(salaryWorklevel.equals("대리")){
+			tbColumn = "company_statistics_salary_dr";
+		}else if(salaryWorklevel.equals("사원")){
+			tbColumn = "company_statistics_salary_sw";
+		}
+		sqlMap.put("tbColumn", tbColumn);
+		sqlMap.put("companyName", companyName);
+		
+		return companyDao.updateCompanyStatisticsSalary(sqlMap);
+	}
+	//연봉정보 삭제 처리
 	
 	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련

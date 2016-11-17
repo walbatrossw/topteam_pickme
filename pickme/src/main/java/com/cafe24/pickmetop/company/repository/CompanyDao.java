@@ -164,5 +164,21 @@ public class CompanyDao {
 	public List<CompanySalaryVo> selectCompanySalaryListBySalaryUnreceived(PageHelper pageHelper){
 		return sqlSessionFactoryCompany.selectList(NS + ".selectCompanySalaryListBySalaryUnreceived", pageHelper);
 	}
+	//연봉정보 디테일(관리자)
+	public CompanySalaryVo selectCompanySalaryDetailBySalaryCd(int salaryCd){
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanySalaryDetailBySalaryCd", salaryCd);
+	}
+	//연봉정보 승인처리
+	public int updateCompanySalaryAllow(Map<String, Object> sqlMap){
+		return sqlSessionFactoryCompany.update(NS + ".updateCompanySalaryAllow", sqlMap);
+	}
+	//연봉정보 승인하면 연봉정보 통계 테이블 업데이트
+	public int updateCompanyStatisticsSalary(Map<String, Object> sqlMap){
+		return sqlSessionFactoryCompany.update(NS + ".updateCompanyStatisticsSalary", sqlMap);
+	}
+	//연봉정보 삭제처리
+	public int deleteCompanySalary(int salaryCd){
+		return sqlSessionFactoryCompany.update(NS + ".deleteCompanySalary", salaryCd);
+	}
 	
 }

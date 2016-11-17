@@ -462,7 +462,28 @@
 		)
 	</insert>
 	
-	<!-- 연봉정보 비승인 리스트 -->
+	<!-- 연봉정보 상세보기 -->
+	<select id="selectCompanySalaryDetailBySalaryCd" parameterType="Integer" resultType="com.cafe24.pickmetop.company.model.CompanySalaryVo">
+		SELECT	
+			salary.salary_cd as salaryCd,
+			salary.company_cd as companyCd,
+			salary.company_name as companyName,
+			login_id as loginId,
+			(SELECT job_topindex_name FROM tb_job_topindex top WHERE top.job_topindex_cd = salary.job_topindex_cd) as jobTopIndexName,
+			salary_workstate as salaryWorkstate,
+			salary_worklevel as salaryWorklevel,
+			salary_basepay as salaryBasepay,
+			salary_wrokstatus as salaryWorkstatus,
+			salary_period as salaryPeriod,
+			salary_sum as salarySum,
+			DATE_FORMAT(salary.salary_regdate, '%Y-%m-%d %H:%i') as salaryRegDate
+		FROM
+			tb_company_salary salary
+		WHERE
+			salary.salary_cd = #{salaryCd}
+	</select>
+	
+	<!-- 연봉정보 미승인 리스트 -->
 	<select id="selectCompanySalaryListBySalaryUnreceived" parameterType="com.cafe24.pickmetop.commons.PageHelper" resultType="com.cafe24.pickmetop.company.model.CompanySalaryVo">
 		SELECT
 			salary_cd as salaryCd,
@@ -481,13 +502,33 @@
 		LIMIT #{startRow}, #{linePerPage}
 	</select>
 	
+	<!-- 연봉정보 승인처리 update -->
+	<update id="updateCompanySalaryAllow" parameterType="java.util.Map">
+		UPDATE
+			tb_company_salary
+		SET
+			salary_allow = 1,
+			salary_allowdate = now(),
+			salary_grantor = #{loginId}
+		WHERE
+			salary_cd = #{salaryCd}
+	</update>
+	
 	<!-- 연봉정보 통계테이블에 업데이트 -->
 	<update id="updateCompanyStatisticsSalary" parameterType="java.util.Map">
 		UPDATE
 			tb_company_statistics
 		SET
-			${tbColumn} =  #{salaryBasepay} + (SELECT ${tbColumn} FROM tb_company_statistics WHERE company_name = #{companyName})
+			${tbColumn} = (SELECT view.${tbColumn} + (SELECT salary_basepay FROM tb_company_salary WHERE salary_cd = #{salaryCd}) FROM tb_company_statistics view WHERE view.company_name = #{companyName})
 		WHERE
 			company_name = #{companyName}
 	</update>
+	
+	<!-- 연봉정보 삭제처리 -->
+	<delete id="deleteCompanySalary" parameterType="Integer">
+		DELETE FROM
+			tb_company_salary
+		WHERE
+			salary_cd = #{salaryCd}
+	</delete>
 </mapper>

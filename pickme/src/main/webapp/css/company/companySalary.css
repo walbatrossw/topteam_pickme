@@ -1,5 +1,6 @@
 @CHARSET "EUC-KR";
 
+/*연봉정보 입력화면*/
 #companySalaryInsertForm{
 	float: left;
     width: 70%;
@@ -21,4 +22,16 @@
 }
 .sidebanner .banner{
 	width: 100%;
+}
+
+/*연봉정보 관리자 디테일*/
+.panel-heading{
+	border-bottom: 2px solid  black;
+}
+.salaryDetail{
+	padding: 10px 40px 0px 40px;
+}
+.salaryDetail .row{
+	margin-bottom: 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }

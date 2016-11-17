@@ -90,6 +90,22 @@ public class CompanyController {
 		model.addAttribute("salaryUnreceivedMap", companyService.getCompanySalaryUnreceivedList(page));
 		return "/admin/companyinfo/salary/companySalaryUnreceivedList";
 	}
+	//연봉정보 관리자 디테일 맵핑
+	@RequestMapping(value = "/salary/companySalaryUnreceivedDetail", method = RequestMethod.GET)
+	public String companySalaryUnreceivedDetail(Model model, @RequestParam(value="salaryCd") int salaryCd) {
+		model.addAttribute("companySalaryDetail", companyService.getCompnaySalaryDetail(salaryCd));
+		return "/admin/companyinfo/salary/companySalaryUnreceivedDetail";
+	}
+	//연봉정보 관리자 승인처리
+	@RequestMapping(value = "/salary/companySalaryAllow", method = RequestMethod.GET)
+	public String companyInterviewAllow(
+				@RequestParam(value="salaryCd") int salaryCd,
+				@RequestParam(value="companyName") String companyName,
+				@RequestParam(value="salaryWorklevel") String salaryWorklevel) {
+		
+		companyService.updateCompanySalaryAllow(salaryCd, salaryWorklevel, companyName);
+		return "redirect:/salary/companySalaryUnreceivedDetail";
+	}
 	
 	/*---------------------------------------------------------------------------------- 
 	 * 
