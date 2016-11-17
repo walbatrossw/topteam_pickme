@@ -6,8 +6,7 @@
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 </head>
 <body>
-<!-- 네이버아이디로로그인 버튼 노출 영역 -->
-<div id="naver_id_login"></div>
+
 <!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
 <!-- 네이버아디디로로그인 초기화 Script -->

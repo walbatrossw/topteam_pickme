@@ -1,7 +1,6 @@
 package com.cafe24.pickmetop.member.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -24,19 +23,36 @@ public class MemberService {
 	private final int LINE_PER_PAGE = 10;
 	private final int MAX_PER_PAGE = 5;
 	
-	// È¸¿ø °¡ÀÔ ¹× °ü¸®ÀÚ ±ÇÈ¯ ºÎ¿©
+	// ï¿½Ï¹ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void addmemberGeneral(MemberGeneralVo memberGeneralVo){
 		memberGeneralVo.setGeneralLevel(1);
 		memberGeneralVo.setGeneralState(0);
 		memberDao.insertMemberGeneral(memberGeneralVo);
 	}
 	
-	// È¸¿ø °Ë»ö
+	
+	public Map<String, String> selectMemberCheck(String generalId, String generalPw){
+		
+		
+		Map<String, String> resultMap = memberDao.memberGeneralCheck(generalId, generalPw);
+		if(resultMap == null) {
+			logger.info("ì¼ì¹˜í•˜ëŠ” ì•„ì´ë”” ì—†ìŒ");
+		} else {
+			logger.info("ì¼ì¹˜í•˜ëŠ” ì•„ì´ë”” ìˆìŒ");
+		}
+		return resultMap;
+	}
+	
+
+
+	
+	
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
 		return memberDao.selectMemberGeneral(memberGeneralVo);
 	}
 	
-	// È¸¿ø ¸®½ºÆ®
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Map<String, Object> getMemberGeneralList(int page, String word){
 		PageHelper  pageHelper = new PageHelper(page,LINE_PER_PAGE);
 		pageHelper.setLastPage(memberDao.selectTotalCount(), MAX_PER_PAGE);
@@ -51,7 +67,7 @@ public class MemberService {
 		return resultMap;
 	} 
 	
-	// È¸¿ø¸®½ºÆ® ÆäÀÌÁö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public int getLastPage() {
 		return (int)(Math.ceil((double)memberDao.selectTotalCount()/LINE_PER_PAGE));
 	
