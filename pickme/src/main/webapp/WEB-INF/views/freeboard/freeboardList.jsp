@@ -66,6 +66,15 @@ $(document).ready(function(){
 					+"&cate="+$('#cateFromServer').val();
 		}		
 	});
+	$('#boardSearchKeyword').change(function(){
+		if($('#cateFromServer').val()==""){
+			location.href="/freeboardList?boardSearch="+$('#boardSearchKeyword').val();
+		}else if($('#cateFromServer').val()!=""){
+			location.href="/freeboardList?boardSearch="+$('#boardSearchKeyword').val()
+					+"&cate="+$('#cateFromServer').val();
+		}		
+	});
+	
 	//리플 
 	$('.replyBtn').click(function(){
 		var order = $('.replyBtn').index(this)

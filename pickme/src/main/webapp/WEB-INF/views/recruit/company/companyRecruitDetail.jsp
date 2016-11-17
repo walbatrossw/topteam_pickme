@@ -33,9 +33,9 @@ $(document).ready(function(){
 <body>
 이예은
 <div class="container">
- <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a>
+<%--  <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a> --%>
 	<h3>기업정보</h3> 
-	세션 : ${sessionScope.id}
+	<%-- 세션 : ${sessionScope.id} --%>
 	<input type="hidden" id = "sessionId" value="${sessionScope.id}">
 	<table class="table table-striped">
 		<thead style="background-color: #7c9af9;font-weight: bolder;font-size: large;">
@@ -57,7 +57,7 @@ $(document).ready(function(){
 		<tbody>
 			<tr>
 				<td class="col-sm-3"><input type="hidden" id="recruitCompanyCd" value="${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">
-					<label><a class="btn btn-default" href="/company/companyInfoList?searchCompanyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName0}</a></label>
+					<label><a class="btn btn-default" href="/company/companyInfoList?searchCompanyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label>
 				</td>
 				<td class="col-sm-3">
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitBegindate,0,10)}~

@@ -12,7 +12,10 @@
 <!-- 자동완성 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.js"></script>
+<style>
 
+
+</style>
 <script>	 
 $(document).ready(function(){
 	var first = 0;
@@ -269,8 +272,9 @@ $(document).ready(function(){
 </script>
 <title>채용입력</title>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/admin/module/adminHeader.jsp"/>	
 <body>
+<section id="main" class="column">
 	<div class="container">
 		<div class="jumbotron">
 			<h2>채용 정보 등록</h2>
@@ -411,6 +415,6 @@ $(document).ready(function(){
 			</div>
 		</form>
 	</div>
+</section>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />
 </html>

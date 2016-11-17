@@ -89,8 +89,9 @@
 			<li class="fa fa-arrow-circle-right"><a href="/interview/companyInterviewUnreceivedList">면접후기 미승인 목록</a></li>
 			<li class="fa fa-arrow-circle-right"><a href="/salary/companySalarywUnreceivedList">연봉정보 미승인 목록</a></li>
 		</ul>
-		<h3>Users</h3>
+		<h3>채용관련</h3>
 		<ul class="toggle">
+			<li class="fa fa-arrow-circle-right"><a href="/recruit">채용입력</a></li>
 		</ul>
 		<h3>Media</h3>
 		<ul class="toggle">

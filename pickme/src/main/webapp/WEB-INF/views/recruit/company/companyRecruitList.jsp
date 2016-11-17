@@ -191,7 +191,6 @@ $(document).ready(function(){
   
 	        <input type="text" name="searchCompanyName" id="searchCompanyName" placeholder="기업이름으로 검색">
 	        <input type="button" id="companySearch" value="검색" class="btn btn-default">
-	        <a href="/recruit" style="float:right" class="btn btn-default">채용등록</a>
 	        
 		<table class="calendar-table table table-condensed table-tight" >
 			<thead>
