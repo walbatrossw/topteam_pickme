@@ -2,4 +2,73 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.freeboard.repository.FreeboardMapper">
+	
+	<select id="selectReply"  resultType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
+		SELECT 
+			reply_cd as replyCd, 
+			login_id as loginId, 
+			freeboard_cd as freeboardCd, 
+			reply_content as replyContent, 
+			login_nick as loginNick, 
+			reply_regdate as replyRegdate
+		FROM 
+			tb_freeboard_reply
+		ORDER BY
+			reply_regdate ASC
+			
+	</select>
+	
+	
+	<select id="selectCate" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardCategoryVo">
+		SELECT 
+			freeboard_cate_cd as freeboardCateCd, 
+			category_keyword as categoryKeyword
+		FROM 
+			tb_freeboard_category
+	</select>
+	<insert id="freeboardInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardVo">
+		INSERT INTO tb_freeboard
+			(freeboard_cd, login_id, freeboard_regdate, freeboard_title, freeboard_content, freeboard_nick, freeboard_cate_cd)
+		VALUES  
+			((select  CONCAT('freeboard_', LPAD(IFNULL(MAX(substring(freeboard_cd ,11)),0)+1,4,'0')) from tb_freeboard as fb),
+			 #{loginId}, NOW(),#{freeboardTitle}, #{freeboardContent},#{freeboardNick} ,#{freeboardCateCd})
+	</insert>
+	<select id="selectFreeboardList" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardVo" parameterType="java.util.Map">
+		SELECT 
+			freeboard_cd as freeboardCd ,
+			login_id as loginId, 
+			freeboard_regdate as freeboardRegdate, 
+			freeboard_title as freeboardTitle,
+			freeboard_content as freeboardContent,
+			freeboard_nick as freeboardNick,
+			freeboard_cate_cd as freeboardCateCd
+		FROM 
+			tb_freeboard
+		<if test=' boardSearch != null and boardSearch != "" or cate != null and cate != ""'>
+		
+		WHERE
+		</if>
+		<if test=' boardSearch != null and boardSearch != "" '>
+			(freeboard_content like CONCAT('%',#{boardSearch},'%')
+		OR
+			freeboard_title  like CONCAT('%',#{boardSearch},'%'))
+		</if>
+		<if test=' boardSearch != null and boardSearch != "" and cate != null and cate != ""'>
+		AND
+		</if>
+		<if test=' cate != null and cate != "" '>
+			freeboard_cate_cd = #{cate}
+		</if>
+		ORDER BY 
+			freeboard_regdate DESC
+			
+		
+	</select>
+	<insert id="freeboardReplyInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
+		INSERT INTO tb_freeboard_reply
+			(reply_cd, login_id, freeboard_cd, reply_content, login_nick, reply_regdate)
+		VALUES 
+			((select  CONCAT('freeboard_reply_', LPAD(IFNULL(MAX(substring(reply_cd ,17)),0)+1,4,'0')) from tb_freeboard_reply as fbr),
+			 #{loginId}, #{freeboardCd}, #{replyContent}, #{loginNick}, NOW())
+	</insert>
 </mapper>

@@ -20,7 +20,7 @@
     					<li><a href="/diary">채용공고</a></li>
       					<li><a href="/memberCoverletterList">자기소개서</a></li>
       					<li><a href="/resumeList">이력서</a></li>
-      					<li><a href="/freeboardInsert">자유게시판</a></li>
+      					<li><a href="/freeboardList">자유게시판</a></li>
       					<li><a href="/companyInfo">기업정보</a></li>
       					<li><a href=""><span class="glyphicon glyphicon-user"></span>로그인성공</a></li>
       					<li><a href=""><span class="glyphicon glyphicon-user"></span>로그인아웃</a></li>

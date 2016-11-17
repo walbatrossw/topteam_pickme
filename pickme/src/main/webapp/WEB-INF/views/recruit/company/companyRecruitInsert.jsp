@@ -218,8 +218,7 @@ $(document).ready(function(){
 	$(document).on('click','.coverletterDelBtn',function(){
 		//console.log(second);
 		var index = $('.coverletterDelBtn').index(this);
-		 //$('.cCletterArticle').eq(index).remove(); 
-		 $('.cCletterArticleTable').last().remove(); 
+		 $('.cCletterArticleTable').eq(index).last().remove(); 
 	});
 		
 	/************ 등록버튼 클릭시 유효성검사 ************/

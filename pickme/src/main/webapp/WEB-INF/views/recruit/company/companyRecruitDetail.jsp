@@ -57,7 +57,7 @@ $(document).ready(function(){
 		<tbody>
 			<tr>
 				<td class="col-sm-3"><input type="hidden" id="recruitCompanyCd" value="${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">
-					<label>${recruitCompanyInfoForDetail.recruitList[0].companyName}</label>
+					<label><a class="btn btn-default" href="/company/companyInfoList?searchCompanyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName0}</a></label>
 				</td>
 				<td class="col-sm-3">
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitBegindate,0,10)}~

@@ -59,12 +59,15 @@
 							</div>
 						</li>
 						<li>
-							<a href="/freeboardInsert">자유게시판 </a>
+							<a href="/freeboardList">자유게시판 </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/freeboardInsert">자유게시판1</a></li>
-									<li><a href="/freeboardInsert">자유게시판2</a></li>
-									<li><a href="/freeboardInsert">자유게시판3 </a></li>
+									<li><a href="/freeboardList?cate=1">잡담</a></li>
+									<li><a href="/freeboardList?cate=2">근무환경</a></li>
+									<li><a href="/freeboardList?cate=3">자소서 </a></li>
+									<li><a href="/freeboardList?cate=4">인적성 </a></li>
+									<li><a href="/freeboardList?cate=5">자격증 </a></li>
+									<li><a href="/freeboardList?cate=6">어학 </a></li>
 								</ul>
 							</div>
 						</li>
