@@ -180,5 +180,8 @@ public class CompanyDao {
 	public int deleteCompanySalary(int salaryCd){
 		return sqlSessionFactoryCompany.update(NS + ".deleteCompanySalary", salaryCd);
 	}
-	
+	//연봉정보 통계
+	public CompanyStatisticsVo selectCompanyStatisticsSalaryByCompanyName(String companyName){
+		return sqlSessionFactoryCompany.selectOne(NS + ".selectCompanyStatisticsSalaryByCompanyName", companyName);
+	}
 }

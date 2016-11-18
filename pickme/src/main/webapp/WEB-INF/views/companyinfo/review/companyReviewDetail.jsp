@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 		<div class="jumbotron text-center">
-			<h1>기업리뷰 상세보기(관리자)</h1>
+			<h1>기업리뷰 상세보기(사용자)</h1>
 		</div>
 		<div class="companyReviewDetail">	
 			<div class="row">

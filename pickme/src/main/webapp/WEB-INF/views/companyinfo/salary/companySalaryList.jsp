@@ -13,6 +13,8 @@
 	$(document).ready(function() {
 		const $searchBtn = $('#searchBtn');
 		const $searchCompanyName = $('#searchCompanyName');
+		const $salaryDetailBtn = $('.salaryDetailBtn');
+		const $companyName = $('.companyName');
 		//기업명 검색
 		$searchBtn.click(function() {
 			if ($searchCompanyName.val() != "") {
@@ -21,6 +23,11 @@
 				location.href = "/salary/companySalaryListAllow";
 			}
 		});
+		$salaryDetailBtn.click(function(){
+			let index = $salaryDetailBtn.index(this);
+			location.href = '/salary/companySalaryDetail?companyName=' + $companyName.eq(index).val();
+		});
+		//
 	});
 </script>
 <title>기업 연봉 리스트</title>
@@ -74,7 +81,8 @@
 											</div>
 											<div class="col-xs-3 content_col2_4">
 												<p>
-													<button class="btn btn-info"><span class="glyphicon glyphicon-share-alt"></span>연봉정보 보러가기</button>
+													<button class="btn btn-info salaryDetailBtn"><span class="glyphicon glyphicon-share-alt"></span>연봉정보 보러가기</button>
+													<input type="hidden" class="companyName" value="${companyInfoList.companyName }"/>
 												</p>
 											</div>
 										</div>

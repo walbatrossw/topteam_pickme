@@ -107,7 +107,13 @@ public class CompanyService {
 		return companyDao.updateCompanyStatisticsSalary(sqlMap);
 	}
 	//연봉정보 삭제 처리
-	
+	public int deleteCompnaySalary(int salaryCd){
+		return companyDao.deleteCompanySalary(salaryCd);
+	}
+	//연봉정보 통계
+	public CompanyStatisticsVo getCompanyStatisticsSalary(String companyName){
+		return companyDao.selectCompanyStatisticsSalaryByCompanyName(companyName);
+	}
 	/*---------------------------------------------------------------------------------- 
 	 * 									면접후기 관련
 	 * ---------------------------------------------------------------------------------*/ 

@@ -27,7 +27,7 @@
 							<a href="/interview/companyInterviewListAllow">면접후기</a>
 						</li>
 						<li class="menu4">
-							<a href="#">연봉정보</a>
+							<a href="/salary/companySalaryListAllow">연봉정보</a>
 						</li>
 					</ul>
 				</div>
