@@ -5,10 +5,12 @@
 <head>
 <title>자유게시판</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/company/companyinfo.css">
 <style>
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
  .row.content {height:1500px} 
@@ -67,6 +69,7 @@ $(document).ready(function(){
 		}		
 	});
 	$('#boardSearchKeyword').change(function(){
+		
 		if($('#cateFromServer').val()==""){
 			location.href="/freeboardList?boardSearch="+$('#boardSearchKeyword').val();
 		}else if($('#cateFromServer').val()!=""){
@@ -77,8 +80,10 @@ $(document).ready(function(){
 	
 	//리플 
 	$('.replyBtn').click(function(){
+		
 		var order = $('.replyBtn').index(this)
 		console.log("order : "+order)
+		$('.replyContent').eq(order).val().replace(/\n/g, "<br>")
  		if($('#sessionId').val()==""||$('#sessionId').val()==null){
  			location.href="/memberGeneralLogin";
  			console.log("1번")
@@ -97,14 +102,14 @@ $(document).ready(function(){
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
 <input type="hidden" id="cateFromServer" value="${freeboardCate}">
-<input type="hidden" id="sessionId" value="${sessionScope.id}">
+<input type="hidden" id="sessionId" value="${sessionScope.generalId}">
 <br>
 <div class="container-fluid">
 	<div class="row content">
 	
 		<!-- 사이드바 -->
 		<div class="sidenav">
-			<h3><a href="/freeboardList">자유게시판</a></h3>
+			<h3><a href="/freeboardList">자유게시판${sessionScope.generalId}</a></h3>
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="/freeboardList">전체글보기</a></li>
 				<c:forEach items="${cateForView}" var="cateForView">
@@ -153,7 +158,7 @@ $(document).ready(function(){
 								<option value="6">어학</option>
 							</select>
 						</td>
-						<td width="73%" colspan="2">
+						<td width="80%" colspan="2">
 							<input type="text" name="freeboardTitle" id="freeboardTitle" placeholder="제목입력" class="form-control" rows="1" required >
 						</td>
 					</tr>
@@ -178,9 +183,9 @@ $(document).ready(function(){
 		<!-- 게시글리스트 -->
 		<c:forEach items="${freeList}" var="freeList">
 		<input type="hidden" class="replyHidden" value="${freeList.freeboardCd}">
-				<table width="80%">
+				<table>
 					<tr>
-						<td  colspan="2">
+						<td>
 							<h4>
 								<span class="label label-success">
 									<c:if test="${freeList.freeboardCateCd=='1'}">
@@ -207,14 +212,14 @@ $(document).ready(function(){
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td>
 							<h5>
 								${freeList.freeboardNick} /<span class="glyphicon glyphicon-time"></span>${freeList.freeboardRegdate}
 							</h5>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td>
 							<br>
 								<p>${freeList.freeboardContent}</p>
 							<br>
@@ -223,15 +228,18 @@ $(document).ready(function(){
 					
 					<!-- 댓글입력 -->					
 					<tr>
-						<td >
+						<td>
 							<div class="input-group">
-							    <textarea class="form-control replyContent"  rows="2" style="resize:none" placeholder="댓글 입력" required></textarea>     
+							    <textarea class="form-control replyContent"  rows="2" cols="120" style="resize:none" placeholder="댓글 입력" required></textarea>     
 							    <span class="input-group-addon btn btn-primary replyBtn">등록</span>
 							</div>
 							<br>
 						</td>
 					</tr>
-					
+				</table>
+				
+				
+				<table>
 					<!-- 댓글리스트 -->
 					<c:forEach items="${replyMap}" var="replyMap">
 					<tr>
@@ -243,19 +251,46 @@ $(document).ready(function(){
 										${replyMap.loginNick}  
 										<span class="glyphicon glyphicon-time"></span><small>${replyMap.replyRegdate}</small>
 									</span>
-									<p>${replyMap.replyContent}</p>
+						</td>
+					</tr>	
+					<tr>
+						<td width="90%">	
+							<p>${replyMap.replyContent}</p>
+						</td>
+						<td>			
+							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default">삭제</a>
+						</td>
+						<td>
+							<a href="/freeboardReplyUpdate?replyCd=${replyMap.replyCd}" class="btn btn-default">수정</a>
 								</div>
 							 </div> 
 						 </c:if>
-						 </td>
-						</tr>
+						</td>
+					</tr>
+				
 					</c:forEach>
-				</table>
+					</table>
+				
 			<hr>
 			<br>
 		</c:forEach>
 		<!-- 게시글리스트끝 -->
-		</div>
+				<!-- 페이징 -->
+				<div class="text-center">
+					<ul class="pager">
+						<li class="previous"><a href="/freeboardList?cate=${freeboardCate}&page=${page-1}">이전</a></li>
+						<c:forEach var="i" begin="${startPage}" end="${endPage}">
+								<c:if test="${page == i}">
+									<li class="active"><a href="/freeboardList?cate=${freeboardCate}&page=${i}">${i}</a></li>
+								</c:if>
+								<c:if test="${page != i}">
+									<li><a href="/freeboardList?cate=${freeboardCate}&page=${i}">${i}</a></li>
+								</c:if>
+						</c:forEach>
+						<li class="next"><a href="/freeboardList?cate=${freeboardCate}&page=${page+1}">다음</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

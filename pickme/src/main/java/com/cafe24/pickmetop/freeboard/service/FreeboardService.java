@@ -1,7 +1,6 @@
 package com.cafe24.pickmetop.freeboard.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cafe24.pickmetop.freeboard.controller.FreeboardController;
+import com.cafe24.pickmetop.commons.PageHelper;
 import com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
 import com.cafe24.pickmetop.freeboard.repository.FreeboardDao;
@@ -21,13 +20,16 @@ public class FreeboardService {
 	@Autowired
 	FreeboardDao dao;
 	final static Logger logger = LoggerFactory.getLogger(FreeboardService.class);
+	private final int MAX_PAGE_COUNT = 5; //보여질 최대 페이지 수
+	private final int MAX_LINE_COUNT = 10; //보여질 최대 게시글
 	
+    
 	//게시글입력
 	public void freeboardInsert(FreeboardVo freeboardVo,HttpSession session){
-		//test 닉네임
-		freeboardVo.setFreeboardNick((String)session.getAttribute("id"));
-		//test 아이디 
-		freeboardVo.setLoginId((String)session.getAttribute("id"));
+		// 닉네임
+		freeboardVo.setFreeboardNick((String)session.getAttribute("generalNick"));
+		// 아이디 
+		freeboardVo.setLoginId((String)session.getAttribute("generalId"));
 		
 		logger.info("getFreeboardContent :{}",freeboardVo.getFreeboardContent());
 		logger.info("getFreeboardCateCd :{}",freeboardVo.getFreeboardCateCd());
@@ -38,8 +40,14 @@ public class FreeboardService {
 	
 	
 	//리스트
-	public Map<String,Object> selectFreeboardList(String freeboardCate,String boardSearch){
-		Map map = new HashMap<String,String>();
+	public Map<String,Object> selectFreeboardList(int page,String freeboardCate,String boardSearch){
+		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
+		pageHelper.setLastPage(dao.selectFreeboardListCount(boardSearch,freeboardCate), MAX_LINE_COUNT);
+		Map<String, Object> mapForView =  new HashMap<String,Object>();
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		map.put("pageHelp", pageHelper);
+		
 		logger.info("selectFreeboardList :{}",dao.selectFreeboardList(map));
 		int cate=0;
 		if(!freeboardCate.equals("")){
@@ -65,7 +73,8 @@ public class FreeboardService {
 		}
 		logger.info("map : {}",map.get("cate")+"/"+map.get("boardSearch"));
 		
-		Map mapForView =  new HashMap<String,Object>();
+		mapForView.put("startPage", pageHelper.startPage(page, MAX_PAGE_COUNT));
+		mapForView.put("endPage", pageHelper.endPage());
 		mapForView.put("boardList", dao.selectFreeboardList(map));
 		//카테고리 전체리스트
 		mapForView.put("cateForView", dao.selectCate());
@@ -77,9 +86,8 @@ public class FreeboardService {
 	
 	//댓글입력
 	public void freeboardReplyInsert(FreeboardReplyVo freeboardReplyVo,HttpSession session,String freeboardCd,String replyContent){
-		//test
-		freeboardReplyVo.setLoginId((String)session.getAttribute("id"));
-		freeboardReplyVo.setLoginNick((String)session.getAttribute("id"));
+		freeboardReplyVo.setLoginId((String)session.getAttribute("generalId"));
+		freeboardReplyVo.setLoginNick((String)session.getAttribute("generalNick"));
 		
 		freeboardReplyVo.setFreeboardCd(freeboardCd);
 		freeboardReplyVo.setReplyContent(replyContent);

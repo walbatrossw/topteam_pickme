@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.freeboard.repository.FreeboardMapper">
 	
+	
+	
+
+	
 	<select id="selectReply"  resultType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
 		SELECT 
 			reply_cd as replyCd, 
@@ -33,6 +37,30 @@
 			((select  CONCAT('freeboard_', LPAD(IFNULL(MAX(substring(freeboard_cd ,11)),0)+1,4,'0')) from tb_freeboard as fb),
 			 #{loginId}, NOW(),#{freeboardTitle}, #{freeboardContent},#{freeboardNick} ,#{freeboardCateCd})
 	</insert>
+	
+	<select id="selectTotalCount" parameterType="java.util.Map" resultType="Integer">
+		SELECT 
+			COUNT(freeboard_cd)
+		FROM 
+			tb_freeboard
+		<if test=' boardSearch != null and boardSearch != "" or cate != null and cate != ""'>
+		WHERE
+		</if>
+		<if test=' boardSearch != null and boardSearch != "" '>
+			(freeboard_content like CONCAT('%',#{boardSearch},'%')
+		OR
+			freeboard_title  like CONCAT('%',#{boardSearch},'%'))
+		</if>
+		<if test=' boardSearch != null and boardSearch != "" and cate != null and cate != ""'>
+		AND
+		</if>
+		<if test=' cate != null and cate != "" '>
+			freeboard_cate_cd = #{cate}
+		</if>
+	</select>
+	
+	
+	
 	<select id="selectFreeboardList" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardVo" parameterType="java.util.Map">
 		SELECT 
 			freeboard_cd as freeboardCd ,
@@ -58,12 +86,13 @@
 		</if>
 		<if test=' cate != null and cate != "" '>
 			freeboard_cate_cd = #{cate}
-		</if>
-		ORDER BY 
-			freeboard_regdate DESC
-			
-		
+		</if>		
+		ORDER BY freeboard_regdate DESC
+		LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}		
 	</select>
+	
+	
+	
 	<insert id="freeboardReplyInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
 		INSERT INTO tb_freeboard_reply
 			(reply_cd, login_id, freeboard_cd, reply_content, login_nick, reply_regdate)
