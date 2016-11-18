@@ -286,8 +286,8 @@ body .container .content .signup-cont {
 		    <article class="half">
 			        <h1>PICK ME 자  소 서 </h1>
 			        <div class="tabs">
-				            <span class="tab signin active"><a href="#signin">회원가입</a></span>
-				            <span class="tab signup"><a href="#signup">로그인</a></span>
+				            <span class="tab signin active"><a href="#signin">일반 회원 가입</a></span>
+				            <span class="tab signup"><a href="#signup">네이버로 가입</a></span>
 			        </div>
 			        <div class="content">
 				            <div class="signin-cont cont">
@@ -296,10 +296,10 @@ body .container .content .signup-cont {
 						                    <label for="generalId">이메일</label>
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="generalPw">비밀번호 </label>
-                						    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호확인">
-                						    <label for="generalPw">비밀번호 </label>
-                						    <input type="text" name="generalNick" id="generalNick" class="inpt" required="required" placeholder="닉네임">
-                						    
+                						    <input type="password" name="generalPw2" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
+                						    <label for="generalPw2">비밀번호 </label>
+                				
+                						   <input type="text" name="generalNick" id="generalNick" class="inpt" required="required" placeholder="닉네임">
                 						    <label for="generalNick">닉네임 </label>
 						                     <div class="submit-wrap">
 							                        <input type="submit"  value="회원가입" class="submit" >
@@ -314,10 +314,9 @@ body .container .content .signup-cont {
 						                    <label for="name">이메일</label>
                     <input type="email" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
 						                    <label for="email">Your email</label>
-						                    <input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 확인">
-                						    <label for="password">Your password</label>
+						                   
 						                    <div class="submit-wrap">
-							                        <input type="submit" value="로그인" class="submit">
+							                        <input type="submit" value="네이버로 가입" class="submit">
 							                        <a href="#" class="more">비밀번호 찾을래?</a>
 						                    </div>
         					        </form>

@@ -1,24 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
-<head>
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
-</head>
-<body>
-
-<!-- //³×ÀÌ¹ö¾ÆÀÌµğ·Î·Î±×ÀÎ ¹öÆ° ³ëÃâ ¿µ¿ª -->
-
-<!-- ³×ÀÌ¹ö¾Æµğµğ·Î·Î±×ÀÎ ÃÊ±âÈ­ Script -->
-<script type="text/javascript">
-	var naver_id_login = new naver_id_login("µî·ÏÇÑ ClientID °ª", "µî·ÏÇÑ Callback URL °ª");
-	var state = naver_id_login.getUniqState();
-	naver_id_login.setButton("white", 2,40);
-	naver_id_login.setDomain(".service.com");
-	naver_id_login.setState(state);
-	naver_id_login.setPopup();
-	naver_id_login.init_naver_id_login();
-</script>
-<!-- // ³×ÀÌ¹ö¾ÆÀÌµğ·Î·Î±×ÀÎ ÃÊ±âÈ­ Script -->
-</body>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+  <head>
+    <title>ë„¤ì´ë²„ë¡œê·¸ì¸</title>
+  </head>
+  <body>
+  <%
+    String clientId = "YOUR_CLIENT_ID";//ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’";
+    String redirectURI = URLEncoder.encode("http://localhost:8080/callback.jsp", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+  </body>
 </html>

@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!doctype html>
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
-
+ <%
+    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8080/callback.jsp", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
 
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -286,12 +298,12 @@ body .container .content .signup-cont {
 		    <article class="half">
 			        <h1>PICK ME 자  소 서 </h1>
 			        <div class="tabs">
-				            <span class="tab signin active"><a href="#signin">회원가입</a></span>
-				            <span class="tab signup"><a href="#signup">로그인</a></span>
+				            <span class="tab signin active"><a href="#signin">일반로그인</a></span>
+				            <span class="tab signup"><a href="#signup">네이버로 로그인</a></span>
 			        </div>
 			        <div class="content">
 				            <div class="signin-cont cont">
-					                <form action="/memberGeneralInsert" method="post" enctype="multipart/form-data">
+					                <form action="/memberGeneralLogin" method="post" enctype="multipart/form-data">
 						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
 						                    <label for="email">이메일</label>
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
@@ -299,26 +311,18 @@ body .container .content .signup-cont {
 						                    <input type="checkbox" id="remember" class="checkbox" checked>
 						                    <label for="generalPw">비밀번호 확인</label>
 						                    <div class="submit-wrap">
-							                        <input type="submit" value="Sign in" class="submit">
+							                        <input type="submit" value="일반로그인" class="submit">
 							                        <a href="#" class="more">비밀 번호 찾을까?</a>
 						                    </div>
         					      	  </form>
     				      		  </div>
     				        <div class="signup-cont cont">
-                <form action="/memberGeneralLogin" method="post" enctype="multipart/form-data">
-					<input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
-						<label for="name">이메일</label>
-							<input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
-								<label for="email">Your email</label>
-									<input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 확인">
-										<label for="password">Your password</label>
-						                    <div class="submit-wrap">
-												<input type="submit" value="Sign up" class="submit">
-							                        <a href="#" class="more">Terms and conditions</a>
+           
+			  	           <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
 												</div>
- 											</form>
+ 											
           					  </div>
-			    	    </div>
+			    	    
 					</article>
 		    <div class="half bg"></div>
 	</section>
