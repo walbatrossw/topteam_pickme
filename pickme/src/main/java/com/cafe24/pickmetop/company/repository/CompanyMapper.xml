@@ -525,7 +525,31 @@
 		WHERE
 			company_name = #{companyName}
 	</update>
-	<!-- 연봉정보 통계리스트  -->
+	<!-- 연봉정보 통계  -->
+	<select id="selectCompanyStatisticsSalaryByCompanyName" parameterType="String" resultType="com.cafe24.pickmetop.company.model.CompanyStatisticsVo">
+		SELECT
+			company_name as companyName,
+			company_cd as companyCd,
+			IFNULL(company_statistics_salary_sw/(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_name=#{companyName} AND salary.salary_worklevel='사원'),0) as companyStatisticsSalarySw,
+			IFNULL(company_statistics_salary_dr/(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_name=#{companyName} AND salary.salary_worklevel='대리'),0) as companyStatisticsSalaryDr,
+			IFNULL(company_statistics_salary_gj/(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_name=#{companyName} AND salary.salary_worklevel='과장'),0) as companyStatisticsSalaryGj,
+			IFNULL(company_statistics_salary_cj/(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_name=#{companyName} AND salary.salary_worklevel='차장'),0) as companyStatisticsSalaryCj,
+			IFNULL(company_statistics_salary_bj/(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_name=#{companyName} AND salary.salary_worklevel='부장'),0) as companyStatisticsSalaryBj,
+			(SELECT IFNULL(MAX(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '사원' AND company_name = #{companyName}) as maxSalarySw,
+			(SELECT IFNULL(MIN(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '사원' AND company_name = #{companyName}) as minSalarySw,
+			(SELECT IFNULL(MAX(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '대리' AND company_name = #{companyName}) as maxSalaryDr,
+			(SELECT IFNULL(MIN(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '대리' AND company_name = #{companyName}) as minSalaryDr,
+			(SELECT IFNULL(MAX(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '과장' AND company_name = #{companyName}) as maxSalaryGj,
+			(SELECT IFNULL(MIN(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '과장' AND company_name = #{companyName}) as minSalaryGj,
+			(SELECT IFNULL(MAX(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '차장' AND company_name = #{companyName}) as maxSalaryCj,
+			(SELECT IFNULL(MIN(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '차장' AND company_name = #{companyName}) as minSalaryCj,
+			(SELECT IFNULL(MAX(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '부장' AND company_name = #{companyName}) as maxSalaryBj,
+			(SELECT IFNULL(MIN(salary_basepay),0) FROM tb_company_salary WHERE salary_worklevel = '부장' AND company_name = #{companyName}) as minSalaryBj
+		FROM
+			tb_company_statistics
+		WHERE
+			company_name = #{companyName}
+	</select>
 	
 	<!-- 연봉정보 삭제처리 -->
 	<delete id="deleteCompanySalary" parameterType="Integer">

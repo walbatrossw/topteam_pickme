@@ -126,6 +126,12 @@ public class CompanyController {
 		model.addAttribute("companyInfoList", companyInfoMap.get("companyInfoList"));
 		return "/companyinfo/salary/companySalaryList";
 	}
+	//연봉정보 통계
+	@RequestMapping(value = "/salary/companySalaryDetail", method = RequestMethod.GET)
+	public String companySalaryInsertDetail(Model model, @RequestParam(value="companyName") String companyName) {
+		model.addAttribute("companySalaryDetail", companyService.getCompanyStatisticsSalary(companyName));
+		return "/companyinfo/salary/companySalaryDetail";
+	}
 	
 	/*---------------------------------------------------------------------------------- 
 	 * 
