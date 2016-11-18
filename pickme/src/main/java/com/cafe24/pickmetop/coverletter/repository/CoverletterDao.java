@@ -77,4 +77,8 @@ public class CoverletterDao {
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
 	
+	
+	
+	
+	
 }

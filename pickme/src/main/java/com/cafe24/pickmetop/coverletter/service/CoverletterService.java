@@ -65,13 +65,5 @@ public class CoverletterService {
 		return memberCoverletterMap;
 	}
 	
-	/*// 04 회원이 작성한 자기소개서 저장기록 리스트
-	public Map<String, Object> getMemberCoverletterSaveRecordList(String mCletterCd){
-		Map<String, Object> coverletterSaveRecordMap = new HashMap<String, Object>();
-		coverletterSaveRecordMap.put(memberOneCoverletterInfo, coverletterDao.selectOneCoverletterInfo(mCletterCd));
-		logger.info("memberOneCoverletterInfo {}", coverletterSaveRecordMap.toString());
-		coverletterSaveRecordMap.put(memberCoverletterSaveRecordList, coverletterDao.selectCoverletterSaveRecordList(mCletterCd));
-		logger.info("memberCoverletterSaveRecordList {}", coverletterSaveRecordMap.toString());
-		return coverletterSaveRecordMap;
-	}*/
+	
 }

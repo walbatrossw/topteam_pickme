@@ -78,7 +78,7 @@
 					<h3 class="page-header">이력서 리스트</h3>
 				</div>
 					<div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<h4>${resumeList[0].loginId}님의 이력서</h4>

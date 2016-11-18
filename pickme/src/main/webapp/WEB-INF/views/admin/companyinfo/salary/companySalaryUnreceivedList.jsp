@@ -5,8 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/company/companyCommon.css">
-<link rel="stylesheet" href="/css/company/companyReview.css">
+<link rel="stylesheet" href="/css/company/companySalary.css">
 <link rel="stylesheet" href="/css/company/companyinfo.css">
 <!-- <script>
 	$(document).ready(function(){
@@ -50,7 +51,7 @@
 								<td>${companySalaryList.companyName }</td>
 								<td>${companySalaryList.loginId }</td>
 								<td>${companySalaryList.salaryWorklevel }</td>
-								<td>${companySalaryList.salaryBasepay }</td>
+								<td>${companySalaryList.salaryBasepay } 만원</td>
 								<td>${companySalaryList.salaryRegDate }</td>
 								<td>미승인</td>
 							</tr>				

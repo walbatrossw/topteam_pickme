@@ -6,6 +6,7 @@ public class CompanySalaryVo {
 	private String companyCd;
 	private String companyName;
 	private String jobTopIndexCd;
+	private String jobTopIndexName;
 	private String salaryWorkstate;
 	private String salaryWorklevel;
 	private int salaryBasepay;
@@ -114,16 +115,22 @@ public class CompanySalaryVo {
 	public void setSalaryGrantor(String salaryGrantor) {
 		this.salaryGrantor = salaryGrantor;
 	}
+	public String getJobTopIndexName() {
+		return jobTopIndexName;
+	}
+	public void setJobTopIndexName(String jobTopIndexName) {
+		this.jobTopIndexName = jobTopIndexName;
+	}
+	
 	@Override
 	public String toString() {
 		return "CompanySalaryVo [salaryCd=" + salaryCd + ", loginId=" + loginId + ", companyCd=" + companyCd
-				+ ", companyName=" + companyName + ", jobMidindexCd=" + jobTopIndexCd + ", salaryWorkstate="
-				+ salaryWorkstate + ", salaryWorklevel=" + salaryWorklevel + ", salaryBasepay=" + salaryBasepay
-				+ ", salaryWorkstatus=" + salaryWorkstatus + ", salaryPeriod=" + salaryPeriod + ", salarySum="
-				+ salarySum + ", salaryRegDate=" + salaryRegDate + ", salaryModiDate=" + salaryModiDate
-				+ ", salaryAllow=" + salaryAllow + ", salaryAllowDate=" + salaryAllowDate + ", salaryGrantor="
-				+ salaryGrantor + "]";
+				+ ", companyName=" + companyName + ", jobTopIndexCd=" + jobTopIndexCd + ", jobTopIndexName="
+				+ jobTopIndexName + ", salaryWorkstate=" + salaryWorkstate + ", salaryWorklevel=" + salaryWorklevel
+				+ ", salaryBasepay=" + salaryBasepay + ", salaryWorkstatus=" + salaryWorkstatus + ", salaryPeriod="
+				+ salaryPeriod + ", salarySum=" + salarySum + ", salaryRegDate=" + salaryRegDate + ", salaryModiDate="
+				+ salaryModiDate + ", salaryAllow=" + salaryAllow + ", salaryAllowDate=" + salaryAllowDate
+				+ ", salaryGrantor=" + salaryGrantor + "]";
 	}
-	
 	
 }

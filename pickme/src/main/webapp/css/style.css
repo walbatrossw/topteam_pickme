@@ -2,7 +2,6 @@
 body {
 	margin: 0px;
 }
-
 .mainmenu{
 	margin-bottom: 30px;
 } 
@@ -19,7 +18,10 @@ body {
 	background-color: #222222;
 	color: #76919d;	
 }
+.navbar-brand{
+	padding: 0;
+}
 .navbar-fixed-bottom span{
 	color: #000000;
-}b
+}
 

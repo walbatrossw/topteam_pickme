@@ -90,12 +90,17 @@ public class CoverletterController {
 		return "/coverletter/member/memberCoverletterDetail";
 	}
 	
-	/*// 05 회원이 작성한 자기소개서 저장기록 리스트 : 모달페이지 맵핑
-	@RequestMapping(value="/memberCoverletterSaveRecordList", method = RequestMethod.GET)
-	public String memberCoverletterSaveRecordList(Model model, @RequestParam(value="mCletterCd") String mCletterCd){
+	// 04_01 회원이 작성한 자기소개서 업데이트  
+	@RequestMapping(value="/memberCoverletterUpdateForm", method = RequestMethod.GET)
+	public String memberCoverletterUpdateForm(Model model, @RequestParam(value="mCletterCd") String mCletterCd){
 		Map<String, Object> memberCoverletter = coverletterService.getMemberCoverletter(mCletterCd);
-		model.addAttribute("memberCoverletterSaveRecordList", memberCoverletter.get("selectMemeberCoverletterArticleSaveRecordList"));
-		Logger.info("회원이 작성한 자기소개서 저장기록 리스트 {}", model.toString());
-		return "/coverletter/member/memberCoverletterSaveRecordList"; 
-	}*/
+		model.addAttribute("memeberCoverletterInfo", memberCoverletter.get("memeberCoverletterInfo"));
+		Logger.info("memeberCoverletterInfo {}", model.toString());
+		model.addAttribute("memeberCoverletterArticleList", memberCoverletter.get("memeberCoverletterArticleList"));
+		Logger.info("memeberCoverletterArticleList{}", model.toString());
+		model.addAttribute("memeberCoverletterArticleSaveRecord", memberCoverletter.get("memeberCoverletterArticleSaveRecord"));
+		Logger.info("memeberCoverletterArticleSaveRecord{}", model.toString());
+		return "/coverletter/member/memberCoverletterUpdate";
+	}	
+		
 }
