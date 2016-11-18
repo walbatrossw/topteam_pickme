@@ -53,7 +53,7 @@ public class CoverletterController {
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
 		return "/resumecoverletter/coverletter/admin/companyJobCoverletterList"; 
 	}
-	
+	                                                     
 	// 03_01 자기소개서 입력화면(채용직무코드/채용기업명/채용명/직무중분류명/상세직무명/채용마감일자/기업자기소개서항목리스트)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
 	public String memberCoverletterInsertForm(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
