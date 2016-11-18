@@ -23,11 +23,11 @@ public class CoverletterController {
 	private CoverletterService coverletterService;
 	
 	
-	// 00 자기소개서 메인페이지
-	@RequestMapping(value="/coverletterIndex", method = RequestMethod.GET)
-	public String coverletterIndex(Model model){
+	// 00 이력서 및 자기소개서 나의 정보페이지
+	@RequestMapping(value="/resumeCoverletterInfo", method = RequestMethod.GET)
+	public String resumeCoverletterIndex(Model model){
 		Logger.info("자기소개서 메인페이지:{}" , model.toString());
-		return "/coverletter/coverletterIndex";
+		return "/resumecoverletter/resumeCoverletterInfo";
 	}
 	
 	// 01_01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 리스트페이지 맵핑
@@ -35,7 +35,7 @@ public class CoverletterController {
 	public String memberCoverletterList(Model model){
 		model.addAttribute("memberCoverletterList", coverletterService.getMemberCoverletterList());
 		Logger.info("회원자기소개서 리스트 : {}", model.toString());
-		return "/coverletter/member/memberCoverletterList";
+		return "/resumecoverletter/coverletter/member/memberCoverletterList";
 	}
 	
 	// 01_02 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 모달페이지 맵핑
@@ -43,7 +43,7 @@ public class CoverletterController {
 	public String memberCoverletterListForMordal(Model model){
 		model.addAttribute("memberCoverletterListForModal", coverletterService.getMemberCoverletterList());
 		Logger.info("회원자기소개서 리스트 for Mordal : {}", model.toString());
-		return "/coverletter/member/memberCoverletterListForModal";
+		return "/resumecoverletter/coverletter/member/memberCoverletterListForModal";
 	}
 	
 	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
@@ -51,7 +51,7 @@ public class CoverletterController {
 	public String companyJobCoverletterList(Model model){
 		model.addAttribute("companyJobCoverletterList", coverletterService.getCompanyJobCoverletterList());
 		Logger.info("기업채용공고의 자기소개서 리스트 {}", model.toString());
-		return "/coverletter/admin/companyJobCoverletterList"; 
+		return "/resumecoverletter/coverletter/admin/companyJobCoverletterList"; 
 	}
 	
 	// 03_01 자기소개서 입력화면(채용직무코드/채용기업명/채용명/직무중분류명/상세직무명/채용마감일자/기업자기소개서항목리스트)
@@ -63,7 +63,7 @@ public class CoverletterController {
 		Logger.info("companyOneJobCletterInfo : {}", companyOneJobCletter.get("companyOneJobCletterInfo").toString());
 		model.addAttribute("companyOneJobArticleList", companyOneJobCletter.get("companyOneJobArticleList"));
 		Logger.info("companyOneJobArticleList : {}", companyOneJobCletter.get("companyOneJobArticleList").toString());
-		return "/coverletter/member/memberCoverletterInsert";
+		return "/resumecoverletter/coverletter/member/memberCoverletterInsert";
 	}
 	
 	// 03_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
@@ -87,7 +87,7 @@ public class CoverletterController {
 		Logger.info("memeberCoverletterArticleList{}", model.toString());
 		model.addAttribute("memeberCoverletterArticleSaveRecord", memberCoverletter.get("memeberCoverletterArticleSaveRecord"));
 		Logger.info("memeberCoverletterArticleSaveRecord{}", model.toString());
-		return "/coverletter/member/memberCoverletterDetail";
+		return "/resumecoverletter/coverletter/member/memberCoverletterDetail";
 	}
 	
 	// 04_01 회원이 작성한 자기소개서 업데이트  
@@ -100,7 +100,7 @@ public class CoverletterController {
 		Logger.info("memeberCoverletterArticleList{}", model.toString());
 		model.addAttribute("memeberCoverletterArticleSaveRecord", memberCoverletter.get("memeberCoverletterArticleSaveRecord"));
 		Logger.info("memeberCoverletterArticleSaveRecord{}", model.toString());
-		return "/coverletter/member/memberCoverletterUpdate";
+		return "/resumecoverletter/coverletter/member/memberCoverletterUpdate";
 	}	
 		
 }

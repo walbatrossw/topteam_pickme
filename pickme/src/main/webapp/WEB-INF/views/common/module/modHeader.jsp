@@ -20,7 +20,7 @@
     				</div>
     				<ul class="nav navbar-nav navbar-right">
     					<li><a href="/diary">채용공고</a></li>
-      					<li><a href="/coverletterIndex">이력서 & 자기소개서</a></li>
+      					<li><a href="/resumeCoverletterIndex">이력서 & 자기소개서</a></li>
       					<li><a href="/freeboardList">자유게시판</a></li>
       					<li><a href="/companyInfo">기업정보</a></li>
       					

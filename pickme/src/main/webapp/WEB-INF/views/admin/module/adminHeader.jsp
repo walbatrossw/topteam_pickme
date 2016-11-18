@@ -96,8 +96,10 @@
 		<h3>Media</h3>
 		<ul class="toggle">
 		</ul>
-		<h3>Admin</h3>
+		<h3>합격자기소개서</h3>
 		<ul class="toggle">
+			<li class="fa fa-arrow-circle-right"><a href="#">합격자기소개서리스트</a></li>
+			<li class="fa fa-arrow-circle-right"><a href="#">합격자기소개서입력</a></li>
 		</ul>
 		<footer>
 			<hr />

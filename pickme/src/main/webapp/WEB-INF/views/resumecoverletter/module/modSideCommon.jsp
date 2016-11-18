@@ -4,30 +4,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이력서 & 자기소개서 Main</title>
-<link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="css/coverletter/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
-<link href="css/coverletter/plugins/timeline/timeline.css" rel="stylesheet">
-<link href="css/coverletter/sb-admin.css" rel="stylesheet">
-<script src="js/coverletter/jquery-1.10.2.js"></script>
-<script src="js/coverletter/bootstrap.min.js"></script>
-<script src="js/coverletter/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/coverletter/plugins/morris/raphael-2.1.0.min.js"></script>
-<script src="js/coverletter/plugins/morris/morris.js"></script>
-<script src="js/coverletter/sb-admin.js"></script>
-<script src="js/coverletter/demo/dashboard-demo.js"></script>
-<script>
-</script>
+
 </head>
-<body>  
+<body>
+	<!-- Page Whole START-->
 	<div id="wrapper">
+		
+		<!-- Side Navigation Whole : START-->
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
 			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 			<div class="navbar-default navbar-static-side" role="navigation">
 				<div class="sidebar-collapse">
 					<ul class="nav" id="side-menu">
-						<!-- 왼쪽상단 검색폼 -->
+						
+						<!-- Side Search Form : START -->
 						<li class="sidebar-search">
 							<div class="input-group custom-search-form">
 								<input type="text" class="form-control" placeholder="빠른 채용검색">
@@ -38,10 +28,14 @@
 								</span>
 							</div>
 						</li>
-						<!-- 왼쪽상단 검색폼 -->
-						<!-- 사이드 메뉴항목 -->
+						<!-- Side Search Form : END -->
+						
+						<!-- Side MENU : START -->
 						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자기소개서 Main</a>
+							<a href="/resumeCoverletterIndex"><i class="fa fa-sitemap fa-fw"></i> 이력서 & 자기소개서</a>
+						</li>
+						<li>
+							<a href="/resumeCoverletterInfo"><i class="fa fa-info-circle fa-fw"></i> 나의 정보</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
@@ -64,23 +58,15 @@
 								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
 							</ul>
 						</li>
-						<!-- 사이드 메뉴항목 -->
+						<!-- Side MENU : MENU -->
+					
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<!-- 사이드메뉴 전체 END-->
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-6">
-					<h1 class="page-header">나의 이력서 및 자소서(나의 정보페이지)</h1>
-					<div class="jumbotron">
-					나의 지원현황/채용마감임박리스트 10/게시판 답글등등 보여주기 구현예정
-					
-					</div>
-				</div>
-			</div>
-		</div>
+		<!-- /Side Navigation Whole END-->
+		
 	</div>
+	<!-- /Page Whole END-->
 </body>
 </html>

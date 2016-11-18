@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/css/datetimepicker/bootstrap-datetimepicker.css"/>
 
 <script>
-		//글자수 세기
+	//글자수 세기
 	$(document).ready(function(){
 		$(function(){
 			$('textarea.content').keyup(function(){
@@ -116,76 +116,7 @@
 <body>
 	<div id="wrapper">
 	<form id="coverletterAddForm" action="/memberCoverletterInsert" method="post">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
-			<div class="navbar-default navbar-static-side" role="navigation">
-				<div class="sidebar-collapse">
-					<ul class="nav" id="side-menu">
-						<!-- 왼쪽상단 검색폼 -->
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="빠른 채용검색">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</li>
-						<!-- 왼쪽상단 검색폼 -->
-						<!-- 사이드 메뉴항목 -->
-						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자소서 Main</a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="/resumeList"><i class="fa fa-th-list fa-fw"></i> 나의 이력서 리스트</a></li>
-								<li><a href="/resumeInsert"><i class="fa fa-pencil fa-fw"></i> 이력서 새로 쓰기</a></li>
-							</ul>
-						</li>	
-						<li>
-							<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 지원자분석<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 스펙통계(서비스준비중)</a></li>
-								<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 나의 지원분야(서비스준비중)</a></li>
-							</ul>
-						</li>
-						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
-								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
-							</ul>
-						</li>
-						<li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level"> 
-								<li><a href="#"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li> <!-- /memberCoverletterSave -->
-								<li><a href="#" data-toggle="modal" data-target="#importModal"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li> <!-- /memberCoverletterList -->
-								<li><a href="#" data-toggle="modal" data-target="#saveRecordModal"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li> <!-- /memberCoverletterSaveRecord -->
-								
-							</ul>
-						</li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#"><i class="fa fa-print fa-fw"></i> 인쇄하기</a></li> <!-- /coverletterPrint -->
-								<li><a href="#"><i class="fa fa-mail-forward fa-fw"></i> 내보내기</a></li> <!-- /coverletterExport -->
-								<li>
-									<a href="javascript:void(0);" onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
-										<i class="fa fa-check-square-o fa-fw">
-										</i> 맞춤법 검사
-									</a>
-								</li>
-								<li><a href="#"><i class="fa fa-pencil-square fa-fw"></i>메모장</a></li> <!-- /memberCoverletterMemo -->
-								<li><a href="#"><i class="fa fa-file-pdf-o fa-fw"></i>합격자소서</a></li> <!-- /passCoverlettrList -->
-							</ul>
-						</li>
-						<!-- 사이드 메뉴항목 -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- 사이드메뉴 전체 END-->
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCoverletterInsert.jsp"/>
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
@@ -208,15 +139,13 @@
 		                                        <th class="col-sm-2">자기소개서 이름</th>
 												<th class="col-sm-2">마감시간</th>
 												<th class="col-sm-2">자소서 제출 마감시간</th>
-												<th class="col-sm-2">D-DAY</th>
 											</tr>
 		                                </thead>
 		                                <tbody>
 		                                	<tr>
-												<td><input type="text" class="form-control" id="" name="mCletterName" value="${memeberCoverletterInfo.mCletterName}"></td>
-												<td><input type="text" class="form-control" id="" name="mCletterEnddate" value="${memeberCoverletterInfo.mCletterEnddate}"></td>
-												<td><input type="text" class="form-control" id="" name="m_cletterRecordDate" value="${memeberCoverletterArticleSaveRecord.mCletterRecordDate}"></td>
-												<td>D-DAY추가예정</td>
+												<td><input type="text" class="form-control" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
+												<td><input type="text" class="form-control" id="mCletterEnddate" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
+												<td><input type="text" class="form-control" id="ddayPicker" name="" value=""></td>
 											</tr>
 										</tbody>
 									</table>
@@ -231,7 +160,7 @@
 															</th>
 															<td>
 																<div>
-																	<textarea class="form-control" rows="2" name="coverletterMemberArticleVoList[0].cCletterArticle" style="resize:none">${memeberCoverletterArticleList.cCletterArticle}</textarea>
+																	<textarea class="form-control" rows="2" name="coverletterMemberArticleVoList[0].cCletterArticle" style="resize:none" placeholder="자기소개서 문항을 입력해주세요"></textarea>
 																</div>
 															</td>
 														</tr>
@@ -240,7 +169,7 @@
 																내용
 															</th>
 															<td>
-																<textarea class="form-control content" rows="8" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none">${memeberCoverletterArticleList.mCletterArticleContent}</textarea>
+																<textarea class="form-control content" rows="8" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 															</td>
 														</tr>
 														<tr>
@@ -261,7 +190,7 @@
 						                        <div id="fieldArticle"></div>
 					                        </c:when>
 				                            <c:when test="${companyOneJobCletterInfo.recruitJobCd ne 'recruit_company_job_0001'}">
-												<c:forEach var="memeberCoverletterArticleList" items="${memeberCoverletterArticleList}" varStatus="i">
+												<c:forEach var="companyOneJobArticleList" items="${companyOneJobArticleList}" varStatus="i">	
 													<table class="table table-striped table-bordered table-hover">
 						                            	<tr>
 															<td>
@@ -269,7 +198,7 @@
 															</td>
 															<td>
 																<div>
-																	<textarea class="form-control" rows="2" id="" name="coverletterMemberArticleVoList[${i.count-1}].cCletterArticle" style="resize:none">${memeberCoverletterArticleList.cCletterArticle}</textarea>
+																	<textarea class="form-control" rows="2" id="" name="coverletterMemberArticleVoList[${i.count-1}].cCletterArticle" style="resize:none">${companyOneJobArticleList.cCletterArticle}</textarea>
 																</div>
 																<div align="right">
 																	자기소개서 문항을 반드시 확인해주세요
@@ -282,7 +211,7 @@
 																${i.count}.	내용
 															</td>
 															<td>
-																<textarea class="form-control content" rows="8" id="content" name="coverletterMemberArticleVoList[${i.count-1}].mCletterArticleContent" style="resize:none">${memeberCoverletterArticleList.mCletterArticleContent}</textarea>
+																<textarea class="form-control content" rows="8" id="content" name="coverletterMemberArticleVoList[${i.count-1}].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 															</td>
 														</tr>
 														<tr>
@@ -305,8 +234,8 @@
 										<c:choose>
 											<c:when test="${companyOneJobCletterInfo.recruitJobCd eq 'recruit_company_job_0001'}">
 											    <div class="btn-group" role="group">
-													<button type="button" id="articleAddBtn" class="btn btn-default btn-sm"><i class="fa fa-plus-square "></i> 추가</button>
-													<button type="button" id="articleDelBtn" class="btn btn-default btn-sm"><i class="fa fa-minus-square "></i> 삭제</button>
+													<button type="button" id="articleAddBtn" class="btn btn-default btn-sm"><i class="fa fa-plus-square"></i> 추가</button>
+													<button type="button" id="articleDelBtn" class="btn btn-default btn-sm"><i class="fa fa-minus-square"></i> 삭제</button>
 												</div>
 											</c:when>
 											<c:otherwise>

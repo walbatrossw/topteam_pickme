@@ -20,7 +20,7 @@ var ko = moment.defineLocale('ko', {
     longDateFormat : {
         LT : 'A h시 m분',
         LTS : 'A h시 m분 s초',
-        L : 'YYYY.MM.DD',
+        L : 'YYYY-MM-DD',
         LL : 'YYYY년 MMMM D일',
         LLL : 'YYYY년 MMMM D일 A hh시 mm분',
         LLLL : 'YYYY년 MMMM D일 dddd A h시 m분'

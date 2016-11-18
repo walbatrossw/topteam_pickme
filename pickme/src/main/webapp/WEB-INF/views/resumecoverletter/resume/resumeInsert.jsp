@@ -17,7 +17,13 @@
 <script src="js/coverletter/sb-admin.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script>
+<script type="text/javascript">
+//자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
+function openPop() { 
+    window.open("/resumeCertilangIndex", "CertifiLang", "top=0, left=0, width=500, height=300, scrollbars=no, resizable=no ,status=no ,toolbar=no"); 
+}
+</script>
+<script >
 	//유효성 검사(이력서 이름만, 나머지는 null허용)
 	$(document).ready(function(){
 		$('#resumeAddBtn').click(function(){
@@ -29,29 +35,26 @@
 				$("#resumeAddForm").submit();
 			}	
 		});
+		
+		
+		
+		
+		// 추가입력시 증가변수
+		var univerNum = 0;
+		var familyNum = 0;
+		var certifiNum = 0;
+		var careerNum = 0;
+		var langNum = 0;
+		var awardNum = 0;
+		var trainingNum = 0;
+		var clubNum = 0;
 	
-
-	//자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
-	function openPop() { 
-	    window.open("/resumeCertilangIndex", "CertifiLang", "top=0, left=0, width=500, height=300, scrollbars=no, resizable=no ,status=no ,toolbar=no"); 
-	}
-	
-	var univerNum = 0;
-	var familyNum = 0;
-	var certifiNum = 0;
-	var careerNum = 0;
-	var langNum = 0;
-	var awardNum = 0;
-	var trainingNum = 0;
-	var clubNum = 0;
-	
-	// 01 대학교 추가 및 삭제 start
-	
+		// 01 대학교 추가 및 삭제 start
 		const $universityAddBtn = $('#universityAddBtn');
 		$universityAddBtn.click(function(){
 			univerNum++;
 			$('#fieldUniversity').append(
-				'<table class="university table table-striped table-bordered table-hover">'+
+				'<table class="university table table-striped table-bordered table-hover table-condensed">'+
 					'<tr>'+
 						'<th class="col-sm-3">분류</th>'+
 						'<th class="col-sm-3">학교명</th>'+
@@ -117,7 +120,7 @@
 		$familyAddBtn.click(function(){
 			familyNum++;
 			$('#fieldFamily').append(
-				'<table class="family table table-striped table-bordered table-hover">'+
+				'<table class="family table table-striped table-bordered table-hover table-condensed">'+
 					'<tr>'+
 						'<th class="col-sm-2">관계</th>'+
 						'<th class="col-sm-2">이름</th>'+
@@ -157,7 +160,7 @@
 		$certificateAddBtn.click(function(){
 			certifiNum++;
 			$('#fieldCertificate').append(
-				'<table class="certificate table table-striped table-bordered table-hover">'+
+				'<table class="certificate table table-striped table-bordered table-hover table-condensed">'+
 					'<tr>'+
 						'<th class="col-sm-2">자격증명</th>'+
 						'<th class="col-sm-2">등급</th>'+
@@ -194,7 +197,7 @@
 		$careerAddBtn.click(function(){
 			careerNum++;
 			$('#fieldCareer').append(
-				'<table class="career table table-striped table-bordered table-hover">'+
+				'<table class="career table table-striped table-bordered table-hover table-condensed">'+
 					'<tr>'+
 						'<th class="col-sm-2">회사명</th>'+
 						'<th class="col-sm-2">직급</th>'+
@@ -239,7 +242,7 @@
 			$languageAddBtn.click(function(){
 				langNum++;
 				$('#fieldLanguage').append(
-					'<table class="language table table-striped table-bordered table-hover">'+
+					'<table class="language table table-striped table-bordered table-hover table-condensed">'+
 						'<tr>'+
 							'<th class="col-sm-3">외국어명</th>'+
 							'<th class="col-sm-3">회화구사수준</th>'+
@@ -299,20 +302,20 @@
 			$awardAddBtn.click(function(){
 				awardNum++;
 				$('#fieldAward').append(
-					'<table class="award table table-striped table-bordered table-hover">'+
+					'<table class="award table table-striped table-bordered table-hover table-condensed">'+
 						'<tr>'+
-							'<th class="col-sm-3">수상명</th>'+
+							'<th class="col-sm-4">수상명</th>'+
 							'<th class="col-sm-4">수상내용</th>'+
 							'<th class="col-sm-3">수여기관</th>'+
-							'<th class="col-sm-2">수상일자</th>'+
+							'<th class="col-sm-1">수상일자</th>'+
 						'</tr>'+
 						'<tr>'+
-							'<td class="col-sm-3">'+
+							'<td class="col-sm-4">'+
 								'<input type="text" class="form-control" id="awardName" name="resumeAwardVoList['+awardNum+'].awardName" placeholder="수상명 입력">'+
 							'</td>'+
 							'<td class="col-sm-4"><input type="text" class="form-control" id="awardContent" name="resumeAwardVoList['+awardNum+'].awardContent" placeholder="수상내용 입력"></td>'+
 							'<td class="col-sm-3"><input type="text" class="form-control" id="awardHost" name="resumeAwardVoList['+awardNum+'].awardHost" placeholder="수여기관 입력"></td>'+
-							'<td class="col-sm-2"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList['+awardNum+'].awardDate" value="2016-11-02"></td>'+
+							'<td class="col-sm-1"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList['+awardNum+'].awardDate" value="2016-11-02"></td>'+
 						'</tr>'+
 					'</table>'
 				);
@@ -330,20 +333,20 @@
 			$trainingAddBtn.click(function(){
 				trainingNum++;
 				$('#fieldTraining').append(
-					'<table class="training table table-striped table-bordered table-hover">'+
+					'<table class="training table table-striped table-bordered table-hover table-condensed">'+
 						'<tr>'+
-							'<th class="col-sm-3">국가</th>'+
-							'<th class="col-sm-3">기관/단체</th>'+
-							'<th class="col-sm-3">시작일자</th>'+
-							'<th class="col-sm-3">수료일자</th>'+
+							'<th class="col-sm-4">국가</th>'+
+							'<th class="col-sm-4">기관/단체</th>'+
+							'<th class="col-sm-1">시작일자</th>'+
+							'<th class="col-sm-1">수료일자</th>'+
 						'</tr>'+
 						'<tr>'+
-							'<td class="col-sm-3"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList['+trainingNum+'].trainingCountry" placeholder="ex) 대한민국, 중국, 미국"></td>'+
-							'<td class="col-sm-3"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList['+trainingNum+'].trainingAcademy" placeholder="연수기관 입력"></td>'+
-							'<td class="col-sm-3">'+
+							'<td class="col-sm-4"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList['+trainingNum+'].trainingCountry" placeholder="ex) 대한민국, 중국, 미국"></td>'+
+							'<td class="col-sm-4"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList['+trainingNum+'].trainingAcademy" placeholder="연수기관 입력"></td>'+
+							'<td class="col-sm-1">'+
 								'<input type="date" class="form-control" id="trainingBegindate" name="resumeTrainingVoList['+trainingNum+'].trainingBegindate" value="2016-11-02">'+
 							'</td>'+
-							'<td class="col-sm-3">'+
+							'<td class="col-sm-1">'+
 								'<input type="date" class="form-control" id="trainingEnddate" name="resumeTrainingVoList['+trainingNum+'].trainingEnddate" value="2016-11-02">'+
 							'</td>'+
 						'</tr>'+
@@ -368,20 +371,20 @@
 			$clubAddBtn.click(function(){
 				clubNum++;
 				$('#fieldClub').append(
-					'<table class="club table table-striped table-bordered table-hover">'+
+					'<table class="club table table-striped table-bordered table-hover table-condensed">'+
 						'<tr>'+
-							'<th class="col-sm-1">활동명</th>'+
-							'<th class="col-sm-1">주관기관</th>'+
+							'<th class="col-sm-4">활동명</th>'+
+							'<th class="col-sm-4">주관기관</th>'+
 							'<th class="col-sm-1">시작일자</th>'+
 							'<th class="col-sm-1">종료일자</th>'+
 						'</tr>'+
 						'<tr>'+
-							'<td class="col-sm-2"><input type="text" class="form-control" id="clubName" name="resumeClubVoList['+clubNum+'].clubName" placeholder="동아리/활동명 입력"></td>'+
-							'<td class="col-sm-2"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList['+clubNum+'].clubHost" placeholder="주관기관 입력"></td>'+
-							'<td class="col-sm-2">'+
+							'<td class="col-sm-4"><input type="text" class="form-control" id="clubName" name="resumeClubVoList['+clubNum+'].clubName" placeholder="동아리/활동명 입력"></td>'+
+							'<td class="col-sm-4"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList['+clubNum+'].clubHost" placeholder="주관기관 입력"></td>'+
+							'<td class="col-sm-1">'+
 								'<input type="date" class="form-control" id="clubBegindate" name="resumeClubVoList['+clubNum+'].clubBegindate" value="2016-11-02">'+
 							'</td>'+
-							'<td class="col-sm-2">'+
+							'<td class="col-sm-1">'+
 								'<input type="date" class="form-control" id="clubEnddate" name="resumeClubVoList['+clubNum+'].clubEnddate" value="2016-11-02">'+
 							'</td>'+
 						'</tr>'+
@@ -407,54 +410,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
-			<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
-			<div class="navbar-default navbar-static-side" role="navigation">
-				<div class="sidebar-collapse">
-					<ul class="nav" id="side-menu">
-						<!-- 왼쪽상단 검색폼 -->
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" placeholder="빠른 채용검색">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</li>
-						<!-- 왼쪽상단 검색폼 -->
-						<!-- 사이드 메뉴항목 -->
-						<li>
-							<a href="/coverletterIndex"><i class="fa fa-dashboard fa-fw"></i> 이력서 & 자기소개서 Main</a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="/resumeList"> 나의 이력서 리스트</a></li>
-								<li><a href="/resumeInsert"> 이력서 새로 쓰기</a></li>
-							</ul>
-						</li>	
-						<li>
-							<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 지원자분석<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="#"> 스펙통계(서비스준비중)</a></li>
-								<li><a href="#"> 나의 지원분야(서비스준비중)</a></li>
-							</ul>
-						</li>
-						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>
-							<ul class="nav nav-second-level">
-								<li><a href="/memberCoverletterInsert?recruitJobCd=recruit_company_job_0001"><i class="fa fa-file-o fa-fw"></i> 새 자소서 쓰기</a></li>
-								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
-								<li><a href="/companyJobCoverletterList"><i class="fa fa-list-ul fa-fw"></i> 채용기업 리스트</a></li>
-							</ul>
-						</li>
-						<!-- 사이드 메뉴항목 -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- 사이드메뉴 전체 -->
+		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp"/>
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-10">
@@ -471,11 +427,11 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<h4 align="center"><strong>증명사진</strong></h4>
-									<table class="table table-striped table-bordered table-hover">
+									<table class="table">
 										<tr align="center">
 											<td>
 												<div class="fileinput fileinput-new" data-provides="fileinput">
-								  					<div class="fileinput-preview thumbnail" id="personalPhoto" data-trigger="fileinput" style="width: 160px; height: 220px;"></div>
+								  					<div class="fileinput-preview thumbnail" id="personalPhoto" data-trigger="fileinput" style=" width: 117px; height: 162px;"></div>
 								  					<div align="center">
 								    					<span class="btn btn-default btn-file"><span class="fileinput-new">사진선택</span>
 								    					<span class="fileinput-exists">변경</span>
@@ -529,10 +485,11 @@
 									</table>
 								</div>
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>고등학교</strong></h4>
-									<table class="table table-striped table-bordered table-hover">
+									<table class="table table-striped table-bordered table-hover table-condensed">
 										<tr>
 											<th class="col-sm-3">학교명</th>
 											<th class="col-sm-3">분류</th>
@@ -556,11 +513,12 @@
 									</table>
 								</div>
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>대학교</strong></h4>
 									<div id="university">
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-3">분류</th>
 												<th class="col-sm-3">학교명</th>
@@ -613,17 +571,18 @@
 										</table>
 									</div>
 									<div id="fieldUniversity"></div>
-									<div>
-										<input type="button" id="universityAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="universityDelBtn" class="btn btn-default btn-xs" value="삭제">
-									</div>
+									<div class="btn-group" role="group">
+										<button type="button" id="universityAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="universityDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
+									</div>	
 								</div>
 							</div>
+							<hr>
 							<div class="row" >
 								<div class="col-sm-12">
 								<h4><strong>가족사항</strong></h4>
 									<div id="family">
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 												<tr>
 													<th class="col-sm-2">관계</th>
 													<th class="col-sm-2">이름</th>
@@ -649,17 +608,17 @@
 										</table>
 									</div>
 									<div id="fieldFamily"></div>
-									<div>
-										<input type="button" id="familyAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="familyDelBtn" class="btn btn-default btn-xs" value="삭제">	
-									</div>
-									<hr>
+									<div class="btn-group" role="group">
+										<button type="button" id="familyAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="familyDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
+									</div>	
 								</div>
-							</div>	
+							</div>
+							<hr>	
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>병역사항</strong></h4>
-									<table class="table table-striped table-bordered table-hover">
+									<table class="table table-striped table-bordered table-hover table-condensed">
 										<tr>
 											<th class="col-sm-1">병역구분</th>
 											<th class="col-sm-1">군별</th>
@@ -718,11 +677,12 @@
 									</table>
 								</div>
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>자격증</h4>
+									<h4><strong>자격증</strong></h4>
 									<div id="certificate">
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 												<tr>
 													<th class="col-sm-2">자격증명</th>
 													<th class="col-sm-2">등급</th>
@@ -745,18 +705,18 @@
 										</table>
 									</div>
 									<div id="fieldCertificate"></div>
-									<div>
-										<input type="button" id="certificateAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="certificateDelBtn" class="btn btn-default btn-xs" value="삭제">
-									</div>
-									<hr>
+									<div class="btn-group" role="group">
+										<button type="button" id="certificateAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="certificateDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
+									</div>	
 								</div>
 							</div>
+							<hr>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>경력사항</h4>
+									<h4><strong>경력사항</strong></h4>
 									<div id="career">
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-2">회사명</th>
 												<th class="col-sm-2">직급</th>
@@ -788,18 +748,18 @@
 										</table>
 									</div>
 									<div id="fieldCareer"></div>	
-									<div>
-										<input type="button" id="careerAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="careerDelBtn" class="btn btn-default btn-xs" value="삭제">
+									<div class="btn-group" role="group">
+										<button type="button" id="careerAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="careerDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
 									</div>	
 									<hr>
 								</div>
 							</div>	
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>어학능력</h4>
+									<h4><strong>어학능력</strong></h4>
 									<div id="language">	
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-3">외국어명</th>
 												<th class="col-sm-3">회화구사수준</th>
@@ -846,60 +806,60 @@
 										</table>
 									</div>
 									<div id="fieldLanguage"></div>
-									<div>
-										<input type="button" id="languageAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="languageDelBtn" class="btn btn-default btn-xs" value="삭제">
+									<div class="btn-group" role="group">
+										<button type="button" id="languageAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="languageDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
 									</div>
 									<hr>	
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>수상경력</h4>
+									<h4><strong>수상경력</strong></h4>
 									<div id="award">
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
-												<th class="col-sm-3">수상명</th>
+												<th class="col-sm-4">수상명</th>
 												<th class="col-sm-4">수상내용</th>
 												<th class="col-sm-3">수여기관</th>
-												<th class="col-sm-2">수상일자</th>
+												<th class="col-sm-1">수상일자</th>
 											</tr>
 											<tr>
-												<td class="col-sm-3">
+												<td class="col-sm-4">
 													<input type="text" class="form-control" id="awardName" name="resumeAwardVoList[0].awardName" placeholder="수상명 입력">
 												</td>
 												<td class="col-sm-4"><input type="text" class="form-control" id="awardContent" name="resumeAwardVoList[0].awardContent" placeholder="수상내용 입력"></td>
 												<td class="col-sm-3"><input type="text" class="form-control" id="awardHost" name="resumeAwardVoList[0].awardHost" placeholder="수여기관 입력"></td>
-												<td class="col-sm-2"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList[0].awardDate" value="2016-11-02"></td>
+												<td class="col-sm-1"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList[0].awardDate" value="2016-11-02"></td>
 											</tr>
 										</table>
 									</div>
 									<div id="fieldAward"></div>
-									<div>
-										<input type="button" id="awardAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="awardDelBtn" class="btn btn-default btn-xs" value="삭제">
+									<div class="btn-group" role="group">
+										<button type="button" id="awardAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="awardDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
 									</div>
 									<hr>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>국내외 연수 및 교육</h4>
+									<h4><strong>국내외 연수 및 교육</strong></h4>
 									<div id="training">	
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
-												<th class="col-sm-3">국가</th>
-												<th class="col-sm-3">기관/단체</th>
-												<th class="col-sm-3">시작일자</th>
-												<th class="col-sm-3">수료일자</th>
+												<th class="col-sm-4">국가</th>
+												<th class="col-sm-4">기관/단체</th>
+												<th class="col-sm-1">시작일자</th>
+												<th class="col-sm-1">수료일자</th>
 											</tr>
 											<tr>
-												<td class="col-sm-3"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList[0].trainingCountry" placeholder="ex) 대한민국, 중국, 미국"></td>	
-												<td class="col-sm-3"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList[0].trainingAcademy" placeholder="연수기관 입력"></td>
-												<td class="col-sm-3">
+												<td class="col-sm-4"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList[0].trainingCountry" placeholder="ex) 대한민국, 중국, 미국"></td>	
+												<td class="col-sm-4"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList[0].trainingAcademy" placeholder="연수기관 입력"></td>
+												<td class="col-sm-1">
 													<input type="date" class="form-control" id="trainingBegindate" name="resumeTrainingVoList[0].trainingBegindate" value="2016-11-02">
 												</td>
-												<td class="col-sm-3">
+												<td class="col-sm-1">
 													<input type="date" class="form-control" id="trainingEnddate" name="resumeTrainingVoList[0].trainingEnddate" value="2016-11-02">
 												</td>
 											</tr>
@@ -911,31 +871,31 @@
 										</table>
 									</div>
 									<div id="fieldTraining"></div>
-									<div>
-										<input type="button" id="trainingAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="trainingDelBtn" class="btn btn-default btn-xs" value="삭제">
+									<div class="btn-group" role="group">
+										<button type="button" id="trainingAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="trainingDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
 									</div>
 									<hr>	
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>동아리(동호회) 및 대외활동</h4>
+									<h4><strong>동아리(동호회) 및 대외활동</strong></h4>
 									<div id="club">	
-										<table class="table table-striped table-bordered table-hover">
+										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
-												<th class="col-sm-1">활동명</th>
-												<th class="col-sm-1">주관기관</th>
+												<th class="col-sm-5">활동명</th>
+												<th class="col-sm-5">주관기관</th>
 												<th class="col-sm-1">시작일자</th>
 												<th class="col-sm-1">종료일자</th>
 											</tr>
 											<tr>
-												<td class="col-sm-2"><input type="text" class="form-control" id="clubName" name="resumeClubVoList[0].clubName" placeholder="동아리/활동명 입력"></td>	
-												<td class="col-sm-2"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList[0].clubHost" placeholder="주관기관 입력"></td>
-												<td class="col-sm-2">
+												<td class="col-sm-5"><input type="text" class="form-control" id="clubName" name="resumeClubVoList[0].clubName" placeholder="동아리/활동명 입력"></td>	
+												<td class="col-sm-5"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList[0].clubHost" placeholder="주관기관 입력"></td>
+												<td class="col-sm-1">
 													<input type="date" class="form-control" id="clubBegindate" name="resumeClubVoList[0].clubBegindate" value="2016-11-02">
 												</td>
-												<td class="col-sm-2">
+												<td class="col-sm-1">
 													<input type="date" class="form-control" id="clubEnddate" name="resumeClubVoList[0].clubEnddate" value="2016-11-02">
 												</td>
 											</tr>
@@ -948,40 +908,40 @@
 										</table>
 									</div>
 									<div id="fieldClub"></div>
-									<div>
-										<input type="button" id="clubAddBtn" class="btn btn-primary btn-xs" value="추가">
-										<input type="button" id="clubDelBtn" class="btn btn-default btn-xs" value="삭제">
+									<div class="btn-group" role="group">
+										<button type="button" id="clubAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
+										<button type="button" id="clubDelBtn" class="btn btn-default btn-xs"><i class="fa fa-minus"> 삭제</i></button>
 									</div>
 									<hr>	
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12">
-									<h4>기타 및 포트폴리오</h4>
-									<table class="table table-striped table-bordered table-hover">
+									<h4><strong>기타 및 포트폴리오</strong></h4>
+									<table class="table table-striped table-bordered table-hover table-condensed">
 										<tr>
-											<th class="col-sm-3">포트폴리오 및 기타사항</th>
+											<th class="col-sm-4">포트폴리오 및 기타사항</th>
 											<th class="col-sm-1">시작일자</th>
 											<th class="col-sm-1">종료일자</th>
-											<th class="col-sm-7">내용</th>
+											<th class="col-sm-6">내용</th>
 										</tr>
 										<tr>
-											<td class="col-sm-3"><input type="text" class="form-control" id="etcTitle" name="etcTitle" placeholder="기타 및 포트폴리오명 입력"></td>
+											<td class="col-sm-4"><input type="text" class="form-control" id="etcTitle" name="etcTitle" placeholder="기타 및 포트폴리오명 입력"></td>
 											<td class="col-sm-1">
 												<input type="date" class="form-control" id="etcBegindate" name="etcBegindate" value="2016-11-02">
 											</td>
 											<td class="col-sm-1">
 												<input type="date" class="form-control" id="etcEnddate" name="etcEnddate" value="2016-11-02">
 											</td>
-											<td class="col-sm-7"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요"></textarea></td>
+											<td class="col-sm-6"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요"></textarea></td>
 										</tr>
 										<tr>
 											
-											<th class="col-sm-3">첨부파일</th>
+											<th colspan="8">첨부파일</th>
 										</tr>
 										<tr>
-											<td class="col-sm-3">
-												<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+											<td colspan="8">
+												<div class="col-sm-7 fileinput fileinput-new input-group" data-provides="fileinput">
 			  										<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> 
 			  											<span class="fileinput-filename"></span>
 			  										</div>

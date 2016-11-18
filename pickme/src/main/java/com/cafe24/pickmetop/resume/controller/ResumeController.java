@@ -35,18 +35,25 @@ public class ResumeController {
 	@Autowired
 	private ResumeService resumeService;
 	
+	// 00 이력서 및 자기소개서 메인페이지
+	@RequestMapping(value="/resumeCoverletterIndex", method = RequestMethod.GET)
+	public String resumeCoverletterIndex(Model model){
+		Logger.info("자기소개서 메인페이지:{}" , model.toString());
+		return "/resumecoverletter/resumeCoverletterIndex";
+	}
+	
 	//01 이력서 리스트(회원이 작성한 이력서 리스트)
 	@RequestMapping(value="/resumeList", method = RequestMethod.GET)
 	public String resumeList(Model model){
 		model.addAttribute("resumeList", resumeService.getResumeList());
 		Logger.info("이력서 리스트 : {}", model.toString());
-		return "/resume/resumeList";
+		return "/resumecoverletter/resume/resumeList";
 	}
 	
 	//02 이력서 입력화면(이력서 입력폼)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.GET)
 	public String resumeInsert(){
-		return "/resume/resumeInsert";
+		return "/resumecoverletter/resume/resumeInsert";
 	}
 	
 	//02 이력서 입력처리(이력서 입력처리후 리스트로 이동)
@@ -94,7 +101,7 @@ public class ResumeController {
 		model.addAttribute("resumeClub", resumeDetail.get("resumeClub"));
 		model.addAttribute("resumeEtc", resumeDetail.get("resumeEtc"));
 		
-		return "/resume/resumeDetail";
+		return "/resumecoverletter/resume/resumeDetail";
 	}
 	
 	
@@ -107,6 +114,6 @@ public class ResumeController {
 	//00 자격증 및 어학 검색페이지(이력서 입력폼에서 팝업을 통해 검색창을 띄워주고, 검색값을 입력폼에 자동입력 할 수 있게 처리)
 	@RequestMapping(value="/resumeCertilangIndex", method = RequestMethod.GET)
 	public String resumeCertilangIndex(){
-		return "/resume/resumeCertilangIndex";
+		return "/resumecoverletter/resume/resumeCertilangIndex";
 	}
 }
