@@ -209,9 +209,6 @@ public class RecruitController {
 		List<String> companyList = recruitService.selectCompany();
 		//logger.info("companyList : {}",companyList);
 		model.addAttribute("companyList", companyList);
-		
-		//test값으로 세션에 아이디 입력
-		session.setAttribute("id", "id001");
 		return "/recruit/company/companyRecruitInsert";
 	}
 }

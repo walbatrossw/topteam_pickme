@@ -106,6 +106,8 @@ $(document).ready(function(){
 	$('#bookmark').click(function(){
 		//로그인 안되어있으면 로그인 유도
 		if($('#sessionId').val()==""||$('#sessionId').val()==null){
+			alert('로그인후 이용가능한 기능입니다.');
+			//jAlert('This is a custom alert box', 'Alert Dialog');
 			location.href="/memberGeneralLogin";
 		}else{
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
@@ -127,10 +129,10 @@ $(document).ready(function(){
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
 이예은
-세션 : ${sessionScope.id}
+세션 : ${sessionScope.generalId}
 
 <input type="hidden" id="workStatus" value="${recruitJobWorkstatus}" />
-<input type="hidden" id = "sessionId" value="${sessionScope.id}">
+<input type="hidden" id = "sessionId" value="${sessionScope.generalId}">
 <div id="wrapper">
 	<div class="container">
 	<!-- Sidebar -->

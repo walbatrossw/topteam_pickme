@@ -26,8 +26,7 @@ public class FreeboardController {
 	//입력처리
 	@RequestMapping(value="/freeboardInsert", method = RequestMethod.GET)
 	public String freeboardInsert(HttpSession session,FreeboardVo freeboardVo){
-		//아이디, 제목, 닉네임, 카테코드
-		//test Id 값
+
 	
 		freeService.freeboardInsert(freeboardVo,session);
 		return "redirect:/freeboardList";
@@ -38,8 +37,22 @@ public class FreeboardController {
 	@RequestMapping(value="/freeboardList", method = RequestMethod.GET)
 	public String freeboardList(Model model,
 			@RequestParam(value="cate", defaultValue="") String freeboardCate,
-			@RequestParam(value="boardSearch", defaultValue="") String boardSearch){
-		Map Listmap=freeService.selectFreeboardList(freeboardCate,boardSearch);
+			@RequestParam(value="boardSearch", defaultValue="") String boardSearch,
+			@RequestParam(value="page", defaultValue="1") int page){
+		
+		//페이징
+		if(page < 1){
+			page = 1;
+		}		
+		Map Listmap=freeService.selectFreeboardList(page,freeboardCate,boardSearch);
+		logger.info("startPage: {}", Listmap.get("startPage"));
+		logger.info("endPage: {}", Listmap.get("endPage"));
+		
+		model.addAttribute("page", page);
+	    model.addAttribute("startPage", Listmap.get("startPage"));
+	    model.addAttribute("endPage", Listmap.get("endPage"));
+	  
+		
 		model.addAttribute("freeList",Listmap.get("boardList"));
 		model.addAttribute("cateForView",Listmap.get("cateForView"));
 		model.addAttribute("replyMap",Listmap.get("replyMap"));

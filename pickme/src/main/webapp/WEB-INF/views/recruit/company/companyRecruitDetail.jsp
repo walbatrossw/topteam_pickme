@@ -36,7 +36,7 @@ $(document).ready(function(){
 <%--  <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a> --%>
 	<h3>기업정보</h3> 
 	<%-- 세션 : ${sessionScope.id} --%>
-	<input type="hidden" id = "sessionId" value="${sessionScope.id}">
+	<input type="hidden" id = "sessionId" value="${sessionScope.generalId}">
 	<table class="table table-striped">
 		<thead style="background-color: #7c9af9;font-weight: bolder;font-size: large;">
 			<tr>

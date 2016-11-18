@@ -81,8 +81,7 @@ public class RecruitService {
 	//북마크 체크여부 확인 
 	public String checkBookmarkByLoginId(HttpSession session,String recruitCompanyCd){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
-		//testId값
-		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("generalId"));
 		
 		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
 		String checkBookmark=recruitDao.checkBookmarkByLoginId(recruitCompanyBookmarkVo);
@@ -94,8 +93,7 @@ public class RecruitService {
 	//북마크 등록, 삭제
 	public void insertBookmark(String recruitCompanyCd,String bookmarkChecked, HttpSession session){
 		RecruitCompanyBookmarkVo recruitCompanyBookmarkVo = new RecruitCompanyBookmarkVo();
-		//testId값
-		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("id"));
+		recruitCompanyBookmarkVo.setLoginId((String) session.getAttribute("generalId"));
 		
 		recruitCompanyBookmarkVo.setRecruitCompanyCd(recruitCompanyCd);
 		logger.info("recruitCompanyBookmarkVo : {}",recruitCompanyBookmarkVo.toString());
@@ -263,9 +261,6 @@ public class RecruitService {
 	
 	//companyRecruit입력
 	public void insertRecruitCompany(Recruit recruit,HttpSession session){
-		//test id값
-		String id = (String) session.getAttribute("id");
-		
 		RecruitCompany recruitCompany = new RecruitCompany();
 		
 		//RecruitCompanyCd내에 코드중 가장 큰숫자를 select
@@ -277,8 +272,8 @@ public class RecruitService {
 		recruitCompany.setRecruitName(recruit.getRecruitName());
 		recruitCompany.setRecruitBegindate(recruit.getRecruitBegindate());
 		recruitCompany.setRecruitEnddate(recruit.getRecruitEnddate());
-		recruitCompany.setRecruitRegister(id);
-		recruitCompany.setRecruitModify(id);
+		recruitCompany.setRecruitRegister((String) session.getAttribute("generalId"));
+		recruitCompany.setRecruitModify((String) session.getAttribute("generalId"));
 			
 		logger.info("recruitCompany : {}",recruitCompany.toString());
 			

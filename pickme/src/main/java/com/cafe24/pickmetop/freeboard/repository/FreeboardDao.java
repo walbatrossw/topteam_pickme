@@ -1,5 +1,6 @@
 package com.cafe24.pickmetop.freeboard.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.freeboard.model.FreeboardCategoryVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
+import com.cafe24.pickmetop.freeboard.service.PageHelper;
 
 @Repository
 public class FreeboardDao {
@@ -23,6 +25,14 @@ public class FreeboardDao {
 	@Resource(name = "sqlSessionFreeboard")
 	private SqlSessionTemplate sqlSessionFactoryFreeboard;	
 	
+
+	//전체개수
+	public int selectFreeboardListCount(String boardSearch,String freeboardCate){
+		Map<String,Object> sqlMap = new HashMap<String,Object>();
+		sqlMap.put("boardSearch", boardSearch);
+		sqlMap.put("cate", freeboardCate);
+		return sqlSessionFactoryFreeboard.selectOne(NS+".selectTotalCount",sqlMap);
+	}
 	//댓글 전체 리스트
 	public List<FreeboardReplyVo> selectReply(){
 		return sqlSessionFactoryFreeboard.selectList(NS+".selectReply");
