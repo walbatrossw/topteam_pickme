@@ -1,192 +1,351 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<!DOCTYPE>  
-
+<!doctype html>
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
-	<title>로그인</title>
-<body>
+
+
 <style rel="stylesheet">
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
-   font: 13px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-   color: #333333;
-   background: #596778;
+  font-family: 'Lato', sans-serif;
+  background-color: #f8f8f8;
+}
+body .container {
+  position: relative;
+  overflow: hidden;
+  width: 700px;
+  height: 500px;
+  margin: 80px auto 0;
+  background-color: #ffffff;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+}
+body .container .half {
+  float: left;
+  width: 50%;
+  height: 100%;
+  padding: 58px 40px 0;
+}
+body .container .half.bg {
+  background-image: url("http://www.blueb.co.kr/SRC2/_image/v01.jpg");
+  background-size: 400px;
+  background-repeat: no-repeat;
+}
+body .container h1 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 23px;
+  text-align: center;
+  text-indent: 6px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: #263238;
+}
+body .container .tabs {
+  width: 100%;
+  margin-bottom: 29px;
+  border-bottom: 1px solid #d9d9d9;
+}
+body .container .tabs .tab {
+  display: inline-block;
+  margin-bottom: -1px;
+  padding: 20px 15px 10px;
+  cursor: pointer;
+  letter-spacing: 0;
+  border-bottom: 1px solid #d9d9d9;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+body .container .tabs .tab a {
+  font-size: 11px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #d9d9d9;
+  transition: all 0.1s ease-in-out;
+}
+body .container .tabs .tab.active a, body .container .tabs .tab:hover a {
+  color: #263238;
+}
+body .container .tabs .tab.active {
+  border-bottom: 1px solid #263238;
+}
+body .container .content form {
+  position: relative;
+  height: 287px;
+}
+body .container .content label:first-of-type, body .container .content input:first-of-type, body .container .content .more:first-of-type {
+  -moz-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 0.4s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+body .container .content label:nth-of-type(2), body .container .content input:nth-of-type(2), body .container .content .more:nth-of-type(2) {
+  -moz-animation: slideIn 0.5s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 0.5s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 0.5s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+body .container .content label:nth-of-type(3), body .container .content input:nth-of-type(3), body .container .content .more:nth-of-type(3) {
+  -moz-animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+  -webkit-animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+  animation: slideIn 0.6s cubic-bezier(0.37, 0.82, 0.2, 1);
+}
+body .container .content label {
+  font-size: 12px;
+  color: #263238;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+body .container .content label:not([for='remember']) {
+  display: none;
+}
+body .container .content input.inpt {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin-bottom: 12px;
+  padding: 16px 13px;
+  color: #999999;
+  border: 1px solid #d9d9d9;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+body .container .content input.inpt::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Lato', sans-serif;
+}
+body .container .content input.inpt:-moz-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Lato', sans-serif;
+}
+body .container .content input.inpt::-moz-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Lato', sans-serif;
+}
+body .container .content input.inpt:-ms-input-placeholder {
+  font-size: 14px;
+  color: #999999;
+  font-family: 'Lato', sans-serif;
+}
+body .container .content input.inpt:focus {
+  border-color: #999999;
+}
+body .container .content input.submit {
+  font-size: 12px;
+  line-height: 42px;
+  display: block;
+  width: 100%;
+  height: 42px;
+  cursor: pointer;
+  vertical-align: middle;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #263238;
+  border: 1px solid #263238;
+  background: transparent;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+body .container .content input.submit:hover {
+  background-color: #263238;
+  color: #ffffff;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+body .container .content input:focus {
+  outline: none;
+}
+body .container .content .checkbox {
+  margin-top: 4px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 0;
+  height: 0;
+  margin: 17px -1px;
+  padding: 0;
+  border: 0;
+}
+body .container .content .checkbox + label {
+  vertical-align: middle;
+  display: inline-block;
+  width: 50%;
+}
+body .container .content .checkbox + label:before {
+  content: "\A";
+  color: #999999;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 8px;
+  line-height: 10px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  width: 11px;
+  height: 11px;
+  margin: -2px 8px 0 0;
+}
+body .container .content .checkbox:checked + label:before {
+  content: "✓";
+}
+body .container .content .submit-wrap {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+body .container .content .submit-wrap a {
+  font-size: 12px;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #999999;
+}
+body .container .content .submit-wrap a:hover {
+  text-decoration: underline;
+}
+body .container .content .signup-cont {
+  display: none;
 }
 
-.signUp {
-   position: relative;
-   margin: 50px auto;
-   width: 280px;
-   padding: 33px 25px 29px;
-   background: #FFFFFF;
-   border-bottom: 1px solid #C4C4C4;
-   border-radius: 5px;
-   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
-   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+@keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    margin-left: -320px;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+@-webkit-keyframes slideIn {
+  0% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    margin-left: -320px;
+  }
+  100% {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+    margin-left: 0px;
+  }
+}
+.credits {
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #999999;
+  font-size: 14px;
+  margin: 0 10px 10px 0;
+}
+.credits a {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  color: inherit;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.signUp:before,
-.signUp:after {
-   content: '';
-   position: absolute;
-   bottom: 1px;
-   left: 0;
-   right: 0;
-   height: 10px;
-   background: inherit;
-   border-bottom: 1px solid #D2D2D2;
-   border-radius: 4px;
-}
-
-.signUp:after {
-   bottom: 3px;
-   border-color: #DCDCDC;
-}
-
-.signUpTitle {
-   margin: -25px -25px 25px;
-   padding: 15px 25px;
-   line-height: 35px;
-   font-size: 26px;
-   font-weight: 300;
-   color: #777;
-   text-align: center;
-   text-shadow: 0 1px rgba(255, 255, 255, 0.75);
-   background: #F7F7F7;
-}
-
-.signUpTitle:before {
-   content: '';
-   position: absolute;
-   top: 0;
-   left: 0;
-   right: 0;
-   height: 8px;
-   background: #C4E17F;
-   border-radius: 5px 5px 0 0;
-   background-image: -webkit-linear-gradient(left, #C4E17F, #C4E17F 12.5%, #F7FDCA 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #db9CBE 62.5%, #C49CDE 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62C2E4 87.5%, #62C2E4);
-   background-image: -moz-linear-gradient(left, #c4e17f, #C4E17F 12.5%, #F7FDCA 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #DB9CBE 62.5%, #C49CDE 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62C2E4 87.5%, #62C2E4);
-   background-image: -o-linear-gradient(left, #C4E17F, #C4E17F 12.5%, #F7FDCC 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #DB9DBE 62.5%, #C49CDE 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62C2E4 87.5%, #62C2E4);
-   background-image: linear-gradient(to right, #C4E17F, #C4E17F 12.5%, #F7FDCA 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #DB9CBE 62.5%, #c49cde 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62c2e4 87.5%, #62C2E4);
-}
-
-input {
-   font-family: inherit;
-   color: inherit;
-   -webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-   box-sizing: border-box;
-}
-
-.signUpInput {
-   width: 100%;
-   height: 50px;
-   margin-bottom: 25px;
-   padding: 0 15px 2px;
-   font-size: 17px;
-   background: white;
-   border: 2px solid #EBEBEB;
-   border-radius: 4px;
-   -webkit-box-shadow: inset 0 -2px #EBEBEB;
-   box-shadow: inset 0 -2px #EBEBEB;
-}
-
-.signUpInput:focus {
-   border-color: #62C2E4;
-   outline: none;
-   -webkit-box-shadow: inset 0 -2px #62C2E4;
-   box-shadow: inset 0 -2px #62C2E4;
-}
-
-.lt-ie9 .signUpInput {
-   line-height: 48px;
-}
-
-.signUpButton {
-   position: relative;
-   vertical-align: top;
-   width: 100%;
-   height: 54px;
-   padding: 0;
-   font-size: 22px;
-   color: white;
-   text-align: center;
-   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-   background: #F0776C;
-   border: 0;
-   border-bottom: 2px solid #D76B60;
-   border-radius: 5px;
-   cursor: pointer;
-   -webkit-box-shadow: inset 0 -2px #D76B60;
-   box-shadow: inset 0 -2px #D76B60;
-}
-
-.signUpButton:active {
-   top: 1px;
-   outline: none;
-   -webkit-box-shadow: none;
-   box-shadow: none;
-}
-
-:-moz-placeholder {
-   color: #AAAAAA;
-   font-weight: 300;
-}
-
-::-moz-placeholder {
-   color: #AAAAAA;
-   opacity: 1;
-   font-weight: 300;
-}
-
-::-webkit-input-placeholder {
-   color: #AAAAAA;
-   font-weight: 300;
-}
-
-:-ms-input-placeholder {
-   color: #AAAAAA;
-   font-weight: 300;
-}
-
-::-moz-focus-inner {
-   border: 0;
-   padding: 0;
-}
 </style>
-
 </head>
-  
+<body>
+
+<section class="container">
+		    <article class="half">
+			        <h1>PICK ME 자  소 서 </h1>
+			        <div class="tabs">
+				            <span class="tab signin active"><a href="#signin">회원가입</a></span>
+				            <span class="tab signup"><a href="#signup">로그인</a></span>
+			        </div>
+			        <div class="content">
+				            <div class="signin-cont cont">
+					                <form action="/memberGeneralInsert" method="post" enctype="multipart/form-data">
+						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
+						                    <label for="email">이메일</label>
+						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
+                						    <label for="generalPw">비밀번호 </label>
+						                    <input type="checkbox" id="remember" class="checkbox" checked>
+						                    <label for="generalPw">비밀번호 확인</label>
+						                    <div class="submit-wrap">
+							                        <input type="submit" value="Sign in" class="submit">
+							                        <a href="#" class="more">비밀 번호 찾을까?</a>
+						                    </div>
+        					      	  </form>
+    				      		  </div>
+    				        <div class="signup-cont cont">
+                <form action="/memberGeneralLogin" method="post" enctype="multipart/form-data">
+					<input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
+						<label for="name">이메일</label>
+							<input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
+								<label for="email">Your email</label>
+									<input type="password" name="password" id="password" class="inpt" required="required" placeholder="비밀번호 확인">
+										<label for="password">Your password</label>
+						                    <div class="submit-wrap">
+												<input type="submit" value="Sign up" class="submit">
+							                        <a href="#" class="more">Terms and conditions</a>
+												</div>
+ 											</form>
+          					  </div>
+			    	    </div>
+					</article>
+		    <div class="half bg"></div>
+	</section>
 
 
 
-
-
-<form action="/memberGeneralLogin" class="signUp" id="signupForm"  method="post" >
-   <div class="container">   
-   <h1 class="signUpTitle">로그인</h1>
-   <input type="email" id="generalId" name="generalId"  class="signUpInput" placeholder="이메일" value="admin@naver.com" required>
-   <input type="password" id="generalPw" name="generalPw"  class="signUpInput" placeholder="비밀번호" value="0000" required>
-  
-    <input type="checkbox" id="remember" class="checkbox" checked>
-    <label for="remember">자동 로그인</label>
-    </div>
-    <br></br>
-        <div class="control-group">
-    	<div class="controls">
-    	</div> 
-      </div>
-     
-      <div class="control-group">
-   <input type="submit" value="로그인" class="signUpButton">
-   </div>
-   <br>
-	<input type="submit" value="비밀번호찾기" class="signUpButton">
-	<br>
-   <input type="image"  class="signUpButton" src="/img/naver.jpg" width="100%" height="px" >
-</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script type="text/javascript">
+$('.tabs .tab').click(function(){
+    if ($(this).hasClass('signin')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.signin-cont').show();
+    } 
+    if ($(this).hasClass('signup')) {
+        $('.tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        $('.cont').hide();
+        $('.signup-cont').show();
+    }
+});
+$('.container .bg').mousemove(function(e){
+    var amountMovedX = (e.pageX * -1 / 30);
+    var amountMovedY = (e.pageY * -1 / 9);
+    $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+});
+</script>
 </body>
 </html>

@@ -104,7 +104,27 @@ public class CompanyController {
 				@RequestParam(value="salaryWorklevel") String salaryWorklevel) {
 		
 		companyService.updateCompanySalaryAllow(salaryCd, salaryWorklevel, companyName);
-		return "redirect:/salary/companySalaryUnreceivedDetail";
+		return "redirect:/salary/companySalarywUnreceivedList";
+	}
+	//연봉정보 리스트
+	@RequestMapping(value = "/salary/companySalaryListAllow", method = RequestMethod.GET)
+	public String companySalaryListAllow(Locale locale, Model model,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchCompanyName", defaultValue="") String searchCompanyName) {
+		if(page < 1){
+			page = 1;
+		}
+		Map<String, Object> companyInfoMap = companyService.getCompantInfoList(page, searchCompanyName);
+		logger.info("startPage: {}", companyInfoMap.get("startPage"));
+		logger.info("endPage: {}", companyInfoMap.get("endPage"));
+		logger.info("companyInfoList: {}", companyInfoMap.get("companyInfoList").toString());
+		
+		model.addAttribute("page", page);
+		model.addAttribute("searchCompanyName", searchCompanyName);
+		model.addAttribute("startPage",companyInfoMap.get("startPage"));
+		model.addAttribute("endPage",companyInfoMap.get("endPage"));
+		model.addAttribute("companyInfoList", companyInfoMap.get("companyInfoList"));
+		return "/companyinfo/salary/companySalaryList";
 	}
 	
 	/*---------------------------------------------------------------------------------- 

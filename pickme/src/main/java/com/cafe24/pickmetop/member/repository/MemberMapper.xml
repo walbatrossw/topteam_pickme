@@ -23,16 +23,32 @@
 			#{generalState}
 		) 	
 	</insert>
+	<!-- 로그인 아이디, 비밀번호 체크 -->
+	<select id="memberGeneralCheck" resultType="Map"
+				parameterType="java.util.Map">
+		SELECT 
+			general_Level as generalLevel,
+			general_Nick as generalNick
+		FROM
+			tb_member_general as total
+		WHERE
+			general_id = #{generalId}
+		 AND
+			general_pw = #{generalPw}
+			
+	</select>
+	
+	
 	<!-- MemberGeneralVo 로그인 완료-->
 	<select id="selectMemberGeneral" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
 		SELECT 
-		general_id as generalId,
-		general_pw as generalPw
+			general_id as generalId,
+			general_pw as generalPw
 		FROM
-		tb_member_general
+			tb_member_general as total
 		WHERE
-		general_id = #{generalId} AND
-		general_pw = #{generalPw}
+			general_id = #{generalId} AND
+			general_pw = #{generalPw}
 		
 	</select>
 	

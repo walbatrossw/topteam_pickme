@@ -91,11 +91,11 @@
 							</div>
 						</li>
 						<li class="menu3">
-							<a href="#">연봉정보 </a>
+							<a href="/salary/companySalaryListAllow">연봉정보 </a>
 							<div class="depth2">
 								<ul>
 									<li><a href="/salary/companySalaryInsertForm">연봉정보 등록</a></li>
-									<li><a href="#">연봉정보 승인목록</a></li>
+									<li><a href="/salary/companySalaryListAllow">연봉정보 승인목록</a></li>
 								</ul>
 							</div>
 						</li>
