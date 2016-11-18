@@ -23,12 +23,12 @@ public class CoverletterController {
 	private CoverletterService coverletterService;
 	
 	
-	// 00 이력서 및 자기소개서 나의 정보페이지
+	// 00 이력서 및 자기소개서 나의 정보페이지 
 	@RequestMapping(value="/resumeCoverletterInfo", method = RequestMethod.GET)
 	public String resumeCoverletterIndex(Model model){
 		Logger.info("자기소개서 메인페이지:{}" , model.toString());
 		return "/resumecoverletter/resumeCoverletterInfo";
-	}
+	}                          
 	
 	// 01_01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 리스트페이지 맵핑
 	@RequestMapping(value="/memberCoverletterList", method = RequestMethod.GET)
