@@ -71,4 +71,5 @@
 		<!-- 본문 전체 -->
 	</div>
 </body>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

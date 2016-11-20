@@ -970,4 +970,5 @@ function openPop() {
 		</div>
 	</div>
 </body>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>
