@@ -9,18 +9,11 @@ public class CompanyStatisticsVo {
 	private int companyStatisticsSalaryGj;
 	private int companyStatisticsSalaryCj;
 	private int companyStatisticsSalaryBj;
-	
-	private int maxSalarySw;
-	private int minSalarySw;
-	private int maxSalaryDr;
-	private int minSalaryDr;
-	private int maxSalaryGj;
-	private int minSalaryGj;
-	private int maxSalaryCj;
-	private int minSalaryCj;
-	private int maxSalaryBj;
-	private int minSalaryBj;
-	
+	private int companyAllStatisticsSalarySw;
+	private int companyAllStatisticsSalaryDr;
+	private int companyAllStatisticsSalaryGj;
+	private int companyAllStatisticsSalaryCj;
+	private int companyAllStatisticsSalaryBj;
 	public int getCompanyStatisticsCd() {
 		return companyStatisticsCd;
 	}
@@ -69,80 +62,47 @@ public class CompanyStatisticsVo {
 	public void setCompanyStatisticsSalaryBj(int companyStatisticsSalaryBj) {
 		this.companyStatisticsSalaryBj = companyStatisticsSalaryBj;
 	}
-	
-	
-	public int getMaxSalarySw() {
-		return maxSalarySw;
+	public int getCompanyAllStatisticsSalarySw() {
+		return companyAllStatisticsSalarySw;
 	}
-	public void setMaxSalarySw(int maxSalarySw) {
-		this.maxSalarySw = maxSalarySw;
+	public void setCompanyAllStatisticsSalarySw(int companyAllStatisticsSalarySw) {
+		this.companyAllStatisticsSalarySw = companyAllStatisticsSalarySw;
 	}
-	public int getMinSalarySw() {
-		return minSalarySw;
+	public int getCompanyAllStatisticsSalaryDr() {
+		return companyAllStatisticsSalaryDr;
 	}
-	public void setMinSalarySw(int minSalarySw) {
-		this.minSalarySw = minSalarySw;
+	public void setCompanyAllStatisticsSalaryDr(int companyAllStatisticsSalaryDr) {
+		this.companyAllStatisticsSalaryDr = companyAllStatisticsSalaryDr;
 	}
-	public int getMaxSalaryDr() {
-		return maxSalaryDr;
+	public int getCompanyAllStatisticsSalaryGj() {
+		return companyAllStatisticsSalaryGj;
 	}
-	public void setMaxSalaryDr(int maxSalaryDr) {
-		this.maxSalaryDr = maxSalaryDr;
+	public void setCompanyAllStatisticsSalaryGj(int companyAllStatisticsSalaryGj) {
+		this.companyAllStatisticsSalaryGj = companyAllStatisticsSalaryGj;
 	}
-	public int getMinSalaryDr() {
-		return minSalaryDr;
+	public int getCompanyAllStatisticsSalaryCj() {
+		return companyAllStatisticsSalaryCj;
 	}
-	public void setMinSalaryDr(int minSalaryDr) {
-		this.minSalaryDr = minSalaryDr;
+	public void setCompanyAllStatisticsSalaryCj(int companyAllStatisticsSalaryCj) {
+		this.companyAllStatisticsSalaryCj = companyAllStatisticsSalaryCj;
 	}
-	public int getMaxSalaryGj() {
-		return maxSalaryGj;
+	public int getCompanyAllStatisticsSalaryBj() {
+		return companyAllStatisticsSalaryBj;
 	}
-	public void setMaxSalaryGj(int maxSalaryGj) {
-		this.maxSalaryGj = maxSalaryGj;
+	public void setCompanyAllStatisticsSalaryBj(int companyAllStatisticsSalaryBj) {
+		this.companyAllStatisticsSalaryBj = companyAllStatisticsSalaryBj;
 	}
-	public int getMinSalaryGj() {
-		return minSalaryGj;
-	}
-	public void setMinSalaryGj(int minSalaryGj) {
-		this.minSalaryGj = minSalaryGj;
-	}
-	public int getMaxSalaryCj() {
-		return maxSalaryCj;
-	}
-	public void setMaxSalaryCj(int maxSalaryCj) {
-		this.maxSalaryCj = maxSalaryCj;
-	}
-	public int getMinSalaryCj() {
-		return minSalaryCj;
-	}
-	public void setMinSalaryCj(int minSalaryCj) {
-		this.minSalaryCj = minSalaryCj;
-	}
-	public int getMaxSalaryBj() {
-		return maxSalaryBj;
-	}
-	public void setMaxSalaryBj(int maxSalaryBj) {
-		this.maxSalaryBj = maxSalaryBj;
-	}
-	public int getMinSalaryBj() {
-		return minSalaryBj;
-	}
-	public void setMinSalaryBj(int minSalaryBj) {
-		this.minSalaryBj = minSalaryBj;
-	}
-	
 	@Override
 	public String toString() {
 		return "CompanyStatisticsVo [companyStatisticsCd=" + companyStatisticsCd + ", companyName=" + companyName
 				+ ", companyCd=" + companyCd + ", companyStatisticsSalarySw=" + companyStatisticsSalarySw
 				+ ", companyStatisticsSalaryDr=" + companyStatisticsSalaryDr + ", companyStatisticsSalaryGj="
 				+ companyStatisticsSalaryGj + ", companyStatisticsSalaryCj=" + companyStatisticsSalaryCj
-				+ ", companyStatisticsSalaryBj=" + companyStatisticsSalaryBj + ", maxSalarySw=" + maxSalarySw
-				+ ", minSalarySw=" + minSalarySw + ", maxSalaryDr=" + maxSalaryDr + ", minSalaryDr=" + minSalaryDr
-				+ ", maxSalaryGj=" + maxSalaryGj + ", minSalaryGj=" + minSalaryGj + ", maxSalaryCj=" + maxSalaryCj
-				+ ", minSalaryCj=" + minSalaryCj + ", maxSalaryBj=" + maxSalaryBj + ", minSalaryBj=" + minSalaryBj
-				+ "]";
+				+ ", companyStatisticsSalaryBj=" + companyStatisticsSalaryBj + ", companyAllStatisticsSalarySw="
+				+ companyAllStatisticsSalarySw + ", companyAllStatisticsSalaryDr=" + companyAllStatisticsSalaryDr
+				+ ", companyAllStatisticsSalaryGj=" + companyAllStatisticsSalaryGj + ", companyAllStatisticsSalaryCj="
+				+ companyAllStatisticsSalaryCj + ", companyAllStatisticsSalaryBj=" + companyAllStatisticsSalaryBj + "]";
 	}
+	
 	
 }

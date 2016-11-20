@@ -122,3 +122,16 @@ article {
 	margin-bottom: 20px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+/**/
+.content{
+	float: left;
+	width: 60%;
+	margin: 0;
+}
+.panel-body .row{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+	margin-bottom: 10px;
+}
+#chart_div div{
+}

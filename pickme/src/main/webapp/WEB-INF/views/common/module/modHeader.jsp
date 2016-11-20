@@ -5,6 +5,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/css/style.css">
 <title>Insert title here</title>
@@ -16,28 +18,40 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top">
   				<div class="container-fluid">
     				<div class="navbar-header">
-      					<a class="navbar-brand" href="/"><img src="/img/main/pickme_logo_small.png" width="120px;"></a>
+	    				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					    </button>
+	   					<a class="navbar-brand" href="/"><img src="/img/main/pickme_logo_small.png" width="120px;"></a>
     				</div>
-    				<ul class="nav navbar-nav navbar-right">
-    					<li><a href="/diary">채용공고</a></li>
-      					<li><a href="/resumeCoverletterIndex">이력서 & 자기소개서</a></li>
-      					<li><a href="/freeboardList">자유게시판</a></li>
-      					<li><a href="/companyInfo">기업정보</a></li>
-      					
-      					
-      					<li class="hiddenNavWrap">
-      			    <c:if test="${empty sessionScope.generalId}">
-      					<li><a href="/memberGeneralInsert">회원가입</a>
-      				</c:if>
-      				 <c:if test="${empty sessionScope.generalId}">
-      					<li><a href="/memberGeneralLogin">로그인</a>
-      				</c:if>	
-      				<c:if test="${not empty sessionScope.generalId}">
-      					<li><a href="/memberGeneralUpdate">내 정보</a></li>
-      					<li><a href="/memberGeneralLogout">로그아웃</a></li>
-      				     				
-      				</c:if>	
-      				</ul>
+    				<div class="collapse navbar-collapse" id="myNavbar">
+	    				<ul class="nav navbar-nav navbar-right">
+	    					<li><a href="/diary">채용공고</a></li>
+	      					<li><a href="/resumeCoverletterIndex">이력서 & 자기소개서</a></li>
+	      					<li><a href="/freeboardList">자유게시판</a></li>
+	      					<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">기업정보 <span class="caret"></span></a>
+	      						<ul class="dropdown-menu">
+	      							<li><a href="/company/companyInfoList">기업정보</a></li>
+						            <li><a href="/review/companyReviewListAllow">기업리뷰</a></li>
+						            <li><a href="/salary/companySalaryListAllow">연봉정보</a></li>
+						            <li><a href="/interview/companyInterviewListAllow">면접후기</a></li>
+						        </ul>
+	      					</li>	
+	      					<li class="hiddenNavWrap">
+	      			    <c:if test="${empty sessionScope.generalId}">
+	      					<li><a href="/memberGeneralInsert">회원가입</a>
+	      				</c:if>
+	      				 <c:if test="${empty sessionScope.generalId}">
+	      					<li><a href="/memberGeneralLogin">로그인</a>
+	      				</c:if>	
+	      				<c:if test="${not empty sessionScope.generalId}">
+	      					<li><a href="/memberGeneralUpdate">내 정보</a></li>
+	      					<li><a href="/memberGeneralLogout">로그아웃</a></li>
+	      				     				
+	      				</c:if>	
+	      				</ul>
+  					</div>
   				</div>
 			</nav>
 		</section>

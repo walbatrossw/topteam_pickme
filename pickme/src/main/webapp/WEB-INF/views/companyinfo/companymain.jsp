@@ -100,7 +100,7 @@
 							</div>
 						</li>
 						<li class="menu4">
-							<a href="/interview/companyInsertForm">면접후기</a>
+							<a href="/interview/companyInterviewListAllow">면접후기</a>
 							<div class="depth2">
 								<ul>
 									<li><a href="/interview/companyInterviewInsertForm">면접후기 등록</a></li>

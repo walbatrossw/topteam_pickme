@@ -15,92 +15,70 @@
 <link rel="stylesheet" href="/css/company/companySalary.css">
 <script>
 $(document).ready(function(){
-	 google.charts.load('current', {'packages':['corechart']});
-     google.charts.setOnLoadCallback(drawChart);
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-	    	['사원', 6500, 7000, 8000, 9000],
-	    	['대리', ${companySalaryDetail.companyStatisticsSalaryDr }, 7000, 8000, 9000],
-	    	['과장', 50, 55, 77, 80],
-	    	['부장', 77, 77, 66, 50],
-	    	['차장', 68, 66, 22, 15]
-	    // Treat first row as data as well.
-	  ], true);
-	
-	  var options = {
-	    legend:'none'
-	  };
-	
-	  var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
-	
-	  chart.draw(data, options);
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.setOnLoadCallback(drawMaterial);
+
+	function drawMaterial() {
+	      var data = google.visualization.arrayToDataTable([
+	        ['연봉평균', '전체 기업', '${companySalaryDetail.companyName}'],
+	        ['사원', ${companySalaryDetail.companyAllStatisticsSalarySw}, ${companySalaryDetail.companyStatisticsSalarySw}],
+	        ['대리', ${companySalaryDetail.companyAllStatisticsSalaryDr}, ${companySalaryDetail.companyStatisticsSalaryDr}],
+	        ['과장', ${companySalaryDetail.companyAllStatisticsSalaryGj}, ${companySalaryDetail.companyStatisticsSalaryGj}],
+	        ['차장', ${companySalaryDetail.companyAllStatisticsSalaryCj}, ${companySalaryDetail.companyStatisticsSalaryCj}],
+	        ['부장', ${companySalaryDetail.companyAllStatisticsSalaryBj}, ${companySalaryDetail.companyStatisticsSalaryBj}]
+	      ]);
+
+	      var options = {
+			height: 500,
+	    	chart: {
+	          title: '연봉 차트'
+	        },
+	        hAxis: {
+	        	minValue: 0
+	        },
+	        vAxis: {
+	          	minValue: 0
+	        },
+	        bars: 'horizontal'
+	      };
+	      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+	      chart.draw(data, options);
 	}
-});
+}); 
 </script>
-<title>기업 연봉정보</title>
+<title>연봉정보</title>
 </head>
 <body>
 <div class="container">
 	<div class="panel form">
-		<div class="panel-heading"><h3><strong>기업 연봉정보</strong></h3></div>
+		<div class="panel-heading"><h2><strong>연봉정보</strong></h2></div>
 		<div class="panel-body">
-			<div class="form-group">
+			<section class="content">
 				<div class="row">
-					<div class="col-xs-3">
-						<label for="companyName">기업명 : </label> 
-					</div>
 					<div class="col-xs-5">
-						${companySalaryDetail.companyName }
+						<h3>${companySalaryDetail.companyName }</h3>
 					</div>
 				</div>
-			</div>
-			
-			<div id="chart_div" style="width: 900px; height: 500px;">
-			</div>
-	 		<div class="form-group">
-	 			<div class="row">
-					<div class="col-xs-3">
-						<label>고용형태 :  </label>
-					</div>
+				
+				<div class="row">
 					<div class="col-xs-5">
-		        		
+						<h3>연봉정보 통계</h3>
 					</div>
 				</div>
-	 		</div>
-	 		<div class="form-group">
-	 			<div class="row">
-					<div class="col-xs-3">
-						<label>직급 :  </label>
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="chart_div">
+						</div>
 					</div>
-					<div class="col-xs-5">
-		        		
-					</div>
-				</div> 
-	 		</div>
-	 		<div class="form-group">
-	 			<div class="row">
-					
-				</div> 	
-	 		</div>
-	 		<div class="form-group">
-	 			<div class="row">
-					
-				</div> 	
-	 		</div>
-	 		<div class="form-group">
-	 			<div class="row">
-					
-				</div> 	
-	 		</div>
-	 		<div class="form-group">
-	 			
-	 		</div>
+				</div>
+			</section>
 			<div class="sidebanner">
 				<a href="#"><img class="banner" src="/img/company/banner/banner1.jpg">
 				banner img test</a>
+			
 				<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
 				banner img test</a>
-			</div>
+			</div>	
 		</div>
 	</div>
 </div>	
