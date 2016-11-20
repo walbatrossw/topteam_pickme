@@ -146,7 +146,7 @@
 		                                	<tr>
 												<td><input type="text" class="form-control" id="" name="mCletterName" value="${memeberCoverletterInfo.mCletterName}"></td>
 												<td><input type="text" class="form-control" id="" name="mCletterEnddate" value="${memeberCoverletterInfo.mCletterEnddate}"></td>
-												<td><input type="text" class="form-control" id="" name="m_cletterRecordDate" value="${memeberCoverletterArticleSaveRecord.mCletterRecordDate}"></td>
+												<td><input type="text" class="form-control" id="" name="mCletterRecordDate" value="${memeberCoverletterArticleSaveRecord.mCletterRecordDate}"></td>
 												<td>D-DAY추가예정</td>
 											</tr>
 										</tbody>

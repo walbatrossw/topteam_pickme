@@ -38,7 +38,8 @@
 			personal_cellphone,
 			personal_email,
 			personal_sns,
-			personal_addr
+			personal_addr,
+			personal_photo
 		) VALUES (
 			(SELECT CONCAT('personal_cd_', LPAD(IFNULL(MAX(substring(personal.personal_cd, 13)),0)+1,4,'0')) AS personalCdOrder FROM tb_resume_personal personal ORDER BY personalCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
@@ -50,7 +51,8 @@
 			#{personalCellphone},
 			#{personalEmail},
 			#{personalSns},
-			#{personalAddr}
+			#{personalAddr},
+			#{personalPhotoName}
 		)
 	</insert>
 	<!-- 01_02 고등학교 -->
@@ -306,14 +308,16 @@
 			etc_title,
 			etc_content,
 			etc_begindate,
-			etc_enddate
+			etc_enddate,
+			etc_file
 		) VALUES (
 			(SELECT CONCAT('etc_cd_', LPAD(IFNULL(MAX(substring(etc.etc_cd, 8)),0)+1,4,'0')) AS etcCdOrder FROM tb_resume_etc etc ORDER BY etcCdOrder),
 			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
 			#{etcTitle},
 			#{etcContent},
 			#{etcBegindate},
-			#{etcEnddate}
+			#{etcEnddate},
+			#{etcFileName}
 		)
 	</insert>
 	
@@ -368,7 +372,8 @@
 		p.personal_cellphone AS personalCellphone, 
 		p.personal_email AS personalEmail, 
 		p.personal_sns AS personalSns, 
-		p.personal_addr AS personalAddr
+		p.personal_addr AS personalAddr,
+		p.personal_photo as personalPhotoName
 	FROM tb_resume_personal p
 	INNER JOIN tb_resume r
 	ON r.resume_cd = p.resume_cd
@@ -557,7 +562,8 @@
 		e.etc_content AS etcContent, 
 		e.etc_file AS etcFile, 
 		e.etc_begindate AS etcBegindate, 
-		e.etc_enddate AS etcEnddate
+		e.etc_enddate AS etcEnddate,
+		e.etc_file AS etcFileName
 	FROM tb_resume_etc e
 	INNER JOIN tb_resume r
 	ON r.resume_cd = e.resume_cd

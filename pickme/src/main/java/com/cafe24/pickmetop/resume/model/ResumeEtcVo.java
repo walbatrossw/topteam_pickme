@@ -8,6 +8,7 @@ public class ResumeEtcVo {
 	private String etcTitle;
 	private String etcContent;
 	private MultipartFile etcFile;
+	private String etcFileName;
 	private String etcBegindate;
 	private String etcEnddate;
 	public String getEtcCd() {
@@ -40,6 +41,12 @@ public class ResumeEtcVo {
 	public void setEtcFile(MultipartFile etcFile) {
 		this.etcFile = etcFile;
 	}
+	public String getEtcFileName() {
+		return etcFileName;
+	}
+	public void setEtcFileName(String etcFileName) {
+		this.etcFileName = etcFileName;
+	}
 	public String getEtcBegindate() {
 		return etcBegindate;
 	}
@@ -55,8 +62,9 @@ public class ResumeEtcVo {
 	@Override
 	public String toString() {
 		return "ResumeEtcVo [etcCd=" + etcCd + ", resumeCd=" + resumeCd + ", etcTitle=" + etcTitle + ", etcContent="
-				+ etcContent + ", etcFile=" + etcFile + ", etcBegindate=" + etcBegindate + ", etcEnddate=" + etcEnddate
-				+ "]";
+				+ etcContent + ", etcFile=" + etcFile + ", etcFileName=" + etcFileName + ", etcBegindate="
+				+ etcBegindate + ", etcEnddate=" + etcEnddate + "]";
 	}
+	
 	
 }

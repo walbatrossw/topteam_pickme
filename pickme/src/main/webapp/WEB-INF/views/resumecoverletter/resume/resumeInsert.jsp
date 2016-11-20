@@ -17,6 +17,7 @@
 <script src="js/coverletter/sb-admin.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
 <script type="text/javascript">
 //자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
 function openPop() { 
@@ -35,8 +36,6 @@ function openPop() {
 				$("#resumeAddForm").submit();
 			}	
 		});
-		
-		
 		
 		
 		// 추가입력시 증가변수
@@ -427,18 +426,25 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-2">
 									<h4 align="center"><strong>증명사진</strong></h4>
-									<table class="table">
+									<table class="table table-striped table-bordered table-hover">
 										<tr align="center">
 											<td>
 												<div class="fileinput fileinput-new" data-provides="fileinput">
-								  					<div class="fileinput-preview thumbnail" id="personalPhoto" data-trigger="fileinput" style=" width: 117px; height: 162px;"></div>
+								  					<div class="fileinput-preview thumbnail" id="personalPhotoName" data-trigger="fileinput" style=" width: 117px; height: 162px;">
+								  					<span class="fileinput-filename"></span>
+								  					</div>
+								  					<div class="well well-sm">
+								  						<i class="glyphicon glyphicon-picture fileinput-exists"></i>
+								  						<span class="fileinput-filename"></span>
+								  					</div>
 								  					<div align="center">
-								    					<span class="btn btn-default btn-file"><span class="fileinput-new">사진선택</span>
-								    					<span class="fileinput-exists">변경</span>
-								    					<input type="file" name="personalPhoto"></span>
+								    					<span class="btn btn-default btn-file">
+								    						<span class="fileinput-new">사진선택</span>
+									    					<span class="fileinput-exists">변경</span>
+								    					<input type="file" name="personalPhotoFile"></span>
 								    					<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
 								  					</div>
-												</div>
+								  				</div>
 											</td>
 										</tr>
 									</table>
@@ -947,7 +953,8 @@ function openPop() {
 			  										</div>
 				  										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">파일선택</span>
 				  										<span class="fileinput-exists">변경</span>
-				  										<input type="file" name="etcFile"></span>
+				  										<input type="file" name="etcFile">
+				  										</span>
 				  										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
 												</div>
 											</td>

@@ -14,7 +14,8 @@ public class ResumePersonalVo {
 	private String personalEmail;
 	private String personalSns;
 	private String personalAddr;
-	private MultipartFile personalPhoto;
+	private MultipartFile personalPhotoFile;
+	private String personalPhotoName;
 	private String personalRegdate;
 	private String personalModidate;
 	public String getPersonalCd() {
@@ -83,11 +84,17 @@ public class ResumePersonalVo {
 	public void setPersonalAddr(String personalAddr) {
 		this.personalAddr = personalAddr;
 	}
-	public MultipartFile getPersonalPhoto() {
-		return personalPhoto;
+	public MultipartFile getPersonalPhotoFile() {
+		return personalPhotoFile;
 	}
-	public void setPersonalPhoto(MultipartFile personalPhoto) {
-		this.personalPhoto = personalPhoto;
+	public void setPersonalPhotoFile(MultipartFile personalPhotoFile) {
+		this.personalPhotoFile = personalPhotoFile;
+	}
+	public String getPersonalPhotoName() {
+		return personalPhotoName;
+	}
+	public void setPersonalPhotoName(String personalPhotoName) {
+		this.personalPhotoName = personalPhotoName;
 	}
 	public String getPersonalRegdate() {
 		return personalRegdate;
@@ -107,8 +114,9 @@ public class ResumePersonalVo {
 				+ personalKorname + ", personalEngname=" + personalEngname + ", personalBirthdate=" + personalBirthdate
 				+ ", personalGender=" + personalGender + ", personalPhone=" + personalPhone + ", personalCellphone="
 				+ personalCellphone + ", personalEmail=" + personalEmail + ", personalSns=" + personalSns
-				+ ", personalAddr=" + personalAddr + ", personalPhoto=" + personalPhoto + ", personalRegdate="
-				+ personalRegdate + ", personalModidate=" + personalModidate + "]";
+				+ ", personalAddr=" + personalAddr + ", personalPhotoFile=" + personalPhotoFile + ", personalPhotoName="
+				+ personalPhotoName + ", personalRegdate=" + personalRegdate + ", personalModidate=" + personalModidate
+				+ "]";
 	}
 	
 }

@@ -52,7 +52,8 @@ public class ResumeController {
 	
 	//02 이력서 입력화면(이력서 입력폼)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.GET)
-	public String resumeInsert(){
+	public String resumeInsert(Model model){
+		Logger.info("이력서 입력폼 : {}", model.toString());
 		return "/resumecoverletter/resume/resumeInsert";
 	}
 	
@@ -100,13 +101,32 @@ public class ResumeController {
 		model.addAttribute("resumeTraining", resumeDetail.get("resumeTraining"));
 		model.addAttribute("resumeClub", resumeDetail.get("resumeClub"));
 		model.addAttribute("resumeEtc", resumeDetail.get("resumeEtc"));
-		
 		return "/resumecoverletter/resume/resumeDetail";
 	}
 	
 	
+	
 	//05 이력서 수정처리(이력서 리스트에서 수정 버튼 클릭 후 수정화면으로 이동)
-	//@RequestMapping(value="/resumeUpdate", method = RequestMethod.POST)
+	@RequestMapping(value="/resumeUpdateForm", method = RequestMethod.GET)
+	public String resumeUpdateForm(Model model, @RequestParam(value="resumeCd") String resumeCd){
+		Map<String, Object> resumeUpdateDetail = resumeService.getResumeDetail(resumeCd);
+		Logger.info("이력서 정보 {}", resumeUpdateDetail.get("resumeDetailInfo").toString());
+		Logger.info("개인신상 {}", resumeUpdateDetail.get("resumePersonal").toString());
+		model.addAttribute("resumeDetailInfo", resumeUpdateDetail.get("resumeDetailInfo"));
+		model.addAttribute("resumePersonal", resumeUpdateDetail.get("resumePersonal"));
+		model.addAttribute("resumeHighschool", resumeUpdateDetail.get("resumeHighschool"));
+		model.addAttribute("resumeUniveristy", resumeUpdateDetail.get("resumeUniveristy"));
+		model.addAttribute("resumeFamily", resumeUpdateDetail.get("resumeFamily"));
+		model.addAttribute("resumeMilitaryservice", resumeUpdateDetail.get("resumeMilitaryservice"));
+		model.addAttribute("resumeCertificate", resumeUpdateDetail.get("resumeCertificate"));
+		model.addAttribute("resumeCareer", resumeUpdateDetail.get("resumeCareer"));
+		model.addAttribute("resumeLanguage", resumeUpdateDetail.get("resumeLanguage"));
+		model.addAttribute("resumeAward", resumeUpdateDetail.get("resumeAward"));
+		model.addAttribute("resumeTraining", resumeUpdateDetail.get("resumeTraining"));
+		model.addAttribute("resumeClub", resumeUpdateDetail.get("resumeClub"));
+		model.addAttribute("resumeEtc", resumeUpdateDetail.get("resumeEtc"));
+		return "/resumecoverletter/resume/resumeUpdate";
+	}
 	
 	//06 이력서 삭제(이력서 리스트에서 바로 삭제처리)
 	//@RequestMapping(value="/resumeDelete", method = RequestMethod.POST)

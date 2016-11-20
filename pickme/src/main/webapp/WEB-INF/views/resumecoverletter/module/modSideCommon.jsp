@@ -40,15 +40,15 @@
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="/resumeList"> 나의 이력서 리스트</a></li>
-								<li><a href="/resumeInsert"> 이력서 새로 쓰기</a></li>
+								<li><a href="/resumeList"><i class="fa fa-th-list fa-fw"></i> 나의 이력서 리스트</a></li>
+								<li><a href="/resumeInsert"><i class="fa fa-pencil fa-fw"></i> 이력서 새로 쓰기</a></li>
 							</ul>
 						</li>	
 						<li>
 							<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 지원자분석<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#"> 스펙통계(서비스준비중)</a></li>
-								<li><a href="#"> 나의 지원분야(서비스준비중)</a></li>
+								<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 스펙통계(서비스준비중)</a></li>
+								<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 나의 지원분야(서비스준비중)</a></li>
 							</ul>
 						</li>
 						<li><a href="#"><i class="fa fa-edit fa-fw"></i> 나의 자소서<span class="fa arrow"></span></a>

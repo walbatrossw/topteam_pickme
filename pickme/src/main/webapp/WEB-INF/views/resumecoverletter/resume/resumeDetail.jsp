@@ -18,13 +18,16 @@
 <script src="js/coverletter/plugins/morris/morris.js"></script>
 <script src="js/coverletter/sb-admin.js"></script>
 <script src="js/coverletter/demo/dashboard-demo.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
-	
+	// 파일 다운로드
+	$(document).ready(function(){
+		$("#etcFile").on("click", function(e){ //파일 이름
+        	e.preventDefault();
+    	});
+	});
+
 </script>
 </head>
 <body>
@@ -34,6 +37,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h3 class="page-header">${resumeDetailInfo.loginId} 님의 이력서</h3>
+					
 					<div class="row">
 						<table class="table table-striped table-bordered table-hover">
 							<tr>
@@ -48,21 +52,30 @@
 							</tr>
 						</table>
 					</div>
+					<div>
+						<button type="button" class="btn btn-default">
+						<a href="resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
+							<i class="fa fa-exchange fa-fw">
+							</i> 이력서 수정하기
+						</a>  
+						</button>
+					</div>
 					<hr>
 					<div class="row">
 						<div class="col-sm-2">
 							<h4 align="center">증명사진</h4>
 							<table class="table table-striped table-bordered table-hover">
-								<tr align="center">
-									<td>
-										<div class="fileinput fileinput-new" data-provides="fileinput">
-						  					<div class="fileinput-preview thumbnail" id="personalPhoto" data-trigger="fileinput" style="width: 160px; height: 220px;"></div>
-						  					<div align="center">
-						    					<span class="btn btn-default btn-file"><span class="fileinput-new">사진선택</span>
-						    					<span class="fileinput-exists">변경</span>
-						    					<input type="file" name="personalPhoto"></span>
-						    					<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
-						  					</div>
+								<tr>
+									<th class="col-sm-2">
+										<div align="center">
+											<img style= " width: 117px; height: 162px; display: block;" src="/upload/resumefile/photo/${resumePersonal.personalPhotoName}"/>
+										</div>
+									</th>
+								</tr>
+								<tr>
+									<td class="col-sm-2">
+										<div>
+											${resumePersonal.personalPhotoName}
 										</div>
 									</td>
 								</tr>
@@ -361,8 +374,8 @@
 									</div>
 								</div>
 								<div class="row">
-								<div class="col-sm-12">
-									<h4>동아리(동호회) 및 대외활동</h4>
+									<div class="col-sm-12">
+										<h4>동아리(동호회) 및 대외활동</h4>
 										<div id="club">	
 											<c:forEach var="resumeClub" items="${resumeClub}" varStatus="i">	
 											<table class="table table-striped table-bordered table-hover">
@@ -391,44 +404,37 @@
 									</div>
 								</div>
 								<div class="row">
-								<div class="col-sm-12">
-									<h4>기타 및 포트폴리오</h4>
-									<table class="table table-striped table-bordered table-hover">
-										<tr>
-											<th class="col-sm-3">포트폴리오 및 기타사항</th>
-											<th class="col-sm-1">시작일자</th>
-											<th class="col-sm-1">종료일자</th>
-											<th class="col-sm-7">내용</th>
-										</tr>
-										<tr>
-											<td class="col-sm-3">${resumeEtc.etcTitle}</td>
-											<td class="col-sm-1">${resumeEtc.etcBegindate}</td>
-											<td class="col-sm-1">${resumeEtc.etcEnddate}</td>
-											<td class="col-sm-7">${resumeEtc.etcContent}</td>
-										</tr>
-										<tr>
-											<th class="col-sm-3">첨부파일</th>
-										</tr>
-										<tr>
-											<td class="col-sm-3">
-												<div class="fileinput fileinput-new input-group" data-provides="fileinput">
-			  										<div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> 
-			  											<span class="fileinput-filename"></span>
-			  										</div>
-				  										<span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">파일선택</span>
-				  										<span class="fileinput-exists">변경</span>
-				  										<input type="file" name="etcFile"></span>
-				  										<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
-												</div>
-											</td>
-										</tr>
-									</table>
+									<div class="col-sm-12">
+										<h4>기타 및 포트폴리오</h4>
+										<table class="table table-striped table-bordered table-hover">
+											<tr>
+												<th class="col-sm-3">포트폴리오 및 기타사항</th>
+												<th class="col-sm-1">시작일자</th>
+												<th class="col-sm-1">종료일자</th>
+												<th class="col-sm-7">내용</th>
+											</tr>
+											<tr>
+												<td class="col-sm-3">${resumeEtc.etcTitle}</td>
+												<td class="col-sm-1">${resumeEtc.etcBegindate}</td>
+												<td class="col-sm-1">${resumeEtc.etcEnddate}</td>
+												<td class="col-sm-7">${resumeEtc.etcContent}</td>
+											</tr>
+											<tr>
+												<th class="col-sm-3">첨부파일</th>
+											</tr>
+											<tr>
+												<td class="col-sm-3">
+													<a href="${path}/resumeDetail/down?etcFileName=${resumeEtc.etcFileName}">${resumeEtc.etcFileName}</a>
+												</td>
+											</tr>
+										</table>
+									</div>
 								</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

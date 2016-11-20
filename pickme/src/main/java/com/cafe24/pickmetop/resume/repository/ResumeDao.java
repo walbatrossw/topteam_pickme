@@ -6,6 +6,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +27,7 @@ import com.cafe24.pickmetop.resume.model.ResumeVo;
 
 @Repository
 public class ResumeDao {
+	final static Logger Logger = LoggerFactory.getLogger(ResumeDao.class);
 	private final String nameSpace = "com.cafe24.pickmetop.resume.repository.ResumeMapper";
 	@Autowired
 	@Resource(name="sqlSessionResume")
@@ -36,7 +39,9 @@ public class ResumeDao {
 	}
 	//01_01 개인신상
 	public int insertResumePersonal(ResumePersonalVo personal){
+		Logger.info("personal {}", personal);
 		return sqlSessionFactoryResume.insert(nameSpace + ".insertResumePersonal", personal);
+		
 	}
 	//01_02 고등학교
 	public int insertResumeHighschool(ResumeHighschoolVo highschool){
