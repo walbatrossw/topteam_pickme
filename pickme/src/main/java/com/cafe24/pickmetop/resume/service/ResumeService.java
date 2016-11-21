@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +37,25 @@ public class ResumeService {
 	ResumeDao resumeDao;
 	
 	// *사진파일 저장디렉토리
-	final String imgDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
+	/*HOME LOCAL*/
+	//final String imgDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
+	/*KSMART LOCAL*/
+	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
+	/*PICKMETOP CAFE24*/
+	
 	// *포트폴리오파일 저장 디렉토리
-	final String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+	//final String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+	/*KSMART LOCAL*/
+	final String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+	/*PICKMETOP CAFE24*/
 	
 	// 01_이력서 입력
 	@Transactional
-	public void addResume(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, ResumeUniversityVo resumeUniversityVo, 
-			ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, 
-			ResumeLanguageVo resumeLanguageVo, ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, ResumeEtcVo resumeEtcVo){
+	public void addResume(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, 
+			ResumeUniversityVo resumeUniversityVo, ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
+			ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, ResumeLanguageVo resumeLanguageVo, 
+			ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, 
+			ResumeEtcVo resumeEtcVo, HttpServletRequest request){
 		
 		// 임시 로그인 아이디 입력
 		resumeVo.setLoginId("walbatrossw@gmail.com");
@@ -59,8 +71,9 @@ public class ResumeService {
 		resumePersonalVo.setPersonalPhotoName(savePhotoFileName);
 		Logger.info("생성된 이력서 사진파일명 : {}", savePhotoFileName);
 		
-		// 이력서 파일 저장
+		// 이력서 사진파일 저장
 		String fullPhotoName = imgDir + "\\" + savePhotoFileName;
+		//String fullPhotoName = request.getSession().getServletContext().getRealPath("/upload/resumefile/portfolio/")+savePhotoFileName;
 		Logger.info("사진파일명 :{}", fullPhotoName);
 		File savePhotoFile = new File(fullPhotoName);
 		try {
@@ -85,6 +98,7 @@ public class ResumeService {
 		
 		//포트폴리오 파일 저장
 		String fullEtcName = pdfDir + "\\" + saveEtcFileName;
+		//String fullEtcName = request.getSession().getServletContext().getRealPath("/upload/resumefile/photo/")+saveEtcFileName;
 		Logger.info("포트폴리오 파일명 :{}", fullEtcName);
 		File saveEtcFile = new File(fullEtcName);
 		try {

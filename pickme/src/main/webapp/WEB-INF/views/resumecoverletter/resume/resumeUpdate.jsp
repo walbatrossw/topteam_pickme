@@ -40,14 +40,15 @@ function openPop() {
 		
 		
 		// 추가입력시 증가변수
-		var univerNum = 0;
-		var familyNum = 0;
-		var certifiNum = 0;
-		var careerNum = 0;
-		var langNum = 0;
-		var awardNum = 0;
-		var trainingNum = 0;
-		var clubNum = 0;
+		var univerNum = ($(".university").size())-1;
+		var familyNum = ($(".family").size())-1;
+		var certifiNum = ($(".family").size())-1;
+		var careerNum = ($(".career").size())-1;
+		var langNum = ($(".language").size())-1;
+		var certifiNum = ($(".certificate").size())-1;
+		var awardNum = ($(".award").size())-1;
+		var trainingNum = ($(".training").size())-1;
+		var clubNum = ($(".club").size())-1;
 	
 		// 01 대학교 추가 및 삭제 start
 		const $universityAddBtn = $('#universityAddBtn');
@@ -110,8 +111,11 @@ function openPop() {
 		const $universityDelBtn = $('#universityDelBtn');
 		$universityDelBtn.on('click', function(){
 			const $university = $('.university');
-			univerNum--;
-			$university.last().remove();
+				if(univerNum > 0){
+					univerNum--;
+					$university.last().remove();	
+				}
+			
 		});
 		// 01 대학교 추가 및 삭제 end
 		
@@ -150,8 +154,10 @@ function openPop() {
 		const $familyDelBtn = $('#familyDelBtn');
 		$familyDelBtn.on('click', function(){
 			const $family = $('.family');
-			familyNum--;
-			$family.last().remove();
+				if(univerNum > 0){
+					univerNum--;
+					$family.last().remove();	
+				}
 		});
 		// 02 가족사항 추가 및 삭제 end
 		
@@ -187,8 +193,10 @@ function openPop() {
 		const $certificateDelBtn = $('#certificateDelBtn');
 		$certificateDelBtn.on('click', function(){
 			const $certificate = $('.certificate');
-			certifiNum--;
-			$certificate.last().remove();
+				if(certifiNum > 0){
+					certifiNum--;
+					$certificate.last().remove();
+				}	
 		});
 		// 03 자격증 추가 및 삭제 end
 		
@@ -232,8 +240,10 @@ function openPop() {
 		const $careerDelBtn = $('#careerDelBtn');	
 		$careerDelBtn.on('click', function(){
 			const $career = $('.career');
-			careerNum--;
-			$career.last().remove();
+				if(careerNum > 0){
+					careerNum--;
+					$career.last().remove();
+				}
 		});
 		// 04 경력사항 추가 및 삭제 end
 		
@@ -290,11 +300,13 @@ function openPop() {
 				);
 			});
 		const $languageDelBtn = $('#languageDelBtn');
-			$languageDelBtn.on('click', function(){
-				const $language = $('.language');
-				langNum--;
-				$language.last().remove();
-			});
+		$languageDelBtn.on('click', function(){
+			const $language = $('.language');
+				if(langNum > 0){
+					langNum--;
+					$language.last().remove();
+				}
+		});
 		// 05 어학능력 추가 및 삭제 end
 		
 		// 06 수상경력 추가 및 삭제 start
@@ -322,9 +334,11 @@ function openPop() {
 			});
 		const $awardDelBtn = $('#awardDelBtn');
 			$awardDelBtn.on('click', function(){
-				const $award = $('.award');
-				awardNum--;
-				$award.last().remove();
+			const $award = $('.award');
+				if(awardNum > 0){
+					awardNum--;
+					$award.last().remove();
+				}
 			});
 		// 06 수상경력 추가 및 삭제 end
 		
@@ -361,8 +375,10 @@ function openPop() {
 		const $trainingDelBtn = $('#trainingDelBtn');
 			$trainingDelBtn.on('click', function(){
 				const $training = $('.training');
-				trainingNum--;
-				$training.last().remove();
+				if(trainingNum > 0){
+					trainingNum--;
+					$training.last().remove();
+				}
 			});
 		// 07 국내외연수 추가 및 삭제 end
 		
@@ -400,8 +416,10 @@ function openPop() {
 		const $clubDelBtn = $('#clubDelBtn');
 			$clubDelBtn.on('click', function(){
 				const $club = $('.club');
-				clubNum--;
-				$club.last().remove();
+				if(clubNum > 0){
+					clubNum--;
+					$club.last().remove();
+				}
 			});
 		// 08 동아리/동호회 추가 및 삭제 end
 	
@@ -419,7 +437,7 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-5">
 									<p>이력서 이름을 반드시 입력해주세요</p>
-									<input type="text" class="form-control" id="resumeName" name="resumeName" placeholder="이력서 이름을 입력해주세요">
+									<input type="text" class="form-control" id="resumeName" name="resumeName" value="${resumeDetailInfo.resumeName}">
 									<span id="resumeNameError" style="color: red"></span>
 								</div>
 							</div>
@@ -480,14 +498,14 @@ function openPop() {
 										<tr>
 											<td class="col-sm-3"><input type="text" class="form-control" id="personlPhone" name="personalPhone" data-mask="999-9999-9999" value="${resumePersonal.personalPhone}"></td>
 											<td class="col-sm-3"><input type="text" class="form-control" id="personlCellphone" name="personalCellphone" data-mask="999-9999-9999" value="${resumePersonal.personalCellphone}"></td>
-											<td class="col-sm-3"><input type="text" class="form-control" id="personlEmail" name="personalEmail" placeholder="${resumePersonal.personalEmail}"></td>
-											<td class="col-sm-3"><input type="text" class="form-control" id="personlSns" name="personalSns" placeholder="${resumePersonal.personalSns}"></td>
+											<td class="col-sm-3"><input type="text" class="form-control" id="personlEmail" name="personalEmail" value="${resumePersonal.personalEmail}"></td>
+											<td class="col-sm-3"><input type="text" class="form-control" id="personlSns" name="personalSns" value="${resumePersonal.personalSns}"></td>
 										</tr>
 										<tr>
 											<th colspan="12">주소</th>
 										</tr>
 										<tr>
-											<td colspan="12"><input type="text" class="form-control" id="personlAddr" name="personalAddr" placeholder="${resumePersonal.personalAddr}"></td>
+											<td colspan="12"><input type="text" class="form-control" id="personlAddr" name="personalAddr" value="${resumePersonal.personalAddr}"></td>
 										</tr>
 									</table>
 								</div>
@@ -524,8 +542,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>대학교</strong></h4>
-									<div id="university">
-										<c:forEach var="resumeUniveristy" items="${resumeUniveristy}" varStatus="i">
+									<c:forEach var="resumeUniveristy" items="${resumeUniveristy}" varStatus="i">
+									<div class="university">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-3">분류</th>
@@ -535,7 +553,7 @@ function openPop() {
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<select class="form-control" id="universityCategory" name="resumeUniversityVoList[0].universityCategory" value="${resumeUniveristy.universityCategory}">
+													<select class="form-control" id="universityCategory" name="resumeUniversityVoList[${i.count-1}].universityCategory" value="${resumeUniveristy.universityCategory}">
 														<option value="">선택</option>
 														<option value="2년제">2년제</option>
 														<option value="3년제">3년제</option>
@@ -543,12 +561,12 @@ function openPop() {
 														<option value="대학원">대학원</option>
 													</select>
 												</td>
-												<td class="col-sm-3"><input type="text" class="form-control" id="universityName" name="resumeUniversityVoList[0].universityName" value="${resumeUniveristy.universityName}"></td>
+												<td class="col-sm-3"><input type="text" class="form-control" id="universityName" name="resumeUniversityVoList[${i.count-1}].universityName" value="${resumeUniveristy.universityName}"></td>
 												<td class="col-sm-3">
-													<input type="date" class="form-control" id="universityBegindate" name="resumeUniversityVoList[0].universityBegindate" value="${resumeUniveristy.universityBegindate}">
+													<input type="date" class="form-control" id="universityBegindate" name="resumeUniversityVoList[${i.count-1}].universityBegindate" value="${resumeUniveristy.universityBegindate}">
 												</td>
 												<td class="col-sm-3">	
-													<input type="date" class="form-control" id="universityEnddate" name="resumeUniversityVoList[0].universityEnddate" value="${resumeUniveristy.universityEnddate}">
+													<input type="date" class="form-control" id="universityEnddate" name="resumeUniversityVoList[${i.count-1}].universityEnddate" value="${resumeUniveristy.universityEnddate}">
 												</td>
 											</tr>
 											<tr>
@@ -559,10 +577,10 @@ function openPop() {
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="universityMajor" name="resumeUniversityVoList[0].universityMajor" value="${resumeUniveristy.universityMajor}">
+													<input type="text" class="form-control" id="universityMajor" name="resumeUniversityVoList[${i.count-1}].universityMajor" value="${resumeUniveristy.universityMajor}">
 												</td>
 												<td class="col-sm-3">
-													<select class="form-control" id="universityDmajorminor" name="resumeUniversityVoList[0].universityDmajorminor" value="${resumeUniveristy.universityDmajorminor}">
+													<select class="form-control" id="universityDmajorminor" name="resumeUniversityVoList[${i.count-1}].universityDmajorminor" value="${resumeUniveristy.universityDmajorminor}">
 														<option value="">선택</option>
 														<option value="해당없음">해당없음</option>
 														<option value="복수전공">복수전공</option>
@@ -570,15 +588,15 @@ function openPop() {
 													</select>
 												</td>
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="universityDmajorminorName" name="resumeUniversityVoList[0].universityDmajorminorName" value="${resumeUniveristy.universityDmajorminorName}">
+													<input type="text" class="form-control" id="universityDmajorminorName" name="resumeUniversityVoList[${i.count-1}].universityDmajorminorName" value="${resumeUniveristy.universityDmajorminorName}">
 												</td>
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="universityCredit" name="resumeUniversityVoList[0].universityCredit" value="${resumeUniveristy.universityCredit}">
+													<input type="text" class="form-control" id="universityCredit" name="resumeUniversityVoList[${i.count-1}].universityCredit" value="${resumeUniveristy.universityCredit}">
 												</td>
 											</tr>
 										</table>
-										</c:forEach>
 									</div>
+									</c:forEach>
 									<div id="fieldUniversity"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="universityAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -590,7 +608,8 @@ function openPop() {
 							<div class="row" >
 								<div class="col-sm-12">
 								<h4><strong>가족사항</strong></h4>
-									<div id="family">
+									<c:forEach var="resumeFamily" items="${resumeFamily}" varStatus="i">
+									<div class="family">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 												<tr>
 													<th class="col-sm-2">관계</th>
@@ -600,24 +619,23 @@ function openPop() {
 													<th class="col-sm-2">직업</th>
 													<th class="col-sm-2">동거여부</th>
 												</tr>
-												<c:forEach var="resumeFamily" items="${resumeFamily}" varStatus="i">
 												<tr>
-													<td class="col-sm-2"><input type="text" class="form-control" id="familyRelation" name="resumeFamilyVoList[0].familyRelation" value="${resumeFamily.familyRelation}"></td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="familyName" name="resumeFamilyVoList[0].familyName" value="${resumeFamily.familyName}"></td>
-													<td class="col-sm-2"><input type="date" class="form-control" id="familyBirthdate" name="resumeFamilyVoList[0].familyBirthdate" value="${resumeFamily.familyBirthdate}"></td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="familyEducation" name="resumeFamilyVoList[0].familyEducation" value="${resumeFamily.familyEducation}"></td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="familyJob" name="resumeFamilyVoList[0].familyJob" value="${resumeFamily.familyJob}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="familyRelation" name="resumeFamilyVoList[${i.count-1}].familyRelation" value="${resumeFamily.familyRelation}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="familyName" name="resumeFamilyVoList[${i.count-1}].familyName" value="${resumeFamily.familyName}"></td>
+													<td class="col-sm-2"><input type="date" class="form-control" id="familyBirthdate" name="resumeFamilyVoList[${i.count-1}].familyBirthdate" value="${resumeFamily.familyBirthdate}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="familyEducation" name="resumeFamilyVoList[${i.count-1}].familyEducation" value="${resumeFamily.familyEducation}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="familyJob" name="resumeFamilyVoList[${i.count-1}].familyJob" value="${resumeFamily.familyJob}"></td>
 													<td class="col-sm-2">
-														<select class="form-control" id="familyCohabit" name="resumeFamilyVoList[0].familyCohabit" value="${resumeFamily.familyCohabit}">
+														<select class="form-control" id="familyCohabit" name="resumeFamilyVoList[${i.count-1}].familyCohabit" value="${resumeFamily.familyCohabit}">
 															<option value="">::선택::</option>
 															<option value="예">예</option>
 															<option value="아니요">아니요</option>
 														</select>
 													</td>	
 												</tr>
-												</c:forEach>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldFamily"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="familyAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -640,7 +658,7 @@ function openPop() {
 										</tr>
 										<tr>
 											<td class="col-sm-2">
-												<select class="form-control" id="militaryserviceState" name="militaryserviceState">
+												<select class="form-control" id="militaryserviceState" name="militaryserviceState" value="${resumeMilitaryservice.militaryserviceState}">
 													<option value="">::선택::</option>
 													<option value="현역">현역</option>
 													<option value="예비역">예비역</option>
@@ -651,7 +669,7 @@ function openPop() {
 												</select>
 											</td>
 											<td class="col-sm-2">
-												<select class="form-control" id="militaryserviceGroup" name="militaryserviceGroup">
+												<select class="form-control" id="militaryserviceGroup" name="militaryserviceGroup" value="${resumeMilitaryservice.militaryserviceGroup}">
 													<option value="">::선택::</option>
 													<option value="육군">육군</option>
 													<option value="공군">공군</option>
@@ -660,7 +678,7 @@ function openPop() {
 												</select>
 											</td>
 											<td class="col-sm-2">
-												<select class="form-control" id="militaryserviceLevel" name="militaryserviceLevel">
+												<select class="form-control" id="militaryserviceLevel" name="militaryserviceLevel" value="${resumeMilitaryservice.militaryserviceLevel}">
 													<option value="">::선택::</option>
 													<option value="이병">이병</option>
 													<option value="일병">일병</option>
@@ -680,10 +698,10 @@ function openPop() {
 												</select>
 											</td>
 											<td class="col-sm-2">
-												<input type="text" class="form-control" id="militaryserviceBranch" name="militaryserviceBranch" placeholder="ex) 소총수, 공병, 통신병">
+												<input type="text" class="form-control" id="militaryserviceBranch" name="militaryserviceBranch" value="${resumeMilitaryservice.militaryserviceBranch}">
 											</td>
-											<td class="col-sm-2"><input type="date" class="form-control" id="militaryserviceBegindate" name="militaryserviceBegindate" value="2016-11-02"></td>
-											<td class="col-sm-2"><input type="date" class="form-control" id="militaryserviceEnddate" name="militaryserviceEnddate" value="2016-11-02"></td>
+											<td class="col-sm-2"><input type="date" class="form-control" id="militaryserviceBegindate" name="militaryserviceBegindate" value="${resumeMilitaryservice.militaryserviceBegindate}"></td>
+											<td class="col-sm-2"><input type="date" class="form-control" id="militaryserviceEnddate" name="militaryserviceEnddate" value="${resumeMilitaryservice.militaryserviceEnddate}"></td>
 										</tr>	
 									</table>
 								</div>
@@ -692,7 +710,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>자격증</strong></h4>
-									<div id="certificate">
+									<c:forEach var="resumeCertificate" items="${resumeCertificate}" varStatus="i">
+									<div class="certificate">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 												<tr>
 													<th class="col-sm-2">자격증명</th>
@@ -704,17 +723,18 @@ function openPop() {
 												</tr>
 												<tr>
 													<td class="col-sm-2">
-														<input type="text" class="form-control" id="certificateName" name="resumeCertificateVoList[0].certificateName" placeholder="ex)정보처리기사">
+														<input type="text" class="form-control" id="certificateName" name="resumeCertificateVoList[${i.count-1}].certificateName" value="${resumeCertificate.certificateName}">
 														<a class="btn btn-default btn-xs" href="javascript:openPop()" role="button">검색</a>
 													</td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="certificateGrade" name="resumeCertificateVoList[0].certificateGrade" placeholder="ex)1급, 1종, 최종합격"></td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="certificateRegnum" name="resumeCertificateVoList[0].certificateRegnum" placeholder="등록번호 또는 자격번호 입력"></td>
-													<td class="col-sm-2"><input type="text" class="form-control" id="certificateHost" name="resumeCertificateVoList[0].certificateHost" placeholder="ex)한국산업인력공단"></td>
-													<td class="col-sm-2"><input type="date" class="form-control" id="certificateBegindate" name="resumeCertificateVoList[0].certificateBegindate" value="2016-11-02"></td>
-													<td class="col-sm-2"><input type="date" class="form-control" id="certificateEnddate" name="resumeCertificateVoList[0].certificateEnddate" value="2016-11-02"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="certificateGrade" name="resumeCertificateVoList[${i.count-1}].certificateGrade" value="${resumeCertificate.certificateName}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="certificateRegnum" name="resumeCertificateVoList[${i.count-1}].certificateRegnum" value="${resumeCertificate.certificateRegnum}"></td>
+													<td class="col-sm-2"><input type="text" class="form-control" id="certificateHost" name="resumeCertificateVoList[${i.count-1}].certificateHost" value="${resumeCertificate.certificateHost}"></td>
+													<td class="col-sm-2"><input type="date" class="form-control" id="certificateBegindate" name="resumeCertificateVoList[${i.count-1}].certificateBegindate" value="${resumeCertificate.certificateBegindate}"></td>
+													<td class="col-sm-2"><input type="date" class="form-control" id="certificateEnddate" name="resumeCertificateVoList[${i.count-1}].certificateEnddate" value="${resumeCertificate.certificateEnddate}"></td>
 												</tr>	
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldCertificate"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="certificateAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -726,7 +746,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>경력사항</strong></h4>
-									<div id="career">
+									<c:forEach var="resumeCareer" items="${resumeCareer}" varStatus="i">
+									<div class="career">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-2">회사명</th>
@@ -737,27 +758,28 @@ function openPop() {
 												<th class="col-sm-2">근무기간</th>
 											</tr>
 											<tr>
-												<td class="col-sm-2"><input type="text" class="form-control" id="careerCompany" name="resumeCareerVoList[0].careerCompany" placeholder="회사 또는 근무처 입력"></td>
-												<td class="col-sm-2"><input type="text" class="form-control" id="careerLevel" name="resumeCareerVoList[0].careerLevel" placeholder="ex) 대리, 인턴, 아르바이트 사원"></td>
-												<td class="col-sm-2"><input type="text" class="form-control" id="careerDepartment" name="resumeCareerVoList[0].careerDepartment" placeholder="ex) 영업, 생산, 품질관리"></td>
+												<td class="col-sm-2"><input type="text" class="form-control" id="careerCompany" name="resumeCareerVoList[${i.count-1}].careerCompany" value="${resumeCareer.careerCompany}"></td>
+												<td class="col-sm-2"><input type="text" class="form-control" id="careerLevel" name="resumeCareerVoList[${i.count-1}].careerLevel" value="${resumeCareer.careerLevel}"></td>
+												<td class="col-sm-2"><input type="text" class="form-control" id="careerDepartment" name="resumeCareerVoList[${i.count-1}].careerDepartment" value="${resumeCareer.careerDepartment}"></td>
 												<td class="col-sm-2">
-													<input type="date" class="form-control" id="careerBegindate" name="resumeCareerVoList[0].careerBegindate" value="2016-11-02">
+													<input type="date" class="form-control" id="careerBegindate" name="resumeCareerVoList[${i.count-1}].careerBegindate" value="${resumeCareer.careerBegindate}">
 												</td>
 												<td class="col-sm-2">
-													<input type="date" class="form-control" id="careerEnddate" name="resumeCareerVoList[0].careerEnddate" value="2016-11-02">
+													<input type="date" class="form-control" id="careerEnddate" name="resumeCareerVoList[${i.count-1}].careerEnddate" value="${resumeCareer.careerEnddate}">
 												</td>
-												<td class="col-sm-2"><input type="text" class="form-control" id="careerPeriod" name="resumeCareerVoList[0].careerPeriod" placeholder="근무기간"></td>
+												<td class="col-sm-2"><input type="text" class="form-control" id="careerPeriod" name="resumeCareerVoList[${i.count-1}].careerPeriod" value="${resumeCareer.careerPeriod}"></td>
 											</tr>
 											<tr>
 												<th colspan="2">퇴사사유</th>
 												<th colspan="10">담당업무</th>
 											</tr>
 											<tr>	
-												<td colspan="2"><input type="text" class="form-control" id="careerResign" name="resumeCareerVoList[0].careerResign" placeholder="퇴사사유 입력"></td>
-												<td colspan="10"><textarea class="form-control col-sm-5" rows="3" id="careerTask" name="resumeCareerVoList[0].careerTask" style="resize:none" placeholder="담당업무에 대한 간략한 설명"></textarea></td>
+												<td colspan="2"><input type="text" class="form-control" id="careerResign" name="resumeCareerVoList[${i.count-1}].careerResign" value="${resumeCareer.careerResign}"></td>
+												<td colspan="10"><textarea class="form-control col-sm-5" rows="3" id="careerTask" name="resumeCareerVoList[${i.count-1}].careerTask" style="resize:none">${resumeCareer.careerTask}</textarea></td>
 											</tr>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldCareer"></div>	
 									<div class="btn-group" role="group">
 										<button type="button" id="careerAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -769,7 +791,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>어학능력</strong></h4>
-									<div id="language">	
+									<c:forEach var="resumeLanguage" items="${resumeLanguage}" varStatus="i">
+									<div class="language">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-3">외국어명</th>
@@ -778,9 +801,9 @@ function openPop() {
 												<th class="col-sm-3">공인점수</th>
 											</tr>
 											<tr>
-												<td class="col-sm-3"><input type="text" class="form-control" id="languageName" name="resumeLanguageVoList[0].languageName" placeholder="ex)영어, 중국어, 일본어"></td>
+												<td class="col-sm-3"><input type="text" class="form-control" id="languageName" name="resumeLanguageVoList[${i.count-1}].languageName" value="${resumeLanguage.languageName}"></td>
 												<td class="col-sm-3">
-													<select class="form-control" id="languageLevel" name="resumeLanguageVoList[0].languageLevel">
+													<select class="form-control" id="languageLevel" name="resumeLanguageVoList[${i.count-1}].languageLevel" value="${resumeLanguage.languageLevel}">
 														<option value="">::선택::</option>
 														<option value="기초회화">기초회화</option>
 														<option value="일상회화">일상회화</option>
@@ -789,10 +812,10 @@ function openPop() {
 													</select>
 												</td>	
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="languageTest" name="resumeLanguageVoList[0].languageTest" placeholder="ex) TOEIC, HSK, JLPT">
+													<input type="text" class="form-control" id="languageTest" name="resumeLanguageVoList[${i.count-1}].languageTest" value="${resumeLanguage.languageTest}">
 													<a class="btn btn-default btn-xs" href="javascript:openPop()" role="button">검색</a>
 												</td>	
-												<td class="col-sm-3"><input type="text" class="form-control" id="languageGrade" name="resumeLanguageVoList[0].languageGrade" placeholder="ex) 990, 3급, AL"></td>
+												<td class="col-sm-3"><input type="text" class="form-control" id="languageGrade" name="resumeLanguageVoList[${i.count-1}].languageGrade" value="${resumeLanguage.languageGrade}"></td>
 											</tr>
 											<tr>
 												<th class="col-sm-3">취득일자</th>
@@ -802,20 +825,21 @@ function openPop() {
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<input type="date" class="form-control" id="languageBegindate" name="resumeLanguageVoList[0].languageBegindate" value="2016-11-02">
+													<input type="date" class="form-control" id="languageBegindate" name="resumeLanguageVoList[${i.count-1}].languageBegindate" value="${resumeLanguage.languageBegindate}">
 												</td>
 												<td class="col-sm-3">
-													<input type="date" class="form-control" id="languageEnddate" name="resumeLanguageVoList[0].languageEnddate" value="2016-11-02">
+													<input type="date" class="form-control" id="languageEnddate" name="resumeLanguageVoList[${i.count-1}].languageEnddate" value="${resumeLanguage.languageEnddate}">
 												</td>
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="languageHost" name="resumeLanguageVoList[0].languageHost" placeholder="ex) 한국토익위원회">
+													<input type="text" class="form-control" id="languageHost" name="resumeLanguageVoList[${i.count-1}].languageHost" value="${resumeLanguage.languageHost}">
 												</td>	
 												<td class="col-sm-3">
-													<input type="text" class="form-control" id="languageRegnum" name="resumeLanguageVoList[0].languageRegnum" placeholder="등록번호 입력">
+													<input type="text" class="form-control" id="languageRegnum" name="resumeLanguageVoList[${i.count-1}].languageRegnum" value="${resumeLanguage.languageRegnum}">
 												</td>
 											</tr>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldLanguage"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="languageAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -827,7 +851,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>수상경력</strong></h4>
-									<div id="award">
+									<c:forEach var="resumeAward" items="${resumeAward}" varStatus="i">
+									<div class="award">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-4">수상명</th>
@@ -837,14 +862,15 @@ function openPop() {
 											</tr>
 											<tr>
 												<td class="col-sm-4">
-													<input type="text" class="form-control" id="awardName" name="resumeAwardVoList[0].awardName" placeholder="수상명 입력">
+													<input type="text" class="form-control" id="awardName" name="resumeAwardVoList[${i.count-1}].awardName" value="${resumeAward.awardName}">
 												</td>
-												<td class="col-sm-4"><input type="text" class="form-control" id="awardContent" name="resumeAwardVoList[0].awardContent" placeholder="수상내용 입력"></td>
-												<td class="col-sm-3"><input type="text" class="form-control" id="awardHost" name="resumeAwardVoList[0].awardHost" placeholder="수여기관 입력"></td>
-												<td class="col-sm-1"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList[0].awardDate" value="2016-11-02"></td>
+												<td class="col-sm-4"><input type="text" class="form-control" id="awardContent" name="resumeAwardVoList[${i.count-1}].awardContent" value="${resumeAward.awardContent}"></td>
+												<td class="col-sm-3"><input type="text" class="form-control" id="awardHost" name="resumeAwardVoList[${i.count-1}].awardHost" value="${resumeAward.awardHost}"></td>
+												<td class="col-sm-1"><input type="date" class="form-control" id="awardDate" name="resumeAwardVoList[${i.count-1}].awardDate" value="${resumeAward.awardDate}"></td>
 											</tr>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldAward"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="awardAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -856,7 +882,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>국내외 연수 및 교육</strong></h4>
-									<div id="training">	
+									<c:forEach var="resumeTraining" items="${resumeTraining}" varStatus="i">	
+									<div class="training">	
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-4">국가</th>
@@ -865,22 +892,23 @@ function openPop() {
 												<th class="col-sm-1">수료일자</th>
 											</tr>
 											<tr>
-												<td class="col-sm-4"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList[0].trainingCountry" placeholder="ex) 대한민국, 중국, 미국"></td>	
-												<td class="col-sm-4"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList[0].trainingAcademy" placeholder="연수기관 입력"></td>
+												<td class="col-sm-4"><input type="text" class="form-control" id="trainingCountry" name="resumeTrainingVoList[${i.count-1}].trainingCountry" value="${resumeTraining.trainingCountry}"></td>	
+												<td class="col-sm-4"><input type="text" class="form-control" id="trainingAcademy" name="resumeTrainingVoList[${i.count-1}].trainingAcademy" value="${resumeTraining.trainingAcademy}"></td>
 												<td class="col-sm-1">
-													<input type="date" class="form-control" id="trainingBegindate" name="resumeTrainingVoList[0].trainingBegindate" value="2016-11-02">
+													<input type="date" class="form-control" id="trainingBegindate" name="resumeTrainingVoList[${i.count-1}].trainingBegindate" value="${resumeTraining.trainingBegindate}">
 												</td>
 												<td class="col-sm-1">
-													<input type="date" class="form-control" id="trainingEnddate" name="resumeTrainingVoList[0].trainingEnddate" value="2016-11-02">
+													<input type="date" class="form-control" id="trainingEnddate" name="resumeTrainingVoList[${i.count-1}].trainingEnddate" value="${resumeTraining.trainingEnddate}">
 												</td>
 											</tr>
 											<tr>
 												<th colspan="12">연수내용</th>
 											<tr>
-												<td colspan="12"><textarea class="form-control col-sm-5" rows="2" id="trainingContent" name="resumeTrainingVoList[0].trainingContent" style="resize:none" placeholder="연수사항에 대한 간략한 설명"></textarea></td>
+												<td colspan="12"><textarea class="form-control col-sm-5" rows="2" id="trainingContent" name="resumeTrainingVoList[${i.count-1}].trainingContent" style="resize:none" placeholder="연수사항에 대한 간략한 설명">${resumeTraining.trainingContent}</textarea></td>
 											</tr>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldTraining"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="trainingAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -892,7 +920,8 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>동아리(동호회) 및 대외활동</strong></h4>
-									<div id="club">	
+									<c:forEach var="resumeClub" items="${resumeClub}" varStatus="i">
+									<div class="club">	
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>
 												<th class="col-sm-5">활동명</th>
@@ -901,23 +930,24 @@ function openPop() {
 												<th class="col-sm-1">종료일자</th>
 											</tr>
 											<tr>
-												<td class="col-sm-5"><input type="text" class="form-control" id="clubName" name="resumeClubVoList[0].clubName" placeholder="동아리/활동명 입력"></td>	
-												<td class="col-sm-5"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList[0].clubHost" placeholder="주관기관 입력"></td>
+												<td class="col-sm-5"><input type="text" class="form-control" id="clubName" name="resumeClubVoList[${i.count-1}].clubName" placeholder="동아리/활동명 입력" value="${resumeClub.clubName}"></td>	
+												<td class="col-sm-5"><input type="text" class="form-control" id="clubHost" name="resumeClubVoList[${i.count-1}].clubHost" placeholder="주관기관 입력" value="${resumeClub.clubHost}"></td>
 												<td class="col-sm-1">
-													<input type="date" class="form-control" id="clubBegindate" name="resumeClubVoList[0].clubBegindate" value="2016-11-02">
+													<input type="date" class="form-control" id="clubBegindate" name="resumeClubVoList[${i.count-1}].clubBegindate" value="${resumeClub.clubBegindate}">
 												</td>
 												<td class="col-sm-1">
-													<input type="date" class="form-control" id="clubEnddate" name="resumeClubVoList[0].clubEnddate" value="2016-11-02">
+													<input type="date" class="form-control" id="clubEnddate" name="resumeClubVoList[${i.count-1}].clubEnddate" value="${resumeClub.clubEnddate}">
 												</td>
 											</tr>
 											<tr>
 												<th colspan="8">활동내용</th>
 											</tr>
 											<tr>
-												<td colspan="8"><textarea class="form-control col-sm-5" rows="2" id="clubContent" name="resumeClubVoList[0].clubContent" style="resize:none" placeholder="활동내용 대한 간략한 설명"></textarea></td>
+												<td colspan="8"><textarea class="form-control col-sm-5" rows="2" id="clubContent" name="resumeClubVoList[${i.count-1}].clubContent" style="resize:none" placeholder="활동내용 대한 간략한 설명">${resumeClub.clubContent}</textarea></td>
 											</tr>
 										</table>
 									</div>
+									</c:forEach>
 									<div id="fieldClub"></div>
 									<div class="btn-group" role="group">
 										<button type="button" id="clubAddBtn" class="btn btn-primary btn-xs"><i class="fa fa-plus"> 추가</i></button>
@@ -937,14 +967,14 @@ function openPop() {
 											<th class="col-sm-6">내용</th>
 										</tr>
 										<tr>
-											<td class="col-sm-4"><input type="text" class="form-control" id="etcTitle" name="etcTitle" placeholder="기타 및 포트폴리오명 입력"></td>
+											<td class="col-sm-4"><input type="text" class="form-control" id="etcTitle" name="etcTitle" placeholder="기타 및 포트폴리오명 입력" value="${resumeEtc.etcTitle}"></td>
 											<td class="col-sm-1">
-												<input type="date" class="form-control" id="etcBegindate" name="etcBegindate" value="2016-11-02">
+												<input type="date" class="form-control" id="etcBegindate" name="etcBegindate" value="${resumeEtc.etcBegindate}">
 											</td>
 											<td class="col-sm-1">
-												<input type="date" class="form-control" id="etcEnddate" name="etcEnddate" value="2016-11-02">
+												<input type="date" class="form-control" id="etcEnddate" name="etcEnddate" value="${resumeEtc.etcEnddate}">
 											</td>
-											<td class="col-sm-6"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요"></textarea></td>
+											<td class="col-sm-6"><textarea class="form-control col-sm-5" rows="2" id="etcContent" name="etcContent" style="resize:none" placeholder="포트폴리오를 첨부 하실 분은 간략한 설명한 설명 입력해주세요">${resumeEtc.etcContent}</textarea></td>
 										</tr>
 										<tr>
 											

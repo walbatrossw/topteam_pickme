@@ -21,12 +21,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script>
-	// 파일 다운로드
-	$(document).ready(function(){
-		$("#etcFile").on("click", function(e){ //파일 이름
-        	e.preventDefault();
-    	});
-	});
+	
 
 </script>
 </head>
@@ -54,10 +49,9 @@
 					</div>
 					<div>
 						<button type="button" class="btn btn-default">
-						<a href="resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
-							<i class="fa fa-exchange fa-fw">
-							</i> 이력서 수정하기
-						</a>  
+							<a href="resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
+								<i class="fa fa-exchange fa-fw"></i> 이력서 수정하기
+							</a>
 						</button>
 					</div>
 					<hr>
@@ -72,13 +66,7 @@
 										</div>
 									</th>
 								</tr>
-								<tr>
-									<td class="col-sm-2">
-										<div>
-											${resumePersonal.personalPhotoName}
-										</div>
-									</td>
-								</tr>
+								
 							</table>
 						</div>
 						<div class="col-sm-10">
@@ -424,7 +412,7 @@
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<a href="${path}/resumeDetail/down?etcFileName=${resumeEtc.etcFileName}">${resumeEtc.etcFileName}</a>
+													<a href="/resumeDetail/download?etcFileName=${resumeEtc.etcFileName }">${resumeEtc.etcFileName}</a>
 												</td>
 											</tr>
 										</table>
