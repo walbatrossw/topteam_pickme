@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+<!doctype html>
+<html lang="kr">
+	<head>
+	<meta charset="UTF-8">
+ <%
+    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8080/callback.jsp", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
 
 <!doctype html>
 <html lang="kr">
@@ -296,11 +314,12 @@ body .container .content .signup-cont {
 						                    <label for="generalId">이메일</label>
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="generalPw">비밀번호 </label>
-                						    <input type="password" name="generalPw2" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
-                						    <label for="generalPw2">비밀번호 </label>
+                						    <input type="password" name="generalPw2" id="generalPw2" class="inpt" required="required" placeholder="비밀번호확인">
+                						    <label for="generalPw">비밀번호 </label>
                 				
                 						   <input type="text" name="generalNick" id="generalNick" class="inpt" required="required" placeholder="닉네임">
                 						    <label for="generalNick">닉네임 </label>
+                						    <h5>회원가입<a href="/terms" class="more">이용약관</a>에 동의하게 됩니다.</h5>
 						                     <div class="submit-wrap">
 							                        <input type="submit"  value="회원가입" class="submit" >
 							                 </div>
@@ -308,17 +327,11 @@ body .container .content .signup-cont {
 							     </div>
     	
     				        
-    				        <div class="signup-cont cont">
-                <form action="/memberGeneralLogin" method="post" enctype="multipart/form-data">
-						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
-						                    <label for="name">이메일</label>
-                    <input type="email" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
-						                    <label for="email">Your email</label>
-						                   
-						                    <div class="submit-wrap">
-							                        <input type="submit" value="네이버로 가입" class="submit">
-							                        <a href="#" class="more">비밀번호 찾을래?</a>
-						                    </div>
+    				 		        	    <div class="signup-cont cont">
+                <form action="/memberLinkedInsert" method="post" enctype="multipart/form-data">
+						                  
+                    
+						               <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
         					        </form>
           					  </div>
 			    	    </div>
@@ -348,6 +361,23 @@ $('.container .bg').mousemove(function(e){
     var amountMovedX = (e.pageX * -1 / 30);
     var amountMovedY = (e.pageY * -1 / 9);
     $(this).css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+});
+
+$(document).ready(function{
+	$("#generalId").keyup(function){
+		var generalId=$("#generalId").val();
+		var param = "generalId"+generalId;
+		if(generalId.length >= 6 ) {
+			$.ajax({
+				type="post", 
+				data: param,
+				success: function(result){
+					$("#")
+				}
+			});
+		}
+		
+	});
 });
 </script>
 </body>

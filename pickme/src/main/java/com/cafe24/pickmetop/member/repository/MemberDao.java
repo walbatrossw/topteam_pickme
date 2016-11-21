@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 import com.cafe24.pickmetop.member.model.MemberLinkedVo;
-
 import com.cafe24.pickmetop.member.model.*;
 
 @Repository
@@ -24,7 +23,7 @@ public class MemberDao {
 	@Resource(name="sqlSessionMember")
 	private SqlSessionTemplate sqlSessionFactoryMember;
 	
-	// �Ϲ� ȸ�� ����
+	//회원정보 
 	public int insertMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
 	}
@@ -45,30 +44,29 @@ public class MemberDao {
 	
 	
 	
-	// ȸ�� ����Ʈ 
+	// 회원 리스트
 	public List<MemberGeneralVo> selectMemberGeneralList(Map<String, Object> map){
 		return sqlSessionFactoryMember.selectList(NS+".selectMemberGeneralList", map);
 	}
 	
-	// ȸ�� �� 
+	// 회원 페이지
 	public int selectTotalCount() {
 		return sqlSessionFactoryMember.selectOne(NS+".selectTotalCount");
+		
 	}
 
 	
 	
 	public int insertMemberLinked(MemberLinkedVo memberLinkedVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberLinked", memberLinkedVo);
+		
+	}
+	//회원 암호 닉네임 변경 
+	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo){
+		logger.info("memberGeneralUpdate() MemberDao.java");
+		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralUpdate", memberGeneralVo);
 	}
 	
-	public int insertMemberWithdraw(MemberWithdrawVo withdraw){
-		return sqlSessionFactoryMember.insert(NS+".insertMemberWithdraw",  withdraw);
-		
-	}
-	public int insertMemberWorkstate(MemberWorkstateVo workstat){
-		return sqlSessionFactoryMember.insert(NS+".insertMemberWorkstate", workstat);	
-		
-		
-	}	
-		
 }
+
+		

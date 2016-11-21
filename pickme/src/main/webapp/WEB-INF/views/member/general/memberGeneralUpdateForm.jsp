@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<title>회원정보보기</title>
+		<title></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -19,30 +19,26 @@
 	</head>
 	<body>
 		<!-- 헤더 -->
-		<%@ include file="/WEB-INF/views/common/module/modHeader.jsp" %>
+		
 		<h3>회원정보보기</h3>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
 					<td>아이디</td>
-					<td>${sessionScope.generalId}</td>
-					
+					<td></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
 					<td><input type="button" value="비밀번호변경"></td>
-					
-					
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td><input type="button" value="닉네임변경"></td>
+					<td></td>
 				</tr>
 				
 			</tbody>
 		</table>
 		<input type="button" value="내정보수정">
-		
 		<!-- 풋터 -->
 		
 	</body>

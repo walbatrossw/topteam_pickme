@@ -75,23 +75,27 @@
         LIMIT #{pageHelper.startRow}, #{pageHelper.linePerPage}
     </select>
     
- <!--  
-    MemberGeneralVO 업데이트 쿼리는 db 확인 jsp 미적용
-	  <update id=""
-      parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+ 
+ <!--     MemberGeneralVO 업데이트 쿼리는 db 확인 jsp 미적용-->
+	  <update id="memberGeneralUpdate"  parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
 	 UPDATE tb_member_general SET
-        general_pw=#{generalPw},
-        general_nick=#{generalNick}
+	 	
+        general_pw = #{generalPw},
+        general_nick = #{generalNick}
+   
+         
         WHERE 
-        general_id=#{generalId},
-	</update> -->
-<!-- 	
-	 MemberGeneralVO 삭제  쿼리는 db확인 jsp 미적용
+        general_id = #{generalId}
+	</update> 
+	
+	<!--  MemberGeneralVO 삭제  쿼리는 db확인 -->
 	  <delete  id="" 
             parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
 	 DELETE FROM tb_member_general
-        WHERE general_id=#{generalId} AND general_pw=#{generalPw} AND general_nick=#{generalNick}
-	</delete>  -->
+        WHERE general_id=#{generalId} 
+        AND general_pw=#{generalPw}
+        AND general_nick=#{generalNick}
+	</delete> 
 		
 		
 	<!-- MemberLinkedVo 로그인 미완료-->

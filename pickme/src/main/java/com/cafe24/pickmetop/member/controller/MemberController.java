@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,22 +69,24 @@ public class MemberController {
 
 	}
 
-	//01_05 로그 아웃 페이지
+	// 로그 아웃 페이지
 	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.GET)
 	public String memberGeneralLogout(HttpSession session){
-	session.invalidate();
+	session.removeAttribute("generalId");
 	
 	return "redirect:/";
 		}
 		
 	
-	// 내정보 수정
-	@RequestMapping(value="/memberGeneralUpdate", method = RequestMethod.GET)
-	public String memberGeneralUpdate(HttpSession session){
+	// 회원정보 수정
+	@RequestMapping(value="{generalId}/memberGeneralUpdate", method = RequestMethod.GET)
+	public String memberGeneralUpdate(Model model, @RequestParam(value="generalId") String generalId) {
+		logger.info("memberId : {} MemberController.java", generalId);
 		return "/member/general/memberGeneralUpdate";
+		
 	}
 	
-	//01_06 사용자 리스트
+	// 사용자 리스트
 	 @RequestMapping(value="/memberGeneralList", method=RequestMethod.GET)
 	 public String memberGeneralList(Model model,@RequestParam(value="page", defaultValue="1") int page,
              									 @RequestParam(value="word", required=false) String word) {
@@ -96,7 +99,11 @@ public class MemberController {
 		
 		 return "/member/general/memberGeneralList";
 	 }
-	 
+	 //회원가입 이용 약관
+	 @RequestMapping(value="/terms", method=RequestMethod.GET)
+	 public String memberTerms(Model model){
+		 return "/common/etc/terms";
+	 }
 	 
 	 
 }

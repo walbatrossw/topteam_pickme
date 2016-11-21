@@ -23,14 +23,14 @@ public class MemberService {
 	private final int LINE_PER_PAGE = 10;
 	private final int MAX_PER_PAGE = 5;
 	
-	// �Ϲ� ȸ�� ���� ������ ����
+	// 일반 회원 가입
 	public void addmemberGeneral(MemberGeneralVo memberGeneralVo){
 		memberGeneralVo.setGeneralLevel(1);
 		memberGeneralVo.setGeneralState(0);
 		memberDao.insertMemberGeneral(memberGeneralVo);
 	}
 	
-	
+	// session 처리 id pw 
 	public Map<String, String> selectMemberCheck(String generalId, String generalPw){
 		
 		
@@ -43,16 +43,12 @@ public class MemberService {
 		return resultMap;
 	}
 	
-
-
-	
-	
-	// ȸ�� ����
+		// ȸ�� ����
 	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
 		return memberDao.selectMemberGeneral(memberGeneralVo);
 	}
 	
-	// ȸ�� ����Ʈ �� ������
+	// 회원 리스트
 	public Map<String, Object> getMemberGeneralList(int page, String word){
 		PageHelper  pageHelper = new PageHelper(page,LINE_PER_PAGE);
 		pageHelper.setLastPage(memberDao.selectTotalCount(), MAX_PER_PAGE);
@@ -67,7 +63,7 @@ public class MemberService {
 		return resultMap;
 	} 
 	
-	// ���� ������ ���� ������
+	// 회원 페이지
 	public int getLastPage() {
 		return (int)(Math.ceil((double)memberDao.selectTotalCount()/LINE_PER_PAGE));
 	
@@ -80,8 +76,15 @@ public class MemberService {
 		memberDao.insertMemberLinked(memberLinkedVo);
 		
 	}
-
-	  
+	// 회원정보 비밀번호 닉네임
+	public void memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
+		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
+		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
+		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
+		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
+		memberDao.memberGeneralUpdate(memberGeneralVo);
+		
+	}
 
 	}
 

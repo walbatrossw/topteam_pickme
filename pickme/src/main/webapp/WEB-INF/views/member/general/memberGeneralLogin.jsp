@@ -308,23 +308,30 @@ body .container .content .signup-cont {
 						                    <label for="email">이메일</label>
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="generalPw">비밀번호 </label>
+                						   	
+                						     <input type="checkbox" id="remember" class="checkbox" checked>
+						                    <label for="remember">비밀번호 확인</label>
 						                    <input type="checkbox" id="remember" class="checkbox" checked>
-						                    <label for="generalPw">비밀번호 확인</label>
-						                    <div class="submit-wrap">
+   											 <label for="remember">자동 로그인</label>
+						                    
+						                      <div class="submit-wrap">
+						                      
 							                        <input type="submit" value="일반로그인" class="submit">
-							                        <a href="#" class="more">비밀 번호 찾을까?</a>
+							                        
 						                    </div>
         					      	  </form>
     				      		  </div>
-    				        <div class="signup-cont cont">
-           
-			  	           <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
-												</div>
- 											
+    				        	        <div class="signup-cont cont">
+                <form action="/memberLinkedLogin" method="post" enctype="multipart/form-data">
+						                  
+                    
+						               <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+        					        </form>
           					  </div>
-			    	    
+			    	    </div>
 					</article>
 		    <div class="half bg"></div>
+		    
 	</section>
 
 
