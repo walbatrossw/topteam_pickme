@@ -653,6 +653,12 @@
 .sections2 .quick{
 	padding-top: 20px;
 }
+.sections2 .col-xs-3{
+	padding: 0px 5px 0px 5px;
+}
+.sections2 .quick img{
+	width: 100%;
+}
 .sections2 .quick a{
 	font-size: 1.5em;
 	font-weight:bold;
@@ -666,17 +672,16 @@
 	width: 350px;
 }
 .sections2 .toplist li{
-	float:left;
+	text-align: center;
 	display:inline;
 	margin:0;
 	padding:0;
 }
 /* list 100 */
 #list10 {
-	float:left;
-	width:350px;
 	padding: 0px;
 	padding-top: 10px;
+	border-bottom: 1px solid black;
 }
 .list10_list {
 	float:left;
@@ -740,6 +745,20 @@
 
 
 /*기업정보 리스트관련*/
+.jumbotron{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin-top: 10px;
+	text-align: left;
+	color : #ff8d51;
+	/* background: url("/img/company/logo/header.jpg"); */
+	background-color: rgba(255,255,255,0.7);
+}
+.jumbotron h1{
+	border-bottom: 7px double #e57430;
+}
+.jumbotron strong{
+	color : #e57430;
+}
 
 /*바디*/
 .companyInfoList{
@@ -764,7 +783,8 @@ article {
     display: block;
 }
 .list_companies .section_wrap {
-	margin-bottom: 15px;
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin: 10px 10px 0px 0px;
     border-top: none;
 }
 .section_wrap {
@@ -814,13 +834,5 @@ article {
     padding-top: 6px;
 }
 
-/*페이징*/
-.pager .active a{
-	background-color: #337ab7;
-	color: #fff;
-}
-.pager .active a:hover{
-	background-color: #337ab7;
-	color: #fff;
-}
+
 

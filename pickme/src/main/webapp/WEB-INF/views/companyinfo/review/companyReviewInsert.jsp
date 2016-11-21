@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="/css/theme-krajee-svg.css" media="all" type="text/css"/>
 <link rel="stylesheet" href="/css/company/companyCommon.css">
 <link rel="stylesheet" href="/css/company/companyReview.css">
-<link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function(){
 		//자동완성기능 관련

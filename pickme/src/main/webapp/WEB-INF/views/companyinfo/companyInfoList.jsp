@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/company/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyCommon.css">
 <script>
 	$(document).ready(function() {
 		const $searchBtn = $('#searchBtn');
@@ -25,22 +26,25 @@
 <title>기업리스트</title>
 </head>
 <body>
-
 	<div class="container">
+		<div class="jumbotron">
+		    <h1><strong>I</strong>nfo</h1>
+			<!-- <img alt="기업리뷰 리스트 로고" src="/img/company/logo/reviewListLogo.jpg"> -->	
+		</div>
 		<div class="companyInfoList">
-			<div class="row">
-				<div class="col-xs-2">
-					<input type="text" class="form-control" id="searchCompanyName"
-						name="searchCompanyName" placeholder="기업명" />
-				</div>
-				<div class="col-xs-2">
-					<button class="btn .btn-default" id="searchBtn">
-						<span class="glyphicon glyphicon-search"></span>검색
-					</button>
-				</div>
-			</div>
 			<div id="mainContents" class="jpcont_lft">
 				<article id="listCompanies" class="list_companies">
+					<div class="row">
+						<div class="col-xs-3">
+							<input type="text" class="form-control" id="searchCompanyName"
+								name="searchCompanyName" placeholder="기업명" />
+						</div>
+						<div class="col-xs-2">
+							<button class="btn .btn-default" id="searchBtn">
+								<span class="glyphicon glyphicon-search"></span>검색
+							</button>
+						</div>
+					</div>
 					<c:forEach var="companyInfoList" items="${companyInfoList }">
 						<div class="section_wrap">
 							<!--<hgroup>-->
@@ -103,22 +107,21 @@
 					<!-- //repeat-->
 				</article>
 			</div>
-		</div>
-
-		<!-- 페이징 -->
-		<div class="text-center">
-			<ul class="pager">
-				<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a></li>
-				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-						<c:if test="${page == i}">
-							<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
-						</c:if>
-						<c:if test="${page != i}">
-							<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
-						</c:if>
-				</c:forEach>
-				<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
-			</ul>
+			<!-- 페이징 -->
+			<div class="text-center">
+				<ul class="pager">
+					<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a></li>
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+							<c:if test="${page == i}">
+								<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
+							</c:if>
+							<c:if test="${page != i}">
+								<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
+							</c:if>
+					</c:forEach>
+					<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </body>

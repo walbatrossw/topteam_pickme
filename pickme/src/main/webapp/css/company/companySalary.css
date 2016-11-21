@@ -3,8 +3,8 @@
 /*연봉정보 입력화면*/
 #companySalaryInsertForm{
 	float: left;
-    width: 70%;
-	padding: 40px 40px 20px 40px;
+    width: 65%;
+	padding: 30px 40px 20px 40px;
 }
 #companySalaryInsertForm .row{
 	padding : 0px 0px 20px 0px;
@@ -14,22 +14,38 @@
 #companySalaryInsertForm .col-xs-1{
 	padding: 10px 0px 0px 0px;
 }
-#companySalaryInsertForm {
-}
 
 .sidebanner{
 	float: right;
-	width: 30%;
+	width: 34%;
 }
 .sidebanner .banner{
 	width: 100%;
 }
 .sidebanner .row{
-	padding-bottom: 15px;
-	height: 150px;
+	background-color: rgba(255,255,255,0.9);
+	margin: 10px 0px 15px 0px;
+    padding: 5px;
+	height: 130px;
 }
 
 /*연봉 리스트*/
+
+.jumbotron{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin-top: 10px;
+	text-align: left;
+	color : #cc4f61;
+	/* background: url("/img/company/logo/header.jpg"); */
+	background-color: rgba(255,255,255,0.7);
+}
+.jumbotron h1{
+	border-bottom: 7px double #bd2c49;
+}
+.jumbotron strong{
+	color : #bd2c49;
+}
+
 .companySalaryList{
 	margin-top: 30px;
 }
@@ -52,14 +68,15 @@
 #mainContents{
 	float: left;
     width: 65%;
-    background-color: rgba(255,255,255,0.9);
 }
 article {
     display: block;
 }
 .list_companies .section_wrap {
+	 background-color: rgba(255,255,255,0.9);
+	box-shadow: 5px 5px 5px 0px lightgray;
 	border-bottom: 1px solid #e6e6e6;
-	margin-bottom: 15px;
+	margin: 10px 10px 0px 0px;
     border-top: none;
 }
 .section_wrap {

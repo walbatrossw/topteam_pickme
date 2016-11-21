@@ -1,6 +1,20 @@
 @CHARSET "EUC-KR";
 
 /*기업리뷰 승인리스트 관련*/
+.jumbotron{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin-top: 10px;
+	text-align: left;
+	color : #29566d;
+	/* background: url("/img/company/logo/header.jpg"); */
+	background-color: rgba(255,255,255,0.7);
+}
+.jumbotron h1{
+	border-bottom: 7px double #00455e;
+}
+.jumbotron strong{
+	color : #00455e;
+}
 .companyReviewList{
 	background-color: rgba(255,255,255,0.9);
     padding: 30px 40px 30px 40px;
@@ -19,9 +33,10 @@
 	float: right;
 }
 .review{
+	box-shadow: 5px 5px 5px 0px lightgray;
 	border-radius: 10px;
 	padding: 10px 20px 10px 20px;
-	margin-bottom: 10px;
+	margin : 30px 0px 0px 0px;
 	background-color: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.3);	
 }
@@ -39,9 +54,6 @@
 	font-weight: bold;
 	
 	text-decoration: none;
-}
-.row{
-	margin-bottom: 20px;
 }
 /* #reviewComment .media-left span img{
 	margin: -184px -350px -140px -135px;

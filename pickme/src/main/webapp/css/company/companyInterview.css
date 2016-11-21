@@ -1,6 +1,20 @@
 @CHARSET "EUC-KR";
 
 /*면접후기 승인리스트 관련*/
+.jumbotron{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin-top: 10px;
+	text-align: left;
+	color : #52adb2;
+	/* background: url("/img/company/logo/header.jpg"); */
+	background-color: rgba(255,255,255,0.7);
+}
+.jumbotron h1{
+	border-bottom: 7px double #0199a4;
+}
+.jumbotron strong{
+	color : #0199a4;
+}
 .companyInterviewList{
 	border-radius: 10px;
 	background-color: rgba(255,255,255,0.9);
@@ -19,9 +33,10 @@
 	float: right;
 }
 .interview{
+	box-shadow: 5px 5px 5px 0px lightgray;
 	border-radius: 10px;
 	padding: 10px 20px 10px 20px;
-	margin-bottom: 10px;
+	margin : 30px 0px 0px 0px;
 	background-color: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.3);	
 }

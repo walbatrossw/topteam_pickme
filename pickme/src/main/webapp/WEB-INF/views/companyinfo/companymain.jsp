@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/company/companyinfo.css">
+<link rel="stylesheet" href="/css/company/companyCommon.css">
 <script>
 	$(document).ready(function() {
 		gnb_menu();
@@ -134,13 +135,17 @@
 		<div class="sections2">
 			<div class="row">
 				<div class="col-xs-8 quick">
-					<div class="row">
-						<a class="col-xs-6" href="/company/companyInfoList"><img src="/img/company/companyinfologo.png" alt="기업정보 로고 이미지" width="200px"><p>기업정보</p></a>
-						<a class="col-xs-6" href="/review/companyReviewListAllow"><img src="/img/company/reviewlogo.png" alt="기업리뷰 로고 이미지" width="200px"><p>기업리뷰</p></a>
+					<div class="col-xs-3">
+						<a href="/company/companyInfoList"><img alt="기업정보 퀵메뉴" src="/img/company/companyInfoQuick.jpg"></a>
 					</div>
-					<div class="row">
-						<a class="col-xs-6" href="/interview/companyInterviewListAllow"><img src="/img/company/salarylogo.png" alt="기업연봉 로고 이미지" width="200px"><p>기업연봉</p></a>
-						<a class="col-xs-6" href="/salary/companySalaryListAllow"><img src="/img/company/interviewlogo.png" alt="면접후기 로고 이미지" width="200px"><p>면접후기</p></a>
+					<div class="col-xs-3">
+						<a href="/salary/companySalaryListAllow"><img alt="연봉정보 퀵메뉴" src="/img/company/companySalaryQuick.jpg"></a>
+					</div>
+					<div class="col-xs-3">
+						<a href="/interview/companyInterviewListAllow"><img alt="면접후기 퀵메뉴" src="/img/company/companyInterviewQuick.jpg"></a>
+					</div>
+					<div class="col-xs-3">
+						<a href="/review/companyReviewListAllow"><img alt="기업리뷰 퀵메뉴" src="/img/company/companyReviewQuick.jpg"></a>
 					</div>
 				</div> 
 				<div class="col-xs-6 toplist">

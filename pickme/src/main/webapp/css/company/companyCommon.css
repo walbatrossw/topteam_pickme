@@ -3,13 +3,6 @@
 body{
 	background-color: rgba(241,241,241,1);
 }
-.jumbotron{
-	margin-top: 10px;
-	text-align: left;
-	color : #3e3e3e;
-	background: url("/img/company/logo/header.jpg");
-	background-size: cover;
-}
 /*기업리뷰 미승인리스트 관련*/
 .tablehover:hover{
 	background-color: rgba(213,213,213,0.5);
@@ -19,20 +12,25 @@ body{
 	text-align: center;
 }
 
-/*기업리뷰 입력폼*/
+/*입력폼 공통*/
 .insertForm{
 	/* background-color: rgba(213,213,213,0.5); */
 	padding: 40px 40px 20px 40px;
 }
+.form{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	margin: 15px 0px 0px 0px;
+	border: 3px solid rgba(0, 0, 0, 0.3);
+}
 .form .panel-heading{
 	/*background-color: rgba(83,255,76,1);*/
-	border-bottom:2px solid black;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .detail .panel-end{
 	height: 80px;
 	padding-left: 20%;
 	padding-top: 20px;
-	border-top: 2px solid black;
+	border-top: 3px solid rgba(0, 0, 0, 0.3);
 }
 
 /*기업정보 Insert에서 기업이름 자동완성 부분*/
@@ -48,4 +46,14 @@ body{
 }
 #searchJobTopIndex{
 	width: 300px;
+}
+
+/*페이징*/
+.pager .active a{
+	background-color: #337ab7;
+	color: #fff;
+}
+.pager .active a:hover{
+	background-color: #337ab7;
+	color: #fff;
 }
