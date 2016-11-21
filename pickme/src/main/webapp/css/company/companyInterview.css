@@ -2,7 +2,8 @@
 
 /*면접후기 승인리스트 관련*/
 .companyInterviewList{
-	background-color: rgba(213,213,213,0.1);
+	border-radius: 10px;
+	background-color: rgba(255,255,255,0.9);
 	padding: 30px 40px 30px 40px;
 }
 .companyInterviewList .col-xs-3{

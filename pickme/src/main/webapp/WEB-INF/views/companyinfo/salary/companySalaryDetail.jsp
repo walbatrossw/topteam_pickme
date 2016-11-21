@@ -34,6 +34,7 @@ $(document).ready(function(){
 	          title: '연봉 차트'
 	        },
 	        hAxis: {
+	        	title: '단위(:만원)',
 	        	minValue: 0
 	        },
 	        vAxis: {
@@ -58,6 +59,9 @@ $(document).ready(function(){
 					<div class="col-xs-5">
 						<h3>${companySalaryDetail.companyName }</h3>
 					</div>
+					<div class="col-xs-5">
+						<h3>기업 연봉순위 : (준비중)</h3>
+					</div>
 				</div>
 				
 				<div class="row">
@@ -73,11 +77,13 @@ $(document).ready(function(){
 				</div>
 			</section>
 			<div class="sidebanner">
-				<a href="#"><img class="banner" src="/img/company/banner/banner1.jpg">
-				banner img test</a>
-			
-				<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
-				banner img test</a>
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+				</div>
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
+					banner img test</a>
+				</div>
 			</div>	
 		</div>
 	</div>

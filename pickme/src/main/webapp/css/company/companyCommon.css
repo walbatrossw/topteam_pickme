@@ -1,5 +1,15 @@
 @CHARSET "EUC-KR";
-
+/*화면 헤더*/
+body{
+	background-color: rgba(241,241,241,1);
+}
+.jumbotron{
+	margin-top: 10px;
+	text-align: left;
+	color : #3e3e3e;
+	background: url("/img/company/logo/header.jpg");
+	background-size: cover;
+}
 /*기업리뷰 미승인리스트 관련*/
 .tablehover:hover{
 	background-color: rgba(213,213,213,0.5);

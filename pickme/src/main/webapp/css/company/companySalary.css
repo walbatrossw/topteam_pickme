@@ -24,10 +24,17 @@
 .sidebanner .banner{
 	width: 100%;
 }
+.sidebanner .row{
+	padding-bottom: 15px;
+	height: 150px;
+}
 
 /*연봉 리스트*/
 .companySalaryList{
 	margin-top: 30px;
+}
+.searchbar{
+	margin-bottom: 10px;
 }
 .star{
 	margin-top: 15px;
@@ -41,27 +48,25 @@
 }
 .list_companies {
     box-sizing: border-box;
-    width: 90%;
 }
 #mainContents{
 	float: left;
-    width: 70%;
+    width: 65%;
+    background-color: rgba(255,255,255,0.9);
 }
 article {
     display: block;
 }
 .list_companies .section_wrap {
+	border-bottom: 1px solid #e6e6e6;
 	margin-bottom: 15px;
     border-top: none;
 }
 .section_wrap {
-    border: 1px solid #e8e9eb;
-    background-color: #fff;
 }
 .content_ty3 {
     position: relative;
     padding: 17px 0 18px 14px;
-    border-top: 1px solid #e6e6e6;
     box-sizing: border-box;
 }
 .content_ty3 .ty3_wrap {
@@ -123,7 +128,7 @@ article {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/**/
+/*연봉정보 사용자*/
 .content{
 	float: left;
 	width: 60%;
@@ -131,7 +136,7 @@ article {
 }
 .panel-body .row{
 	border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-	margin-bottom: 10px;
+	padding-bottom: 15px;
 }
 #chart_div div{
 }

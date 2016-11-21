@@ -53,7 +53,7 @@
 	<div class="container">
 		<div class="container">
 			<div class="jumbotron text-center">
-				<h1>면접후기 리스트</h1>
+				<h1><strong>I</strong>nterview</h1>
 			</div>
 			<div class="companyInterviewList">
 				<div class="row">
@@ -130,24 +130,24 @@
 							</div>
 						</div>
 					</div>
-				</c:forEach>		
-			</div>
-			<!-- 페이징 -->
-			<div class="text-center">
-				<ul class="pager">
-					<li class="previous"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
-					<c:forEach var="i" begin="${startPage }" end="${endPage }">
-						<c:if test="${page == i}">
-							<li class="active"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
-						</c:if>
-						<c:if test="${page != i}">
-							<li><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
-						</c:if>
-					</c:forEach>
-					<li class="next"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
-				</ul>
-			</div>
-		</div>
+				</c:forEach>
+				<!-- 페이징 -->
+				<div class="text-center">
+					<ul class="pager">
+						<li class="previous"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }">
+							<c:if test="${page == i}">
+								<li class="active"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
+							</c:if>
+							<c:if test="${page != i}">
+								<li><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
+							</c:if>
+						</c:forEach>
+						<li class="next"><a href="/interview/companyInterviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
+					</ul>
+				</div>
+			</div>		
+		</div>		
 	</div>
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>

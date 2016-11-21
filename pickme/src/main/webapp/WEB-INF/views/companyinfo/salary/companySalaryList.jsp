@@ -33,10 +33,13 @@
 <title>기업 연봉 리스트</title>
 </head>
 <body>
-
 	<div class="container">
+		<div class="jumbotron">
+		    <h1><strong>S</strong>alary</h1>
+			<!-- <img alt="기업리뷰 리스트 로고" src="/img/company/logo/reviewListLogo.jpg"> -->	
+		</div>
 		<div class="companySalaryList">
-			<div class="row">
+			<div class="row searchbar">
 				<div class="col-xs-2">
 					<input type="text" class="form-control" id="searchCompanyName"
 						name="searchCompanyName" placeholder="기업명" />
@@ -110,10 +113,13 @@
 				</article>
 			</div>
 			<div class="sidebanner">
-				<a href="#"><img class="banner" src="/img/company/banner/banner1.jpg">
-				banner img test</a>
-				<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
-				banner img test</a>
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+				</div>
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
+					banner img test</a>
+				</div>
 			</div>
 		</div>		
 	</div>

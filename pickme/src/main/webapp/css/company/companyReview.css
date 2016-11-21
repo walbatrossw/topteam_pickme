@@ -2,8 +2,9 @@
 
 /*기업리뷰 승인리스트 관련*/
 .companyReviewList{
-	background-color: rgba(213,213,213,0.1);
-	padding: 30px 40px 30px 40px;
+	background-color: rgba(255,255,255,0.9);
+    padding: 30px 40px 30px 40px;
+    border-radius: 20px;
 }
 .companyReviewList .col-xs-3{
 	padding-right: 5px;
@@ -24,11 +25,20 @@
 	background-color: #fff;
 	border: 1px solid rgba(0, 0, 0, 0.3);	
 }
+.review .row{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
 .media{
 	margin-bottom: 20px;
 }
 #reviewComment .media-body{
 	padding-top: 20px;
+}
+#reviewComment .comment{
+	color: black;
+	font-weight: bold;
+	
+	text-decoration: none;
 }
 .row{
 	margin-bottom: 20px;

@@ -51,8 +51,9 @@
 </head>
 <body>
 	<div class="container">
-		<div class="jumbotron text-center">
-			<h1>기업리뷰 리스트</h1>
+		<div class="jumbotron">
+		    <h1><strong>R</strong>eview</h1>
+			<!-- <img alt="기업리뷰 리스트 로고" src="/img/company/logo/reviewListLogo.jpg"> -->	
 		</div>
 		<div class="companyReviewList">
 			<div class="row">
@@ -94,7 +95,7 @@
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">
-									<a href="/review/companyReviewDetail?companyReviewCd=${reviewListAllow.companyReviewCd}">
+									<a class="comment" href="/review/companyReviewDetail?companyReviewCd=${reviewListAllow.companyReviewCd}">
 										"${reviewListAllow.reviewComment }"
 									</a>
 								</h4>
@@ -114,23 +115,22 @@
 						</div>
 					</div>
 				</div>
-			</c:forEach>		
-		</div>
-		
-		<!-- 페이징 -->
-		<div class="text-center">
-			<ul class="pager">
-				<li class="previous"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
-				<c:forEach var="i" begin="${startPage }" end="${endPage }">
-					<c:if test="${page == i}">
-						<li class="active"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
-					</c:if>
-					<c:if test="${page != i}">
-						<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
-					</c:if>
-				</c:forEach>
-				<li class="next"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
-			</ul>
+			</c:forEach>
+			<!-- 페이징 -->
+			<div class="text-center">
+				<ul class="pager">
+					<li class="previous"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page-1}">이전</a><li>
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+						<c:if test="${page == i}">
+							<li class="active"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a><li>
+						</c:if>
+						<c:if test="${page != i}">
+							<li><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${i }">${i }</a></li>
+						</c:if>
+					</c:forEach>
+					<li class="next"><a href="/review/companyReviewListAllow?searchCompanyName=${searchCompanyName }&jobTopIndexCd=${jobTopIndexCd}&page=${page+1}">다음</a></li>
+				</ul>
+			</div>		
 		</div>
 	</div>
 </body>
