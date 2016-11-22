@@ -105,7 +105,7 @@
         <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/freeboard/repository/FreeboardMapper.xml"/>
     </bean>
     <bean id="sqlSessionFreeboard" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactoryCoverletter" />
+        <constructor-arg index="0" ref="sqlSessionFactoryFreeboard" />
 	</bean>
 	
 	<!-- Mapper Setting -->

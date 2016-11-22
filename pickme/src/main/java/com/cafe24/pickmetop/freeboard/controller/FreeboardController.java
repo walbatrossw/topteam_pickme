@@ -27,7 +27,6 @@ public class FreeboardController {
 	@RequestMapping(value="/freeboardInsert", method = RequestMethod.GET)
 	public String freeboardInsert(HttpSession session,FreeboardVo freeboardVo){
 
-	
 		freeService.freeboardInsert(freeboardVo,session);
 		return "redirect:/freeboardList";
 	}

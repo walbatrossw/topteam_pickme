@@ -6,7 +6,7 @@
 	
 	
 
-	
+	<!-- 댓글리스트 -->
 	<select id="selectReply"  resultType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
 		SELECT 
 			reply_cd as replyCd, 
@@ -22,7 +22,7 @@
 			
 	</select>
 	
-	
+	<!-- 카테고리 리스트 -->
 	<select id="selectCate" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardCategoryVo">
 		SELECT 
 			freeboard_cate_cd as freeboardCateCd, 
@@ -30,6 +30,8 @@
 		FROM 
 			tb_freeboard_category
 	</select>
+	
+	<!-- 게시글입력 -->
 	<insert id="freeboardInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardVo">
 		INSERT INTO tb_freeboard
 			(freeboard_cd, login_id, freeboard_regdate, freeboard_title, freeboard_content, freeboard_nick, freeboard_cate_cd)
@@ -38,6 +40,7 @@
 			 #{loginId}, NOW(),#{freeboardTitle}, #{freeboardContent},#{freeboardNick} ,#{freeboardCateCd})
 	</insert>
 	
+	<!--페이징을 위한  전체개수 -->
 	<select id="selectTotalCount" parameterType="java.util.Map" resultType="Integer">
 		SELECT 
 			COUNT(freeboard_cd)
@@ -60,7 +63,7 @@
 	</select>
 	
 	
-	
+	<!-- 게시판 리스트 -->
 	<select id="selectFreeboardList" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardVo" parameterType="java.util.Map">
 		SELECT 
 			freeboard_cd as freeboardCd ,
@@ -92,7 +95,7 @@
 	</select>
 	
 	
-	
+	<!-- 댓글 입력 -->
 	<insert id="freeboardReplyInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
 		INSERT INTO tb_freeboard_reply
 			(reply_cd, login_id, freeboard_cd, reply_content, login_nick, reply_regdate)
