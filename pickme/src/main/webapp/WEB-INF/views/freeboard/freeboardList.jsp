@@ -98,7 +98,10 @@ $(document).ready(function(){
 	});
 	//수정 
 	$('.updateReply').click(function(){
-		$('.reply').html("<input type ='text' value='${replyMap.replyContent}' id='updating'>")
+		var index = $('.updateReply').index(this);
+		alert(index);
+		$('.reply1').eq(index).replaceWith('<textarea cols="95" rows="2" id="updating" class="form-control">');
+		$('#updating').text($('#hiddenReply').val());
 	})
 	
 });
@@ -111,7 +114,6 @@ $(document).ready(function(){
 <br>
 <div class="container-fluid">
 	<div class="row content">
-	
 		<!-- 사이드바 -->
 		<div class="sidenav">
 			<h3><a href="/freeboardList">자유게시판${sessionScope.generalId}</a></h3>
@@ -247,9 +249,10 @@ $(document).ready(function(){
 				<table>
 					<!-- 댓글리스트 -->
 					<c:forEach items="${replyMap}" var="replyMap">
+					<c:if test="${replyMap.freeboardCd == freeList.freeboardCd}">
 					<tr>
-						<td>
-						<c:if test="${replyMap.freeboardCd == freeList.freeboardCd}">
+						<td colspan="2">
+						
 							 <div class="row"> 
 								<div class="col-sm-10">
 									<span style="font-weight: bolder;">
@@ -259,19 +262,27 @@ $(document).ready(function(){
 						</td>
 					</tr>	
 					<tr>
-						<td width="90%">	
-							<p class="reply">${replyMap.replyContent}</p>
+						
+						<td width="750px">	
+							<p><span class="reply1"></span>
+							<input type="hidden" value="${replyMap.replyContent}" id="hiddenReply">
 						</td>
-						<td>			
-							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default">삭제</a>
+						<td>		
+							<span>
+							<c:if test="${replyMap.loginId==sessionScope.generalId}">
+							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
+							<a  class="updateReply btn btn-default btn-sm">수정</a> 
+							</c:if>
+							<c:if test="${replyMap.loginId!=sessionScope.generalId}">
+							<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>
+							</c:if>
+							</span>
+						 		</div>
+							 </div>
 						</td>
-						<td>
-							<a href="/freeboardReplyUpdate?replyCd=${replyMap.replyCd}" class="updateReply btn btn-default">수정</a>
-								</div>
-							 </div> 
-						 </c:if>
-						</td>
+
 					</tr>
+					 </c:if>
 				
 					</c:forEach>
 					</table>
