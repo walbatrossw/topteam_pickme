@@ -298,4 +298,11 @@ public class CompanyController {
 		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
 		return "/companyinfo/review/companyReviewInsert";
 	}
+	//±â¾÷¸®ºä ÃßÃµ ¸ÊÇÎ
+	@RequestMapping(value = "/review/companyReviewLike", method = RequestMethod.GET)
+	public String companyReviewLike(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd
+			,@RequestParam(value="userChoice") int userChoice) {
+		companyService.updateCompanyReviewLike(companyReviewCd, userChoice);
+		return "redirect:/review/companyReviewListAllow";
+	}
 }

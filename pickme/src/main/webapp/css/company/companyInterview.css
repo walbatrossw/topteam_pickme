@@ -28,9 +28,10 @@
 	padding-left: 0px;
 	padding-right: 0px;
 }
-.companyInterviewList .col-xs-6{
+.companyInterviewList .insertBtn{
 	width: 16%;
 	float: right;
+	padding-left: 0px;
 }
 .interview{
 	box-shadow: 5px 5px 5px 0px lightgray;
@@ -42,6 +43,11 @@
 }
 .media{
 	margin-bottom: 20px;
+}
+#interviewSummary a{
+	color: black;
+    font-weight: bold;
+    text-decoration: none;
 }
 #reviewComment .media-body{
 	padding-top: 20px;

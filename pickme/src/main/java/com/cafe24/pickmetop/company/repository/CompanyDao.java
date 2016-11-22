@@ -118,6 +118,9 @@ public class CompanyDao {
 		sqlMap.put("searchCompanyName", searchCompanyName);
 		return sqlSessionFactoryCompany.selectOne(NS + ".selectAllowSearchCount", sqlMap);
 	}
+	public int updateCompnayReviewLikeByuserChoice(Map<String, Object> sqlMap){
+		return sqlSessionFactoryCompany.update(NS + ".updateCompnayReviewLikeByuserChoice", sqlMap);
+	}
 	/*
 	 * ----------------------------------------------------------------------------------------
 	 * 

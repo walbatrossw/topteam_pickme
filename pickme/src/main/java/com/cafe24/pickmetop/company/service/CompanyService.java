@@ -266,6 +266,17 @@ public class CompanyService {
 		logger.info("CompanyService -> companyCd2 {}", companyReviewVo.getCompanyCd());
 		return companyDao.insertCompanyReview(companyReviewVo);
 	}
+	//기업리뷰 추천 비추천
+	public int updateCompanyReviewLike(int companyReviewCd, int userChoice){
+		Map<String, Object> sqlMap = new HashMap<String, Object>();
+		if(userChoice == 1){
+			sqlMap.put("tbColumn", "review_like");
+		}else{
+			sqlMap.put("tbColumn", "review_dislike");
+		}
+		sqlMap.put("companyReviewCd", companyReviewCd);
+		return companyDao.updateCompnayReviewLikeByuserChoice(sqlMap);
+	}
 	
 	//기업이름 리스트목록 메서드
 	public List<CompanyInfoVo> getCompanyNameList(){

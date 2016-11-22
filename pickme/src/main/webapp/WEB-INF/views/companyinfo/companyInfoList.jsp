@@ -32,19 +32,19 @@
 			<!-- <img alt="기업리뷰 리스트 로고" src="/img/company/logo/reviewListLogo.jpg"> -->	
 		</div>
 		<div class="companyInfoList">
+			<div class="row">
+				<div class="col-xs-3">
+					<input type="text" class="form-control" id="searchCompanyName"
+						name="searchCompanyName" placeholder="기업명" />
+				</div>
+				<div class="col-xs-2">
+					<button class="btn .btn-default" id="searchBtn">
+						<span class="glyphicon glyphicon-search"></span>검색
+					</button>
+				</div>
+			</div>
 			<div id="mainContents" class="jpcont_lft">
 				<article id="listCompanies" class="list_companies">
-					<div class="row">
-						<div class="col-xs-3">
-							<input type="text" class="form-control" id="searchCompanyName"
-								name="searchCompanyName" placeholder="기업명" />
-						</div>
-						<div class="col-xs-2">
-							<button class="btn .btn-default" id="searchBtn">
-								<span class="glyphicon glyphicon-search"></span>검색
-							</button>
-						</div>
-					</div>
 					<c:forEach var="companyInfoList" items="${companyInfoList }">
 						<div class="section_wrap">
 							<!--<hgroup>-->
@@ -73,13 +73,13 @@
 												</p>
 												<p class="row_end">
 													<a
-														href="/companies/30139/reviews/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90?"
+														href="/review/companyReviewListAllow?searchCompanyName=${companyInfoList.companyName }"
 														class="us_stxt_1">${companyInfoList.reviewCount } 기업리뷰</a>
 													<span class="vbar">|</span> <a
-														href="/companies/30139/salaries/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90?"
+														href="/salary/companySalaryListAllow?searchCompanyName=${companyInfoList.companyName }"
 														class="us_stxt_1">${companyInfoList.salaryCount } 연봉정보</a>
 													<span class="vbar">|</span> <a
-														href="/companies/30139/interviews/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90?"
+														href="/interview/companyInterviewListAllow?searchCompanyName=${companyInfoList.companyName }"
 														class="us_stxt_1">${companyInfoList.interviewCount }
 														면접정보</a>
 												</p>
@@ -106,21 +106,30 @@
 					</c:forEach>
 					<!-- //repeat-->
 				</article>
+				<!-- 페이징 -->
+				<div class="text-center">
+					<ul class="pager">
+						<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a></li>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }">
+								<c:if test="${page == i}">
+									<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
+								</c:if>
+								<c:if test="${page != i}">
+									<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
+								</c:if>
+						</c:forEach>
+						<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
+					</ul>
+				</div>
 			</div>
-			<!-- 페이징 -->
-			<div class="text-center">
-				<ul class="pager">
-					<li class="previous"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page-1}">이전</a></li>
-					<c:forEach var="i" begin="${startPage }" end="${endPage }">
-							<c:if test="${page == i}">
-								<li class="active"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
-							</c:if>
-							<c:if test="${page != i}">
-								<li><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${i}">${i }</a></li>
-							</c:if>
-					</c:forEach>
-					<li class="next"><a href="/company/companyInfoList?searchCompanyName=${searchCompanyName }&page=${page+1}">다음</a></li>
-				</ul>
+			<div class="sidebanner">
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+				</div>
+				<div class="row">
+					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
+					banner img test</a>
+				</div>
 			</div>
 		</div>
 	</div>

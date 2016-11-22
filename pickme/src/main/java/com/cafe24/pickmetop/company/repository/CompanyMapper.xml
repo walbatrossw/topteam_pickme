@@ -35,9 +35,9 @@
 			info.company_name as companyName,
 			topindex.industry_topindex_name as industryTopIndexName,
 			substring(info.company_addr,1,2) as companyAddr,
-			(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd = info.company_cd) as reviewCount,
-			(SELECT COUNT(*) FROM tb_company_interview interview WHERE interview.company_cd = info.company_cd) as interviewCount,
-			(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_cd = info.company_cd) as salaryCount, 
+			(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd = info.company_cd AND review.review_allow = 1) as reviewCount,
+			(SELECT COUNT(*) FROM tb_company_interview interview WHERE interview.company_cd = info.company_cd AND interview.interview_allow = 1) as interviewCount,
+			(SELECT COUNT(*) FROM tb_company_salary salary WHERE salary.company_cd = info.company_cd AND salary.salary_allow = 1) as salaryCount, 
 			IFNULL(info.company_total_rate/(SELECT COUNT(*) FROM tb_company_review review WHERE review.company_cd=info.company_cd AND review.review_allow=1),0) as companyTotalRate
 		FROM
 			tb_company_info info, tb_industry_topindex topindex
@@ -288,6 +288,16 @@
 									WHERE r.company_review_cd = #{companyReviewCd} AND c.company_cd = r.company_cd ) a)
 										
 		WHERE company_cd = (SELECT company_cd FROM tb_company_review  WHERE company_review_cd = #{companyReviewCd})
+	</update>
+	
+	<!-- 기업리뷰 추천 비추천 -->
+	<update id="updateCompnayReviewLikeByuserChoice">
+		UPDATE
+			tb_company_review
+		SET
+			${tbColumn} = ${tbColumn}+1
+		WHERE
+			company_review_cd = #{companyReviewCd}
 	</update>
 	
 	<!-- 기업리뷰 삭제처리 -->

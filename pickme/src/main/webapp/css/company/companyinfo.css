@@ -778,7 +778,10 @@
     box-sizing: border-box;
     width: 100%;
 }
-
+#mainContents{
+	float: left;
+    width: 70%;
+}
 article {
     display: block;
 }
@@ -832,6 +835,19 @@ article {
 	text-align: center;
 	font-size: 1.2em;
     padding-top: 6px;
+}
+.sidebanner{
+	float: right;
+	width: 29%;
+}
+.sidebanner .banner{
+	width: 100%;
+}
+.sidebanner .row{
+	background-color: rgba(255,255,255,0.9);
+	margin: 10px 0px 15px 0px;
+    padding: 5px;
+	height: 130px;
 }
 
 

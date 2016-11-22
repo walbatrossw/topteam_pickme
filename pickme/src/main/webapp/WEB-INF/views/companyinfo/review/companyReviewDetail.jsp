@@ -151,6 +151,14 @@
     				</div>
 				</div>
 			</div>	<!-- row -->
+			<div class="row userchoice">
+				<div class="col-xs-6">
+					<a href="/review/companyReviewLike?companyReviewCd=${reviewDetail.companyReviewCd}&userChoice=1" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-thumbs-up"></span>추천</a>
+				</div>
+				<div class="col-xs-6">
+					<a href="/review/companyReviewLike?companyReviewCd=${reviewDetail.companyReviewCd}&userChoice=2" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-thumbs-down">비추천</span></a>
+				</div>
+			</div>
 		</div><!-- companyReviewDetail -->
 	</div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>	

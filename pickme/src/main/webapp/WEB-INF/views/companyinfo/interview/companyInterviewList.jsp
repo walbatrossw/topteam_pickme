@@ -38,11 +38,7 @@
 			}else{
 				location.href="/interview/companyInterviewListAllow";
 			}    
-		});
-		//면접후기쓰러가기
-		$insertBtn.click(function(){
-			location.href="/interview/companyInterviewInsertForm";
-		});
+		});	
 		
 	});
 </script>
@@ -70,8 +66,8 @@
 					<div class="col-xs-2">			
 						<button class="btn .btn-default" id="searchBtn"><span class="glyphicon glyphicon-search"></span>검색</button>
 					</div>
-					<div class="col-xs-6">
-						<button class="btn .btn-default" id="insertBtn">면접후기 쓰러가기</button>
+					<div class="col-xs-4 insertBtn">
+						<a href="/interview/companyInterviewInsertForm" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span>면접후기 쓰러가기</a>
 					</div>
 				</div>
 				<c:forEach var="interviewListAllow" items="${interviewListAllow}">

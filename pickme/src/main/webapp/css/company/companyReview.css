@@ -28,9 +28,10 @@
 	padding-left: 0px;
 	padding-right: 0px;
 }
-.companyReviewList .col-xs-6{
+.companyReviewList .insertBtn{
 	width: 16%;
 	float: right;
+	padding-left: 0px;
 }
 .review{
 	box-shadow: 5px 5px 5px 0px lightgray;
@@ -85,4 +86,7 @@
 	padding: 25px 30px 25px 50px;
 	
 	/* background-color: rgba(213,213,213,0.5); */
+}
+.userchoice a{
+	width: 100%;
 } 
