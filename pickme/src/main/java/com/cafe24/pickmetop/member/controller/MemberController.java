@@ -66,7 +66,7 @@ public class MemberController {
 			session.setAttribute("generalNick", memberGeneralLogin.get("generalNick"));
 			session.setAttribute("generalLevel", memberGeneralLogin.get("generalLevel"));
 		}
-		return "/index";
+		return "/maintest";
 
 	}
 
