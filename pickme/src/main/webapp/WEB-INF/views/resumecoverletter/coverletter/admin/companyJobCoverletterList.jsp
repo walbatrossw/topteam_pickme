@@ -59,6 +59,14 @@
     $("[data-toggle=popover]")
         .popover()
 </script>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+	$(document).ready(function() {
+	$('#dataTables-example').DataTable({
+    	responsive: true
+        });
+    });
+</script>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
@@ -114,5 +122,4 @@
 		</div>
 	</div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

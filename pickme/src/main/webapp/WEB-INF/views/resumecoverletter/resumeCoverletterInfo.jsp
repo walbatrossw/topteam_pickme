@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,8 +77,8 @@
 	    		<div class="row">
 	            	<div class="col-lg-10">
 	                    <h1 class="page-header">나의 이력서 및 자소서(나의 정보페이지)</h1>
-						<div class="jumbotron">
-						나의 지원현황/채용마감임박리스트 10/게시판 답글등등 보여주기 구현예정
+						<div class="jumbotron" style="background-image: url('img/coverletter/resume_coverletter1.jpg'); background-size: 100%;">
+							<h1 align="right" style="color: white;">나의 이력서와 자소서 </h1>
 						</div>
 	                </div>
 	                <!-- /.col-lg-12 -->
@@ -93,7 +94,7 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">26</div>
-	                                    <div>내가 쓴 자소서</div>
+	                                    <div>나의 자소서</div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -121,7 +122,7 @@
 	                        </div>
 	                        <a href="#">
 	                            <div class="panel-footer">
-	                                <span class="pull-left">상세보기</span>
+	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	                                <div class="clearfix"></div>
 	                            </div>
@@ -137,13 +138,13 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">124</div>
-	                                    <div>나의 채용 북마크</div>
+	                                    <div>채용 북마크</div>
 	                                </div>
 	                            </div>
 	                        </div>
 	                        <a href="#">
 	                            <div class="panel-footer">
-	                                <span class="pull-left">상세보기</span>
+	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	                                <div class="clearfix"></div>
 	                            </div>
@@ -159,13 +160,13 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">13</div>
-	                                    <div>나의 게시글 답글</div>
+	                                    <div>게시글 답글</div>
 	                                </div>
 	                            </div>
 	                        </div>
 	                        <a href="#">
 	                            <div class="panel-footer">
-	                                <span class="pull-left">상세보기</span>
+	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	                                <div class="clearfix"></div>
 	                            </div>
@@ -181,13 +182,13 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">13</div>
-	                                    <div>나의 게시글 답글</div>
+	                                    <div>게시글 답글</div>
 	                                </div>
 	                            </div>
 	                        </div>
 	                        <a href="#">
 	                            <div class="panel-footer">
-	                                <span class="pull-left">상세보기</span>
+	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	                                <div class="clearfix"></div>
 	                            </div>
@@ -200,59 +201,40 @@
 	                <div class="col-lg-10">
 	                    <div class="panel panel-default">
 	                        <div class="panel-heading">
-	                            <i class="fa fa-bell fa-fw"></i> 채용 마감 임박
+	                            <i class="fa fa-bell fa-fw"></i> <strong>채용 마감 임박 top10</strong>
 	                        </div>
 	                        <!-- /.panel-heading -->
 	                        <div class="panel-body">
-	                            <div class="list-group">
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-comment fa-fw"></i> New Comment
-	                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-	                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-	                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-tasks fa-fw"></i> New Task
-	                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-	                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-	                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-	                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-	                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-	                                    </span>
-	                                </a>
-	                                <a href="#" class="list-group-item">
-	                                    <i class="fa fa-money fa-fw"></i> Payment Received
-	                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-	                                    </span>
-	                                </a>
-	                            </div>
+	                        	<div>
+	                            <table class="table table-striped table-bordered table-hover" >
+		                        	<thead>
+		                                <tr>
+		                                    <th>번호</th>
+											<th>마감일</th>
+											<th>채용명</th>
+											<th>회사명</th>
+											<th>직무대분류</th>
+											<th>상세직무</th>
+											<th>채용형태</th>
+										</tr>
+		                            </thead>
+		                            <tbody>
+		                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
+										<tr>
+											<td>${i.count}</td>
+											<td>${companyJobCoverletterListForInfo.recruitEnddate}</td>
+											<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
+											<td>${companyJobCoverletterListForInfo.companyName}</td>
+											<td>${companyJobCoverletterListForInfo.jobMidindexName}</td>
+											<td>${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
+											<td>${companyJobCoverletterListForInfo.recruitJobWorkstatus}</td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								</div>
 	                            <!-- /.list-group -->
-	                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+	                            <a href="/companyJobCoverletterList" class="btn btn-primary btn-block">모든 채용 공고 보기</a>
 	                        </div>
 	                        <!-- /.panel-body -->
 	                    </div>

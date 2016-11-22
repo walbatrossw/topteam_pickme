@@ -5,6 +5,7 @@ package com.cafe24.pickmetop.resume.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +47,7 @@ public class ResumeController {
 	
 	//01 이력서 리스트(회원이 작성한 이력서 리스트)
 	@RequestMapping(value="/resumeList", method = RequestMethod.GET)
-	public String resumeList(Model model){
+	public String resumeList(Model model, HttpSession session){
 		model.addAttribute("resumeList", resumeService.getResumeList());
 		Logger.info("이력서 리스트 : {}", model.toString());
 		return "/resumecoverletter/resume/resumeList";
@@ -64,7 +65,7 @@ public class ResumeController {
 	public String resumeInsert(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, ResumeUniversityVo resumeUniversityVo, 
 			ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, 
 			ResumeLanguageVo resumeLanguageVo, ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, ResumeEtcVo resumeEtcVo, 
-			HttpServletRequest request){
+			HttpServletRequest request, HttpSession session){
 		Logger.info("이력서 입력 : {}", resumeVo.toString());
 		Logger.info("개인신상 입력 : {}", resumePersonalVo.toString());
 		Logger.info("고등학교 입력 : {}", resumeHighschoolVo.toString());
@@ -79,7 +80,7 @@ public class ResumeController {
 		Logger.info("동아리, 동호회 입력 : {}", resumeClubVo.toString());
 		Logger.info("기타,포트폴리오 입력 : {}", resumeEtcVo.toString());
 		resumeService.addResume(resumeVo, resumePersonalVo, resumeHighschoolVo, resumeUniversityVo, resumeFamilyVo, resumeMilitaryserviceVo, 
-				resumeCertificateVo, resumeCareerVo, resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo, request);
+				resumeCertificateVo, resumeCareerVo, resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo, request, session);
 		return "redirect:/resumeList";
 	}
 	

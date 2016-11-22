@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,13 +56,10 @@ public class ResumeService {
 			ResumeUniversityVo resumeUniversityVo, ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
 			ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, ResumeLanguageVo resumeLanguageVo, 
 			ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, 
-			ResumeEtcVo resumeEtcVo, HttpServletRequest request){
+			ResumeEtcVo resumeEtcVo, HttpServletRequest request, HttpSession session){
 		
-		// 임시 로그인 아이디 입력
-		resumeVo.setLoginId("walbatrossw@gmail.com");
 		
 		/*******이력서 증명사진 입력*******/
-		
 		// 증명사진 파일명 = 파일명 + 시스템time
 		MultipartFile personalPhotoFile = resumePersonalVo.getPersonalPhotoFile();
 		String savePhotoFileName = resumePersonalVo.getPersonalPhotoFile().getOriginalFilename().substring(0, resumePersonalVo.getPersonalPhotoFile().getOriginalFilename().length()-4);
@@ -86,7 +84,6 @@ public class ResumeService {
 		
 		
 		/*****포트폴리오 파일 입력*****/
-		
 		// 포트폴리오 파일명 생성 = 입력파일명  + 시스템time
 		MultipartFile etcFile = resumeEtcVo.getEtcFile();
 		String saveEtcFileName = resumeEtcVo.getEtcFile().getOriginalFilename().substring(0, resumeEtcVo.getEtcFile().getOriginalFilename().length()-4);
@@ -109,6 +106,7 @@ public class ResumeService {
 			e.printStackTrace();
 		}	
 		
+		resumeVo.setLoginId((String) session.getAttribute("generalId"));
 		resumeDao.insertResume(resumeVo);
 		resumeDao.insertResumePersonal(resumePersonalVo);
 		resumeDao.insertResumeHighschool(resumeHighschoolVo);
@@ -122,7 +120,7 @@ public class ResumeService {
 		resumeDao.insertResumeTraining(resumeTrainingVo);
 		resumeDao.insertResumeClub(resumeClubVo);
 		resumeDao.insertResumeEtc(resumeEtcVo);
-		
+		Logger.info("이력서 입력 : {}", session.toString());
 		Logger.info("이력서 입력 : {}", resumeVo.toString());
 		Logger.info("개인신상 입력 : {}", resumePersonalVo.toString());
 		Logger.info("고등학교 입력 : {}", resumeHighschoolVo.toString());

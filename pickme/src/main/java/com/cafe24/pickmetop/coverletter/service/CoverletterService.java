@@ -65,5 +65,14 @@ public class CoverletterService {
 		return memberCoverletterMap;
 	}
 	
+	// 04_01 나의 자기소개서 & 이력서 메인
+	public Map<String, Object> getMemberInfo(String loginId){
+		return null;
+	}
+	
+	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
+	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(){
+		return coverletterDao.selectCoverletterCompanyJobListForInfo();
+	}
 	
 }

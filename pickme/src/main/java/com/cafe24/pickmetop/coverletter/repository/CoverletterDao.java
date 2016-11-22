@@ -77,7 +77,10 @@ public class CoverletterDao {
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
 	
-	
+	// 02 기업채용공고의 직무별리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
+	public List<CoverletterCompanyJobInfoVo> selectCoverletterCompanyJobListForInfo(){
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobListForInfo");
+	}
 	
 	
 	

@@ -41,7 +41,6 @@ public class ResumeDao {
 	public int insertResumePersonal(ResumePersonalVo personal){
 		Logger.info("personal {}", personal);
 		return sqlSessionFactoryResume.insert(nameSpace + ".insertResumePersonal", personal);
-		
 	}
 	//01_02 고등학교
 	public int insertResumeHighschool(ResumeHighschoolVo highschool){

@@ -480,7 +480,7 @@ function openPop() {
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-10">
-					<h1 class="page-header">이력서</h1>
+					<h1 class="page-header">${sessionScope.generalNick}의 이력서</h1>
 					<form id="resumeAddForm" action="/resumeInsert" method="post" enctype="multipart/form-data">	
 							<div class="row">
 								<div class="col-sm-5">
@@ -1053,5 +1053,4 @@ function openPop() {
 		</div>
 	</div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

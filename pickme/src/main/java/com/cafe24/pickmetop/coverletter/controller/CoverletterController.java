@@ -25,7 +25,8 @@ public class CoverletterController {
 	
 	// 00 이력서 및 자기소개서 나의 정보페이지 
 	@RequestMapping(value="/resumeCoverletterInfo", method = RequestMethod.GET)
-	public String resumeCoverletterIndex(Model model){
+	public String resumeCoverletterInfo(Model model){
+		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo());	
 		Logger.info("자기소개서 메인페이지:{}" , model.toString());
 		return "/resumecoverletter/resumeCoverletterInfo";
 	}                          

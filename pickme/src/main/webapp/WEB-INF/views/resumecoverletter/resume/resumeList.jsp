@@ -80,7 +80,7 @@
 		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
-		                        	<h4>${resumeList[0].loginId}님의 이력서</h4>
+		                        	<h4>${sessionScope.generalNick}님의 이력서리스트</h4>
 		                        	<p><strong>P!ckME</strong>는 지원자스펙분석 서비스를 지원할 예정입니다</p>
 		                        	<p>나의 이력서를 작성하시면 같은 기업, 같은 직무의 지원자들의 <strong>스펙을 분석해드립니다</strong></p>
 		                        </div>
@@ -119,5 +119,4 @@
 		</div>
 	</div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

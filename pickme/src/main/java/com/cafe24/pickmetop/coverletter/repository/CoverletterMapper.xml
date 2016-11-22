@@ -196,7 +196,37 @@
 		
 	WHERE cm.m_cletter_cd = #{mCletterCd};
  	</select>
- 	
+ <!-- 
+ ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
+					05_01 자소서 이력서 나의 화면
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ		
+ -->
+ 	<!-- 채용공고 임박일 기준 10 -->  	
+ 	<select id="selectCoverletterCompanyJobListForInfo" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo">
+	SELECT
+		rc.recruit_name AS recruitName, <!-- 채용공고명 -->
+		ci.company_name AS companyName, <!-- 기업명 -->
+		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
+		rcj.recruit_job_cd AS recruitJobCd, <!-- 기업 직무별 코드 -->
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
+		rcj.recruit_job_education AS recruitJobEducation, <!-- 채용학력 -->
+		rcj.recruit_job_workstatus AS recruitJobWorkstatus, <!-- 채용형태 -->
+		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
+	FROM 
+		tb_recruit_company rc
+	
+	INNER JOIN tb_recruit_company_job rcj
+	ON rc.recruit_company_cd = rcj.recruit_company_cd
+	
+	INNER JOIN tb_company_info ci
+	ON rc.company_cd = ci.company_cd
+	
+	INNER JOIN tb_job_midindex jm
+	ON rcj.job_midindex_cd = jm.job_midindex_cd
+	
+	ORDER BY rc.recruit_enddate ASC
+	LIMIT 10
+	</select>
  	
  	
  	

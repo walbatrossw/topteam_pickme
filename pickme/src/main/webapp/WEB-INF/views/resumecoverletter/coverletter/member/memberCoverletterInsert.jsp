@@ -346,5 +346,4 @@
 		<!-- 저장기록 Modal -->
 	</div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp"/>
 </html>

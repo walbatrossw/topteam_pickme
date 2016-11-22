@@ -78,10 +78,10 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-6">
-					<h1 class="page-header">나의 이력서 및 자소서(나의 정보페이지)</h1>
+					<h1 class="page-header">이력서 및 자기소개서 페이지 소개</h1>
 					<div class="jumbotron">
-					나의 지원현황/채용마감임박리스트 10/게시판 답글등등 보여주기 구현예정
-					
+					<p><strong>PickME</strong>는   이력서와 자기소개서 작성을 도와 드립니다.</p>
+					<p>실시간으로 최신화된 채용공고와 자소서 항목을 만나보실수 있습니다. 또한 자소서 작성과 편집,출력 기능을 제공하고 있습니다.</p>
 					</div>
 				</div>
 			</div>
