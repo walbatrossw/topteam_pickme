@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,12 +33,12 @@ public class MemberController {
 	
 	// 일반 회원가입 
 	@RequestMapping(value="/memberGeneralInsert")
-	public String memberGeneralInsertt(){
+	public String memberGeneralInsertt(Model model){
 		return "/member/general/memberGeneralInsert";
 	}
 	// 일반 회원 로그인
 	@RequestMapping(value="/memberGeneralLogin")
-	public String memberGeneralLoginn(){
+	public String memberGeneralLoginn(Model model){
 		return "/member/general/memberGeneralLogin";
 	}
 	

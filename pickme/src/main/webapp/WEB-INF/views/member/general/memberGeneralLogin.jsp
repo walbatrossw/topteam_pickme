@@ -8,9 +8,9 @@
 <html lang="kr">
 	<head>
 	<meta charset="UTF-8">
- <%
-    String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost:8080/callback.jsp", "UTF-8");
+<%
+    String clientId = "PI5oHtZhS4UHhoIXWnRS";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost/memberGeneralLogin", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -19,6 +19,7 @@
     apiURL += "&state=" + state;
     session.setAttribute("state", state);
  %>
+ 
 
 <style rel="stylesheet">
 @charset "UTF-8";
@@ -322,7 +323,7 @@ body .container .content .signup-cont {
         					      	  </form>
     				      		  </div>
     				        	        <div class="signup-cont cont">
-                <form action="/memberLinkedLogin" method="post" enctype="multipart/form-data">
+              					  <form action="/memberLinkedLogin" method="post" enctype="multipart/form-data">
 						                  
                     
 						               <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>

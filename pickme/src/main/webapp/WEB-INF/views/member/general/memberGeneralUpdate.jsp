@@ -21,6 +21,7 @@
 		<!-- 헤더 -->
 		<%@ include file="/WEB-INF/views/common/module/modHeader.jsp" %>
 		<h3>회원정보보기</h3>
+		<form class="/memberGeneralUpdate" action="/member/general/memberGeneralUpdateForm" method="post">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -30,13 +31,13 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="button" value="비밀번호변경"></td>
+					<td><input type="password" name="generalPw"  value="${MemberGeneralVo.generalPw}"></td>
 					
 					
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td><input type="button" value="닉네임변경"></td>
+					<td><input type="text" name="generalNick"  value="${MemberGeneralVo.generalNick}"></td>
 				</tr>
 				
 			</tbody>
@@ -44,6 +45,6 @@
 		<input type="button" value="내정보수정">
 		
 		<!-- 풋터 -->
-		
+		</form>
 	</body>
 </html>
