@@ -3,21 +3,40 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>이력서 입력페이지</title>
-<link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="css/coverletter/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-<link href="css/coverletter/sb-admin.css" rel="stylesheet">
-<script src="js/coverletter/jquery-1.10.2.js"></script>
-<script src="js/coverletter/bootstrap.min.js"></script>
-<script src="js/coverletter/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/coverletter/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="js/coverletter/plugins/dataTables/dataTables.bootstrap.js"></script>
-<script src="js/coverletter/sb-admin.js"></script>
+<!-- Bootstrap Core CSS -->
+<link href="resumecoverlettersetting/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
+<!-- Morris Charts CSS -->
+<link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
+<!-- Social Buttons CSS -->
+<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
+<!-- DataTables CSS -->
+<link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+<!-- DataTables Responsive CSS -->
+<link href="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="resumecoverlettersetting/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
+<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
+<script src="resumecoverlettersetting/data/morris-data.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+<!-- 사진 및 파일 입력폼 CSS, JS -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-
 <script type="text/javascript">
 //자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
 function openPop() { 
@@ -407,9 +426,10 @@ function openPop() {
 	});
 </script>
 </head>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
 <body>
 	<div id="wrapper">
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp"/>
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-10">
@@ -426,7 +446,7 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-2">
 									<h4 align="center"><strong>증명사진</strong></h4>
-									<table class="table table-striped table-bordered table-hover">
+									<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 										<tr align="center">
 											<td>
 												<div class="fileinput fileinput-new" data-provides="fileinput">
@@ -451,7 +471,7 @@ function openPop() {
 								</div>
 								<div class="col-sm-10">
 									<h4><strong>개인신상정보</strong></h4>
-									<table class="table table-striped table-bordered table-hover">
+									<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 										<tr>
 											<th class="col-sm-3">한글이름</th>
 											<th class="col-sm-3">영문이름</th>
@@ -495,7 +515,7 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>고등학교</strong></h4>
-									<table class="table table-striped table-bordered table-hover table-condensed">
+									<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 										<tr>
 											<th class="col-sm-3">학교명</th>
 											<th class="col-sm-3">분류</th>
@@ -524,7 +544,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>대학교</strong></h4>
 									<div id="university">
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-3">분류</th>
 												<th class="col-sm-3">학교명</th>
@@ -588,7 +608,7 @@ function openPop() {
 								<div class="col-sm-12">
 								<h4><strong>가족사항</strong></h4>
 									<div id="family">
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 												<tr>
 													<th class="col-sm-2">관계</th>
 													<th class="col-sm-2">이름</th>
@@ -624,7 +644,7 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>병역사항</strong></h4>
-									<table class="table table-striped table-bordered table-hover table-condensed">
+									<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 										<tr>
 											<th class="col-sm-1">병역구분</th>
 											<th class="col-sm-1">군별</th>
@@ -688,7 +708,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>자격증</strong></h4>
 									<div id="certificate">
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 												<tr>
 													<th class="col-sm-2">자격증명</th>
 													<th class="col-sm-2">등급</th>
@@ -722,7 +742,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>경력사항</strong></h4>
 									<div id="career">
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-2">회사명</th>
 												<th class="col-sm-2">직급</th>
@@ -765,7 +785,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>어학능력</strong></h4>
 									<div id="language">	
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-3">외국어명</th>
 												<th class="col-sm-3">회화구사수준</th>
@@ -823,7 +843,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>수상경력</strong></h4>
 									<div id="award">
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-4">수상명</th>
 												<th class="col-sm-4">수상내용</th>
@@ -852,7 +872,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>국내외 연수 및 교육</strong></h4>
 									<div id="training">	
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-4">국가</th>
 												<th class="col-sm-4">기관/단체</th>
@@ -888,7 +908,7 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>동아리(동호회) 및 대외활동</strong></h4>
 									<div id="club">	
-										<table class="table table-striped table-bordered table-hover table-condensed">
+										<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 											<tr>
 												<th class="col-sm-5">활동명</th>
 												<th class="col-sm-5">주관기관</th>
@@ -924,7 +944,7 @@ function openPop() {
 							<div class="row">
 								<div class="col-sm-12">
 									<h4><strong>기타 및 포트폴리오</strong></h4>
-									<table class="table table-striped table-bordered table-hover table-condensed">
+									<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 										<tr>
 											<th class="col-sm-4">포트폴리오 및 기타사항</th>
 											<th class="col-sm-1">시작일자</th>

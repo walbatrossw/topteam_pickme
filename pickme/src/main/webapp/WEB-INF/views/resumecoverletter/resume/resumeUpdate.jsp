@@ -4,20 +4,30 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>이력서 입력페이지</title>
-<link href="css/coverletter/bootstrap.min.css" rel="stylesheet">
-<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="css/coverletter/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-<link href="css/coverletter/sb-admin.css" rel="stylesheet">
-<script src="js/coverletter/jquery-1.10.2.js"></script>
-<script src="js/coverletter/bootstrap.min.js"></script>
-<script src="js/coverletter/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="js/coverletter/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="js/coverletter/plugins/dataTables/dataTables.bootstrap.js"></script>
-<script src="js/coverletter/sb-admin.js"></script>
+<title>이력서 수정페이지</title>
+<!-- Bootstrap Core CSS -->
+<link href="resumecoverlettersetting/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- MetisMenu CSS -->
+<link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
+<!-- Custom Fonts -->
+<link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
+<!-- 사진 및 파일 입력폼 CSS, JS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
+
 
 <script type="text/javascript">
 //자격증 및 어학 검색 버튼 클릭시 팝업창띄우기
@@ -25,9 +35,10 @@ function openPop() {
     window.open("/resumeCertilangIndex", "CertifiLang", "top=0, left=0, width=500, height=300, scrollbars=no, resizable=no ,status=no ,toolbar=no"); 
 }
 </script>
-<script >
-	//유효성 검사(이력서 이름만, 나머지는 null허용)
+<script>
+	
 	$(document).ready(function(){
+		//유효성 검사(이력서 이름만, 나머지는 null허용)
 		$('#resumeAddBtn').click(function(){
 			if($("#resumeName").val() ==  ""){
 				$("#resumeNameError").text("이력서 이름은 반드시 입력해야 합니다");
@@ -38,8 +49,6 @@ function openPop() {
 			}	
 		});
 		
-		
-		// 추가입력시 증가변수
 		var univerNum = ($(".university").size())-1;
 		var familyNum = ($(".family").size())-1;
 		var certifiNum = ($(".family").size())-1;
@@ -49,7 +58,45 @@ function openPop() {
 		var awardNum = ($(".award").size())-1;
 		var trainingNum = ($(".training").size())-1;
 		var clubNum = ($(".club").size())-1;
-	
+		
+		//select된 값 가져오기
+		// 신상정보:성별
+		$("#personlGender").val("${resumePersonal.personalGender}").attr("selected", "selected");
+		// 고등학교:분류
+		$("#highschoolCategory").val("${resumeHighschool.highschoolCategory}").attr("selected", "selected");
+		// 병역사항:병역구분
+		$("#militaryserviceState").val("${resumeMilitaryservice.militaryserviceState}").attr("selected", "selected");
+		// 병역사항:군별
+		$("#militaryserviceGroup").val("${resumeMilitaryservice.militaryserviceGroup}").attr("selected", "selected");
+		// 병역사항:계급
+		$("#militaryserviceLevel").val("${resumeMilitaryservice.militaryserviceLevel}").attr("selected", "selected");
+		
+		// 대학교:구분
+		<c:forEach var="resumeUniveristy" items="${resumeUniveristy}" varStatus="i">
+			console.log("${resumeUniveristy.universityCategory}");
+			$(".universityCategory").eq("${i.count-1}").val("${resumeUniveristy.universityCategory}").attr("selected", "selected");
+		</c:forEach>
+		
+		// 대학교:복수, 부전공 유무
+		<c:forEach var="resumeUniveristy" items="${resumeUniveristy}" varStatus="i">
+			console.log("${resumeUniveristy.universityDmajorminor}");
+			$(".universityDmajorminor").eq("${i.count-1}").val("${resumeUniveristy.universityDmajorminor}").attr("selected", "selected");
+		</c:forEach>
+		
+		// 가족: 동거여부
+		<c:forEach var="resumeFamily" items="${resumeFamily}" varStatus="i">
+			console.log("${resumeFamily.familyCohabit}");
+			$(".familyCohabit").eq("${i.count-1}").val("${resumeFamily.familyCohabit}").attr("selected", "selected");
+		</c:forEach>
+		
+		// 어학: 회화구사수준
+		<c:forEach var="resumeLanguage" items="${resumeLanguage}" varStatus="i">
+			console.log("${resumeLanguage.languageLevel}");
+			$(".languageLevel").eq("${i.count-1}").val("${resumeLanguage.languageLevel}").attr("selected", "selected");
+		</c:forEach>
+		
+		// 리스트값들을 어떻게 가져올것인지 고민(대학교구분,복수전공유무/가족동거여부/어학회화수준)
+		
 		// 01 대학교 추가 및 삭제 start
 		const $universityAddBtn = $('#universityAddBtn');
 		$universityAddBtn.click(function(){
@@ -64,7 +111,7 @@ function openPop() {
 					'</tr>'+
 					'<tr>'+
 						'<td class="col-sm-3">'+
-							'<select class="form-control" id="universityCategory" name="resumeUniversityVoList['+univerNum+'].universityCategory">'+
+							'<select class="form-control universityCategory" name="resumeUniversityVoList['+univerNum+'].universityCategory">'+
 								'<option value="">선택</option>'+
 								'<option value="2년제">2년제</option>'+
 								'<option value="3년제">3년제</option>'+
@@ -91,7 +138,7 @@ function openPop() {
 							'<input type="text" class="form-control" id="universityMajor" name="resumeUniversityVoList['+univerNum+'].universityMajor" placeholder="ex)영어영문학과">'+
 						'</td>'+
 						'<td class="col-sm-3">'+
-							'<select class="form-control" id="universityDmajorminor" name="resumeUniversityVoList['+univerNum+'].universityDmajorminor">'+
+							'<select class="form-control universityDmajorminor" name="resumeUniversityVoList['+univerNum+'].universityDmajorminor">'+
 								'<option value="">선택</option>'+
 								'<option value="해당없음">해당없음</option>'+
 								'<option value="복수전공">복수전공</option>'+
@@ -140,7 +187,7 @@ function openPop() {
 						'<td class="col-sm-2"><input type="text" class="form-control" id="familyEducation" name="resumeFamilyVoList['+familyNum+'].familyEducation" placeholder="ex) 고졸, 대졸, 대재"></td>'+
 						'<td class="col-sm-2"><input type="text" class="form-control" id="familyJob" name="resumeFamilyVoList['+familyNum+'].familyJob" placeholder="ex) 자영업, 회사원, 가사"></td>'+
 						'<td class="col-sm-2">'+
-							'<select class="form-control" id="familyCohabit" name="resumeFamilyVoList['+familyNum+'].familyCohabit">'+
+							'<select class="form-control familyCohabit" name="resumeFamilyVoList['+familyNum+'].familyCohabit">'+
 								'<option value="">::선택::</option>'+
 								'<option value="예">예</option>'+
 								'<option value="아니요">아니요</option>'+
@@ -154,8 +201,8 @@ function openPop() {
 		const $familyDelBtn = $('#familyDelBtn');
 		$familyDelBtn.on('click', function(){
 			const $family = $('.family');
-				if(univerNum > 0){
-					univerNum--;
+				if(familyNum > 0){
+					familyNum--;
 					$family.last().remove();	
 				}
 		});
@@ -262,7 +309,7 @@ function openPop() {
 						'<tr>'+
 							'<td class="col-sm-3"><input type="text" class="form-control" id="languageName" name="resumeLanguageVoList['+langNum+'].languageName" placeholder="ex)영어, 중국어, 일본어"></td>'+
 							'<td class="col-sm-3">'+
-								'<select class="form-control" id="languageLevel" name="resumeLanguageVoList['+langNum+'].languageLevel">'+
+								'<select class="form-control languageLevel" name="resumeLanguageVoList['+langNum+'].languageLevel">'+
 									'<option value="">::선택::</option>'+
 									'<option value="기초회화">기초회화</option>'+
 									'<option value="일상회화">일상회화</option>'+
@@ -426,9 +473,10 @@ function openPop() {
 	});
 </script>
 </head>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
 <body>
 	<div id="wrapper">
-		<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp"/>
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-10">
@@ -553,7 +601,7 @@ function openPop() {
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<select class="form-control" id="universityCategory" name="resumeUniversityVoList[${i.count-1}].universityCategory" value="${resumeUniveristy.universityCategory}">
+													<select class="form-control universityCategory" name="resumeUniversityVoList[${i.count-1}].universityCategory" value="${resumeUniveristy.universityCategory}">
 														<option value="">선택</option>
 														<option value="2년제">2년제</option>
 														<option value="3년제">3년제</option>
@@ -580,7 +628,7 @@ function openPop() {
 													<input type="text" class="form-control" id="universityMajor" name="resumeUniversityVoList[${i.count-1}].universityMajor" value="${resumeUniveristy.universityMajor}">
 												</td>
 												<td class="col-sm-3">
-													<select class="form-control" id="universityDmajorminor" name="resumeUniversityVoList[${i.count-1}].universityDmajorminor" value="${resumeUniveristy.universityDmajorminor}">
+													<select class="form-control universityDmajorminor" name="resumeUniversityVoList[${i.count-1}].universityDmajorminor" value="${resumeUniveristy.universityDmajorminor}">
 														<option value="">선택</option>
 														<option value="해당없음">해당없음</option>
 														<option value="복수전공">복수전공</option>
@@ -626,7 +674,7 @@ function openPop() {
 													<td class="col-sm-2"><input type="text" class="form-control" id="familyEducation" name="resumeFamilyVoList[${i.count-1}].familyEducation" value="${resumeFamily.familyEducation}"></td>
 													<td class="col-sm-2"><input type="text" class="form-control" id="familyJob" name="resumeFamilyVoList[${i.count-1}].familyJob" value="${resumeFamily.familyJob}"></td>
 													<td class="col-sm-2">
-														<select class="form-control" id="familyCohabit" name="resumeFamilyVoList[${i.count-1}].familyCohabit" value="${resumeFamily.familyCohabit}">
+														<select class="form-control familyCohabit" name="resumeFamilyVoList[${i.count-1}].familyCohabit" value="${resumeFamily.familyCohabit}">
 															<option value="">::선택::</option>
 															<option value="예">예</option>
 															<option value="아니요">아니요</option>
@@ -803,7 +851,7 @@ function openPop() {
 											<tr>
 												<td class="col-sm-3"><input type="text" class="form-control" id="languageName" name="resumeLanguageVoList[${i.count-1}].languageName" value="${resumeLanguage.languageName}"></td>
 												<td class="col-sm-3">
-													<select class="form-control" id="languageLevel" name="resumeLanguageVoList[${i.count-1}].languageLevel" value="${resumeLanguage.languageLevel}">
+													<select class="form-control languageLevel" name="resumeLanguageVoList[${i.count-1}].languageLevel" value="${resumeLanguage.languageLevel}">
 														<option value="">::선택::</option>
 														<option value="기초회화">기초회화</option>
 														<option value="일상회화">일상회화</option>
