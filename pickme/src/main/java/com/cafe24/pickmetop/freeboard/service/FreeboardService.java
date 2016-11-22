@@ -23,7 +23,11 @@ public class FreeboardService {
 	private final int MAX_PAGE_COUNT = 5; //보여질 최대 페이지 수
 	private final int MAX_LINE_COUNT = 10; //보여질 최대 게시글
 	
-    
+    //댓글삭제
+	public void deleteReply(String replyCd){
+		dao.deleteReply(replyCd);
+	}
+	
 	//게시글입력
 	public void freeboardInsert(FreeboardVo freeboardVo,HttpSession session){
 		// 닉네임

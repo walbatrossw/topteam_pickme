@@ -17,17 +17,29 @@ public class MailController {
 	final static Logger logger = LoggerFactory.getLogger(MailController.class);
 	@RequestMapping(value = "/mail", method = RequestMethod.GET)
 	public String home(@RequestParam(value="askContent", defaultValue="")String askContent,
-					@RequestParam(value="sessionId", defaultValue="")String sessionId) {
+					@RequestParam(value="sessionId", defaultValue="")String sessionId,
+					@RequestParam(value="adContent", defaultValue="")String adContent,
+					@RequestParam(value="phone", defaultValue="")String phone) {
 			logger.info("askContent : {}", askContent);
 			logger.info("sessionId : {}", sessionId);
-			
+			logger.info("adContent : {}", adContent);
+			logger.info("phone : {}", phone);
+			String sub = "";
+			String content= "";
+			if(askContent.equals("")){
+				sub = phone+ " :  pickme ¡¶»ﬁ/±§∞Ì ";
+				content = adContent;
+			}else if(adContent.equals("")){
+				sub = sessionId + ": pickme πÆ¿« ";
+				content = askContent;
+			}
 	    	ApplicationContext context =  new ClassPathXmlApplicationContext("/Spring-Mail.xml");
 	    	
 	    	MailMail mm = (MailMail) context.getBean("mailMail");
 	    	mm.sendMail("asdf@gmail.com",
 	      		   "yyye1220@naver.com",
-	      		   sessionId +" ¥‘¿« pickmeπÆ¿«",
-	      		   	askContent);
+	      		   sessionId +sub,
+	      		   	content);
 		
 		return "/maintest";
 	}

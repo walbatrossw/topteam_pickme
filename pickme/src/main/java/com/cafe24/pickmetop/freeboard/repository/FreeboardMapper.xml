@@ -4,7 +4,13 @@
 <mapper namespace="com.cafe24.pickmetop.freeboard.repository.FreeboardMapper">
 	
 	
-	
+	<!-- 댓글삭제 -->
+	<delete id="deleteReply" parameterType="java.lang.String">
+		DELETE FROM 
+			tb_freeboard_reply 
+		WHERE 
+			reply_cd=#{replyCd}
+	</delete>
 
 	<!-- 댓글리스트 -->
 	<select id="selectReply"  resultType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">

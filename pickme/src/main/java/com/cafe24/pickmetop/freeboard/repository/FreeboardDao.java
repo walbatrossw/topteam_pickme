@@ -24,7 +24,11 @@ public class FreeboardDao {
 	@Resource(name = "sqlSessionFreeboard")
 	private SqlSessionTemplate sqlSessionFactoryFreeboard;	
 	
-
+	//댓글삭제 
+	
+	public int deleteReply(String replyCd){
+		return sqlSessionFactoryFreeboard.delete(NS+".deleteReply",replyCd);
+	}
 	//전체개수
 	public int selectFreeboardListCount(String boardSearch,String freeboardCate){
 		Map<String,Object> sqlMap = new HashMap<String,Object>();

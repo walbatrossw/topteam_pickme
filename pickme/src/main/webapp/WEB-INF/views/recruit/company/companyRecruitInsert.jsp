@@ -13,58 +13,39 @@
 <!-- 자동완성 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/0.11.1/bloodhound.js"></script>
-<style>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+<style type="text/css">
 
 
+.ui-autocomplete {
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 14px;
+}
 </style>
 <script>	 
 $(document).ready(function(){
 	var first = 0;
 	var second = 0;
-	/************* 기업검색 자동완성 *******************/ 
-	var states = new Bloodhound({
-		  datumTokenizer: Bloodhound.tokenizers.whitespace,
-		  queryTokenizer: Bloodhound.tokenizers.whitespace,
-		  // `states`는 The Basics으로 정의된 company 배열의 이름
-		  local: states
-		});
-	var substringMatcher = function(strs) {
-		  return function findMatches(q, cb) {
-		    var matches, substringRegex;
-		    matches = [];
-		    // q가 문자열에 있는지 확인 
-		    substrRegex = new RegExp(q, 'i');
-
-		   // q를 포함한 문자열을 통해, matches의 배열에 추가
-		    $.each(strs, function(i, str) {
-		      if (substrRegex.test(str)) {
-		        matches.push(str);
-		      }
-		    });
-		    cb(matches);
-		  };
-		};
-		
-	//db에서 가져온 기업명 리스트
+	
+	//기업검색 자동완성
 	var list = new Array();
 	<c:forEach items="${companyList}" var="item">
 	list.push("${item}");
 	</c:forEach>
 	var states =  list; 
 
-	$('#the-basics .typeahead').typeahead({
-		hint: true,
-		highlight: true,
-		minLength: 1
-	}, {
-	  name: 'states',
-	  source: substringMatcher(states)
-	}).on('typeahead:open', function() {
-	}).on('typeahead:rendered', function(element, data) { // 검색 결과 화면 생성 이벤트
-	}).on('typeahead:cursorchanged', function(element, data) { // 위 아래 커서 이동시 이벤트
-	}).on('typeahead:selected', function(element, data) { // 선택 이벤트
-	}).on('typeahead:autocompleted', function(element, data) { // 검색어 자동완성 이벤트
-	});
+    $(function () {
+        $("#companyName").autocomplete({
+            source: list
+        });
+    });
+   
 
 	/************ 직무 대분류 - 중분류 *********** */
 

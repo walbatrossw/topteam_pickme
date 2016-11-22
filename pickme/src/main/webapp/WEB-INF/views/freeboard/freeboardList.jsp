@@ -96,6 +96,11 @@ $(document).ready(function(){
 			console.log("3번")
 		}
 	});
+	//수정 
+	$('.updateReply').click(function(){
+		$('.reply').html("<input type ='text' value='${replyMap.replyContent}' id='updating'>")
+	})
+	
 });
 </script>
 </head>
@@ -255,13 +260,13 @@ $(document).ready(function(){
 					</tr>	
 					<tr>
 						<td width="90%">	
-							<p>${replyMap.replyContent}</p>
+							<p class="reply">${replyMap.replyContent}</p>
 						</td>
 						<td>			
 							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default">삭제</a>
 						</td>
 						<td>
-							<a href="/freeboardReplyUpdate?replyCd=${replyMap.replyCd}" class="btn btn-default">수정</a>
+							<a href="/freeboardReplyUpdate?replyCd=${replyMap.replyCd}" class="updateReply btn btn-default">수정</a>
 								</div>
 							 </div> 
 						 </c:if>

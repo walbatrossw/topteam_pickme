@@ -25,4 +25,13 @@ public class HomeController {
 		
 		return "maintest";
 	}
+	
+	@RequestMapping(value="/personalPolicy")
+	public String policy(){
+		return "/common/etc/personalPolicy";
+	}
+	@RequestMapping(value="/terms")
+	public String terms(){
+		return "/common/etc/terms";
+	}
 }

@@ -16,8 +16,12 @@ $(document).ready(function(){
 			location.href="/mail?askContent="+encodeURIComponent($('#askContent').val())
 			+"&sessionId="+$('#sessionId').val();
 		}
-
 	})
+	$('#sendAdMail').click(function(){
+		alert("$('#adContent').val() : " + $('#adContent').val())
+			location.href="/mail?adContent="+encodeURIComponent($('#adContent').val())
+			+"&phone="+$('#phone').val();
+	});
 })
 </script>
 </head>
@@ -29,7 +33,10 @@ $(document).ready(function(){
 	    	| <!-- <a href="" ng-click="inquiry()">문의하기</a>  -->
 	    	<a data-toggle="modal" data-target="#myModal">문의하기</a>
 	    	| <a href="/personalPolicy">개인정보취급방침</a> 
-	    	| <a href="" ng-click="partnership()">제휴/광고</a>
+	    	| <a href="/terms">이용약관</a> 
+	    	| <!-- <a href="" ng-click="partnership()">제휴/광고</a> -->
+	    	<a data-toggle="modal" data-target="#adModal">제휴/광고</a>
+	    	
 	    	<div>
 	      		<span>(주)PICK ME(대표: 더블에스)</span> |
 	      		<span>개인정보보호관리자: 더블에스</span>
@@ -49,7 +56,7 @@ $(document).ready(function(){
 	    </div>
 	</section>
 	
-	  <!-- Modal -->
+	  <!-- 문의 Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -75,6 +82,32 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+	  <!--제휴 Modal -->
+  <div class="modal fade" id="adModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">제휴 /광고</h4>
+        </div>
+        <div class="modal-body">
+        <div>
+        <input type="text"  class="form-control" id="phone" placeholder="연락처를 입력하세요">
+        </div>
+        <br>
+        <div>
+        <textarea rows="10" cols="120" class="form-control" id="adContent"></textarea>
+        </div>
+        </div>
+        <div class="modal-footer">
+       		 <span  style="color: gray;">* 전송에는 2~3초 가량 소요됩니다 </span>
+      	 	 <button type="button" id="sendAdMail" class="btn btn-default">완료</button>
+        	 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 </body>
 </html>

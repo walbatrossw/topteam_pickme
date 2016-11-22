@@ -22,7 +22,13 @@ public class FreeboardController {
 	final static Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	@Autowired
 	FreeboardService freeService;
-	
+	//댓글삭제
+	@RequestMapping(value="/freeboardReplyDelete")
+	public String replyDalete(@RequestParam(value="replyCd") String replyCd){
+		logger.info("replyCd : {}" , replyCd);
+		freeService.deleteReply(replyCd);
+		return "redirect:/freeboardList";
+	}
 	//입력처리
 	@RequestMapping(value="/freeboardInsert", method = RequestMethod.GET)
 	public String freeboardInsert(HttpSession session,FreeboardVo freeboardVo){
