@@ -22,6 +22,26 @@ public class FreeboardController {
 	final static Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	@Autowired
 	FreeboardService freeService;
+	
+	//게시글 수정
+	@RequestMapping(value="/freeboardContentUpdate")
+	public String freeboardContentDelete(FreeboardVo freeboardVo,HttpSession session,
+			@RequestParam(value="freeboardTitle", defaultValue="") String freeboardTitle,
+			@RequestParam(value="freeboardContent", defaultValue="") String freeboardContent,
+			@RequestParam(value="freeboardCateCd", defaultValue="") String freeboardCateCd,
+			@RequestParam(value="cd", defaultValue="") String cd){
+		logger.info("콘텐츠와 타이틀  : {}",freeboardContent+" ///"+freeboardTitle);
+		freeService.updateFreeContent(freeboardVo,freeboardTitle,freeboardContent,freeboardCateCd,session,cd);
+		
+		return "redirect:/freeboardList";
+	}
+	//게시글삭제
+	@RequestMapping(value="/freeboardContentDelete")
+	public String freeboardContentDelete(@RequestParam(value="freeboardCd") String freeboardCd){
+		logger.info("freeboardCd : {}" , freeboardCd);
+		freeService.deleteContent(freeboardCd);
+		return "redirect:/freeboardList";
+	}
 	//댓글삭제
 	@RequestMapping(value="/freeboardReplyDelete")
 	public String replyDalete(@RequestParam(value="replyCd") String replyCd){

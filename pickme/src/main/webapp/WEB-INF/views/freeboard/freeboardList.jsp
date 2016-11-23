@@ -108,7 +108,56 @@ $(document).ready(function(){
 				+'<a class=" updateUndo btn btn-default btn-sm">취소</a> ');
 		$('#updating').text($('#hiddenReply').val());
 	})
+	//게시글 수정
+	$('.boardContentUpdate').click(function(){
+		
+		var index =$('.boardContentUpdate').index(this)
+		var freeCate=$('.freeCate').eq(index).text();
+		var freeTitle=$('.freeTitle').eq(index).text();
+		var freeContent=$('.freeContent').eq(index).text();
+		var replyHidden = $('.replyHidden').eq(index).val();
+		
+		$('.ContentUpdateForm').eq(index).replaceWith(
+				'<table>'
+				+'<input type="hidden" id="hiddenCd">'
+				+'<tr>'
+				+'<td>'	
+					+'<select class="form-control" name="freeboardCateCd" id="updateCateCd">'
+						+'<option value="">카테고리선택</option>'
+						+'<option value="1">잡담</option>'
+						+'<option value="2">근무환경</option>'
+						+'<option value="3">자소서</option>'
+						+'<option value="4">인적성</option>'
+						+'<option value="5">자격증</option>'
+						+'<option value="6">어학</option>'
+					+'</select>'
+				+'</td>'
+				+'<td width="80%" colspan="2">'
+				+'<input type="text" name="freeboardTitle" id="updateTitle" class="form-control" rows="1" required >'
+				+'</td>'
+				+'</tr>'
+				+'<tr>'
+				+'<td colspan="3">'
+					+'<br>'
+						+'<textarea name="updateContent" id="updateContent" class="form-control" rows="3" required ></textarea>'
+						+'<br>'
+				+'</td>'	
+				+'</tr>'
+				+'<tr>'
+				+'<td colspan="3">'
+					+'<center><a id="updateBtn" class="btn btn-default">수정완료</a></center>'
+					+'<span id="updateError"></span>'
+				+'</td>'
+				+'</tr>'
+				+'</table>');
+		$('#updateTitle').val(freeTitle);
+		$('#updateContent').text(freeContent);
+		$('#hiddenCd').val(replyHidden);
+	});
 	
+	$(document).on('click','#updateBtn',function(){ 
+		location.href='/freeboardContentUpdate?freeboardTitle='+$('#updateTitle').val()+'&freeboardContent='+$('#updateContent').val()+'&freeboardCateCd='+$('#updateCateCd option:selected').text()+'&cd='+$('#hiddenCd').val();
+	});
 });
 </script>
 </head>
@@ -135,7 +184,6 @@ $(document).ready(function(){
 							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">${cateForView.categoryKeyword}</a>
 						</li>
 					</c:if>
-					
 				</c:forEach>
 			</ul>
 			<br>
@@ -193,54 +241,71 @@ $(document).ready(function(){
 			</form>
 		
 		<!-- 게시글리스트 -->
+		
 		<c:forEach items="${freeList}" var="freeList">
 		<input type="hidden" class="replyHidden" value="${freeList.freeboardCd}">
+				<div class="ContentUpdateForm">
 				<table>
-					<tr>
-						<td>
-							<h4>
-								<span class="label label-success">
-									<c:if test="${freeList.freeboardCateCd=='1'}">
-										잡담
-									</c:if>
-									<c:if test="${freeList.freeboardCateCd=='2'}">
-										근무환경
-									</c:if>
-									<c:if test="${freeList.freeboardCateCd=='3'}">
-										자소서
-									</c:if>
-									<c:if test="${freeList.freeboardCateCd=='4'}">
-										인적성
-									</c:if>
-									<c:if test="${freeList.freeboardCateCd=='5'}">
-										자격증
-									</c:if>
-									<c:if test="${freeList.freeboardCateCd=='6'}">
-										어학
-									</c:if>
-								</span>
-								${freeList.freeboardTitle}
-							</h4>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h5>
-								${freeList.freeboardNick} /<span class="glyphicon glyphicon-time"></span>${freeList.freeboardRegdate}
-							</h5>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<br>
-								<p>${freeList.freeboardContent}</p>
-							<br>
-						</td>
-					</tr>
-					
+						<tr>
+							<td style="font-size: large;  font-weight: bolder;">
+									<span class="freeCate label label-success">
+										<c:if test="${freeList.freeboardCateCd=='1'}">
+											잡담
+										</c:if>
+										<c:if test="${freeList.freeboardCateCd=='2'}">
+											근무환경
+										</c:if>
+										<c:if test="${freeList.freeboardCateCd=='3'}">
+											자소서
+										</c:if>
+										<c:if test="${freeList.freeboardCateCd=='4'}">
+											인적성
+										</c:if>
+										<c:if test="${freeList.freeboardCateCd=='5'}">
+											자격증
+										</c:if>
+										<c:if test="${freeList.freeboardCateCd=='6'}">
+											어학
+										</c:if>
+									</span>
+									<span class="freeTitle">&nbsp; ${freeList.freeboardTitle}</span>
+							</td>
+							<td>
+							<p>즐겨찾기넣을곳</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan=2>
+								<h5>
+									${freeList.freeboardNick} /<span class="glyphicon glyphicon-time"></span>${freeList.freeboardRegdate}
+								</h5>
+							</td>
+						</tr>
+						<tr>
+							<td width="740px">
+								<br>
+								
+									<p class="freeContent">${freeList.freeboardContent}</p>
+								
+								<br>
+							</td>
+							<td>
+							<c:if test="${freeList.loginId==sessionScope.generalId}">
+								<a class="btn btn-default" href="/freeboardContentDelete?freeboardCd=${freeList.freeboardCd}">삭제</a>
+								|<a class="boardContentUpdate btn btn-default ">수정</a>
+							</c:if>
+							<c:if test="${freeList.loginId!=sessionScope.generalId}">
+								<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>
+							</c:if>
+							</td>
+							
+						</tr>
+					</table>
+					</div>
+					<table>
 					<!-- 댓글입력 -->					
 					<tr>
-						<td>
+						<td colspan=2>
 							<div class="input-group">
 							    <textarea class="form-control replyContent"  rows="2" cols="120" style="resize:none" placeholder="댓글 입력" required></textarea>     
 							    <span class="input-group-addon btn btn-primary replyBtn">등록</span>

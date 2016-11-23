@@ -4,6 +4,28 @@
 <mapper namespace="com.cafe24.pickmetop.freeboard.repository.FreeboardMapper">
 	
 	
+	<!-- 게시글수정 -->
+	<update id="updateFreeContent" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardVo">
+		UPDATE
+			tb_freeboard
+		SET
+			freeboard_regdate=NOW(),
+			freeboard_title=#{freeboardTitle},
+			freeboard_content=#{freeboardContent},
+			freeboard_nick=#{freeboardNick},
+			freeboard_cate_cd=#{freeboardCateCd}
+		WHERE 
+			freeboard_cd = #{freeboardCd}
+		
+	</update>
+	<!-- 게시글삭제 -->
+	<delete id="deleteContent" parameterType="java.lang.String">
+		DELETE FROM 
+			tb_freeboard 
+		WHERE 
+			freeboard_cd=#{deleteContent}
+	</delete>
+	
 	<!-- 댓글삭제 -->
 	<delete id="deleteReply" parameterType="java.lang.String">
 		DELETE FROM 

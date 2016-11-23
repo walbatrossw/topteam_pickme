@@ -24,6 +24,17 @@ public class FreeboardDao {
 	@Resource(name = "sqlSessionFreeboard")
 	private SqlSessionTemplate sqlSessionFactoryFreeboard;	
 	
+	
+	//게시글수정 
+	
+	public int updateFreeContent(FreeboardVo freeboardVo){
+		return sqlSessionFactoryFreeboard.update(NS+".updateFreeContent",freeboardVo);
+	}
+	//게시글삭제
+	public int deleteContent(String deleteContent){
+		return sqlSessionFactoryFreeboard.delete(NS+".deleteContent",deleteContent);
+	}
+	
 	//댓글삭제 
 	
 	public int deleteReply(String replyCd){

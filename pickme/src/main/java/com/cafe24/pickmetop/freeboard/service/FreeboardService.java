@@ -22,7 +22,38 @@ public class FreeboardService {
 	final static Logger logger = LoggerFactory.getLogger(FreeboardService.class);
 	private final int MAX_PAGE_COUNT = 5; //보여질 최대 페이지 수
 	private final int MAX_LINE_COUNT = 10; //보여질 최대 게시글
+	//게시글수정
+	public void updateFreeContent(FreeboardVo freeboardVo,String freeboardTitle,String freeboardContent,String freeboardCateCd,HttpSession session,String cd){
+		logger.info("freeboardCateCd/freeboardTitle/freeboardContent :{}",freeboardCateCd+"/"+freeboardTitle+"/"+freeboardContent);
+		
+		freeboardVo.setFreeboardTitle(freeboardTitle);
+		freeboardVo.setFreeboardContent(freeboardContent);
+		freeboardVo.setFreeboardNick((String)session.getAttribute("generalNick"));
+		//switch문이 안됨
+		String CateCd = "";
+		if(freeboardCateCd.equals("잡담")){
+			CateCd ="1";
+		}else if(freeboardCateCd.equals("근무환경")){
+			CateCd ="2";
+		}else if(freeboardCateCd.equals("자소서")){
+			CateCd ="3";
+		}else if(freeboardCateCd.equals("인적성")){
+			CateCd ="4";
+		}else if(freeboardCateCd.equals("자격증")){
+			CateCd ="5";
+		}else if(freeboardCateCd.equals("어학")){
+			CateCd ="6";	
+		}
+		freeboardVo.setFreeboardCateCd(CateCd);
+		freeboardVo.setFreeboardCd(cd);
+		logger.info("freeboardVo.toString() : {}",freeboardVo.toString());
+		dao.updateFreeContent(freeboardVo);
+	}
 	
+	//게시글삭제 
+	public void deleteContent(String deleteContent){
+		dao.deleteContent(deleteContent);
+	}
     //댓글삭제
 	public void deleteReply(String replyCd){
 		dao.deleteReply(replyCd);
