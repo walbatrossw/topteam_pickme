@@ -61,6 +61,7 @@ public class FreeboardController {
 		model.addAttribute("freeList",Listmap.get("boardList"));
 		model.addAttribute("cateForView",Listmap.get("cateForView"));
 		model.addAttribute("replyMap",Listmap.get("replyMap"));
+		logger.info("Listmap.get(replyMap) : {}",Listmap.get("replyMap"));
 		logger.info("freeboardCate : {}",freeboardCate);
 		//카테고리 값 유지 
 		model.addAttribute("freeboardCate",freeboardCate);

@@ -96,11 +96,16 @@ $(document).ready(function(){
 			console.log("3번")
 		}
 	});
-	//수정 
+	//댓글수정 
 	$('.updateReply').click(function(){
 		var index = $('.updateReply').index(this);
 		alert(index);
-		$('.reply1').eq(index).replaceWith('<textarea cols="95" rows="2" id="updating" class="form-control">');
+		$('.reply1').eq(index).replaceWith('<textarea cols="95" rows="2" id="updating" class="form-control">'
+				+'</td>'
+				+'<td>'	
+				+'<span>'
+				+'<a class="updateFinish btn btn-default btn-sm">수정완료</a>|'
+				+'<a class=" updateUndo btn btn-default btn-sm">취소</a> ');
 		$('#updating').text($('#hiddenReply').val());
 	})
 	
@@ -116,7 +121,7 @@ $(document).ready(function(){
 	<div class="row content">
 		<!-- 사이드바 -->
 		<div class="sidenav">
-			<h3><a href="/freeboardList">자유게시판${sessionScope.generalId}</a></h3>
+			<h3><a href="/freeboardList">자유게시판</a></h3>
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="/freeboardList">전체글보기</a></li>
 				<c:forEach items="${cateForView}" var="cateForView">
@@ -252,7 +257,6 @@ $(document).ready(function(){
 					<c:if test="${replyMap.freeboardCd == freeList.freeboardCd}">
 					<tr>
 						<td colspan="2">
-						
 							 <div class="row"> 
 								<div class="col-sm-10">
 									<span style="font-weight: bolder;">
@@ -264,7 +268,8 @@ $(document).ready(function(){
 					<tr>
 						
 						<td width="750px">	
-							<p><span class="reply1"></span>
+							<p><span class="reply1">${replyMap.replyContent}</span>
+							
 							<input type="hidden" value="${replyMap.replyContent}" id="hiddenReply">
 						</td>
 						<td>		
@@ -273,6 +278,7 @@ $(document).ready(function(){
 							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
 							<a  class="updateReply btn btn-default btn-sm">수정</a> 
 							</c:if>
+	
 							<c:if test="${replyMap.loginId!=sessionScope.generalId}">
 							<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>
 							</c:if>
@@ -280,7 +286,6 @@ $(document).ready(function(){
 						 		</div>
 							 </div>
 						</td>
-
 					</tr>
 					 </c:if>
 				
