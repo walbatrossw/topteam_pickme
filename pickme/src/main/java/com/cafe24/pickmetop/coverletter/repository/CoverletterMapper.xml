@@ -62,7 +62,7 @@
 		rc.recruit_name AS recruitName, <!-- 기업명 -->
 		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 채용상세직무 -->
-		DATE_FORMAT(rc.recruit_enddate, '%Y년 %m월 %d일 %p %H시 %i분') as recruitEnddate
+		DATE_FORMAT(rc.recruit_enddate, '%Y/%m/%d %H:%i') as recruitEnddate
 	FROM tb_recruit_company rc <!-- 기업채용정보 tb -->
 		
 	INNER JOIN tb_recruit_company_job rcj <!-- 기업직무별채용정보 tb -->

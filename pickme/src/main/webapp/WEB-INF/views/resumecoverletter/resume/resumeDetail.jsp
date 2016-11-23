@@ -457,7 +457,7 @@
 											</tr>
 											<tr>
 												<td class="col-sm-3">
-													<a href="/resumeDetail/download?etcFileName=${resumeEtc.etcFileName }">${resumeEtc.etcFileName}</a>
+													<a href="/resumeDetail/download?etcFileName=${resumeEtc.etcFileName}">${resumeEtc.etcFileName}</a>
 												</td>
 											</tr>
 										</table>

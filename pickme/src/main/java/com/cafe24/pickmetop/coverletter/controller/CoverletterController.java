@@ -2,6 +2,8 @@ package com.cafe24.pickmetop.coverletter.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class CoverletterController {
 	
 	// 00 이력서 및 자기소개서 나의 정보페이지 
 	@RequestMapping(value="/resumeCoverletterInfo", method = RequestMethod.GET)
-	public String resumeCoverletterInfo(Model model){
+	public String resumeCoverletterInfo(Model model, HttpSession session){
 		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo());	
 		Logger.info("자기소개서 메인페이지:{}" , model.toString());
 		return "/resumecoverletter/resumeCoverletterInfo";
@@ -69,8 +71,8 @@ public class CoverletterController {
 	
 	// 03_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.POST)
-	public String memberCoverletterInsert(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle, CoverletterMemberArticleSaveVo saveRecord){
-		coverletterService.addCoverletter(coverletterMember, memberArticle, saveRecord);
+	public String memberCoverletterInsert(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle, CoverletterMemberArticleSaveVo saveRecord, HttpSession session){
+		coverletterService.addCoverletter(coverletterMember, memberArticle, saveRecord, session);
 		Logger.info("coverletterMember {}", coverletterMember.toString());
 		Logger.info("memberArticle {}", memberArticle.toString());
 		Logger.info("saveRecord {}", saveRecord.toString());

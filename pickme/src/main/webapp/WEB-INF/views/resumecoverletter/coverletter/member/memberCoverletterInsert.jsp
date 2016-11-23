@@ -13,14 +13,6 @@
 <link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
-<!-- Social Buttons CSS -->
-<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
-<!-- DataTables CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-<!-- DataTables Responsive CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- jQuery -->
@@ -29,36 +21,15 @@
 <script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
-<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
-<script src="resumecoverlettersetting/data/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-<!-- Flot Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/flot/excanvas.min.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.pie.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.resize.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
-<script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- DataTables JavaScript -->
-<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- Page-Level Demo Scripts - Notifications - Use for reference -->
-<script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-    // popover demo
-    $("[data-toggle=popover]")
-        .popover()
-</script>
+<!-- Datetimepicker -->
+<script src="/js/datetimepicker/moment.js"></script>
+<script src="/js/datetimepicker/transition.js"></script>
+<script src="/js/datetimepicker/collapse.js"></script>
+<script src="/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/datetimepicker/ko.js"></script>
+<link rel="stylesheet" href="/css/datetimepicker/bootstrap-datetimepicker.css"/>
 <script>
 	//글자수 세기
 	$(document).ready(function(){
@@ -133,16 +104,9 @@
 			$article.last().remove();
 		});
 		$(function () {
-            $('#mCletterEnddate').datetimepicker({
-            	locale: 'ko',
-            	format: 'LLL'
-            });
-        });
-		
-		$(function () {
             $('#ddayPicker').datetimepicker({
             	locale: 'ko',
-            	format: 'LLL'
+            	format: 'L'
             });
         });
    });
@@ -156,10 +120,10 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">나의 자소서</h1>
+					<h1 class="page-header">${sessionScope.generalNick}님의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-8">
+		                <div class="col-lg-10">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
@@ -173,15 +137,17 @@
 		                                <thead>
 		                                    <tr>
 		                                        <th class="col-sm-2">자기소개서 이름</th>
-												<th class="col-sm-2">마감시간</th>
-												<th class="col-sm-2">자소서 제출 마감시간</th>
+												<th class="col-sm-2">서류 제출 마감시간</th>
+												<th class="col-sm-2">내가 정한 마감시간</th>
+												<th class="col-sm-2">D-DAY</th>
 											</tr>
 		                                </thead>
 		                                <tbody>
 		                                	<tr>
 												<td><input type="text" class="form-control" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
-												<td><input type="text" class="form-control" id="mCletterEnddate" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}"></td>
-												<td><input type="text" class="form-control" id="ddayPicker" name="" value=""></td>
+												<td>${companyOneJobCletterInfo.recruitEnddate}</td>
+												<td><input type="text" class="form-control" id="ddayPicker" name="mCletterEnddate"></td>
+												<td>채용기업DAY:  /나의DAY:</td>
 											</tr>
 										</tbody>
 									</table>

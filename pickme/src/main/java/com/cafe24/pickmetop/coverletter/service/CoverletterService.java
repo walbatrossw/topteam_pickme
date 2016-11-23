@@ -1,8 +1,12 @@
 package com.cafe24.pickmetop.coverletter.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,8 +47,11 @@ public class CoverletterService {
 	}
 	
 	// 03_02 자기소개서 입력 처리(자기소개서 이름/마감시간/문항/내용)
-	public void addCoverletter(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle,	CoverletterMemberArticleSaveVo saveRecord){
-		coverletterMember.setLoginId("walbatrossw@gmail.com");
+	public void addCoverletter(CoverletterMemberVo coverletterMember, 
+							CoverletterMemberArticleVo memberArticle,
+							CoverletterMemberArticleSaveVo saveRecord,
+							HttpSession session){
+		coverletterMember.setLoginId((String) session.getAttribute("generalId"));
 		coverletterDao.insertCoverletter(coverletterMember);
 		coverletterDao.insertCoverletterArticle(memberArticle);
 		coverletterDao.insertCoverletterSaveRecord(saveRecord);

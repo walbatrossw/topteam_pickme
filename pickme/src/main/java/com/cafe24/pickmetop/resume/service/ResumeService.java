@@ -37,18 +37,14 @@ public class ResumeService {
 	@Autowired
 	ResumeDao resumeDao;
 	
-	// *사진파일 저장디렉토리
+	/****증명사진 및 포트폴리오 파일 저장 로컬 디렉토리****/
 	/*HOME LOCAL*/
 	//final String imgDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
+	//final String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+	
 	/*KSMART LOCAL*/
 	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
-	/*PICKMETOP CAFE24*/
-	
-	// *포트폴리오파일 저장 디렉토리
-	//final String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
-	/*KSMART LOCAL*/
 	final String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
-	/*PICKMETOP CAFE24*/
 	
 	// 01_이력서 입력
 	@Transactional
@@ -58,9 +54,13 @@ public class ResumeService {
 			ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, 
 			ResumeEtcVo resumeEtcVo, HttpServletRequest request, HttpSession session){
 		
+		/*CAFE24 배포시(사진 및 포트폴리오 저장)*/
+		//final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
+		//final String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
 		
-		/*******이력서 증명사진 입력*******/
-		// 증명사진 파일명 = 파일명 + 시스템time
+		/****이력서 증명사진 입력****/
+		
+		// 증명사진 파일명 생성 = 파일명 + 시스템time
 		MultipartFile personalPhotoFile = resumePersonalVo.getPersonalPhotoFile();
 		String savePhotoFileName = resumePersonalVo.getPersonalPhotoFile().getOriginalFilename().substring(0, resumePersonalVo.getPersonalPhotoFile().getOriginalFilename().length()-4);
 		String photoExt = personalPhotoFile.getOriginalFilename().substring(personalPhotoFile.getOriginalFilename().lastIndexOf(".")+1);
@@ -70,8 +70,7 @@ public class ResumeService {
 		Logger.info("생성된 이력서 사진파일명 : {}", savePhotoFileName);
 		
 		// 이력서 사진파일 저장
-		String fullPhotoName = imgDir + "\\" + savePhotoFileName;
-		//String fullPhotoName = request.getSession().getServletContext().getRealPath("/upload/resumefile/portfolio/")+savePhotoFileName;
+		String fullPhotoName = imgDir + "/" + savePhotoFileName;
 		Logger.info("사진파일명 :{}", fullPhotoName);
 		File savePhotoFile = new File(fullPhotoName);
 		try {
@@ -82,8 +81,7 @@ public class ResumeService {
 			e.printStackTrace();
 		}		
 		
-		
-		/*****포트폴리오 파일 입력*****/
+		/****포트폴리오 파일 입력****/
 		// 포트폴리오 파일명 생성 = 입력파일명  + 시스템time
 		MultipartFile etcFile = resumeEtcVo.getEtcFile();
 		String saveEtcFileName = resumeEtcVo.getEtcFile().getOriginalFilename().substring(0, resumeEtcVo.getEtcFile().getOriginalFilename().length()-4);
@@ -94,8 +92,7 @@ public class ResumeService {
 		Logger.info("생성된 포트폴리오 파일명 : {}", saveEtcFileName);
 		
 		//포트폴리오 파일 저장
-		String fullEtcName = pdfDir + "\\" + saveEtcFileName;
-		//String fullEtcName = request.getSession().getServletContext().getRealPath("/upload/resumefile/photo/")+saveEtcFileName;
+		String fullEtcName = pdfDir + "/" + saveEtcFileName;
 		Logger.info("포트폴리오 파일명 :{}", fullEtcName);
 		File saveEtcFile = new File(fullEtcName);
 		try {
@@ -138,7 +135,6 @@ public class ResumeService {
 		
 	}
 	
-	
 	// 02_이력서 리스트
 	public List<ResumeVo> getResumeList(){
 		return resumeDao.selectResumeList();
@@ -162,5 +158,4 @@ public class ResumeService {
 		resumeDatailMap.put("resumeEtc", resumeDao.selectResumeEtcByResumeCd(resumeCd));
 		return resumeDatailMap;
 	}
-	
 }

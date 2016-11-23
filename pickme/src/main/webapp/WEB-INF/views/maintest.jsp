@@ -50,7 +50,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="/memberCoverletterList">이력서 & 자소서</a>
+							<a href="/resumeCoverletterInfo">이력서 & 자소서</a>
 							<div class="depth2">
 								<ul>
 									<li><a href="/resumeList">이력서 </a></li>

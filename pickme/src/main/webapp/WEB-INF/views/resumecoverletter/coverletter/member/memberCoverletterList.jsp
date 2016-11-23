@@ -75,7 +75,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-8">
-					<h1 class="page-header">${memberCoverletterList[0].loginId}님의 자소서</h1>
+					<h1 class="page-header">${sessionScope.generalNick}님의 자소서</h1>
 				</div>
 					<div class="row">
 		                <div class="col-lg-10">
