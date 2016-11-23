@@ -1,0 +1,36 @@
+@CHARSET "EUC-KR";
+.title{
+	font-size: 30px;
+	padding: 15px 0px 20px 15px;	
+}
+.allowCheck{
+	box-shadow: 5px 5px 5px 0px lightgray;
+	border-radius: 20px;
+	padding: 10px;
+	font-size: 50px;
+	color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.allowCheck a{
+	color: #fff;
+}
+.allowCheck .badge{
+	float: right;
+	position: relative;
+	font-size: 60px;
+    top: -1px;
+	color: #d9534f;
+    background-color: #fff
+}
+
+.allowCheck .fa-clipboard{
+	color: #fff;
+	font-size: 1.5em;
+	padding-right: 10px;
+}
+.allowCheck .fa-check-square-o{
+	color: #000;
+	font-size: 1.8em;
+	padding-right: 10px;
+}

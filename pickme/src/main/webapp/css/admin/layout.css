@@ -21,11 +21,6 @@ clear: both;
 height: 20px;
 }
 
-a:link, a:visited {
-color: #77BACE;
-text-decoration: none;
-}
-
 a:hover {
 text-decoration: underline;
 }
@@ -372,12 +367,12 @@ float: left;
 margin-top: -2px;
 }
 
-#main h3 {
+/* #main h3 {
 color: #1F1F20;
 text-transform: uppercase;
 text-shadow: 0 1px 0 #fff;
 margin: 8px 20px;
-}
+} */
 
 /* Modules */
 

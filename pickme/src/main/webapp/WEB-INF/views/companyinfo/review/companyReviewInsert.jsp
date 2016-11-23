@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/js/star-rating.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/css/star-rating.css" media="all" type="text/css"/>
@@ -20,6 +20,7 @@
 		<c:forEach var="companyInfoList" items="${companyInfoList}" >
 			availableTags.push("${companyInfoList.companyName}");
 		</c:forEach>
+		
 		$('#companyName').autocomplete({
 		      source: availableTags,
 		      minLength : 1,
