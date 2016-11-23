@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -36,8 +37,81 @@ public class RecruitService {
 	@Autowired
 	RecruitDao recruitDao;
 	int count = 0;
-	final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";
+	/*=========================local용=======================*/
+	/*final String imgDir = "C:\\Users\\202-10\\git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\recruitimg";*/
 	
+	//companyRecruitJob입력
+		public void insertRecruitCompanyJob(Recruit recruit,HttpServletRequest request){
+			/*=========================서버용=========================*/
+			String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/recruitimg";
+			
+			
+			logger.info("recruit.getRecruitJobEducation() : {} " ,recruit.getRecruitJobEducation());
+			for(int i=0; i<recruit.getRecruitList().size(); i++){
+				
+				//recruitJobCd중 가장 큰수 select
+				int countJop = recruitDao.getCountOfRecruitJob()+1;
+				
+				logger.info("recruit {}",recruit.toString());
+				RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
+				recruitCompanyJobVo.setRecruitJobCd(String.valueOf(countJop));
+				recruitCompanyJobVo.setCompanyCd(recruit.getCompanyCd());
+				
+				recruitCompanyJobVo.setRecruitCompanyCd(String.valueOf(count));
+				for(int j=0;j<recruit.getRecruitList().get(i).getJobMidIndexCd().size();j++){
+				recruitCompanyJobVo.setJobMidindexCd(recruit.getRecruitList().get(i).getJobMidIndexCd().get(j));
+				recruitCompanyJobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(i).getRecruitJobWorkstatus().get(j));
+				recruitCompanyJobVo.setRecruitJobJobdetail(recruit.getRecruitList().get(i).getRecruitJobJobdetail().get(j));
+				recruitCompanyJobVo.setRecruitJobEducation(recruit.getRecruitList().get(i).getRecruitJobEducation().get(j));
+				}
+				
+				//file이름 = originalFilename + currentTimeMillis
+				MultipartFile recruitImgs = recruit.getRecruitJobFile();
+				String saveFileName = recruit.getRecruitJobFile().getOriginalFilename().substring(0,recruit.getRecruitJobFile().getOriginalFilename().length()-4);
+
+				String ext = recruitImgs.getOriginalFilename().substring(recruitImgs.getOriginalFilename().lastIndexOf(".") + 1);
+				ext = ext.toLowerCase();
+				saveFileName=saveFileName+ "_" + System.currentTimeMillis()+"."+ext;
+				String type = recruitImgs.getContentType();
+				logger.info("생성된 파일이름 : {}", saveFileName);
+				
+				recruitCompanyJobVo.setRecruitJobFile(saveFileName );
+				
+				 
+				 logger.info("imgDir : {}",imgDir);
+				// file저장
+				 
+				/*=========================local용=======================*/
+				 
+				/*String fullFileName = imgDir + "\\" + saveFileName ;*/
+				 
+				/*=========================서버용=========================*/
+				String fullFileName = imgDir + "/" + saveFileName ;
+				
+				logger.info("fullFileName : {}",fullFileName);
+				File saveFile = new File(fullFileName);
+				try {
+				// img가 saveFile로 이동
+					recruitImgs.transferTo(saveFile);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				//자기소개서 항목 등록
+				for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   
+					CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
+					logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
+					cletterArticle.setRecruitJobCd(String.valueOf(countJop));
+					cletterArticle.setcCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getcCletterArticle());
+					logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
+					recruitDao.insertCoverletterArticle(cletterArticle);
+				}
+				logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	
+				recruitDao.insertRecruitJob(recruitCompanyJobVo);
+			}
+		}
 	
 	
 	//수정화면
@@ -186,7 +260,7 @@ public class RecruitService {
 				if(!bookmark.equals("")){
 				
 					companySearchMap.put("bookmark", bookmark);
-					companySearchMap.put("sessionLoginId",(String)session.getAttribute("id"));
+					companySearchMap.put("sessionLoginId",(String)session.getAttribute("generalId"));
 				}
 				if(jobTopIndexCd.size()!=0){
 					
@@ -281,64 +355,6 @@ public class RecruitService {
 	}
 
 	
-	//companyRecruitJob입력
-	public void insertRecruitCompanyJob(Recruit recruit){
-		logger.info("recruit.getRecruitJobEducation() : {} " ,recruit.getRecruitJobEducation());
-		for(int i=0; i<recruit.getRecruitList().size(); i++){
-			
-			//recruitJobCd중 가장 큰수 select
-			int countJop = recruitDao.getCountOfRecruitJob()+1;
-			
-			logger.info("recruit {}",recruit.toString());
-			RecruitCompanyJobVo recruitCompanyJobVo = new RecruitCompanyJobVo();
-			recruitCompanyJobVo.setRecruitJobCd(String.valueOf(countJop));
-			recruitCompanyJobVo.setCompanyCd(recruit.getCompanyCd());
-			
-			recruitCompanyJobVo.setRecruitCompanyCd(String.valueOf(count));
-			for(int j=0;j<recruit.getRecruitList().get(i).getJobMidIndexCd().size();j++){
-			recruitCompanyJobVo.setJobMidindexCd(recruit.getRecruitList().get(i).getJobMidIndexCd().get(j));
-			recruitCompanyJobVo.setRecruitJobWorkstatus(recruit.getRecruitList().get(i).getRecruitJobWorkstatus().get(j));
-			recruitCompanyJobVo.setRecruitJobJobdetail(recruit.getRecruitList().get(i).getRecruitJobJobdetail().get(j));
-			recruitCompanyJobVo.setRecruitJobEducation(recruit.getRecruitList().get(i).getRecruitJobEducation().get(j));
-			}
-			
-			//file이름 = originalFilename + currentTimeMillis
-			MultipartFile recruitImgs = recruit.getRecruitJobFile();
-			String saveFileName = recruit.getRecruitJobFile().getOriginalFilename().substring(0,recruit.getRecruitJobFile().getOriginalFilename().length()-4);
-
-			String ext = recruitImgs.getOriginalFilename().substring(recruitImgs.getOriginalFilename().lastIndexOf(".") + 1);
-			ext = ext.toLowerCase();
-			saveFileName=saveFileName+ "_" + System.currentTimeMillis()+"."+ext;
-			String type = recruitImgs.getContentType();
-			logger.info("생성된 파일이름 : {}", saveFileName);
-			
-			recruitCompanyJobVo.setRecruitJobFile(saveFileName );
-			
-			// file저장
-			String fullFileName = imgDir + "\\" + saveFileName ;
-			logger.info("fullFileName : {}", fullFileName);
-			File saveFile = new File(fullFileName);
-			try {
-			// img가 saveFile로 이동
-				recruitImgs.transferTo(saveFile);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			//자기소개서 항목 등록
-			for(int k=0;k<recruit.getRecruitList().get(i).getcCletterArticle().size();k++){   
-				CoverletterCompanyJobVo cletterArticle = new CoverletterCompanyJobVo();
-				logger.info("recruit.getRecruitList().get(i).getcCletterArticle().get(k).getCletterArticle() : {}",i +" : "+ k);
-				cletterArticle.setRecruitJobCd(String.valueOf(countJop));
-				cletterArticle.setcCletterArticle(recruit.getRecruitList().get(i).getcCletterArticle().get(k).getcCletterArticle());
-				logger.info("cletterArticle.toString() :{}", cletterArticle.toString());
-				recruitDao.insertCoverletterArticle(cletterArticle);
-			}
-			logger.info("recruitCompanyJobVo : {}",recruitCompanyJobVo.toString());	
-			recruitDao.insertRecruitJob(recruitCompanyJobVo);
-		}
-	}
+	
 }
 

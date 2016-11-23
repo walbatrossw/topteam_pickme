@@ -124,7 +124,7 @@ $(document).ready(function(){
 });
 
 </script>
-<title>Insert title here</title>
+<title>채용달력</title>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>

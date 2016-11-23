@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -50,9 +51,14 @@ public class RecruitController {
 	
 	/* 채용 디테일*/
 	@RequestMapping(value="/recruitDetail")
-	public String recruitDetail(Model model,HttpSession session,
+	public String recruitDetail(Model model,HttpSession session,HttpServletRequest request,
 			@RequestParam(value="recruitCompanyCd", defaultValue="0") String recruitCompanyCd,
 			@RequestParam(value="checked", defaultValue="") String bookmarkChecked){
+		
+		String dir = request.getSession().getServletContext().getRealPath("/")+"upload/recruitimg";
+		model.addAttribute("dir",dir);
+		
+		
 		logger.info("recruitCd : {}",recruitCompanyCd);
 		logger.info("recruitCompanyInfoForDetail :{}",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
 		model.addAttribute("recruitCompanyInfoForDetail",recruitService.selectForRecruitCompanyDetail(recruitCompanyCd));
@@ -89,6 +95,8 @@ public class RecruitController {
 		logger.info("industryTopindexCd[]:{}",industryTopindexCd.size());
 		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus.size());
 		logger.info("recruitJobWorkstatus[]:{}",recruitJobWorkstatus);
+		
+	
 		
 		//전체 직무 대분류
 		model.addAttribute("jobTopIndex", recruitService.getJobTopIndexCd());
@@ -160,7 +168,7 @@ public class RecruitController {
 	
 	/* 채용 입력 처리 */
 	@RequestMapping(value = "/recruitInsert", method = RequestMethod.POST)
-	public String recruitInsert(Recruit recruit,HttpSession session,Model model) {
+	public String recruitInsert(Recruit recruit,HttpSession session,Model model,HttpServletRequest request) {
 		//파일 타입 검사 메서드 
 		boolean result =commons.checkFileType(recruit);
 		
@@ -183,7 +191,7 @@ public class RecruitController {
 				logger.info("recruit.getCompanyCd(): {}",recruit.getCompanyCd());
 			}
 				recruitService.insertRecruitCompany(recruit,session);
-				recruitService.insertRecruitCompanyJob(recruit);	
+				recruitService.insertRecruitCompanyJob(recruit,request);	
 			return "redirect:/diary";
 		//파일타입이 이미지가 아닐경우
 		}else{

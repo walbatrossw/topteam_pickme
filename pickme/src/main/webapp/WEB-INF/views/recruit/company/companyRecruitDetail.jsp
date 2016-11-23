@@ -28,6 +28,7 @@ $(document).ready(function(){
 	});
 });
 </script>
+<title>채용상세보기</title>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <body>
