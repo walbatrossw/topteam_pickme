@@ -17,7 +17,7 @@ import com.cafe24.pickmetop.commons.PageHelper;
 import com.cafe24.pickmetop.company.model.*;
 import com.cafe24.pickmetop.company.service.CompanyService;
 
-@Repository
+@Repository 
 public class CompanyDao {
 	private static final Logger logger = LoggerFactory.getLogger(CompanyDao.class);
 	final String NS = "com.cafe24.pickmetop.company.repository.CompanyMapper";
