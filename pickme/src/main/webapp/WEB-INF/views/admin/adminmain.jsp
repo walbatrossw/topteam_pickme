@@ -22,7 +22,7 @@
 					<div class="col-xs-4">
 						<div class="allowCheck">
 							<div>
-								<i class="fa fa-clipboard"></i><span class="badge">5</span>
+								<i class="fa fa-clipboard"></i><span class="badge">${unreceivedListCount.reviewCount}</span>
 							</div>
 							<h3><a href="/review/companyReviewUnreceivedList"><strong>기</strong>업리뷰 미승인</a></h3>
 						</div>
@@ -30,7 +30,7 @@
 					<div class="col-xs-4">
 						<div class="allowCheck">
 							<div>
-								<i class="fa fa-clipboard"></i><span class="badge">5</span>
+								<i class="fa fa-clipboard"></i><span class="badge">${unreceivedListCount.interviewCount}</span>
 							</div>
 							<h3><a href="/interview/companyInterviewUnreceivedList"><strong>면</strong>접후기 미승인</a></h3>
 						</div>
@@ -38,7 +38,7 @@
 					<div class="col-xs-4">
 						<div class="allowCheck">
 							<div>
-								<i class="fa fa-clipboard"></i><span class="badge">5</span>
+								<i class="fa fa-clipboard"></i><span class="badge">${unreceivedListCount.salaryCount}</span>
 							</div>
 							<h3><a href="/salary/companySalarywUnreceivedList"><strong>연</strong>봉정보 미승인</a></h3>
 						</div>

@@ -71,7 +71,7 @@
 			<article class="breadcrumbs">
 				<a href="/admin">관리자 페이지</a>
 				<div class="breadcrumb_divider"></div>
-				<a class="current">Dashboard</a>
+				<a class="current">${name }</a>
 			</article>
 		</div>
 	</section>

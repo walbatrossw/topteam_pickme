@@ -24,6 +24,7 @@ public class CompanyInfoVo {
 	private int reviewCount;
 	private int interviewCount;
 	private int salaryCount;
+	private int recruitCount;
 	private String industryTopIndexName;
 	private String companyTypeName;
 	
@@ -143,6 +144,12 @@ public class CompanyInfoVo {
 	public void setSalaryCount(int salaryCount) {
 		this.salaryCount = salaryCount;
 	}
+	public int getRecruitCount() {
+		return recruitCount;
+	}
+	public void setRecruitCount(int recruitCount) {
+		this.recruitCount = recruitCount;
+	}
 	public String getIndustryTopIndexName() {
 		return industryTopIndexName;
 	}
@@ -164,9 +171,8 @@ public class CompanyInfoVo {
 				+ companyPhone + ", companyRegdate=" + companyRegdate + ", companyRegister=" + companyRegister
 				+ ", companyModidate=" + companyModidate + ", companyModify=" + companyModify + ", companyTotalRate="
 				+ companyTotalRate + ", reviewCount=" + reviewCount + ", interviewCount=" + interviewCount
-				+ ", salaryCount=" + salaryCount + ", industryTopIndexName=" + industryTopIndexName
-				+ ", compnayTypeName=" + companyTypeName + "]";
+				+ ", salaryCount=" + salaryCount + ", recruitCount=" + recruitCount + ", industryTopIndexName="
+				+ industryTopIndexName + ", companyTypeName=" + companyTypeName + "]";
 	}
-
 	
 }

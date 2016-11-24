@@ -10,8 +10,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/css/style.css">
+<script>
+$(document).ready(function(){
+	$btnLogout = $('.btn-logout');
+	
+	$btnLogout.click(function(){
+		
+		location.href = "/memberGeneralLogout";
+	});
+});
+</script>
 <title>Insert title here</title>
-
 </head>
 <body>
 	<div class="container">
@@ -50,7 +59,7 @@
      
       				<c:otherwise>
       					<li><a href="/general/memberGeneralUpdate?generalId=${sessionScope.generalId}">내 정보</a></li>
-      					<li><a href="/memberGeneralLogout">로그아웃</a></li>
+      					<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
       				  </c:otherwise>   				
       					</c:choose>
 	      				</ul>
@@ -58,6 +67,38 @@
   				</div>
 			</nav>
 		</section>
+		<div class="modal fade" id="logoutModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+	 			<div class="modal-content">
+	   		 		<div class="modal-header">
+	      				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      				<h4 class="modal-title">로그아웃</h4>
+	    			</div>
+	   				<div class="modal-body">
+	      				<p>${sessionScope.generalId }님 로그아웃 되었습니다.</p>
+	    			</div>
+	    			<div class="modal-footer">
+	      				<button type="button" class="btn btn-logout" data-dismiss="modal">Close</button>
+	    			</div>
+	  			</div>
+			</div>
+		</div>
+		<div class="modal fade" id="loginModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+	 			<div class="modal-content">
+	   		 		<div class="modal-header">
+	      				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      				<h4 class="modal-title">로그인</h4>
+	    			</div>
+	   				<div class="modal-body">
+	      				<p>로그인이 필요한 정보입니다. 로그인 페이지로 이동합니다.</p>
+	    			</div>
+	    			<div class="modal-footer">
+	      				<button type="button" class="btn btn-logout" data-dismiss="modal">확인</button>
+	    			</div>
+	  			</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

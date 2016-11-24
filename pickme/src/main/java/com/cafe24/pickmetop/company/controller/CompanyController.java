@@ -3,6 +3,9 @@ package com.cafe24.pickmetop.company.controller;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,10 +143,17 @@ public class CompanyController {
 	 * ---------------------------------------------------------------------------------*/	
 	//면접후기 등록화면 맵핑
 	@RequestMapping(value = "/interview/companyInterviewInsertForm", method = RequestMethod.GET)
-	public String companyInterviewInsertForm(Model model) {
+	public String companyInterviewInsertForm(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
 		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
-		return "/companyinfo/interview/companyInterviewInsert";
+		if(session.getAttribute("generalId") == null){
+			logger.info("test");
+			return "/common/etc/loginCheck";
+		}else{
+			logger.info("test2 {} :", request.getSession().toString());
+			logger.info("test2 {} :", request.getSession().getAttribute("generalId").toString());
+			return "/companyinfo/interview/companyInterviewInsert";
+		}
 	}
 	//면접후기 등록처리 맵핑
 	@RequestMapping(value = "/interview/companyInterviewInsert", method = RequestMethod.POST)
@@ -211,6 +221,7 @@ public class CompanyController {
 			page = 1;
 		}
 		model.addAttribute("page", page);
+		model.addAttribute("name", "면접후기 비승인");
 		model.addAttribute("interviewUnreceivedMap", companyService.getCompanyInterviewUnreceivedList(page));
 		return "/admin/companyinfo/interview/companyInterviewUnreceivedList";
 	}

@@ -73,7 +73,7 @@ public class MemberController {
 	// 로그 아웃 페이지
 	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.GET)
 	public String memberGeneralLogout(HttpSession session){
-	session.removeAttribute("generalId");
+		session.invalidate();
 	
 	return "redirect:/";
 		}

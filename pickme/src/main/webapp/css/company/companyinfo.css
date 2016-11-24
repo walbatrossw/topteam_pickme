@@ -186,6 +186,7 @@
 .pop_company_view .link_blog:hover,
 .pop_company_view .link_site,
 .pop_company_view .link_site:hover {text-decoration:underline;}
+.pop_company_view .link_job_view:hover{cursor:pointer;}
 .pop_company_view .link_job_view .point {text-decoration:underline;font-weight:bold;color:#416ce1;}
 .pop_company_view .ico_kospi,
 .pop_company_view .ico_kosdaq,

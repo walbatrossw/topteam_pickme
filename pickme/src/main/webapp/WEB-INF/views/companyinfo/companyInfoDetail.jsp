@@ -1,59 +1,69 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/companyinfo/module/companyInfoHeader.jsp"/>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=af18c779370b3b0bf9e9468a5c37224e&libraries=services"></script>
 <link rel="stylesheet" href="/css/company/companyinfo.css">
 <script>
 	$(document).ready(function() {
-		var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div 
+		const $linkJobView = $('.link_job_view');
+		
+		$linkJobView.click(function(){
+			var now = new Date();
+		    var year= now.getFullYear();
+		    var mon = now.getMonth();
+		    location.href="/diary?ddayYear="+ year +"&ddayOption=search&ddayMonth=" + mon + "&searchCompanyName=${companyInfoDetail.companyName }";
+		});
+		
+	   
+		var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div 
 	    mapOption = {
-	        center: new daum.maps.LatLng(33.450701, 126.570667), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-	        level: 3 // ÁöµµÀÇ È®´ë ·¹º§
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+	        level: 3 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
 	    };  
 
-		// Áöµµ¸¦ »ı¼ºÇÕ´Ï´Ù    
+		// ì§€ë„ë¥¼ ìƒì„±í•©ë‹ˆë‹¤    
 		var map = new daum.maps.Map(mapContainer, mapOption); 
 	
-		// ÁÖ¼Ò-ÁÂÇ¥ º¯È¯ °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù
+		// ì£¼ì†Œ-ì¢Œí‘œ ë³€í™˜ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 		var geocoder = new daum.maps.services.Geocoder();
 	
-		// ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»öÇÕ´Ï´Ù
+		// ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤
 		geocoder.addr2coord('${companyInfoDetail.companyAddr }', function(status, result) {
 	
-		    // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é 
+		    // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´ 
 		     if (status === daum.maps.services.Status.OK) {
 	
 		        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
 	
-	        	// °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡¸¦ ¸¶Ä¿·Î Ç¥½ÃÇÕ´Ï´Ù
+	        	// ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¥¼ ë§ˆì»¤ë¡œ í‘œì‹œí•©ë‹ˆë‹¤
 		        var marker = new daum.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 	
-		        // ÀÎÆ÷À©µµ¿ì·Î Àå¼Ò¿¡ ´ëÇÑ ¼³¸íÀ» Ç¥½ÃÇÕ´Ï´Ù
+		        // ì¸í¬ìœˆë„ìš°ë¡œ ì¥ì†Œì— ëŒ€í•œ ì„¤ëª…ì„ í‘œì‹œí•©ë‹ˆë‹¤
 		        var infowindow = new daum.maps.InfoWindow({
 		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${companyInfoDetail.companyName }</div>'
 		        });
 	        	infowindow.open(map, marker);
 	
-	        	// ÁöµµÀÇ Áß½ÉÀ» °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡·Î ÀÌµ¿½ÃÅµ´Ï´Ù
+	        	// ì§€ë„ì˜ ì¤‘ì‹¬ì„ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚µë‹ˆë‹¤
 	       		map.setCenter(coords);
 		    } 
 		});    
 	});
 </script>
-<link rel="stylesheet" href="/css/companyinfo.css">
 <title>Insert title here</title>
 </head>
 <body>
+<div class="container">
 	<div id="content_cominfo">
 		<!-- main body start -->
 		<div id="company_view" class="pop_company_view">
@@ -67,61 +77,57 @@
 						<a href="${companyInfoDetail.companySite }" target="_blank">${companyInfoDetail.companySite }</a>
 					</div>
 				</div>
-				<!-- ±â¾÷ÇüÅÂ 5°³ -->
+				<!-- ê¸°ì—…í˜•íƒœ 5ê°œ -->
 				<div class="corp_summary">
 					<ul class="type_col5">
 						<li class="col1">
 							<div class="item1">
-								<i>¾÷Á¾</i>
+								<i>ì—…ì¢…</i>
 								<p>${companyInfoDetail.industryTopIndexName }</p>
 							</div>
 						</li>
 						<li class="col2">
 							<div class="item2">
-								<i>¸ÅÃâ¾×</i>
-								<p>
-									${companyInfoDetail.companySales }
-								</p>
+								<i>ë§¤ì¶œì•¡</i>
+								<p>${companyInfoDetail.companySales }</p>
 							</div>
 						</li>
 						<li class="col3">
 							<div class="item3">
-								<i>±â¾÷ÇüÅÂ</i>
+								<i>ê¸°ì—…í˜•íƒœ</i>
 								<p>${companyInfoDetail.companyTypeName }</p>
 							</div>
 						</li>
 						<li class="col4">
 							<div class="item4">
-								<i>¼³¸³ÀÏ</i>
-								<p>
-									${companyInfoDetail.companyBirthdate }
-								</p>
+								<i>ì„¤ë¦½ì¼</i>
+								<p>${companyInfoDetail.companyBirthdate }</p>
 							</div>
 						</li>
 						<li class="col5">
 							<div class="item5">
-								<i>ÆòÁ¡</i>
-								<p>${companyInfoDetail.companyTotalRate *1.0}Á¡</p>
+								<i>í‰ì </i>
+								<p>${companyInfoDetail.companyTotalRate *1.0}ì </p>
 							</div>
 						</li>
 					</ul>
 				</div>
-			<!-- //±â¾÷ÇüÅÂ 5°³ -->
+			<!-- //ê¸°ì—…í˜•íƒœ 5ê°œ -->
 			</div>
 			<!-- //company_info_header -->
 			<!-- company_info_content -->
 			<div class="company_info_content">
-				<!-- company_info_section1:±âº»Á¤º¸ -->
+				<!-- company_info_section1:ê¸°ë³¸ì •ë³´ -->
 				<div id="company_info_section1" class="company_info_section1">
-					<h3 class="btit">±âº»Á¤º¸</h3>
+					<h3 class="btit">ê¸°ë³¸ì •ë³´</h3>
 					<!-- folding -->
 					<div class="folding on">
 						<!-- sec1 -->
 						<div class="sec1">
 							<div class="table_col_type1">
-								<table summary="±âº»Á¤º¸">
-									<caption>±â¾÷¸í, ¼Ò¼Ó±×·ì, ¾÷Á¾, »ç¾÷³»¿ë, ±â¾÷ÇüÅÂ, »ç¿ø¼ö, ÀÚº»±İ, ¼³¸³ÀÏ,
-										´ëÇ¥ÀüÈ­, È¨ÆäÀÌÁö, ÁÖ¼Ò</caption>
+								<table summary="ê¸°ë³¸ì •ë³´">
+									<caption>ê¸°ì—…ëª…, ì†Œì†ê·¸ë£¹, ì—…ì¢…, ì‚¬ì—…ë‚´ìš©, ê¸°ì—…í˜•íƒœ, ì‚¬ì›ìˆ˜, ìë³¸ê¸ˆ, ì„¤ë¦½ì¼,
+										ëŒ€í‘œì „í™”, í™ˆí˜ì´ì§€, ì£¼ì†Œ</caption>
 									<colgroup>
 										<col class="col1">
 										<col class="col2">
@@ -130,60 +136,58 @@
 									</colgroup>
 									<tbody>
 										<tr>
-											<th scope="row">±â¾÷¸í</th>
+											<th scope="row">ê¸°ì—…ëª…</th>
 											<td>${companyInfoDetail.companyName }</td>
-											<th scope="row">´ëÇ¥ÀÚ¸í</th>
+											<th scope="row">ëŒ€í‘œìëª…</th>
 											<td>${companyInfoDetail.companyCeo }</td>
 										</tr>
 										<tr>
-											<th scope="row">¾÷Á¾</th>
+											<th scope="row">ì—…ì¢…</th>
 											<td colspan="3">${companyInfoDetail.industryTopIndexName }</td>
 										</tr>
 										<tr>
-											<th scope="row">±â¾÷ÇüÅÂ</th>
+											<th scope="row">ê¸°ì—…í˜•íƒœ</th>
 											<td colspan="3" class="position1">${companyInfoDetail.companyTypeName }</td>
 										</tr>
 										<tr>
-											<th scope="row">¼³¸³ÀÏ</th>
+											<th scope="row">ì„¤ë¦½ì¼</th>
 											<td class="position2">${companyInfoDetail.companyBirthdate }</td>
-											<th scope="row">Ã¤¿ëÇöÈ²</th>
-											<td><a
-												href="javascript:scrollTo({'target':'#company_info_section5','speed':'100'});"
-												class="link_job_view">Ã¤¿ë ÁøÇàÁß <strong class="point">1°Ç</strong></a></td>
+											<th scope="row">ì±„ìš©í˜„í™©</th>
+											<td><a class="link_job_view">ì±„ìš© ì§„í–‰ì¤‘ <strong class="point">${companyInfoDetail.recruitCount}ê±´</strong></a></td>
 										</tr>
 										<tr>
-											<th scope="row">»ç¿ø¼ö</th>
-											<td class="position3">525¸í <span class="standard_year">(2015³â±âÁØ)</span>
+											<th scope="row">ì‚¬ì›ìˆ˜</th>
+											<td class="position3">525ëª… <span class="standard_year">(2012ë…„ê¸°ì¤€)</span>
 											</td>
-											<th scope="row">¸ÅÃâ¾×</th>
+											<th scope="row">ë§¤ì¶œì•¡</th>
 											<td class="position4">
-												<fmt:formatNumber value="${companyInfoDetail.companySales }" pattern="\#,¾ï###.##"/>¿ø
-												<span class="standard_year">(2015³â ±âÁØ)</span> 
+												<fmt:formatNumber value="${companyInfoDetail.companySales }" pattern="\#,###.##"/>ë§Œì›
+												<span class="standard_year">(2012ë…„ ê¸°ì¤€)</span> 
 											</td>
 										</tr>
 										<tr>
-											<th scope="row">ÀÚº»±İ</th>
-											<td>135¾ï 7,500¸¸¿ø <span class="standard_year">(2015³â
-													±âÁØ)</span></td>
-											<th scope="row">´ç±â¼øÀÌÀÍ</th>
-											<td>131¾ï 1,484¸¸¿ø <span class="standard_year">(2015³â
-													±âÁØ)</span>
+											<th scope="row">ìë³¸ê¸ˆ</th>
+											<td>135ì–µ 7,500ë§Œì› <span class="standard_year">(2015ë…„
+													ê¸°ì¤€)</span></td>
+											<th scope="row">ë‹¹ê¸°ìˆœì´ìµ</th>
+											<td>131ì–µ 1,484ë§Œì› <span class="standard_year">(2015ë…„
+													ê¸°ì¤€)</span>
 											</td>
 										</tr>
 										<tr>
-											<th scope="row">´ëÇ¥ÀüÈ­</th>
+											<th scope="row">ëŒ€í‘œì „í™”</th>
 											<td>${companyInfoDetail.companyPhone }</td>
 											<th scope="row">FAX</th>
 											<td>${companyInfoDetail.companyPhone }</td>
 										</tr>
 										<tr>
-											<th scope="row">È¨ÆäÀÌÁö</th>
+											<th scope="row">í™ˆí˜ì´ì§€</th>
 											<td colspan="3">
 												<a href="${companyInfoDetail.companySite }" class="link_site" target="_blank">${companyInfoDetail.companySite }</a>
 											</td>
 										</tr>
 										<tr>
-											<th scope="row">±â¾÷ÁÖ¼Ò</th>
+											<th scope="row">ê¸°ì—…ì£¼ì†Œ</th>
 											<td colspan="3">${companyInfoDetail.companyAddr }</td>
 										</tr>
 									</tbody>
@@ -196,11 +200,11 @@
 				<div id="company_info_section3" class="company_info_section3">   
 		        <!-- sec4 -->
 		        <div class="sec4">
-		        	<h4 class="stit">È¸»çÀ§Ä¡</h4>
+		        	<h4 class="stit">íšŒì‚¬ìœ„ì¹˜</h4>
 				        <div class="corp_map">
 				            <div class="adr_wrap">
 				                <p class="adr_txt">${companyInfoDetail.companyAddr }</p>
-				                <span class="tel">´ëÇ¥ÀüÈ­: ${companyInfoDetail.companyPhone }</span><span class="fax">/ FAX : ${companyInfoDetail.companyPhone }</span>
+				                <span class="tel">ëŒ€í‘œì „í™”: ${companyInfoDetail.companyPhone }</span><span class="fax">/ FAX : ${companyInfoDetail.companyPhone }</span>
 							</div>
 				            <div class="api_wrap">
 				    			<div id="map" style="width:100%;height:400px;"></div>
@@ -211,9 +215,10 @@
     			</div>
 			</div>
 		</div>
-		<!-- ±â¾÷Á¤º¸ºä end -->
+		<!-- ê¸°ì—…ì •ë³´ë·° end -->
 	</div>
 	<!-- main body end -->
+</div>
 </body>
 <jsp:include
 	page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />

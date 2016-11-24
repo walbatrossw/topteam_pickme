@@ -1,5 +1,8 @@
 package com.cafe24.pickmetop.admin.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CountVo {
 	private int reviewCount;
 	private int interviewCount;

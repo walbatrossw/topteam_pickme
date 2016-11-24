@@ -6,6 +6,11 @@ body {
 	margin-bottom: 30px;
 } 
 
+/*로그인 모달*/
+#loginModal {
+	font-family: 'Hanna', serif;
+	font-weight: bold;
+}
 /* footer관련 css*/
 .footer{
 	padding: 0px;
