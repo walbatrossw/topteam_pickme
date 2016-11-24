@@ -24,6 +24,11 @@ public class CoverletterService {
 	@Autowired
 	CoverletterDao coverletterDao;
 	
+	// 00 나의 페이지 마감임박 기업채용공고(10개)
+	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(String LoginId){
+		return coverletterDao.selectCoverletterCompanyJobListForInfo(LoginId);
+	}
+	
 	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	public List<CoverletterMemberVo> getMemberCoverletterList(String loginId){
 		return coverletterDao.selectCoverletterMemberList(loginId);
@@ -44,7 +49,7 @@ public class CoverletterService {
 		return companyOneJobMap;
 	}
 	
-	// 03_02 자기소개서 입력 처리(자기소개서 이름/마감시간/문항/내용)
+	// 03_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
 	public void addCoverletter(CoverletterMemberVo coverletterMember, 
 							CoverletterMemberArticleVo memberArticle,
 							CoverletterMemberArticleSaveVo saveRecord,
@@ -76,9 +81,13 @@ public class CoverletterService {
 		return null;
 	}
 	
-	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
-	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(String LoginId){
-		return coverletterDao.selectCoverletterCompanyJobListForInfo(LoginId);
-	}
+	// 05_01_01 합격자기소개서 리스트(팝업용:사용자)
+	// 05_01_02 합격자기소개서 리스트(관리자페이지용: 관리자)
+	// 05_02 합격자기소개서 입력폼
+	// 05_03 합격자기소개서 입력처리
+	// 05_04 합격자기소개서 상세보기
+	// 05_05 합격자기소개서 수정
+	// 05_06 합격자기소개서 삭제
+	
 	
 }

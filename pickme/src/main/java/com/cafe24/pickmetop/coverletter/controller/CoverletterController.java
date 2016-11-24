@@ -98,7 +98,7 @@ public class CoverletterController {
 		return "redirect:/memberCoverletterList";
 	}
 	
-	// 04_01 회원이 작성한 자기소개서 상세보기  
+	// 04_01 회원이 작성한 자기소개서 상세보기 (다시 수정처리해야함, 회원이 작성한 자기소개서(하나의 자소서에서 저장기록 중 가장 나중에 작성된 자소서를 화면에 출력)
 	@RequestMapping(value="/memberCoverletterDetail", method = RequestMethod.GET)
 	public String memberCoverletterDetail(Model model, @RequestParam(value="mCletterCd") String mCletterCd){
 		Map<String, Object> memberCoverletter = coverletterService.getMemberCoverletter(mCletterCd);
@@ -111,7 +111,7 @@ public class CoverletterController {
 		return "/resumecoverletter/coverletter/member/memberCoverletterDetail";
 	}
 	
-	// 04_01 회원이 작성한 자기소개서 업데이트  
+	// 04_02 회원이 작성한 자기소개서 업데이트(데이터 업데이트X, 계속테이블에 쌓여가게) (다시수정처리해야함, 자기소개서정보는 입력X, 항목, 저장기록만 입력되게 함)
 	@RequestMapping(value="/memberCoverletterUpdateForm", method = RequestMethod.GET)
 	public String memberCoverletterUpdateForm(Model model, @RequestParam(value="mCletterCd") String mCletterCd){
 		Map<String, Object> memberCoverletter = coverletterService.getMemberCoverletter(mCletterCd);
@@ -122,6 +122,50 @@ public class CoverletterController {
 		model.addAttribute("memeberCoverletterArticleSaveRecord", memberCoverletter.get("memeberCoverletterArticleSaveRecord"));
 		Logger.info("memeberCoverletterArticleSaveRecord{}", model.toString());
 		return "/resumecoverletter/coverletter/member/memberCoverletterUpdate";
-	}	
+	}
+	// 04_03 회원이 작성한 자기소개서 저장기록리스트
+	// 04_03 회원이 작성한 자기소개서 삭제
+	
+	// 05_01_01 합격자기소개서 리스트(팝업용:사용자)
+	@RequestMapping(value="/passCoverletterList", method = RequestMethod.GET)
+	public String passCoverletterList(Model model, HttpSession session){
 		
+		return "/resumecoverletter/coverletter/admin/passCoverletterList"; 
+	}
+	// 05_01_02 합격자기소개서 리스트(관리자페이지용: 관리자)
+	@RequestMapping(value="/passCoverletterListForAdmin", method = RequestMethod.GET)
+	public String passCoverletterListForAdmin(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterListForAdmin"; 
+	}
+	// 05_02 합격자기소개서 입력폼
+	@RequestMapping(value="/passCoverletterInsert", method = RequestMethod.GET)
+	public String passCoverletterInsertForm(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterInsert"; 
+	}
+	// 05_03 합격자기소개서 입력처리
+	@RequestMapping(value="/passCoverletterInsert", method = RequestMethod.POST)
+	public String passCoverletterInsert(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterList"; 
+	}
+	// 05_04 합격자기소개서 상세보기
+	@RequestMapping(value="/passCoverletterDetail", method = RequestMethod.GET)
+	public String passCoverletterDetail(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterDetail"; 
+	}
+	// 05_05 합격자기소개서 수정
+	@RequestMapping(value="/passCoverletterUpdate", method = RequestMethod.POST)
+	public String passCoverletterUpdate(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterUpdate"; 
+	}
+	// 05_06 합격자기소개서 삭제
+	@RequestMapping(value="/passCoverletterDelete", method = RequestMethod.GET)
+	public String passCoverletterDelete(Model model, HttpSession session){
+		Logger.info(model.toString());
+		return "/resumecoverletter/coverletter/admin/passCoverletterDelete"; 
+	}
 }
