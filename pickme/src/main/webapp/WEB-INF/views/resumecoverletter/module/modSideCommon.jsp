@@ -12,8 +12,18 @@
 		<!-- Side Navigation Whole : START-->
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
+					<p align="center"><strong><i class="fa fa-thumbs-o-up"></i>  P!ckMe</strong>는 당신을 응원합니다!</p>
+					<hr>
+					<p align="center"><strong>세상에는 서류 탈락한 회사보다</strong></p>
+					<p align="center"><strong>자소서를 써야할 회사가 더 많다</strong></p>
+					<p align="right"><strong>By DoubleS</strong> &nbsp &nbsp &nbsp</p>
+					<hr>
+					<p align="center">오늘도 활기찬 하루를 시작해요!!!</p>
+					<p align="center">밥은 먹고 씁시다!!!</p>
+					<p align="center">오늘 하루도 고생하셨습니다!!!</p>
+					<p align="center" style="color: red">if문으로 시간대별로 </p>
+					<p align="center" style="color: red">문구 달라지게 하기!!!</p>
 					<ul class="nav" id="side-menu">
-						
 						<!-- Side Search Form : START -->
 						<li class="sidebar-search">
 							<div class="input-group custom-search-form">
