@@ -1,6 +1,7 @@
 package com.cafe24.pickmetop.freeboard.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.pickmetop.commons.PageHelper;
+import com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
 import com.cafe24.pickmetop.freeboard.repository.FreeboardDao;
@@ -22,6 +24,31 @@ public class FreeboardService {
 	final static Logger logger = LoggerFactory.getLogger(FreeboardService.class);
 	private final int MAX_PAGE_COUNT = 5; //보여질 최대 페이지 수
 	private final int MAX_LINE_COUNT = 10; //보여질 최대 게시글
+	
+	
+	//북마크 삭제 
+	public void bookmarkDelete(String freeboardCd){
+		dao.bookmarkDelete(freeboardCd);
+	}
+	//북마크 아이디로 검색
+
+	//북마크 등록
+	public void  bookmarkInsert(HttpSession session,String freeboardCd,FreeboardBookmarkVo freeboardBookmarkVo){
+		freeboardBookmarkVo.setLoginId((String)session.getAttribute("generalId"));
+		freeboardBookmarkVo.setFreeboardCd(freeboardCd);
+		dao.bookmarkInsert(freeboardBookmarkVo);
+	}
+	
+	
+	//댓글수정
+	public void updateFreeReply(FreeboardReplyVo freeboardReplyVo,String replyContent,String replyCd){
+		logger.info("댓글수정 서비스 ");
+		freeboardReplyVo.setReplyContent(replyContent);
+		freeboardReplyVo.setReplyCd(replyCd);
+		logger.info("freeboardReplyVo  서비스 :{}" ,freeboardReplyVo.toString());
+		dao.updateFreeReply(freeboardReplyVo);
+	}
+	
 	//게시글수정
 	public void updateFreeContent(FreeboardVo freeboardVo,String freeboardTitle,String freeboardContent,String freeboardCateCd,HttpSession session,String cd){
 		logger.info("freeboardCateCd/freeboardTitle/freeboardContent :{}",freeboardCateCd+"/"+freeboardTitle+"/"+freeboardContent);
@@ -75,38 +102,47 @@ public class FreeboardService {
 	
 	
 	//리스트
-	public Map<String,Object> selectFreeboardList(int page,String freeboardCate,String boardSearch){
+	public Map<String,Object> selectFreeboardList(int page,String freeboardCate,String boardSearch,HttpSession session,String bookmark){
+		//페이징
 		PageHelper pageHelper = new PageHelper(page,MAX_LINE_COUNT);
 		pageHelper.setLastPage(dao.selectFreeboardListCount(boardSearch,freeboardCate), MAX_LINE_COUNT);
-		Map<String, Object> mapForView =  new HashMap<String,Object>();
-		Map<String, Object> map = new HashMap<String,Object>();
+		Map<String, Object> mapForView =  new HashMap<String,Object>();//controller로 return할 map
+		Map<String, Object> map = new HashMap<String,Object>();//dao로 보낼 map
 		
 		map.put("pageHelp", pageHelper);
 		
-		logger.info("selectFreeboardList :{}",dao.selectFreeboardList(map));
-		int cate=0;
-		if(!freeboardCate.equals("")){
-			cate= Integer.valueOf(freeboardCate);
+		//북마크 체크여부확인 
+		String loginId = (String)session.getAttribute("generalId");
+		List<String> bookmarkList = dao.selectBookmarkById(loginId);
+		logger.info("/////////////////북마크리스트 : {}",bookmarkList);
+		mapForView.put("bookmarkList", bookmarkList);
+		if(!bookmark.equals("")){
+			map.put("sessionId",loginId);
+		}else{
+			int cate=0;
+			//카테고리가 name으로 넘어와서 Cd로 바꿔줌
+			if(!freeboardCate.equals("")){
+				cate= Integer.valueOf(freeboardCate);
+			}
+			switch (cate) {
+	        case 1:  map.put("cate", "1");
+	                 break;
+	        case 2:  map.put("cate", "2");
+	                 break;
+	        case 3:  map.put("cate", "3");
+	                 break;
+	        case 4:  map.put("cate", "4");
+	                 break;
+	        case 5:  map.put("cate", "5");
+	                 break;
+	        case 6:  map.put("cate", "6");
+	        
+	                 break;
+			}
+			if(!boardSearch.equals("")){
+				map.put("boardSearch", boardSearch);
+			}
 		}
-		switch (cate) {
-        case 1:  map.put("cate", "1");
-                 break;
-        case 2:  map.put("cate", "2");
-                 break;
-        case 3:  map.put("cate", "3");
-                 break;
-        case 4:  map.put("cate", "4");
-                 break;
-        case 5:  map.put("cate", "5");
-                 break;
-        case 6:  map.put("cate", "6");
-        
-                 break;
-		}
-		if(!boardSearch.equals("")){
-			map.put("boardSearch", boardSearch);
-		}
-		logger.info("map : {}",map.get("cate")+"/"+map.get("boardSearch"));
 		
 		mapForView.put("startPage", pageHelper.startPage(page, MAX_PAGE_COUNT));
 		mapForView.put("endPage", pageHelper.endPage());

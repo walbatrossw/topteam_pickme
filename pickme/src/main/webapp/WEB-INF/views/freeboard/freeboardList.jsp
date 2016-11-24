@@ -41,6 +41,8 @@
 </style>
 <script>
 $(document).ready(function(){
+	
+	
 	//게시글 등록
 	$('#submitBtn').click(function(){
 		//유효성검사
@@ -59,6 +61,8 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	
 	//검색어  
 	$('#searchBoardBtn').click(function(){
 		if($('#cateFromServer').val()==""){
@@ -78,6 +82,7 @@ $(document).ready(function(){
 		}		
 	});
 	
+	
 	//리플 
 	$('.replyBtn').click(function(){
 		
@@ -96,18 +101,37 @@ $(document).ready(function(){
 			console.log("3번")
 		}
 	});
+	
+	
 	//댓글수정 
+	var hiddenReplyCd;
 	$('.updateReply').click(function(){
 		var index = $('.updateReply').index(this);
-		alert(index);
-		$('.reply1').eq(index).replaceWith('<textarea cols="95" rows="2" id="updating" class="form-control">'
-				+'</td>'
-				+'<td>'	
-				+'<span>'
-				+'<a class="updateFinish btn btn-default btn-sm">수정완료</a>|'
-				+'<a class=" updateUndo btn btn-default btn-sm">취소</a> ');
-		$('#updating').text($('#hiddenReply').val());
-	})
+		var oldReply = $('#hiddenReply').val();
+		hiddenReplyCd = $('.hiddenReplyCd').eq(index).val();
+		$('.replyUpdateForm').eq(index).replaceWith(
+				'<table>'
+					+'<tr>'
+						+'<td>'
+						+'<div class="input-group">'
+						+'   <textarea class="form-control " id="updating" cols="120" rows="2" style="resize:none"  required></textarea>'     
+						+'   <span class="input-group-addon btn btn-primary" id="updateFinish">수정완료</span>'
+						+'</div>'
+						+'</td>' 
+					+'</tr>'
+				+'</table>');
+		$('#updating').text(oldReply);
+	});
+	$(document).on('click','#updateFinish',function(){ 
+		var repleCd = hiddenReplyCd;
+		if($('#updating').val()==""){
+			$('#updating').focus()
+		}else{
+			location.href='/freeboardReplyUpdate?replyContent='+$('#updating').val()+'&replyCd='+repleCd;
+		}
+	});
+	
+	
 	//게시글 수정
 	$('.boardContentUpdate').click(function(){
 		
@@ -154,10 +178,84 @@ $(document).ready(function(){
 		$('#updateContent').text(freeContent);
 		$('#hiddenCd').val(replyHidden);
 	});
-	
 	$(document).on('click','#updateBtn',function(){ 
-		location.href='/freeboardContentUpdate?freeboardTitle='+$('#updateTitle').val()+'&freeboardContent='+$('#updateContent').val()+'&freeboardCateCd='+$('#updateCateCd option:selected').text()+'&cd='+$('#hiddenCd').val();
+		if($('#updateTitle').val()==""){
+			$('#updateTitle').focus();
+		}else if($('#updateContent').val()==""){
+			$('#updateContent').focus();
+		}else if($('#updateCateCd option:selected').text()=="카테고리선택"||$('#updateCateCd option:selected').text()==""){
+			$('#updateCateCd').focus();
+		}else{
+			location.href='/freeboardContentUpdate?freeboardTitle='+$('#updateTitle').val()+'&freeboardContent='+$('#updateContent').val()+'&freeboardCateCd='+$('#updateCateCd option:selected').text()+'&cd='+$('#hiddenCd').val();	
+		}
+		
 	});
+	
+	//북마크 여부 
+	var listOfBookmark = new Array();
+	<c:forEach items="${bookmarkList}" var="bookmarkList">
+		listOfBookmark.push("${bookmarkList}")
+	</c:forEach> 
+		
+	$(".hiddenFreeboardCd").each(function(){
+		var order = $(".hiddenFreeboardCd").index(this);
+		console.log("게시물 코드의 order"+order);
+		var hiddenFreeboardCd = $(this).attr("value");
+		console.log("게시물 코드"+hiddenFreeboardCd);
+		for(var i=0; i<listOfBookmark.length; i++){
+		    if( listOfBookmark[i] == hiddenFreeboardCd ){
+		    	console.log("안빈별 : 북마크의게시물코드"+listOfBookmark[i]);
+		    	console.log("for문 게시물코드"+hiddenFreeboardCd);
+		    	console.log("for문 게시물코드의 order"+order);
+		        $('.bookmarkSpan').eq(order).html('<a href="#" style="font-size:3em;color: orange;" class="bookmark fill  glyphicon glyphicon-star"></a>');
+		        console.log("for문 게시물코드의 order"+order);
+		    }
+		    else if(listOfBookmark[i] != hiddenFreeboardCd){
+		    	console.log("빈별넣자 order: "+order);
+		    	  $('.bookmarkSpan').eq(order).html('<a href="#" style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
+		    }
+		}
+    });
+	
+	//북마크 등록
+	$('.fill').click(function(){
+		var order =$('.bookmark').index(this);//잘됨
+		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
+		alert($('.bookmarkSpan').eq(order).children($('.fill')))
+		if($('.bookmarkSpan').eq(order).children($('.fill'))){//이게안되네 
+			alert('북마크 등록 눌러따!! freeCd : '+freeCd );
+			location.href="/freeboardbookmarkInsert?freeboardCd="+freeCd; 
+		}else if($('.bookmark').eq(order).val()==$('.empty')){
+			alert('북마크 해제!! freeCd : '+ freeCd)
+			location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
+		}		
+	});
+	//삭제 
+	$('.empty').click(function(){
+		var order= $('.empty').parent().index(this);
+		console.log("empty order"+ order)
+		/* var order2= $('.empty').index(this).parent().index();
+		console.log("empty order"+ order2) */
+		/* var order =$('.bookmark').index(this);//잘됨
+		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
+		alert($('.bookmarkSpan').eq(order).children($('.fill')))
+		if($('.bookmarkSpan').eq(order).children($('.fill'))){//이게안되네 
+			alert('북마크 등록 눌러따!! freeCd : '+freeCd );
+			location.href="/freeboardbookmarkInsert?freeboardCd="+freeCd; 
+		}else if($('.bookmark').eq(order).val()==$('.empty')){
+			alert('북마크 해제!! freeCd : '+ freeCd)
+			location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
+		}		 */
+	});
+/* 	//북마크 삭제 
+	$(document).on('click','.bookmarkfill',function(){ 
+		var order= $('.bookmark').index(this);
+		var freeCd = $('.hiddenFreeboardCd').eq(order).val();
+		location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
+	}); */
+	
+
+	
 });
 </script>
 </head>
@@ -166,6 +264,7 @@ $(document).ready(function(){
 <input type="hidden" id="cateFromServer" value="${freeboardCate}">
 <input type="hidden" id="sessionId" value="${sessionScope.generalId}">
 <br>
+
 <div class="container-fluid">
 	<div class="row content">
 		<!-- 사이드바 -->
@@ -185,6 +284,11 @@ $(document).ready(function(){
 						</li>
 					</c:if>
 				</c:forEach>
+				<c:if test="${sessionScope.generalId!=null}">
+					<li>
+						<a href="/freeboardList?bookmark=bookmark">내 북마크보기</a>
+					</li>
+				</c:if>
 			</ul>
 			<br>
 			
@@ -270,8 +374,12 @@ $(document).ready(function(){
 									</span>
 									<span class="freeTitle">&nbsp; ${freeList.freeboardTitle}</span>
 							</td>
-							<td>
-							<p>즐겨찾기넣을곳</p>
+							<td style="text-align: 'right';">
+							
+							<!-- 북마크 별표 -->
+							<input type="hidden" class="hiddenFreeboardCd" value="${freeList.freeboardCd}">
+								 <span class="bookmarkSpan"></span>
+								 
 							</td>
 						</tr>
 						<tr>
@@ -316,13 +424,16 @@ $(document).ready(function(){
 				</table>
 				
 				
-				<table>
+				
 					<!-- 댓글리스트 -->
-					<c:forEach items="${replyMap}" var="replyMap">
+				<c:forEach items="${replyMap}" var="replyMap">
+					<input type="hidden" id="replyCd" value="${replyMap.freeboardCd}">
 					<c:if test="${replyMap.freeboardCd == freeList.freeboardCd}">
+					
+					<table>
 					<tr>
 						<td colspan="2">
-							 <div class="row"> 
+							<div class="row"> 
 								<div class="col-sm-10">
 									<span style="font-weight: bolder;">
 										${replyMap.loginNick}  
@@ -330,33 +441,35 @@ $(document).ready(function(){
 									</span>
 						</td>
 					</tr>	
-					<tr>
-						
-						<td width="750px">	
-							<p><span class="reply1">${replyMap.replyContent}</span>
-							
-							<input type="hidden" value="${replyMap.replyContent}" id="hiddenReply">
-						</td>
-						<td>		
-							<span>
-							<c:if test="${replyMap.loginId==sessionScope.generalId}">
-							<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
-							<a  class="updateReply btn btn-default btn-sm">수정</a> 
-							</c:if>
-	
-							<c:if test="${replyMap.loginId!=sessionScope.generalId}">
-							<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>
-							</c:if>
-							</span>
-						 		</div>
-							 </div>
-						</td>
-					</tr>
-					 </c:if>
-				
-					</c:forEach>
 					</table>
-				
+					
+					<div class="replyUpdateForm">
+					<table>
+						<tr>
+							<td width="750px">	
+								<p><span class="reply1">${replyMap.replyContent}</span>
+								<input type="hidden" value="${replyMap.replyCd}" class="hiddenReplyCd">
+								<input type="hidden" value="${replyMap.replyContent}" id="hiddenReply">
+							</td>
+							<td>		
+								<span>
+								<c:if test="${replyMap.loginId==sessionScope.generalId}">
+								<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
+								<a  class="updateReply btn btn-default btn-sm">수정</a> 
+								</c:if>
+		
+								<c:if test="${replyMap.loginId!=sessionScope.generalId}">
+								<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>
+								</c:if>
+								</span>
+							 		</div>
+								 </div>
+					 		</td>
+						</tr>
+					 </table>
+					 </div>
+				</c:if>
+			</c:forEach>
 			<hr>
 			<br>
 		</c:forEach>

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardCategoryVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo;
 import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
@@ -25,8 +26,25 @@ public class FreeboardDao {
 	private SqlSessionTemplate sqlSessionFactoryFreeboard;	
 	
 	
-	//게시글수정 
+	//북마크 삭제 
+	public int bookmarkDelete(String freeboardCd){
+		return sqlSessionFactoryFreeboard.delete(NS+".deleteBookmarkByFreeCd",freeboardCd);
+	}
 	
+	//북마크 아이디로 검색
+	public List<String> selectBookmarkById(String loginId){
+		return sqlSessionFactoryFreeboard.selectList(NS+".selectBookmarkById",loginId);
+	}
+	//북마크 등록
+	public int bookmarkInsert(FreeboardBookmarkVo freeboardBookmarkVo){
+		return sqlSessionFactoryFreeboard.insert(NS+".bookmarkInsert",freeboardBookmarkVo);
+	}
+	//댓글수정
+	public int updateFreeReply(FreeboardReplyVo freeboardReplyVo){
+		return sqlSessionFactoryFreeboard.update(NS+".updateFreeReply",freeboardReplyVo);
+	}
+	
+	//게시글수정 
 	public int updateFreeContent(FreeboardVo freeboardVo){
 		return sqlSessionFactoryFreeboard.update(NS+".updateFreeContent",freeboardVo);
 	}

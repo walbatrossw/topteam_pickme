@@ -3,7 +3,42 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.freeboard.repository.FreeboardMapper">
 	
+	<!-- 북마크 삭제 -->
+	<delete id="deleteBookmarkByFreeCd" parameterType="java.lang.String">
+		DELETE FROM 
+			tb_freeboard_bookmark 
+		WHERE 
+			freeboard_cd=#{freeboardCd};
+	</delete>
 	
+	<!-- 아이디로 북마크 검색 -->
+	<select id="selectBookmarkById" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT 
+			freeboard_cd
+		FROM 
+			tb_freeboard_bookmark
+		WHERE 
+			login_id = #{loginId} ;
+	</select>
+	
+	<!-- 북마크등록 -->
+	<insert id="bookmarkInsert" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo">
+		INSERT INTO tb_freeboard_bookmark
+			(freeboard_bookmark_cd, freeboard_cd, login_id, freeboard_bookmark_regdate)
+		VALUES 
+			((select CONCAT('freeboard_bookmark_', LPAD(IFNULL(MAX(substring(freeboard_bookmark_cd ,22)),0)+1,4,'0')) from tb_freeboard_bookmark as fb),  
+			#{freeboardCd}, #{loginId} , NOW())
+	</insert>
+	<!-- 댓글수정 -->
+	<update id="updateFreeReply" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardReplyVo">
+		UPDATE 
+			tb_freeboard_reply
+		SET
+			reply_content=#{replyContent},
+			reply_regdate= NOW()
+		WHERE 
+			reply_cd = #{replyCd}
+		</update>
 	<!-- 게시글수정 -->
 	<update id="updateFreeContent" parameterType="com.cafe24.pickmetop.freeboard.model.FreeboardVo">
 		UPDATE
@@ -94,16 +129,19 @@
 	<!-- 게시판 리스트 -->
 	<select id="selectFreeboardList" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardVo" parameterType="java.util.Map">
 		SELECT 
-			freeboard_cd as freeboardCd ,
-			login_id as loginId, 
-			freeboard_regdate as freeboardRegdate, 
-			freeboard_title as freeboardTitle,
-			freeboard_content as freeboardContent,
-			freeboard_nick as freeboardNick,
-			freeboard_cate_cd as freeboardCateCd
+			fb.freeboard_cd as freeboardCd ,
+			fb.login_id as loginId, 
+			fb.freeboard_regdate as freeboardRegdate, 
+			fb.freeboard_title as freeboardTitle,
+			fb.freeboard_content as freeboardContent,
+			fb.freeboard_nick as freeboardNick,
+			fb.freeboard_cate_cd as freeboardCateCd
 		FROM 
-			tb_freeboard
-		<if test=' boardSearch != null and boardSearch != "" or cate != null and cate != ""'>
+			tb_freeboard as fb
+		<if test=' sessionId != null and sessionId != ""'>
+			,tb_freeboard_bookmark as bm
+		</if>
+		<if test=' boardSearch != null and boardSearch != "" or cate != null and cate != "" or sessionId != null and sessionId != ""'>
 		
 		WHERE
 		</if>
@@ -118,6 +156,13 @@
 		<if test=' cate != null and cate != "" '>
 			freeboard_cate_cd = #{cate}
 		</if>		
+		<if test=' sessionId != null and sessionId != ""'>
+			bm.freeboard_cd = fb.freeboard_cd
+				and 
+			bm.login_id = #{sessionId}
+		</if>
+
+	
 		ORDER BY freeboard_regdate DESC
 		LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}		
 	</select>
