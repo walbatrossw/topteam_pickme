@@ -48,24 +48,46 @@ public class ResumeController {
 	//01 이력서 리스트(회원이 작성한 이력서 리스트)
 	@RequestMapping(value="/resumeList", method = RequestMethod.GET)
 	public String resumeList(Model model, HttpSession session){
-		model.addAttribute("resumeList", resumeService.getResumeList());
-		Logger.info("이력서 리스트 : {}", model.toString());
+		String loginId = (String) session.getAttribute("generalId");
+		model.addAttribute("resumeList", resumeService.getResumeList(loginId));
+		Logger.info("resumeList : {}", model.toString());
+		Logger.info("session id : {}", session.getAttribute("generalId"));
+		if(loginId == null) {
+			return "/member/general/memberGeneralLogin";
+		}
 		return "/resumecoverletter/resume/resumeList";
+		
 	}
 	
 	//02 이력서 입력화면(이력서 입력폼)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.GET)
-	public String resumeInsert(Model model){
-		Logger.info("이력서 입력폼 : {}", model.toString());
+	public String resumeInsert(Model model, HttpSession session){
+		String loginId = (String) session.getAttribute("generalId");
+		Logger.info("resumeInsert : {}", model.toString());
+		Logger.info("session id : {}", session.getAttribute("generalId"));
+		if (loginId == null) {
+			return "/member/general/memberGeneralLogin";
+		} 
 		return "/resumecoverletter/resume/resumeInsert";
 	}
 	
 	//02 이력서 입력처리(이력서 입력처리후 리스트로 이동)
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.POST)
-	public String resumeInsert(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, ResumeUniversityVo resumeUniversityVo, 
-			ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, 
-			ResumeLanguageVo resumeLanguageVo, ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, ResumeEtcVo resumeEtcVo, 
-			HttpServletRequest request, HttpSession session){
+	public String resumeInsert(ResumeVo resumeVo, 
+			ResumePersonalVo resumePersonalVo, 
+			ResumeHighschoolVo resumeHighschoolVo, 
+			ResumeUniversityVo resumeUniversityVo, 
+			ResumeFamilyVo resumeFamilyVo, 
+			ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
+			ResumeCertificateVo resumeCertificateVo, 
+			ResumeCareerVo resumeCareerVo, 
+			ResumeLanguageVo resumeLanguageVo, 
+			ResumeAwardVo resumeAwardVo, 
+			ResumeTrainingVo resumeTrainingVo, 
+			ResumeClubVo resumeClubVo, 
+			ResumeEtcVo resumeEtcVo, 
+			HttpServletRequest request, 
+			HttpSession session){
 		Logger.info("이력서 입력 : {}", resumeVo.toString());
 		Logger.info("개인신상 입력 : {}", resumePersonalVo.toString());
 		Logger.info("고등학교 입력 : {}", resumeHighschoolVo.toString());
@@ -87,7 +109,7 @@ public class ResumeController {
 	
 	//04 이력서 상세보기 (이력서 리스트에서 이력서 이름 클릭시 상세보기 화면으로 이동)
 	@RequestMapping(value="/resumeDetail", method = RequestMethod.GET)
-	public String resumeDetail(Model model,	@RequestParam(value="resumeCd") String resumeCd){
+	public String resumeDetail(Model model,	@RequestParam(value="resumeCd") String resumeCd, HttpSession session){
 		Logger.info("test {}", model.toString());
 		Map<String, Object> resumeDetail = resumeService.getResumeDetail(resumeCd);
 		Logger.info("이력서 정보 {}", resumeDetail.get("resumeDetailInfo").toString());
@@ -112,7 +134,7 @@ public class ResumeController {
 	
 	//05 이력서 수정처리(이력서 리스트에서 수정 버튼 클릭 후 수정화면으로 이동)
 	@RequestMapping(value="/resumeUpdateForm", method = RequestMethod.GET)
-	public String resumeUpdateForm(Model model, @RequestParam(value="resumeCd") String resumeCd){
+	public String resumeUpdateForm(Model model, @RequestParam(value="resumeCd") String resumeCd, HttpSession session){
 		Map<String, Object> resumeUpdateDetail = resumeService.getResumeDetail(resumeCd);
 		Logger.info("이력서 정보 {}", resumeUpdateDetail.get("resumeDetailInfo").toString());
 		Logger.info("개인신상 {}", resumeUpdateDetail.get("resumePersonal").toString());

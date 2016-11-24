@@ -28,24 +28,39 @@ public class CoverletterController {
 	// 00 이력서 및 자기소개서 나의 정보페이지 
 	@RequestMapping(value="/resumeCoverletterInfo", method = RequestMethod.GET)
 	public String resumeCoverletterInfo(Model model, HttpSession session){
-		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo());	
+		String loginId = (String) session.getAttribute("generalId");
+		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo(loginId));
+		Logger.info("Session : loginId {} " , loginId);
 		Logger.info("자기소개서 메인페이지:{}" , model.toString());
+		if(loginId == null) {
+			return "/member/general/memberGeneralLogin";
+		}
 		return "/resumecoverletter/resumeCoverletterInfo";
 	}                          
 	
 	// 01_01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 리스트페이지 맵핑
 	@RequestMapping(value="/memberCoverletterList", method = RequestMethod.GET)
-	public String memberCoverletterList(Model model){
-		model.addAttribute("memberCoverletterList", coverletterService.getMemberCoverletterList());
+	public String memberCoverletterList(Model model, HttpSession session){
+		String loginId = (String) session.getAttribute("generalId");
+		model.addAttribute("memberCoverletterList", coverletterService.getMemberCoverletterList(loginId));
+		Logger.info("Session : loginId {} " , loginId);
 		Logger.info("회원자기소개서 리스트 : {}", model.toString());
+		if(loginId == null){
+			return "/member/general/memberGeneralLogin";
+		}
 		return "/resumecoverletter/coverletter/member/memberCoverletterList";
 	}
 	
 	// 01_02 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트) : 모달페이지 맵핑
 	@RequestMapping(value="/memberCoverletterListForModal", method = RequestMethod.GET)
-	public String memberCoverletterListForMordal(Model model){
-		model.addAttribute("memberCoverletterListForModal", coverletterService.getMemberCoverletterList());
+	public String memberCoverletterListForMordal(Model model, HttpSession session){
+		String loginId = (String) session.getAttribute("generalId");
+		model.addAttribute("memberCoverletterListForModal", coverletterService.getMemberCoverletterList(loginId));
+		Logger.info("Session : loginId {} " , loginId);
 		Logger.info("회원자기소개서 리스트 for Mordal : {}", model.toString());
+		if(loginId == null){
+			return "/member/general/memberGeneralLogin";
+		}
 		return "/resumecoverletter/coverletter/member/memberCoverletterListForModal";
 	}
 	
@@ -59,7 +74,7 @@ public class CoverletterController {
 	                                                     
 	// 03_01 자기소개서 입력화면(채용직무코드/채용기업명/채용명/직무중분류명/상세직무명/채용마감일자/기업자기소개서항목리스트)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.GET)
-	public String memberCoverletterInsertForm(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd){
+	public String memberCoverletterInsertForm(Model model, @RequestParam(value="recruitJobCd") String recruitJobCd, HttpSession session){
 		Map<String, Object> companyOneJobCletter = coverletterService.getCompanyOneJobCletter(recruitJobCd);
 		Logger.info("자기소개서 입력화면 {}", model.toString());
 		model.addAttribute("companyOneJobCletterInfo", companyOneJobCletter.get("companyOneJobCletterInfo"));
@@ -71,7 +86,10 @@ public class CoverletterController {
 	
 	// 03_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
 	@RequestMapping(value="/memberCoverletterInsert", method = RequestMethod.POST)
-	public String memberCoverletterInsert(CoverletterMemberVo coverletterMember, CoverletterMemberArticleVo memberArticle, CoverletterMemberArticleSaveVo saveRecord, HttpSession session){
+	public String memberCoverletterInsert(CoverletterMemberVo coverletterMember, 
+										CoverletterMemberArticleVo memberArticle, 
+										CoverletterMemberArticleSaveVo saveRecord, 
+										HttpSession session){
 		coverletterService.addCoverletter(coverletterMember, memberArticle, saveRecord, session);
 		Logger.info("coverletterMember {}", coverletterMember.toString());
 		Logger.info("memberArticle {}", memberArticle.toString());

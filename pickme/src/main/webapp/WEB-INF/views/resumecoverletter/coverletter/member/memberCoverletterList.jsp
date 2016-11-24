@@ -75,7 +75,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-8">
-					<h1 class="page-header">${sessionScope.generalNick}님의 자소서</h1>
+					<h2 class="page-header">${sessionScope.generalNick}님의 자소서</h2>
 				</div>
 					<div class="row">
 		                <div class="col-lg-10">

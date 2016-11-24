@@ -1,7 +1,5 @@
 package com.cafe24.pickmetop.coverletter.service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,8 +25,8 @@ public class CoverletterService {
 	CoverletterDao coverletterDao;
 	
 	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
-	public List<CoverletterMemberVo> getMemberCoverletterList(){
-		return coverletterDao.selectCoverletterMemberList();
+	public List<CoverletterMemberVo> getMemberCoverletterList(String loginId){
+		return coverletterDao.selectCoverletterMemberList(loginId);
 	}
 	
 	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
@@ -50,7 +48,8 @@ public class CoverletterService {
 	public void addCoverletter(CoverletterMemberVo coverletterMember, 
 							CoverletterMemberArticleVo memberArticle,
 							CoverletterMemberArticleSaveVo saveRecord,
-							HttpSession session){
+							HttpSession session
+							){
 		coverletterMember.setLoginId((String) session.getAttribute("generalId"));
 		coverletterDao.insertCoverletter(coverletterMember);
 		coverletterDao.insertCoverletterArticle(memberArticle);
@@ -78,8 +77,8 @@ public class CoverletterService {
 	}
 	
 	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
-	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(){
-		return coverletterDao.selectCoverletterCompanyJobListForInfo();
+	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(String LoginId){
+		return coverletterDao.selectCoverletterCompanyJobListForInfo(LoginId);
 	}
 	
 }

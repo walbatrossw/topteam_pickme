@@ -83,10 +83,24 @@
 									</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);" onclick="window.open('/memberCoverletterMemo', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
+									<a href="javascript:void(0);">
 										<i class="fa fa-pencil-square fa-fw">
-										</i> 메모장
+										</i> 메모장<span class="fa arrow"></span>
 									</a>
+									<ul class="nav nav-third-level">
+										<li>
+											<a href="javascript:void(0);" id="memoAddBtn">
+												<i class="fa fa-plus-circle fa-fw">
+												</i> 메모장 추가
+											</a>	
+										</li>
+										<li>
+											<a href="javascript:void(0);" id="memoDelBtn">
+												<i class="fa fa-minus-circle fa-fw">
+												</i> 메모장 삭제
+											</a>
+										</li>
+									</ul>
 								</li> <!-- /memberCoverletterMemo -->
 								<li>
 									<a href="javascript:void(0);" onclick="window.open('/passCoverlettrList', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">

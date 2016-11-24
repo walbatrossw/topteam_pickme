@@ -90,8 +90,8 @@ public class ResumeDao {
 	
 	
 	//02 이력서 리스트
-	public List<ResumeVo> selectResumeList(){
-		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeList");
+	public List<ResumeVo> selectResumeList(String loginId){
+		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeList", loginId);
 	}
 	
 	//03 이력서 상세보기

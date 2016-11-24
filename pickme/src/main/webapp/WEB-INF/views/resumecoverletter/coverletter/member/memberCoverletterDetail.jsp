@@ -66,11 +66,11 @@
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-10">
 					<h1 class="page-header">나의 자소서</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-12">
+		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
@@ -80,21 +80,21 @@
 		                        </div>
 		                        <div class="panel-body">
 		                        <div class="table-responsive">
-		                            <table class="table table-striped table-bordered table-hover" id="">
+		                            <table class="table table-striped table-bordered table-hover table-responsive table-condenced" id="">
 		                                <thead>
 		                                    <tr>
-		                                        <th class="col-sm-4">자기소개서 이름</th>
-												<th class="col-sm-2">D-DAY</th>
-												<th class="col-sm-2">마감시간</th>
-												<th class="col-sm-2">저장시간</th>
+		                                        <th class="col-xs-3">자기소개서 이름</th>
+												<th class="col-xs-1">서류 제출 마감시간</th>
+												<th class="col-xs-1">내가 정한 마감시간</th>
+												<th class="col-xs-1">저장시간</th>
 		                                	</tr>
 		                                </thead>
 		                                <tbody>
 		                                   <tr>
 												<td>${memeberCoverletterInfo.mCletterName}</td>
-												<td>D-DAY추가예정</td>
-												<td>${memeberCoverletterInfo.mCletterEnddate}</td>
-												<td>${memeberCoverletterArticleSaveRecord.mCletterRecordDate}</td>
+												<td style="color: blue;">${memeberCoverletterInfo.mCletterEnddate}</td>
+												<td style="color: red;">${memeberCoverletterInfo.mCletterDdaytime}</td>
+												<td>${memeberCoverletterInfo.mCletterRegdate}</td>
 											</tr>
 										</tbody>
 									</table>

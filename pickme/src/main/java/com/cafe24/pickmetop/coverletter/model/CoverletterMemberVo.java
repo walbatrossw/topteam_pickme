@@ -8,6 +8,7 @@ public class CoverletterMemberVo {
 	private String loginId;
 	private String mCletterName;
 	private String mCletterRegdate;
+	private String mCletterDdaytime;
 	private String mCletterModidate;
 	private String mCletterEnddate;
 	private List<CoverletterMemberArticleVo> coverletterMemberArticleVoList;
@@ -42,6 +43,12 @@ public class CoverletterMemberVo {
 	public void setmCletterRegdate(String mCletterRegdate) {
 		this.mCletterRegdate = mCletterRegdate;
 	}
+	public String getmCletterDdaytime() {
+		return mCletterDdaytime;
+	}
+	public void setmCletterDdaytime(String mCletterDdaytime) {
+		this.mCletterDdaytime = mCletterDdaytime;
+	}
 	public String getmCletterModidate() {
 		return mCletterModidate;
 	}
@@ -70,9 +77,10 @@ public class CoverletterMemberVo {
 	public String toString() {
 		return "CoverletterMemberVo [mCletterCd=" + mCletterCd + ", recruitJobCd=" + recruitJobCd + ", loginId="
 				+ loginId + ", mCletterName=" + mCletterName + ", mCletterRegdate=" + mCletterRegdate
-				+ ", mCletterModidate=" + mCletterModidate + ", mCletterEnddate=" + mCletterEnddate
-				+ ", coverletterMemberArticleVoList=" + coverletterMemberArticleVoList
-				+ ", coverletterMemberArticleSaveVo=" + coverletterMemberArticleSaveVo + "]";
+				+ ", mCletterDdaytime=" + mCletterDdaytime + ", mCletterModidate=" + mCletterModidate
+				+ ", mCletterEnddate=" + mCletterEnddate + ", coverletterMemberArticleVoList="
+				+ coverletterMemberArticleVoList + ", coverletterMemberArticleSaveVo=" + coverletterMemberArticleSaveVo
+				+ "]";
 	}
 	
 }

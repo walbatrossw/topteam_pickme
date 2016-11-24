@@ -31,8 +31,10 @@
 <script src="/js/datetimepicker/ko.js"></script>
 <link rel="stylesheet" href="/css/datetimepicker/bootstrap-datetimepicker.css"/>
 <script>
-	//글자수 세기
+	
 	$(document).ready(function(){
+		
+		//글자수 세기
 		$(function(){
 			$('textarea.content').keyup(function(){
 			bytesHandler(this);
@@ -109,45 +111,107 @@
             	format: 'L'
             });
         });
-   });
+		
+		var memoFlag = false;
+	
+		// 메모장 생성
+		const $memoAddBtn = $('#memoAddBtn');
+		$memoAddBtn.click(function(){
+			if(memoFlag == false){
+				$('#fieldMemo').append(
+					'<div class="memo panel panel-default memo">'+
+						'<div class="panel-heading">'+
+	                   		'<strong>메모장</strong>'+
+	                   	'</div>'+
+	                   	'<div class="panel-body">'+
+	                   		'<div>'+
+	                   			'<p class="small">자기소개서 작성시 </p>'+
+	                   			'<p class="small">키워드와 참조사항을 작성하는 공간으로 활용해주세요.</p>'+
+	                   		'</div>'+
+	                   		'<div>'+
+					        	'<textarea rows="35" cols="50" class="form-control input-sm" style="resize:none" placeholder="메모내용은 저장되지 않습니다."></textarea>'+
+					        '</div>'+
+	                   	'</div>'+
+	                '</div>'
+	            );
+				memoFlag = true;
+			}
+		});
+		// 메모장 삭제
+		const $memoDelBtn = $('#memoDelBtn');
+		$memoDelBtn.on('click', function(){
+			const $memo = $('.memo');
+			$memo.last().remove();
+			memoFlag = false;
+		});
+		
+		// datetimepicker 날짜 입력UI
+		$(function () {
+            $('#ddayPicker').datetimepicker({
+            	locale: 'ko',
+            	format: 'L'
+            });
+        });
+		
+		// D-Day 구현해야함
+		
+		
+	});
 </script>
+
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCoverletterInsert.jsp" />
 <body>
+	
 	<div id="wrapper">
-	<form id="coverletterAddForm" action="/memberCoverletterInsert" method="post">
-		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">${sessionScope.generalNick}님의 자소서</h1>
-				</div>
+		<form id="coverletterAddForm" action="/memberCoverletterInsert" method="post">
+			<div id="page-wrapper">
+				<div class="row">
+					<div class="col-lg-10">
+						<h1 class="page-header">
+						<c:set var="loginId" value="${sessionScope.generalId}" />
+			            	<c:if test="${loginId ne null}">
+			                	<h3><mark>${sessionScope.generalNick}</mark>의 새로운 자소서</h3>
+			                </c:if>
+			                <c:if test="${empty loginId}">
+			                	<h3>반갑습니다.</h3>
+			                </c:if>
+						
+						</h1>
+					</div>
+					
 					<div class="row">
-		                <div class="col-lg-10">
+		                <div class="col-lg-8">
 		                    <div class="panel panel-default">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
 		                        	<p>사용자가 원하는 이름과 마감일자로 변경해보세요</p>
 		                        	<p>빠르고 정확한 제출이 서류합격의 지름길입니다.</p>
 		                        	<p>맞춤법검사, 메모장, 공채핵심자료를 제공하고 있습니다.(좌측 하단) </p>
-		                        </div>
+		                        	<c:set var="loginId" value="${sessionScope.generalId}" />
+			                        	<c:if test="${loginId ne null}">
+			                           		<button type="submit" class="btn btn-primary btn-sm" id="coverletterAddBtn"><i class="fa fa-save"></i>  자소서 저장</button>
+			                           	</c:if>
+			                           	<c:if test="${empty loginId}">
+			                           		<p><strong><a href="/memberGeneralLogin">로그인</a></strong> 또는 <strong><a href="memberGeneralInsert">회원가입</a></strong> 후에 자기소개서를 저장하실 수 있습니다.</p>
+			                           	</c:if>
+								</div>
 		                        <div class="panel-body">
-		                        <div class="table-responsive">
-		                            <table class="table table-striped table-bordered table-hover" id="">
+		                        <div>
+		                            <table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 		                                <thead>
 		                                    <tr>
-		                                        <th class="col-sm-2">자기소개서 이름</th>
-												<th class="col-sm-2">서류 제출 마감시간</th>
-												<th class="col-sm-2">내가 정한 마감시간</th>
-												<th class="col-sm-2">D-DAY</th>
+		                                        <th class="col-xs-3">자기소개서 이름</th>
+												<th class="col-xs-1">서류 제출 마감시간</th>
+												<th class="col-xs-1">내가 정한 마감시간</th>
 											</tr>
 		                                </thead>
 		                                <tbody>
 		                                	<tr>
-												<td><input type="text" class="form-control" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
-												<td>${companyOneJobCletterInfo.recruitEnddate}</td>
-												<td><input type="text" class="form-control" id="ddayPicker" name="mCletterEnddate"></td>
-												<td>채용기업DAY:  /나의DAY:</td>
+												<td><input type="text" class="form-control input-sm" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
+												<td><input type="hidden" class="form-control input-sm" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}">${companyOneJobCletterInfo.recruitEnddate}</td>
+												<td><input type="text" class="form-control input-sm" id="ddayPicker" name="mCletterDdaytime"></td>
 											</tr>
 										</tbody>
 									</table>
@@ -155,7 +219,7 @@
 										<c:choose>
 											<c:when test="${companyOneJobCletterInfo.recruitJobCd eq 'recruit_company_job_0001'}">
 												<div id="article">
-													<table class="table table-striped table-bordered table-hover">
+													<table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 							                           	<tr>
 															<th class="col-sm-1">
 																문항
@@ -204,7 +268,7 @@
 																</div>
 																<div align="right">
 																	자기소개서 문항을 반드시 확인해주세요
-																	<a class="btn btn-default btn-xs" href="javascript:errorCoverletterPopupOpen()" role="button">오류문항신고</a>
+																	<a href="#" data-toggle="modal" data-target="#errorCoverletterModal"><i class="fa fa-check-square fa-fw"></i> 오류문항신고</a>
 																</div>
 															</td>
 														</tr>
@@ -244,18 +308,18 @@
 											</c:otherwise>
 										</c:choose>		
 		                           	<hr>
-		                           	<div>
-		                           		<input type="submit" class="btn btn-primary btn" id="coverletterAddBtn" value="자기소개서 저장"/>
-		                           	</div>
 		                           	<div style="display:none;"><input type="text" id="" name="recruitJobCd" value="${companyOneJobCletterInfo.recruitJobCd}"></div> 
 		                    	</div>
 		                	</div>
 		            	</div>
 		        	</div>
-				</div>
+		        	<div class="col-sm-4">
+			        	<div id="fieldMemo"></div>
+			        </div>
+		        	</div>
+		        </div>
 			</div>
-		</div>
-	</form>
+		</form>
 		<!-- 불러오기 Modal -->
 		<div class="modal fade" id="importModal" role="dialog">
 			<div class="modal-dialog modal-lg">
@@ -310,6 +374,41 @@
 		    </div>
 		</div>
 		<!-- 저장기록 Modal -->
+		<!-- 오류문항 신고 Modal -->
+		<div class="modal fade" id="errorCoverletterModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h4 class="modal-title">자소서 항목 오류 문장신고</h4>
+			        </div>
+					<div class="modal-body">
+						<div class="check panel panel-default">
+							<div class="panel-heading">
+                        		<p>자기소개서 항목 오류 문장을 신고해주세요. </p>
+                        		<p>해당기업명과 직무명을 적어주시면 확인후 관리자가 수정처리후 처리결과를 알려드리겠습니다.</p>
+							</div>
+	                    	<div class="panel-body" align="center">
+	                    		<div>
+						        	<input type="text"  class="form-control input-sm" id="sessionId" value="${sessionScope.generalId}">
+						        </div>
+						        <br>
+						        <div>
+						        	<textarea rows="6" cols="60" class="form-control input-sm" id="askContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+						        </div>		
+	                    	</div>
+                    	</div>
+					</div>
+			        <div class="modal-footer">
+				        <span  style="color: gray;">* 전송에는 2~3초 가량 소요됩니다 </span>
+				      	<button type="button" id="sendMail" class="btn btn-default">오류 신고</button>
+				        <button type="button" class="btn btn-default " data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+		    </div>
+		</div>
+		<!-- 오류문항 신고 Modal -->
 	</div>
 </body>
 </html>

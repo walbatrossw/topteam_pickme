@@ -48,11 +48,21 @@ public class ResumeService {
 	
 	// 01_이력서 입력
 	@Transactional
-	public void addResume(ResumeVo resumeVo, ResumePersonalVo resumePersonalVo, ResumeHighschoolVo resumeHighschoolVo, 
-			ResumeUniversityVo resumeUniversityVo, ResumeFamilyVo resumeFamilyVo, ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
-			ResumeCertificateVo resumeCertificateVo, ResumeCareerVo resumeCareerVo, ResumeLanguageVo resumeLanguageVo, 
-			ResumeAwardVo resumeAwardVo, ResumeTrainingVo resumeTrainingVo, ResumeClubVo resumeClubVo, 
-			ResumeEtcVo resumeEtcVo, HttpServletRequest request, HttpSession session){
+	public void addResume(ResumeVo resumeVo, 
+			ResumePersonalVo resumePersonalVo, 
+			ResumeHighschoolVo resumeHighschoolVo, 
+			ResumeUniversityVo resumeUniversityVo, 
+			ResumeFamilyVo resumeFamilyVo, 
+			ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
+			ResumeCertificateVo resumeCertificateVo, 
+			ResumeCareerVo resumeCareerVo, 
+			ResumeLanguageVo resumeLanguageVo, 
+			ResumeAwardVo resumeAwardVo, 
+			ResumeTrainingVo resumeTrainingVo, 
+			ResumeClubVo resumeClubVo, 
+			ResumeEtcVo resumeEtcVo, 
+			HttpServletRequest request, 
+			HttpSession session){
 		
 		/*CAFE24 배포시(사진 및 포트폴리오 저장)*/
 		//final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
@@ -117,7 +127,7 @@ public class ResumeService {
 		resumeDao.insertResumeTraining(resumeTrainingVo);
 		resumeDao.insertResumeClub(resumeClubVo);
 		resumeDao.insertResumeEtc(resumeEtcVo);
-		Logger.info("이력서 입력 : {}", session.toString());
+		Logger.info("session : {}", session);
 		Logger.info("이력서 입력 : {}", resumeVo.toString());
 		Logger.info("개인신상 입력 : {}", resumePersonalVo.toString());
 		Logger.info("고등학교 입력 : {}", resumeHighschoolVo.toString());
@@ -136,8 +146,8 @@ public class ResumeService {
 	}
 	
 	// 02_이력서 리스트
-	public List<ResumeVo> getResumeList(){
-		return resumeDao.selectResumeList();
+	public List<ResumeVo> getResumeList(String loginId){
+		return resumeDao.selectResumeList(loginId);
 	}
 	
 	// 03 이력서 상세보기

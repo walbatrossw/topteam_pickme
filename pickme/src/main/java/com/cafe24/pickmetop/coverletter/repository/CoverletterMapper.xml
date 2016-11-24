@@ -16,7 +16,9 @@
 		cm.m_cletter_regdate AS mCletterRegdate, 
 		cm.m_cletter_modidate AS mCletterModidate
 	FROM 
-		tb_cletter_member cm	
+		tb_cletter_member cm
+	WHERE
+		cm.login_id = #{loginId}		
 	</select>
 
 <!-- 
@@ -62,7 +64,7 @@
 		rc.recruit_name AS recruitName, <!-- 기업명 -->
 		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 채용상세직무 -->
-		DATE_FORMAT(rc.recruit_enddate, '%Y/%m/%d %H:%i') as recruitEnddate
+		DATE_FORMAT(rc.recruit_enddate, '%Y-%m-%d %H:%i') as recruitEnddate
 	FROM tb_recruit_company rc <!-- 기업채용정보 tb -->
 		
 	INNER JOIN tb_recruit_company_job rcj <!-- 기업직무별채용정보 tb -->
@@ -103,7 +105,8 @@
 		recruit_job_cd, 
 		login_id, 
 		m_cletter_name,
-		m_cletter_enddate, 
+		m_cletter_enddate,
+		m_cletter_ddaytime,
 		m_cletter_regdate, 
 		m_cletter_modidate
 	)VALUES(
@@ -111,7 +114,8 @@
 		#{recruitJobCd}, 
 		#{loginId}, 
 		#{mCletterName},
-		#{mCletterEnddate}, <!-- 자바에서 변환한뒤에 처리해주면되징 -->
+		#{mCletterEnddate},
+		#{mCletterDdaytime}, <!-- 자바에서 변환한뒤에 처리해주면되징 -->
 		NOW(), 
 		NOW()
 	)
@@ -159,11 +163,11 @@
 		m_cletter_cd AS mCletterCd, 
 		recruit_job_cd AS recruitJobCd, 
 		login_id AS loginId, 
-		m_cletter_name AS mCletterName, 
-		m_cletter_enddate AS mCletterEnddate, 
-		m_cletter_regdate AS mCletterRegdate, 
-		m_cletter_modidate AS mCletterModidate
-		
+		m_cletter_name AS mCletterName,
+		DATE_FORMAT(m_cletter_enddate, '%Y-%m-%d %H:%i') AS mCletterEnddate,
+		DATE_FORMAT(m_cletter_ddaytime, '%Y-%m-%d %H:%i') AS mCletterDdaytime,
+		DATE_FORMAT(m_cletter_regdate, '%Y-%m-%d %H:%i') AS mCletterRegdate,
+		DATE_FORMAT(m_cletter_modidate, '%Y-%m-%d %H:%i') AS mCletterModidate
 	FROM tb_cletter_member
 		
 	WHERE m_cletter_cd = #{mCletterCd};

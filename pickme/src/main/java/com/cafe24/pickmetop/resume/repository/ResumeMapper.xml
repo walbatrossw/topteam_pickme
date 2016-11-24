@@ -337,7 +337,8 @@
 			resume_modidate as resumeModidate
 		FROM
 			tb_resume
-		ORDER BY resume_regdate ASC	
+		WHERE login_id = #{loginId}
+		ORDER BY resume_regdate ASC
 	</select>
 
 <!-- 
