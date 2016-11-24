@@ -293,8 +293,10 @@ body .container .content .signup-cont {
 			        <div class="content">
 				            <div class="signin-cont cont">
 					                <form action="/memberGeneralInsert" method="post" enctype="multipart/form-data">
+					                <input type="hidden" name="memberGeneralCheck" value="T">
 						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
 						                    <label for="generalId">이메일</label>
+						                  
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">
                 						    <label for="generalPw">비밀번호 </label>
                 						    <input type="password" name="generalPw2" id="generalPw2" class="inpt" required="required" placeholder="비밀번호확인">
@@ -325,7 +327,6 @@ body .container .content .signup-cont {
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script type="text/javascript">
 
 $('.tabs .tab').click(function(){
@@ -374,5 +375,49 @@ function naverSignInCallback() {
 // 네이버 사용자 프로필 조회
 naver_id_login.get_naver_userprofile("naverSignInCallback()");
 </script>
+<script type="text/javascript">
+$(document).ready(function() {
+		
+	$('#submit').click(function(){
+		
+			var reMemberEmail = /^([\w\.-]+)@([a-z\d\.-]+)\.([a-z\.]{2,6})$/;
+			var reMemberPassword = /^.*(?=.{6,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+			var reMemberName = /[a-zA-Z0-9가-힝]{2,10}$/
+			
+			var generalId = $('#generalId');
+			generalPw = $('#generalPw'),
+			generalPw2 = $('#generalPw2');
+			generalNick = $('#generalNick');
+			
+			memberGeneralInsert.submit(function() {
+			if(reMemberEmail.test(generalId.val()) != true) {
+				alert('아이디를 확인 후 입력하세요');
+				generalId.focus();
+				return false;
+		
+			}else if (reMemberPassword.test(reMemberPassword.val()) != true) {	//비밀번호 입력안했을때
+				alert('비밀번호를 확인 후 입력하세요');
+				generalPw.focus();
+				return false;
+				
+			} else if(reMemberPassword.val() != generalPw2.val()) {			//비밀번호 동일한지 검사
+				alert('비밀번호를 동일하게 입력하세요');
+				generalPw2.focus();
+				return false;
+				
+			}else if(generalNick.test(memberName.val()) != true) {			//닉네임 검사
+				alert('닉네임을 확인 후 입력하세요');
+				generalNick.focus();
+				return false;	
+			}	
+	
+			
+		}
+	});
+});
+	
+	
+	
+	</script>
 </body>
 </html>

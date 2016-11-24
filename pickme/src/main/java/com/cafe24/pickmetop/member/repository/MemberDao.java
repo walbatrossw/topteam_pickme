@@ -23,11 +23,12 @@ public class MemberDao {
 	@Resource(name="sqlSessionMember")
 	private SqlSessionTemplate sqlSessionFactoryMember;
 	
-	//회원정보 
+	//회원정보  보는 화면 완료
 	public int insertMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
 	}
-	//로그인 아이디 체크
+	
+	//로그인 아이디 체크 미적용
 	public Map<String, String> memberGeneralCheck(String generalId, String generalPw) {
 	
 		logger.info("generalId : {}", generalId);
@@ -35,37 +36,32 @@ public class MemberDao {
 		Map map = new HashMap();
 		map.put("generalId", generalId);
 		map.put("generalPw", generalPw);
-		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
+	return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
 	}
-	// 
+	
+	// 일반 로그인 처리 완료
 	public MemberGeneralVo selectMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
 	}
-	
-	
-	
-	// 회원 리스트
+			
+	// 회원 리스트 완료
 	public List<MemberGeneralVo> selectMemberGeneralList(Map<String, Object> map){
 		return sqlSessionFactoryMember.selectList(NS+".selectMemberGeneralList", map);
 	}
 	
-	// 회원 페이지
+	// 회원 페이지 완료
 	public int selectTotalCount() {
 		return sqlSessionFactoryMember.selectOne(NS+".selectTotalCount");
-		
 	}
-
 	
-	
-	public int insertMemberLinked(MemberLinkedVo memberLinkedVo){
-		return sqlSessionFactoryMember.insert(NS+".insertMemberLinked", memberLinkedVo);
-		
-	}
-	//회원 암호 닉네임 변경 
+	//회원 암호 닉네임 
 	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo){
 		logger.info("memberGeneralUpdate() MemberDao.java");
 		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralUpdate", memberGeneralVo);
+	
 	}
+	
+	
 	
 }
 

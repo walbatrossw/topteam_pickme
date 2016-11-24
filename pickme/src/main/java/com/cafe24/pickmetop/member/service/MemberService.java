@@ -43,9 +43,10 @@ public class MemberService {
 		return resultMap;
 	}
 	
-		// ȸ�� ����
+		// 로그인 완료 화면 처리 완료
 	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
 		return memberDao.selectMemberGeneral(memberGeneralVo);
+	
 	}
 	
 	// 회원 리스트
@@ -69,13 +70,6 @@ public class MemberService {
 	
 	}
 	
-	
-		
-	public void addmemberLinked(MemberLinkedVo memberLinkedVo){
-		
-		memberDao.insertMemberLinked(memberLinkedVo);
-		
-	}
 	// 회원정보 비밀번호 닉네임
 	public void memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());

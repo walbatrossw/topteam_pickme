@@ -25,7 +25,7 @@
 			<tbody>
 				<tr>
 					<td>아이디</td>
-					<td></td>
+					<td>${Session}</td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>

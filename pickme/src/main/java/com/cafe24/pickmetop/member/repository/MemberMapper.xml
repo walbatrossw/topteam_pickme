@@ -23,6 +23,8 @@
 			#{generalState}
 		) 	
 	</insert>
+	
+	
 	<!-- 로그인 아이디, 비밀번호 체크 -->
 	<select id="memberGeneralCheck" resultType="Map"
 				parameterType="java.util.Map">
@@ -57,20 +59,26 @@
         SELECT
             COUNT(*)
         FROM 
-        tb_member_general
+       		tb_member_general
     </select>
-	<!-- selectMemberGeneralList 회원리스트 쿼리는 db 확인 jsp 미적용-->
+    
+    
+	<!-- selectMemberGeneralList 회원리스트 완료-->
 	<select id="selectMemberGeneralList"  parameterType="java.util.Map" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
         SELECT  
 			general_id as generalId,
 			general_pw as generalPw,
-			general_nick as generalNick
+			general_nick as generalNick,
+			general_level as generalLelvel,
+			general_date as generalDate,
+			general_logdate as generalLogdate
         FROM 
             tb_member_general
         <where>
 	<if test="word != null">
 		general_id like CONCAT('%',#{word},'%')
     </if>
+    
 	</where>		
         LIMIT #{pageHelper.startRow}, #{pageHelper.linePerPage}
     </select>
@@ -78,28 +86,32 @@
  
  <!--     MemberGeneralVO 업데이트 쿼리는 db 확인 jsp 미적용-->
 	  <update id="memberGeneralUpdate"  parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
-	 UPDATE tb_member_general SET
+		UPDATE 
+			tb_member_general SET
 	 	
-        general_pw = #{generalPw},
-        general_nick = #{generalNick}
-   
-         
+	 	    general_pw = #{generalPw},
+			general_nick = #{generalNick}
         WHERE 
-        general_id = #{generalId}
+        	general_id = #{generalId}
 	</update> 
 	
 	<!--  MemberGeneralVO 삭제  쿼리는 db확인 -->
 	  <delete  id="" 
             parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
-	 DELETE FROM tb_member_general
-        WHERE general_id=#{generalId} 
-        AND general_pw=#{generalPw}
-        AND general_nick=#{generalNick}
+		DELETE FROM 
+	 		tb_member_general
+		WHERE 
+			general_id=#{generalId} 
+        AND
+        	general_pw=#{generalPw}
+        AND 
+        	general_nick=#{generalNick}
 	</delete> 
 		
 		
 	<!-- MemberLinkedVo 로그인 미완료-->
 	<insert id="insertMemberLinked" parameterType="com.cafe24.pickmetop.member.model.MemberLinkedVo">
+		
 		INSERT INTO tb_member_linked(
 			linked_id,
 			linked_nick,

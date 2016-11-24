@@ -17,11 +17,18 @@
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
-	<body>
+	  <script>
+		 $(document).ready(function() {
+			 memberGeneralUpdateForm.submit(function() {
+				 
+			 });
+		 });
+		 </script> 
+		<body>
 		<!-- 헤더 -->
 		<%@ include file="/WEB-INF/views/common/module/modHeader.jsp" %>
 		<h3>회원정보보기</h3>
-		<form class="/memberGeneralUpdate" action="/member/general/memberGeneralUpdateForm" method="post">
+		<form class="memberGeneralUpdateForm" action="/member/general/memberGeneralUpdateForm" method="post">
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
@@ -31,19 +38,19 @@
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="generalPw"  value="${MemberGeneralVo.generalPw}"></td>
+					<td><input type="password" name="generalPw"  value="${memberGeneralUpdate.generalPw}"></td>
 					
 					
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td><input type="text" name="generalNick"  value="${MemberGeneralVo.generalNick}"></td>
+					<td><input type="text" name="generalNick"  value="${memberGeneralUpdate.generalNick}"></td>
 				</tr>
 				
 			</tbody>
 		</table>
-		<input type="button" value="내정보수정">
-		
+		<a href="/memeber/general/memberGeneralUpdateForm.jsp" type="button">회원정보 수정</a>
+		<a href="updateForm.jsp" type="button">회원정보 수정</a>
 		<!-- 풋터 -->
 		</form>
 	</body>
