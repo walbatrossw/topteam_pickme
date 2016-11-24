@@ -196,28 +196,38 @@ $(document).ready(function(){
 	<c:forEach items="${bookmarkList}" var="bookmarkList">
 		listOfBookmark.push("${bookmarkList}")
 	</c:forEach> 
-		
+
 	$(".hiddenFreeboardCd").each(function(){
 		var order = $(".hiddenFreeboardCd").index(this);
 		console.log("게시물 코드의 order"+order);
 		var hiddenFreeboardCd = $(this).attr("value");
 		console.log("게시물 코드"+hiddenFreeboardCd);
-		for(var i=0; i<listOfBookmark.length; i++){
-		    if( listOfBookmark[i] == hiddenFreeboardCd ){
-		    	console.log("안빈별 : 북마크의게시물코드"+listOfBookmark[i]);
-		    	console.log("for문 게시물코드"+hiddenFreeboardCd);
-		    	console.log("for문 게시물코드의 order"+order);
-		        $('.bookmarkSpan').eq(order).html('<a href="#" style="font-size:3em;color: orange;" class="bookmark fill  glyphicon glyphicon-star"></a>');
-		        console.log("for문 게시물코드의 order"+order);
-		    }
-		    else if(listOfBookmark[i] != hiddenFreeboardCd){
-		    	console.log("빈별넣자 order: "+order);
-		    	  $('.bookmarkSpan').eq(order).html('<a href="#" style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
-		    }
+		if(listOfBookmark.length==0){
+			 $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
+		}else{
+			for(var i=0; i<listOfBookmark.length; i++){
+				console.log("111 : 북마크의게시물코드"+listOfBookmark[i]);
+		    	console.log("222 :  게시물코드"+hiddenFreeboardCd);
+			    if( listOfBookmark[i] == hiddenFreeboardCd ){
+			    	console.log("안빈별 : 북마크의게시물코드"+listOfBookmark[i]);
+			    	console.log("for문 게시물코드"+hiddenFreeboardCd);
+			    	console.log("for문 게시물코드의 order"+order);
+			        $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkDelete?freeboardCd='+hiddenFreeboardCd +'"style="font-size:3em;color: orange;" class="bookmark fill  glyphicon glyphicon-star"></a>');
+			        console.log("for문 게시물코드의 order"+order);
+			        break;
+			    }else{
+			    	console.log("빈별넣자 order: "+order);
+			    	  $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
+			    }
+			}
 		}
+		// if(listOfBookmark[i] != hiddenFreeboardCd)
+		
+		
+	
     });
 	
-	//북마크 등록
+/* 	//북마크 등록
 	$('.fill').click(function(){
 		var order =$('.bookmark').index(this);//잘됨
 		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
@@ -234,9 +244,9 @@ $(document).ready(function(){
 	$('.empty').click(function(){
 		var order= $('.empty').parent().index(this);
 		console.log("empty order"+ order)
-		/* var order2= $('.empty').index(this).parent().index();
-		console.log("empty order"+ order2) */
-		/* var order =$('.bookmark').index(this);//잘됨
+		 var order2= $('.empty').index(this).parent().index();
+		console.log("empty order"+ order2) 
+		 var order =$('.bookmark').index(this);//잘됨
 		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
 		alert($('.bookmarkSpan').eq(order).children($('.fill')))
 		if($('.bookmarkSpan').eq(order).children($('.fill'))){//이게안되네 
@@ -245,8 +255,8 @@ $(document).ready(function(){
 		}else if($('.bookmark').eq(order).val()==$('.empty')){
 			alert('북마크 해제!! freeCd : '+ freeCd)
 			location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
-		}		 */
-	});
+		}		 
+	}); */
 /* 	//북마크 삭제 
 	$(document).on('click','.bookmarkfill',function(){ 
 		var order= $('.bookmark').index(this);
