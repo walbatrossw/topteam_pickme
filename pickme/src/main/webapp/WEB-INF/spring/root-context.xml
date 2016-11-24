@@ -23,14 +23,14 @@
     <property name="password" value="qwerty1205!" /> -->
     
 	<!-- KSMART 작업용 -->
-    <property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
+   <!--  <property name="url" value="jdbc:mysql://pickmetop.cafe24.com:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
     <property name="username" value="pickmetop" />
-    <property name="password" value="qwerty1205!" />
+    <property name="password" value="qwerty1205!" /> -->
        	
     <!--  로컬DB작업용   -->
-    <!-- <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
+    <property name="url" value="jdbc:mysql://localhost:3306/pickmetop?useUnicode=true&amp;characterEncoding=UTF-8" />
     <property name="username" value="root" />
-    <property name="password" value="java0000" /> -->
+    <property name="password" value="java0000" />
 
     </bean>
 	
@@ -106,6 +106,15 @@
     </bean>
     <bean id="sqlSessionFreeboard" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactoryFreeboard" />
+	</bean>
+	
+	<!-- 공통사항 -->
+    <bean id="sqlSessionFactoryCommons" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations" value="classpath:com/cafe24/pickmetop/commons/repository/CommonsMapper.xml"/>
+    </bean>
+    <bean id="sqlSessionCommons" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactoryCommons" />
 	</bean>
 	
 	<!-- Mapper Setting -->

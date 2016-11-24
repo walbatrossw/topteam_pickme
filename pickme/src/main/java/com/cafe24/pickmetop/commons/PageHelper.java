@@ -1,7 +1,5 @@
 package com.cafe24.pickmetop.commons;
 
-import org.springframework.stereotype.Component;
-
 public class PageHelper {
     private int startRow;
     private int linePerPage;

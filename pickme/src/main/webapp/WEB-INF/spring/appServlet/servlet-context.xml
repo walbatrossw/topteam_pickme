@@ -40,6 +40,8 @@
 	<bean id="multipartResolver" 
           class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
-	
+    
+    <!-- 세션리스너에서 사용하기위해 빈객체 만듬 -->
+	<bean id="CommonsDao" class="com.cafe24.pickmetop.commons.repository.CommonsDao"></bean>
 
 </beans>

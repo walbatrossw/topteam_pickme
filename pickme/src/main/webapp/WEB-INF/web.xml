@@ -15,7 +15,12 @@ version="3.0">
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
+	<!-- 세션리스너 -->
+	<listener>
+		<listener-class>com.cafe24.pickmetop.commons.LoggingListener</listener-class>
+	</listener>
+	
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

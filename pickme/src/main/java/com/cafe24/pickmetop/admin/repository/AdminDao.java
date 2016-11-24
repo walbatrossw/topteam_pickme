@@ -14,8 +14,13 @@ public class AdminDao {
 	@Autowired
 	@Resource(name = "sqlSessionAdmin")
 	private SqlSessionTemplate sqlSessionFactoryAdmin;
+	
 	//미승인 글들 수 가져오기
 	public CountVo selectUnreceivedListCount(){
 		return sqlSessionFactoryAdmin.selectOne(NS + ".selectUnreceivedListCount");
+	}
+	//방문자수 구하기
+	public VisitantCountVo selectVisitantCount(String visitantRegdate){
+		return sqlSessionFactoryAdmin.selectOne(NS + ".selectVisitantCount", visitantRegdate);
 	}
 }

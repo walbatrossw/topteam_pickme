@@ -24,6 +24,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminMain(Locale locale, Model model) {
 		model.addAttribute("unreceivedListCount", adminService.getUnreceivedListCount());
+		model.addAttribute("visitantCount", adminService.getVisitantCount());
 		return "/admin/adminmain";
 	}
 }

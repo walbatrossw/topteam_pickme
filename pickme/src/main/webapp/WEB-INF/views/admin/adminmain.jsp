@@ -44,6 +44,16 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xs-4">
+						<div class="allowCheck">
+							<div>
+								<i class="fa fa-clipboard"></i><span class="badge">오늘 : ${visitantCount.visitantTodayCount} 총 : ${visitantCount.visitantTotalCount}</span>
+							</div>
+							<h3><a href="/salary/companySalarywUnreceivedList"><strong>연</strong>봉정보 미승인</a></h3>
+						</div>
+					</div>
+				</div>
 			</div>	
 			<!-- 관리자 페이지 추가할 내용은 이페이지를 복사해서 이안에 내용 삽입하시길 -->
 		</div>

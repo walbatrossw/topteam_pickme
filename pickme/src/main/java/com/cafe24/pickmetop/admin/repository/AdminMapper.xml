@@ -11,4 +11,14 @@
 		FROM
 			DUAL
 	</select>
+	<!-- 방문자수 -->
+	<select id="selectVisitantCount" parameterType="String" resultType="com.cafe24.pickmetop.admin.model.VisitantCountVo">
+		SELECT
+			visitant_today_count as visitantTodayCount,
+			(SELECT SUM(visitant_today_count) FROM tb_visitant_count) as visitantTotalCount
+		FROM
+			tb_visitant_count
+		WHERE
+			visitant_regdate = #{visitantRegdate}
+	</select>
 </mapper>

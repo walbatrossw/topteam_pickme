@@ -9,7 +9,7 @@ import com.cafe24.pickmetop.member.model.MemberGeneralVo;
 
 
 public class LoggingHandlerInterceptor  extends HandlerInterceptorAdapter{
-	public boolean perHandel(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+	/*public boolean perHandel(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 			HttpSession session = request.getSession(false);
 				if(session == null) {	
@@ -22,7 +22,7 @@ public class LoggingHandlerInterceptor  extends HandlerInterceptorAdapter{
 						return false;
 					}
 					return true;
-				}
+				}*/
 			}
 
 
