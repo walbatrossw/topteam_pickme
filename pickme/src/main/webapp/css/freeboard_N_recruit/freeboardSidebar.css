@@ -1,0 +1,42 @@
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+ .row.content {height:1500px} 
+
+/* 자유게시판 사이드바 */
+/* Set gray background color and 100% height */
+.sidenav {
+	width : 20%;
+	background-color: #f1f1f1;
+	height: 100%; 
+	position: fixed;
+}
+.body{
+	margin-left : 25%;
+}
+/* On small screens, set height to 'auto' for sidenav and grid */
+ @media screen and (max-width: 767px) {
+	.sidenav {
+		width : 20%;
+		height: auto;
+		padding: 25%;
+		position: fixed;
+	}
+	.row.content {
+		height: auto;
+	} 
+}
+/*페이징*/
+.pager .active a{
+	background-color: #337ab7;
+	color: #fff;
+}
+.pager .active a:hover{
+	background-color: #337ab7;
+	color: #fff;
+}
+/* 자동완성 */
+.ui-autocomplete {
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 14px;
+}

@@ -9,15 +9,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Custom Fonts -->
+<link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function(){
-	$('#bookmark').change(function(){
+	$('#modalBookmark').change(function(){
 		console.log("세션아이디 $('#sessionId').val()"+$('#sessionId').val());
 		if($('#sessionId').val()==""||$('#sessionId').val()==null){
+			alert("로그인시에만 이용가능한 기능입니다")
 			location.href="/memberGeneralLogin";
-			$('#sessionIdCheck').text('로그인시에만 이용가능한 기능입니다');
 		}else{
-			if ($('#bookmark').is(':checked')) {
+			if ($('#modalBookmark').is(':checked')) {
 				location.href="/recruitDetail?checked=checked&recruitCompanyCd="+$('#recruitCompanyCd').val();
 				console.log($('#recruitCompanyCd').val());
 	        }
@@ -30,18 +32,18 @@ $(document).ready(function(){
 </script>
 <title>채용상세보기</title>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" /> --%>
 <body>
-이예은
-<div class="container">
-<%--  <a href="/recruitUpdateForm?recruitCompanyCd=${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">수정</a> --%>
-	<h3>기업정보</h3> 
-	<%-- 세션 : ${sessionScope.id} --%>
+<!-- <div class="container"> -->
+<div id="wrapper">
+<br>
+<!-- <div style="float: right; width: 330px;"><button type="button"class="btn btn-default " data-dismiss="modal"><i class="fa fa-times"></i></button></div> -->
+	<h3 style="color: orange">기업정보</h3>
 	<input type="hidden" id = "sessionId" value="${sessionScope.generalId}">
-	<table class="table table-striped">
-		<thead style="background-color: #7c9af9;font-weight: bolder;font-size: large;">
+	<table class="table table-striped" style="width: 850px">
+		<thead style="background-color: #afafaf;font-weight: bolder;font-size: large;text-align:center;" >
 			<tr>
-				<td class="col-sm-3">
+				<td class="col-sm-3" >
 					채용기업
 				</td>
 				<td class="col-sm-3">
@@ -55,24 +57,26 @@ $(document).ready(function(){
 				</td>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody style=text-align:center;">
 			<tr>
 				<td class="col-sm-3"><input type="hidden" id="recruitCompanyCd" value="${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">
-					<label><a class="btn btn-default" href="/company/companyInfoDetail?companyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label>
+				<input type="hidden" id="companyHidden" value="${recruitCompanyInfoForDetail.recruitList[0].companyName}">
+				
+				<label><a class="btn btn-default" href="/company/companyInfoDetail?companyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label>
 				</td>
 				<td class="col-sm-3">
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitBegindate,0,10)}~
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitEnddate,0,10)}
 				</td>
 				<td class="col-sm-3">
-					<a href="${recruitCompanyInfoForDetail.recruitList[0].companySite}">홈페이지바로가기 </a>
+					<a href="${recruitCompanyInfoForDetail.recruitList[0].companySite}" target="_blank" class="btn btn-default">홈페이지바로가기 </a>
 				</td>
 				<td class="col-sm-3">
 					<c:if test="${checkBookmark=='checkBookmark'}">
-						<input type ="checkbox" id="bookmark" name="bookmark" checked="checked">
+						<input type ="checkbox" id="modalBookmark" name="bookmark" checked="checked">
 					</c:if>
 					<c:if test="${checkBookmark==null}">
-						<input type ="checkbox" id="bookmark" name="bookmark">
+						<input type ="checkbox" id="modalBookmark" name="bookmark">
 					</c:if>
 					<span id="sessionIdCheck"></span>
 				</td>
@@ -80,42 +84,55 @@ $(document).ready(function(){
 		</tbody>	
 	</table>
 
-	<h3>상세직무</h3> 
-	<table class="table table-striped">
-		<thead style="background-color: #7c9af9;font-weight: bolder;font-size: large;">
+	<h3 style="color: orange">상세직무</h3> 
+	<table class="table table-striped" style="width: 850px">
+		<thead style="background-color: #afafaf;font-weight: bolder;font-size: large; text-align:center;">
 			<tr>
-				<td class="col-sm-3">
+				<td >
 					채용직무
 				</td>
-				<td class="col-sm-3">
+				<td >
 					채용형태
 				</td>
-				<td class="col-sm-3">
+				<td >
+					학력
+				</td>
+				<td >
 					자기소개서
+				</td>
+				<td >
+					작성수
 				</td>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody style=text-align:center;">
 			<c:forEach items="${recruitCompanyInfoForDetail.recruitList}" var="Detail">
 				<tr>
-					<td class="col-sm-3">
+					<td >
 						${Detail.jobDetail}
 					</td>
-					<td class="col-sm-3">
+					<td >
 						${Detail.workStatus}
 					</td>
-					<td class="col-sm-3">
-						<a href="/memberCoverletterInsert?recruitJobCd=${Detail.recruitJobCd}">자기소개서쓰기</a>
+					<td >
+						${Detail.edu}
+					</td>
+					<td >
+						<a class="btn btn-default" href="/memberCoverletterInsert?recruitJobCd=${Detail.recruitJobCd}">자기소개서쓰기</a>
+					</td>
+					<td >
+						${Detail.cletterCount}
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>	
 	</table>
 	<div>
-		<h3>채용공고</h3> 
-		<img style="margin-left: auto; margin-right: auto; display: block;" src="/upload/recruitimg/${recruitCompanyInfoForDetail.recruitList[0].recruitImgName}"/>
+		<h3 style="color: orange">채용공고</h3> 
+		<img style="width: 850px" src="/upload/recruitimg/${recruitCompanyInfoForDetail.recruitList[0].recruitImgName}"/>
 	</div>
+	<br>
 </div>
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" /> --%>
 </html>

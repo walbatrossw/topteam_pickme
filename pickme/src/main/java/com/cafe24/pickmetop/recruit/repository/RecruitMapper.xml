@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cafe24.pickmetop.recruit.repository.RecruitMapper">
 
-	<!-- 수정화면 -->
 	<select id="recruitUpdateForm" parameterType="java.lang.String" resultType="com.cafe24.pickmetop.recruit.model.Recruit" >
 		SELECT 
 			company.company_name as companyName,
@@ -233,7 +232,9 @@
 		recruitjop.recruit_job_workstatus as workStatus,
 		recruitjop.recruit_job_jobdetail as jobDetail,
 		recruitjop.recruit_job_file as recruitImgName,
+		recruit_job_education as edu,
 		recruitjop.recruit_job_cd as recruitJobCd
+		,(select COUNT(m_cletter_cd) FROM  tb_cletter_member WHERE recruit_job_cd = recruitJobCd ) as cletterCount
 	FROM 
 		tb_recruit_company as recruit ,
 		tb_company_info as company,

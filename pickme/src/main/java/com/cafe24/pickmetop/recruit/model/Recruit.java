@@ -17,11 +17,12 @@ public class Recruit {
 	private String recruitBegindate;
 	private String recruitEnddate;
 	private String recruitImgName;
-	
+	private int cletterCount;
 	private String recruitJobCd;
 	private String workStatus;
 	private String jobDetail;
 	private String jobMidIndexCds;
+	private String edu;
 	
 	private String cCletterArticleCd;
 	private String cCletterRecruitJobCd;
@@ -37,9 +38,24 @@ public class Recruit {
 	private String companySite;
 	private String begin;
 	private String end;
-
+	
+	
 
 	
+
+	
+	public String getEdu() {
+		return edu;
+	}
+	public void setEdu(String edu) {
+		this.edu = edu;
+	}
+	public int getCletterCount() {
+		return cletterCount;
+	}
+	public void setCletterCount(int cletterCount) {
+		this.cletterCount = cletterCount;
+	}
 	public List<RecruitCompanyJobVo> getJobVo() {
 		return jobVo;
 	}

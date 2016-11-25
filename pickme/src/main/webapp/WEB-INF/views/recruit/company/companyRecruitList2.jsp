@@ -114,9 +114,6 @@ $(document).ready(function(){
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
 		}	
 	});
-	$('.popup').click(function(){
-		$('#modalIframe').html('<iframe src="/recruitDetail?recruitCompanyCd='+ $('#hiddenRecruitCd').val()+'" height="800px" width="840px" frameborder="0" framespacing="0"></iframe>')
-	});
 });
 
 </script>
@@ -267,7 +264,6 @@ $(document).ready(function(){
 										</c:if>
 									<!-- 공고명  -->
 										<c:forEach var="s" items="${oneDay.scheduleList}">
-										<input type="hidden" id="hiddenRecruitCd" value="${s.recruitCompanyCd}">
 											<div>
 												<c:if test="${s.begin=='begin'}">
 													<!-- <img src="/img/recruit/1478507737_Play01.png"> -->
@@ -277,11 +273,11 @@ $(document).ready(function(){
 													<span style="color:gray;font-weight:bold;">끝</span>
 												</c:if>
 												<c:if test="${s.recruitName.length()<=9}">
-													<a class="popup" href="#" data-toggle="modal" data-target="#datailModal">${s.recruitName}</a>
+													<a href="/recruitDetail?recruitCompanyCd=${s.recruitCompanyCd}" >${s.recruitName}</a>
 													
 												</c:if>
 												<c:if test="${s.recruitName.length()>9}">
-													<a class="popup" href="#" data-toggle="modal" data-target="#datailModal">${fn:substring(s.recruitName,0,9)}</a>
+													<a href="/recruitDetail?recruitCompanyCd=${s.recruitCompanyCd}">${fn:substring(s.recruitName,0,9)}</a>
 												</c:if>
 											</div>
 										</c:forEach>
@@ -297,19 +293,6 @@ $(document).ready(function(){
 		</table>
 	</div>	
 </div>
-</div>
-
-
-	<div class="modal fade" id="datailModal" role="dialog">
-		<div class="modal-dialog modal-lg">
-		<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<div class="check panel panel-default">
-	             <div class="panel-body" id="modalIframe"></div> 
-	 		</div> 
-	    </div>
-	</div>
-
-  
 </body>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />
 </html>

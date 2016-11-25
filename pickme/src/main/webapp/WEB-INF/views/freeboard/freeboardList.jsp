@@ -5,43 +5,16 @@
 <head>
 <title>자유게시판</title>
 <meta charset="utf-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- bootstrap -->
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/css/company/companyinfo.css">
-<style>
-/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
- .row.content {height:1500px} 
-
-/* Set gray background color and 100% height */
-.sidenav {
-	width : 20%;
-	background-color: #f1f1f1;
-	height: 100%; 
-	position: fixed;
-}
-.body{
-
-	margin-left : 25%;
-}
-/* On small screens, set height to 'auto' for sidenav and grid */
- @media screen and (max-width: 767px) {
-	.sidenav {
-		width : 20%;
-		height: auto;
-		padding: 15px;
-		position: fixed;
-	}
-	.row.content {
-		height: auto;
-	} 
-}
-</style>
+<!-- css -->
+<link rel="stylesheet" href="/css/freeboard_N_recruit/freeboardSidebar.css">
+<!-- Custom Fonts -->
+<link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script>
 $(document).ready(function(){
-	
 	
 	//게시글 등록
 	$('#submitBtn').click(function(){
@@ -59,7 +32,6 @@ $(document).ready(function(){
 		}else{
 			$('#boardInsertForm').submit();
 		}
-		
 	});
 	
 	
@@ -191,81 +163,49 @@ $(document).ready(function(){
 		
 	});
 	
-	//북마크 여부 
+	/***************북마크 관련 **************************/
+	
+	//db에서 가져온 북마크 리스트
 	var listOfBookmark = new Array();
 	<c:forEach items="${bookmarkList}" var="bookmarkList">
 		listOfBookmark.push("${bookmarkList}")
 	</c:forEach> 
 
+
+	$(document).on('click','.bookmark',function(){ 
+		if($('#sessionId').val()==null||$('#sessionId').val()==""){
+			alert("로그인후 이용가능합니다");
+			location.href="/memberGeneralLogin";
+		}
+	});
+	
+	//각게시물의 코드와 북마크가 가진 게시물 코드를 비교
 	$(".hiddenFreeboardCd").each(function(){
 		var order = $(".hiddenFreeboardCd").index(this);
 		console.log("게시물 코드의 order"+order);
 		var hiddenFreeboardCd = $(this).attr("value");
-		console.log("게시물 코드"+hiddenFreeboardCd);
+		//북마크가 하나도 없을경우 모두 빈별을 보여준다
 		if(listOfBookmark.length==0){
 			 $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
 		}else{
+			//북마크 리스트의 길이만큼 비교한다
 			for(var i=0; i<listOfBookmark.length; i++){
-				console.log("111 : 북마크의게시물코드"+listOfBookmark[i]);
-		    	console.log("222 :  게시물코드"+hiddenFreeboardCd);
 			    if( listOfBookmark[i] == hiddenFreeboardCd ){
-			    	console.log("안빈별 : 북마크의게시물코드"+listOfBookmark[i]);
-			    	console.log("for문 게시물코드"+hiddenFreeboardCd);
-			    	console.log("for문 게시물코드의 order"+order);
-			        $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkDelete?freeboardCd='+hiddenFreeboardCd +'"style="font-size:3em;color: orange;" class="bookmark fill  glyphicon glyphicon-star"></a>');
+			    	//
+			        $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkDelete?freeboardCd='+hiddenFreeboardCd +'"style="font-size:2em;color: orange;"  data-trigger="hover" data-toggle="popover" data-content="북마크를 해제할수있어요!" class="bookmark fill  glyphicon glyphicon-star"></a>');
 			        console.log("for문 게시물코드의 order"+order);
 			        break;
 			    }else{
-			    	console.log("빈별넣자 order: "+order);
-			    	  $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
+			    	console.log("빈별 order: "+order);
+			    	  $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:2em;color: orange;"  data-trigger="hover" data-toggle="popover" data-content="북마크를 등록할수있어요!" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
 			    }
 			}
 		}
-		// if(listOfBookmark[i] != hiddenFreeboardCd)
-		
-		
-	
     });
 	
-/* 	//북마크 등록
-	$('.fill').click(function(){
-		var order =$('.bookmark').index(this);//잘됨
-		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
-		alert($('.bookmarkSpan').eq(order).children($('.fill')))
-		if($('.bookmarkSpan').eq(order).children($('.fill'))){//이게안되네 
-			alert('북마크 등록 눌러따!! freeCd : '+freeCd );
-			location.href="/freeboardbookmarkInsert?freeboardCd="+freeCd; 
-		}else if($('.bookmark').eq(order).val()==$('.empty')){
-			alert('북마크 해제!! freeCd : '+ freeCd)
-			location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
-		}		
-	});
-	//삭제 
-	$('.empty').click(function(){
-		var order= $('.empty').parent().index(this);
-		console.log("empty order"+ order)
-		 var order2= $('.empty').index(this).parent().index();
-		console.log("empty order"+ order2) 
-		 var order =$('.bookmark').index(this);//잘됨
-		var freeCd = $('.hiddenFreeboardCd').eq(order).val();//잘되
-		alert($('.bookmarkSpan').eq(order).children($('.fill')))
-		if($('.bookmarkSpan').eq(order).children($('.fill'))){//이게안되네 
-			alert('북마크 등록 눌러따!! freeCd : '+freeCd );
-			location.href="/freeboardbookmarkInsert?freeboardCd="+freeCd; 
-		}else if($('.bookmark').eq(order).val()==$('.empty')){
-			alert('북마크 해제!! freeCd : '+ freeCd)
-			location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
-		}		 
-	}); */
-/* 	//북마크 삭제 
-	$(document).on('click','.bookmarkfill',function(){ 
-		var order= $('.bookmark').index(this);
-		var freeCd = $('.hiddenFreeboardCd').eq(order).val();
-		location.href="/freeboardbookmarkDelete?freeboardCd="+freeCd; 
-	}); */
 	
-
-	
+	//popOver
+	$('[data-toggle="popover"]').popover();   
 });
 </script>
 </head>
@@ -279,31 +219,47 @@ $(document).ready(function(){
 	<div class="row content">
 		<!-- 사이드바 -->
 		<div class="sidenav">
-			<h3><a href="/freeboardList">자유게시판</a></h3>
+			<h2 > &nbsp; 자유게시판</h2>
+			<hr>
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="/freeboardList">전체글보기</a></li>
+				<li><a href="/freeboardList"><span class="glyphicon glyphicon-home"></span>&nbsp; 전체글보기</a></li>
 				<c:forEach items="${cateForView}" var="cateForView">
 					<c:if test="${freeboardCate==cateForView.freeboardCateCd}">
 						<li class="active">
-							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">${cateForView.categoryKeyword}</a>
+							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">
+							<c:if test="${cateForView.freeboardCateCd==1}"><i class="fa fa-comments-o"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==2}"><i class="fa  fa-building"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==3}"><i class="fa fa-edit  "></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==4}"><i class="fa fa-user  "></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==5}"><i class="fa fa-trophy"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==6}"><i class="glyphicon glyphicon-sort-by-alphabet"></i></c:if> 
+							${cateForView.categoryKeyword}</a>
 						</li>
 					</c:if>
 					<c:if test="${freeboardCate!=cateForView.freeboardCateCd}">
 						<li>
-							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">${cateForView.categoryKeyword}</a>
+							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">
+							<c:if test="${cateForView.freeboardCateCd==1}"><i class="fa fa-comments-o"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==2}"><i class="fa  fa-building"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==3}"><i class="fa fa-edit  "></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==4}"><i class="fa fa-user  "></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==5}"><i class="fa fa-trophy"></i></c:if> 
+							<c:if test="${cateForView.freeboardCateCd==6}"><i class="glyphicon glyphicon-sort-by-alphabet"></i></c:if> 
+							
+							${cateForView.categoryKeyword}</a>
 						</li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${sessionScope.generalId!=null}">
 					<li>
-						<a href="/freeboardList?bookmark=bookmark">내 북마크보기</a>
+						<a href="/freeboardList?bookmark=bookmark" ><i class="fa fa-bookmark"></i> &nbsp;내 북마크보기</a>
 					</li>
 				</c:if>
 			</ul>
 			<br>
 			
 			<div class="input-group">
-				<input type="text" id="boardSearchKeyword" class="form-control" placeholder="검색어 입력">
+				<input type="text" id="boardSearchKeyword" class="form-control" placeholder="원하는 키워드를 검색해보세요!">
 				<span class="input-group-btn">
 					<button class="btn btn-default" type="button" id="searchBoardBtn">
 						<span class="glyphicon glyphicon-search"></span>
@@ -317,7 +273,7 @@ $(document).ready(function(){
 		<!-- 게시글입력 -->
 		<div class="body">
 		<div class="col-sm-9">
-			<hr>
+		<br>
 			<form role="form" id="boardInsertForm" action="/freeboardInsert">
 				<table>
 					<tr>
@@ -361,7 +317,7 @@ $(document).ready(function(){
 				<div class="ContentUpdateForm">
 				<table>
 						<tr>
-							<td style="font-size: large;  font-weight: bolder;">
+							<td style="font-size: large;  font-weight: bolder;" >
 									<span class="freeCate label label-success">
 										<c:if test="${freeList.freeboardCateCd=='1'}">
 											잡담
@@ -382,15 +338,16 @@ $(document).ready(function(){
 											어학
 										</c:if>
 									</span>
-									<span class="freeTitle">&nbsp; ${freeList.freeboardTitle}</span>
+									<span class="freeTitle">&nbsp; ${freeList.freeboardTitle}</span>					
+							<td >
+								<input type="hidden" class="hiddenFreeboardCd" value="${freeList.freeboardCd}">
+								<!-- 북마크 별표 -->
+								<c:if test="${sessionScope.generalId!=null}">
+									<span class="bookmarkSpan" ></span> 	
+								</c:if>	 
 							</td>
-							<td style="text-align: 'right';">
+							</td>
 							
-							<!-- 북마크 별표 -->
-							<input type="hidden" class="hiddenFreeboardCd" value="${freeList.freeboardCd}">
-								 <span class="bookmarkSpan"></span>
-								 
-							</td>
 						</tr>
 						<tr>
 							<td colspan=2>
@@ -409,8 +366,8 @@ $(document).ready(function(){
 							</td>
 							<td>
 							<c:if test="${freeList.loginId==sessionScope.generalId}">
-								<a class="btn btn-default" href="/freeboardContentDelete?freeboardCd=${freeList.freeboardCd}">삭제</a>
-								|<a class="boardContentUpdate btn btn-default ">수정</a>
+								<a class="btn btn-default btn-sm" href="/freeboardContentDelete?freeboardCd=${freeList.freeboardCd}">삭제</a>
+								|<a class="boardContentUpdate btn btn-default btn-sm">수정</a>
 							</c:if>
 							<c:if test="${freeList.loginId!=sessionScope.generalId}">
 								<span>&nbsp; &nbsp; &nbsp; &nbsp; </span>

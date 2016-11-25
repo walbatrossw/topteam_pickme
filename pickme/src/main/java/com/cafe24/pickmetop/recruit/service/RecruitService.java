@@ -113,6 +113,10 @@ public class RecruitService {
 			}
 		}
 	
+	//자기소개서 갯수 
+/*	public int countCletter(String recruitJobCd){
+		return recruitDao.countCletter(recruitJobCd);
+	}*/
 	
 	//수정화면
 	public Recruit recruitUpdateForm(String recruitCompanyCd){
@@ -186,6 +190,7 @@ public class RecruitService {
 	public Recruit selectForRecruitCompanyDetail(String recruitCompanyCd){
 			Recruit recruit = new Recruit();
 			recruit.setRecruitList(recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd));
+			logger.info("이거다{}",recruitDao.selectForRecruitCompanyDetail(recruitCompanyCd));
 		return  recruit;
 	}
 	
@@ -198,11 +203,11 @@ public class RecruitService {
 	//달력화면
 	public Map<String , Object> getOneDayList(int ddayYear,int ddayMonth,String ddayOption,String searchCompanyName
 			,String bookmark,List<String> jobTopIndexCd,List<String> industryTopindexCd,List<String> recruitJobWorkstatus,HttpSession session){
-		logger.info("searchCompanyName : {}",searchCompanyName);
+		logger.info("ddayYear : {}",ddayYear);
 		Map map = new HashMap<String , Object>();
 		//dday : ?년 + ?월 + 1일
 		Calendar dday= Calendar.getInstance();	//오늘날짜
-		dday.set(Calendar.DATE,1);
+		dday.set(Calendar.DATE,1);//1일로 셋팅
 		if(ddayOption.equals("prev")){
 			dday.set(ddayYear, ddayMonth,1);
 			dday.add(Calendar.MONTH, -1);//1월에서 -1하면 12월이 될수있도록 메서드를 사용
@@ -211,6 +216,7 @@ public class RecruitService {
 			dday.add(Calendar.MONTH, 1);//12월에서 +1하면 1월이 될수있도록 메서드를 사용
 		}else if(ddayOption.equals("search")){
 			dday.set(ddayYear, ddayMonth,1);
+			logger.info("dday:{}",dday);
 		}
 		
 		//1일의 요일 : 앞부분 공백구하기

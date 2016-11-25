@@ -30,6 +30,10 @@ public class RecruitDao {
 	@Resource(name = "sqlSessionRecruit")
 	private SqlSessionTemplate sqlSessionFactoryRecruit;	
 	
+	//자기소개서 갯수 
+	public int countCletter(String recruitJobCd){
+		return sqlSessionFactoryRecruit.selectOne(NS+".countCletter",recruitJobCd);
+	}
 	//수정화면
 	public List<Recruit> recruitUpdateForm(String recruitCompanyCd){
 		return sqlSessionFactoryRecruit.selectList(NS+".recruitUpdateForm",recruitCompanyCd);

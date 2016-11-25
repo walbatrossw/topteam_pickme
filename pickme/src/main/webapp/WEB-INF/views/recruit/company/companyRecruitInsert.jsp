@@ -12,18 +12,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- 자동완성 -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/css/freeboard_N_recruit/freeboardSidebar.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
-<style type="text/css">
-
-.ui-autocomplete {
-    max-height: 350px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 14px;
-}
-</style>
 <script>	 
 $(document).ready(function(){
 	var first = 0;
