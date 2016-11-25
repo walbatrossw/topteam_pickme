@@ -96,16 +96,13 @@
 	</update> 
 	
 	<!--  MemberGeneralVO 삭제  쿼리는 db확인 -->
-	  <delete  id="" 
+	  <delete  id="memberGeneralDelete" 
             parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
 		DELETE FROM 
 	 		tb_member_general
 		WHERE 
 			general_id=#{generalId} 
-        AND
-        	general_pw=#{generalPw}
-        AND 
-        	general_nick=#{generalNick}
+       
 	</delete> 
 		
 		

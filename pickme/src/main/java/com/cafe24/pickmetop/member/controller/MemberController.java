@@ -31,18 +31,18 @@ public class MemberController {
 	private MemberService memberService;
 	MemberDao memberdao;
 	
-	// 일반 회원가입 
+	// 일반 회원가입 화면 완료
 	@RequestMapping(value="/memberGeneralInsert")
 	public String memberGeneralInsertt(Model model){
 		return "/member/general/memberGeneralInsert";
 	}
-	// 일반 회원 로그인
+	// 일반 회원 로그인 화면 완료
 	@RequestMapping(value="/memberGeneralLogin")
 	public String memberGeneralLoginn(Model model){
 		return "/member/general/memberGeneralLogin";
 	}
 	
-	// 회원 가입후 메인 페이지
+	// 회원 가입후 메인 페이지 완료
 	@RequestMapping(value="/memberGeneralInsert", method = RequestMethod.POST)
 	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
 		memberService.addmemberGeneral(memberGeneralVo);
@@ -70,43 +70,62 @@ public class MemberController {
 
 	}
 
-	// 로그 아웃 페이지
+	// 로그 아웃 페이지 
 	@RequestMapping(value="/memberGeneralLogout", method = RequestMethod.GET)
 	public String memberGeneralLogout(HttpSession session){
-		session.invalidate();
+		session.removeAttribute("generalId");
+		session.removeAttribute("generalPw");
+		session.getAttribute("generalNick");	
+		session.getAttribute("generalLevel");
 	
 	return "redirect:/";
-		}
+	}
 		
 	
 	// 회원정보 수정
 	@RequestMapping(value="{generalId}/memberGeneralUpdate", method = RequestMethod.GET)
 	public String memberGeneralUpdate(Model model, @RequestParam(value="generalId") String generalId) {
-		logger.info("memberId : {} MemberController.java", generalId);
+		logger.info("generalId : {} MemberController.java", generalId);
 		return "/member/general/memberGeneralUpdate";
-		
 	}
 	
 	// 사용자 리스트
-	 @RequestMapping(value="/memberGeneralList", method=RequestMethod.GET)
-	 public String memberGeneralList(Model model,@RequestParam(value="page", defaultValue="1") int page,
-             									 @RequestParam(value="word", required=false) String word) {
+	 @RequestMapping(value="/general/memberGeneralList", method=RequestMethod.GET)
+	 public String memberGeneralList(Model model, HttpSession session,
+			 						@RequestParam(value="page", defaultValue="1") int page,
+             						@RequestParam(value="word", required=false) String word) {
 		
 		 Map <String, Object> memberMap = memberService.getMemberGeneralList(page, word);
 		 model.addAttribute("memberGeneraList",memberMap.get("memberGeneralList"));
 		 model.addAttribute("page", page);
 		 model.addAttribute("startPage",memberMap.get("startPage"));
 		 model.addAttribute("endPage", memberMap.get("endPage"));
-		
+		 
 		 return "/member/general/memberGeneralList";
 	 }
+	 
 	 //회원가입 이용 약관
 	 @RequestMapping(value="/terms", method=RequestMethod.GET)
 	 public String memberTerms(Model model){
 		 return "/common/etc/terms";
 	 }
 	 
+	 //회원 탈퇴 
+	 @RequestMapping(value="/memberGeneralDelete", method=RequestMethod.GET)
+	 public String memberGeneralDelete(){
+		
+		 return "/member/general/memberGeneralDelete";
+	 }
+	 // 탈퇴 화면 누르면 updata
+	 @RequestMapping(value="/memberGeneralUpdateForm", method = RequestMethod.GET)
+		public String memberGeneralUpdateForm(Model model) {
+		return "/member/general/memberGeneralUpdate";
 	 
+	 }
+	 
+	
+		 
+	
 }
 
 	

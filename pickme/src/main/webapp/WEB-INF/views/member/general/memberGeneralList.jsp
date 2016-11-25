@@ -1,10 +1,7 @@
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import ="com.cafe24.pickmetop.member.repository.MemberDao" %>
-<%@ page import ="com.cafe24.pickmetop.member.model.MemberGeneralVo" %>
-<%@ page import ="java.util.*" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +14,7 @@
 
 </head>
 <body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
+
     
 <div class="container">
   <h2>전체 회원정보 조회결과</h2>
@@ -37,7 +34,7 @@
     </thead>
     
   	<c:forEach  var="memberGeneraList" items="${memberGeneraList}" varStatus="i">
-  	
+  	  			
 				    	<tr>
 				    		<td>${i.count}</td>
 				    		<td>${memberGeneraList.generalId}</td>
@@ -50,6 +47,8 @@
 				</c:forEach>	  
 			</tbody>
 		</table>
+		<!-- 페이징 -->
+		
 		<div id="paginationWrap">
 			<ul class="pagination">
 				<li>
@@ -76,8 +75,7 @@
 				</li>
 			</ul>
 		</div>
-		
-</div>
-
+	</div>
 </body>
+
 </html>

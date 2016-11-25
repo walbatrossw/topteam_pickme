@@ -98,8 +98,9 @@
 			<li class="fa fa-list"><a href="/passCoverletterList"> 합격자소서 목록</a></li>
 			<li class="fa fa-plus"><a href="/passCoverletterInsert"> 합격자소서 입력</a></li>
 		</ul>
-		<h3>Admin</h3>
+		<h3>전체회원리스트</h3>
 		<ul class="toggle">
+			<li class="fa fa-arrow-circle-right"><a href="/general/memberGeneralList">전체회원리스트</a></li>
 		</ul>
 		<footer>
 			<hr />

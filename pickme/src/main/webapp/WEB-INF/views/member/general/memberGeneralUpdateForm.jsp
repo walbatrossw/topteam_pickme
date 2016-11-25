@@ -20,7 +20,7 @@
 	<body>
 		<!-- 헤더 -->
 		
-		<h3>회원정보보기</h3>
+		<h3>회원정보 변경</h3>
 		<table class="table table-bordered">
 			<tbody>
 				<tr>

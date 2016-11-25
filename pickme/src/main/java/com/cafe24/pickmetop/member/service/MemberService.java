@@ -71,17 +71,22 @@ public class MemberService {
 	}
 	
 	// 회원정보 비밀번호 닉네임
-	public void memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
+	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
 		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
 		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
-		memberDao.memberGeneralUpdate(memberGeneralVo);
-		
+		return memberDao.memberGeneralUpdate(memberGeneralVo);
 	}
-
+	
+	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo) {
+		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
+		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
+		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
+		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
+		return memberDao.memberGeneralDelete(memberGeneralVo);
 	}
-
+}
 			
 	
 

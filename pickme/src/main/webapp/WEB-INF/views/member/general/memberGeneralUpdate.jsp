@@ -1,57 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<!-- google chrome CDN Jquery -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<!-- Latest compiled JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<title>회원정보보기</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</head>
-	  <script>
-		 $(document).ready(function() {
-			 memberGeneralUpdateForm.submit(function() {
-				 
-			 });
-		 });
-		 </script> 
-		<body>
-		<!-- 헤더 -->
-		<%@ include file="/WEB-INF/views/common/module/modHeader.jsp" %>
-		<h3>회원정보보기</h3>
-		<form class="memberGeneralUpdateForm" action="/member/general/memberGeneralUpdateForm" method="post">
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-					<td>아이디</td>
-					<td>${sessionScope.generalId}</td>
-					
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="password" name="generalPw"  value="${memberGeneralUpdate.generalPw}"></td>
-					
-					
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td><input type="text" name="generalNick"  value="${memberGeneralUpdate.generalNick}"></td>
-				</tr>
+<head>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+
+</script>
+<title>회원정보</title>
+</head>
+<body height:600px>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp"/>
+	<div class="wrapper row5">
+		<div class="hoc container clear">
+			<div class="content three_quarter">
+				<form id="memberGeneralUpdateForm" class="form-horizontal" action="/" method="post">
+		<fieldset>
+		<input name="passwordinput" type="hidden" value="학생">
+		<legend>내 정보</legend>
+		<div class="form-group">
+		  <label class="col-md-4 control-label">아이디</label>  
+		  <div class="col-md-4">
+		  	<p class="form-control-static">${sessionScope.generalId}</p>
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="col-md-4 control-label">비밀번호</label>  
+		  <div class="col-md-4">
+		  	  <input type=password name=pwd value="${MemberGeneralVo.generalPw}">
+		  </div>
+		</div>	
+		<div class="form-group">
+		  <label class="col-md-4 control-label">비밀번호 확인</label>  
+		  <div class="col-md-4">
+		  	  <input type=password name=pwd">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="col-md-4 control-label">닉네임</label>
+		  <div class="col-md-4">
+		  <input type=text name=text value="${MemberGeneralVo.generalNick}">
+		  </div>
+		</div>	
+		
+		</fieldset>
+		</div>	
+		
+		<!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="signup_recruiter"></label>
+		  <div class="col-md-4">
+		   <a href="/memberGeneralUpdateForm">[수정]</a>&nbsp;&nbsp;
+			<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
+				</div>
+			</div>	
 				
-			</tbody>
-		</table>
-		<a href="/memeber/general/memberGeneralUpdateForm.jsp" type="button">회원정보 수정</a>
-		<a href="updateForm.jsp" type="button">회원정보 수정</a>
-		<!-- 풋터 -->
-		</form>
-	</body>
+			<legend>탈퇴 하기</legend>
+			
+		  </div>
+	</div>
+		</div>
+		</div>	
+			
+		
+</body>
 </html>

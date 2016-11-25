@@ -61,8 +61,8 @@ public class MemberDao {
 	
 	}
 	
-	
-	
-}
+	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo){
+		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralDelete", memberGeneralVo);
+	}
 
-		
+}		
