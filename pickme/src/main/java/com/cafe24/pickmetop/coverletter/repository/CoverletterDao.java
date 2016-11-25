@@ -15,6 +15,7 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
+import com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo;
 
 @Repository
 public class CoverletterDao {
@@ -77,11 +78,25 @@ public class CoverletterDao {
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
 	
-	// 02 기업채용공고의 직무별리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
-	public List<CoverletterCompanyJobInfoVo> selectCoverletterCompanyJobListForInfo(String loginId){
-		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobListForInfo", loginId);
+	// 05_01 나의 정보페이지(마감임박채용공고10)
+	public List<CoverletterCompanyJobInfoVo> selectCoverletterCompanyJobListForInfo(){
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobListForInfo");
 	}
-	
+	// 05_02 나의 정보페이지(나의자소서Count)
+	public ResumeCoverletterInfoCountVo selectMyCoverletterListCount(String loginId){
+		logger.info("나의자소서Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyCoverletterListCount", loginId);
+	}
+	// 05_03 나의 정보페이지(나의 이력서Count)
+	public ResumeCoverletterInfoCountVo selectMyResumeListCount(String loginId){
+		logger.info("나의 이력서Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyResumeListCount", loginId);
+	}
+	// 05_04 나의 정보페이지(나의채용북마크Count)
+	public ResumeCoverletterInfoCountVo selectMyRecruirLitCount(String loginId){
+		logger.info("나의 이력서Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyRecruirLitCount", loginId);
+	}
 	
 	
 }

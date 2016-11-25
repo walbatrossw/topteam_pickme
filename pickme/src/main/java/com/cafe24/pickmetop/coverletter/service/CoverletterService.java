@@ -15,6 +15,7 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
+import com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo;
 import com.cafe24.pickmetop.coverletter.repository.CoverletterDao;
 
 
@@ -24,9 +25,22 @@ public class CoverletterService {
 	@Autowired
 	CoverletterDao coverletterDao;
 	
-	// 00 나의 페이지 마감임박 기업채용공고(10개)
-	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(String LoginId){
-		return coverletterDao.selectCoverletterCompanyJobListForInfo(LoginId);
+	// 00 이력서 및 자기소개서 나의 정보페이지(마감임박채용공고10)
+	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(){
+		return coverletterDao.selectCoverletterCompanyJobListForInfo();
+	}
+	// 00 이력서 및 자기소개서 나의 정보페이지(나의자소서Count)
+	public ResumeCoverletterInfoCountVo getMyCoverletterListCount(String loginId){
+		return coverletterDao.selectMyCoverletterListCount(loginId);
+	}
+	// 00 이력서 및 자기소개서 나의 정보페이지(나의 이력서Count)
+	public ResumeCoverletterInfoCountVo getMyResumeListCount(String loginId){
+		return coverletterDao.selectMyResumeListCount(loginId);
+	}
+	
+	// 00 이력서 및 자기소개서 나의 정보페이지(나의채용북마크Count)
+	public ResumeCoverletterInfoCountVo getMyRecruirLitCount(String loginId){
+		return coverletterDao.selectMyRecruirLitCount(loginId);
 	}
 	
 	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)

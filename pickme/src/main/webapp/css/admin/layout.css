@@ -334,6 +334,7 @@ background: url(/img/admin/icn_jump_back.png) no-repeat center left;
 }
 #sidebar li.fa  {
 	font-size: 14px;
+	padding-right: 40px;
 }
 
 #sidebar p {
