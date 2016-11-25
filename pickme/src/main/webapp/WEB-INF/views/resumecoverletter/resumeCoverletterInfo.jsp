@@ -25,7 +25,19 @@
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-
+<script>
+	$(document).ready(function(){	
+		
+		$('#myRecruitBookmarkDetail').click(function(){
+			var d = new Date();
+			var ddayYear = d.getFullYear(); 
+			var ddayMonth = d.getMonth();
+			console.log(ddayYear);
+			console.log(ddayMonth);
+			location.href="/diary?ddayYear="+ddayYear+"&ddayMonth="+ddayMonth+"&ddayOption=search&bookmark=true";
+		});
+	});
+</script>
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
@@ -51,12 +63,12 @@
 	                                    <i class="fa fa-pencil fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">26</div>
+	                                    <div class="huge">${myCoverletterListCount.myCoverletterCount}</div>
 	                                    <div>나의 자소서</div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <a href="#">
+	                        <a href="/memberCoverletterList">
 	                            <div class="panel-footer">
 	                                <span class="pull-left">상세보기</span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -73,12 +85,12 @@
 	                                    <i class="fa fa-list-alt fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">12</div>
+	                                    <div class="huge">${myResumeListCount.myResumeCount}</div>
 	                                    <div>나의 이력서</div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <a href="#">
+	                        <a href="/resumeList">
 	                            <div class="panel-footer">
 	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -95,13 +107,13 @@
 	                                    <i class="fa fa-bookmark-o fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">124</div>
+	                                    <div class="huge">${myRecruitBookmarkListCount.myRecruitBookmarkCount}</div>
 	                                    <div>채용 북마크</div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <a href="#">
-	                            <div class="panel-footer">
+	                        <a>
+	                            <div class="panel-footer" id="myRecruitBookmarkDetail">
 	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 	                                <div class="clearfix"></div>

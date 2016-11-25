@@ -53,7 +53,7 @@ public class ResumeController {
 		Logger.info("resumeList : {}", model.toString());
 		Logger.info("session id : {}", session.getAttribute("generalId"));
 		if(loginId == null) {
-			return "/member/general/memberGeneralLogin";
+			return "/common/etc/loginCheck";
 		}
 		return "/resumecoverletter/resume/resumeList";
 		
@@ -66,7 +66,7 @@ public class ResumeController {
 		Logger.info("resumeInsert : {}", model.toString());
 		Logger.info("session id : {}", session.getAttribute("generalId"));
 		if (loginId == null) {
-			return "/member/general/memberGeneralLogin";
+			return "/common/etc/loginCheck";
 		} 
 		return "/resumecoverletter/resume/resumeInsert";
 	}
@@ -112,6 +112,7 @@ public class ResumeController {
 	public String resumeDetail(Model model,	@RequestParam(value="resumeCd") String resumeCd, HttpSession session){
 		Logger.info("test {}", model.toString());
 		Map<String, Object> resumeDetail = resumeService.getResumeDetail(resumeCd);
+		String loginId = (String) session.getAttribute("generalId");
 		Logger.info("이력서 정보 {}", resumeDetail.get("resumeDetailInfo").toString());
 		Logger.info("개인신상 {}", resumeDetail.get("resumePersonal").toString());
 		model.addAttribute("resumeDetailInfo", resumeDetail.get("resumeDetailInfo"));
@@ -127,6 +128,9 @@ public class ResumeController {
 		model.addAttribute("resumeTraining", resumeDetail.get("resumeTraining"));
 		model.addAttribute("resumeClub", resumeDetail.get("resumeClub"));
 		model.addAttribute("resumeEtc", resumeDetail.get("resumeEtc"));
+		if (loginId == null) {
+			return "/common/etc/loginCheck";
+		} 
 		return "/resumecoverletter/resume/resumeDetail";
 	}
 	
@@ -136,6 +140,7 @@ public class ResumeController {
 	@RequestMapping(value="/resumeUpdateForm", method = RequestMethod.GET)
 	public String resumeUpdateForm(Model model, @RequestParam(value="resumeCd") String resumeCd, HttpSession session){
 		Map<String, Object> resumeUpdateDetail = resumeService.getResumeDetail(resumeCd);
+		String loginId = (String) session.getAttribute("generalId");
 		Logger.info("이력서 정보 {}", resumeUpdateDetail.get("resumeDetailInfo").toString());
 		Logger.info("개인신상 {}", resumeUpdateDetail.get("resumePersonal").toString());
 		model.addAttribute("resumeDetailInfo", resumeUpdateDetail.get("resumeDetailInfo"));
@@ -151,6 +156,9 @@ public class ResumeController {
 		model.addAttribute("resumeTraining", resumeUpdateDetail.get("resumeTraining"));
 		model.addAttribute("resumeClub", resumeUpdateDetail.get("resumeClub"));
 		model.addAttribute("resumeEtc", resumeUpdateDetail.get("resumeEtc"));
+		if (loginId == null) {
+			return "/common/etc/loginCheck";
+		}
 		return "/resumecoverletter/resume/resumeUpdate";
 	}
 	
@@ -159,7 +167,11 @@ public class ResumeController {
 	
 	//00 자격증 및 어학 검색페이지(이력서 입력폼에서 팝업을 통해 검색창을 띄워주고, 검색값을 입력폼에 자동입력 할 수 있게 처리)
 	@RequestMapping(value="/resumeCertilangIndex", method = RequestMethod.GET)
-	public String resumeCertilangIndex(){
+	public String resumeCertilangIndex(Model model, HttpSession session){
+		String loginId = (String) session.getAttribute("generalId");
+		if (loginId == null) {
+			return "/common/etc/loginCheck";
+		}
 		return "/resumecoverletter/resume/resumeCertilangIndex";
 	}
 }
