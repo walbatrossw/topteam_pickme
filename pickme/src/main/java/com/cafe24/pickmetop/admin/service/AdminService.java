@@ -1,6 +1,7 @@
 package com.cafe24.pickmetop.admin.service;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,5 +28,10 @@ public class AdminService {
 		Calendar today = Calendar.getInstance();
 		String visitantRegdate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE);
 		return adminDao.selectVisitantCount(visitantRegdate);
+	}
+	
+	//일별 방문자 통계
+	public List<VisitantCountVo> getRegDateVisitantCount(){
+		return adminDao.selectRegDateVisitantCount();
 	}
 }

@@ -25,6 +25,7 @@ public class AdminController {
 	public String adminMain(Locale locale, Model model) {
 		model.addAttribute("unreceivedListCount", adminService.getUnreceivedListCount());
 		model.addAttribute("visitantCount", adminService.getVisitantCount());
+		model.addAttribute("regDateVisitantCountList", adminService.getRegDateVisitantCount());
 		return "/admin/adminmain";
 	}
 }

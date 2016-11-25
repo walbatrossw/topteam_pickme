@@ -1,5 +1,7 @@
 package com.cafe24.pickmetop.admin.repository;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,5 +24,9 @@ public class AdminDao {
 	//방문자수 구하기
 	public VisitantCountVo selectVisitantCount(String visitantRegdate){
 		return sqlSessionFactoryAdmin.selectOne(NS + ".selectVisitantCount", visitantRegdate);
+	}
+	//일별 방문자수
+	public List<VisitantCountVo> selectRegDateVisitantCount(){
+		return sqlSessionFactoryAdmin.selectList(NS + ".selectRegDateVisitantCount");
 	}
 }

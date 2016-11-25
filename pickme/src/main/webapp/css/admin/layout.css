@@ -188,10 +188,11 @@ margin: 0 5px;
 /* Sidebar */
 
 aside#sidebar {
+box-shadow: 5px 5px 5px 0px lightgray;	
 width: 20%;
 background: #E0E0E3 url(/img/admin/sidebar.png) repeat;
 float: left;
-min-height: 500px;
+min-height: 100%;
 margin-top: -4px;
 }
 
@@ -334,6 +335,7 @@ background: url(/img/admin/icn_jump_back.png) no-repeat center left;
 }
 #sidebar li.fa  {
 	font-size: 14px;
+	padding-right: 40px;
 }
 
 #sidebar p {
@@ -352,7 +354,7 @@ text-decoration: underline;
 }
 
 #sidebar footer {
-margin-top: 20%;
+margin-top: 100%;
 }
 
 
@@ -878,3 +880,16 @@ color: #32510F;
 padding: 10px 0;
 text-indent: 40px;
 font-size: 14px;}
+
+
+/* Ãß°¡ */
+.jumbotron {
+    box-shadow: 5px 5px 5px 0px lightgray;
+    margin-top: 10px;
+    text-align: left;
+    color: rgba(0, 0, 128, 0.7);
+    background-color: rgba(255,255,255,0.7);
+}
+.jumbotron h1{
+	border-bottom: 7px double rgba(0, 0, 128, 0.7);
+}

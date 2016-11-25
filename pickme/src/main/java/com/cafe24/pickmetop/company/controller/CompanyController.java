@@ -39,7 +39,6 @@ public class CompanyController {
 	@RequestMapping(value = "/company/companyInfoDetail", method = RequestMethod.GET)
 	public String companyInfoDetail(Locale locale, Model model,
 			@RequestParam(value="companyName") String companyName) {
-		logger.info("companyInfoDetail: {}", "들어왔니?");
 		model.addAttribute("companyInfoDetail", companyService.getCompnayInfoDetail(companyName));
 		return "/companyinfo/companyInfoDetail";
 	}
@@ -71,10 +70,15 @@ public class CompanyController {
 	 * ---------------------------------------------------------------------------------*/	
 	//연봉정보 등록화면
 	@RequestMapping(value = "/salary/companySalaryInsertForm", method = RequestMethod.GET)
-	public String companySalaryInsertForm(Model model) {
-		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
-		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
-		return "/companyinfo/salary/companySalaryInsert";
+	public String companySalaryInsertForm(Model model, HttpSession session) {
+		if(session.getAttribute("generalId") == null){
+			return "/common/etc/loginCheck";
+		}else{
+			model.addAttribute("companyInfoList", companyService.getCompanyNameList());
+			model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
+			return "/companyinfo/salary/companySalaryInsert";
+		}
+		
 	}
 	//연봉정보 등록처리
 	@RequestMapping(value = "/salary/companySalaryInsert", method = RequestMethod.POST)
@@ -89,6 +93,7 @@ public class CompanyController {
 		if(page < 1){
 			page = 1;
 		}
+		model.addAttribute("name", "연봉정보 비승인");
 		model.addAttribute("page", page);
 		model.addAttribute("salaryUnreceivedMap", companyService.getCompanySalaryUnreceivedList(page));
 		return "/admin/companyinfo/salary/companySalaryUnreceivedList";
@@ -131,9 +136,14 @@ public class CompanyController {
 	}
 	//연봉정보 통계
 	@RequestMapping(value = "/salary/companySalaryDetail", method = RequestMethod.GET)
-	public String companySalaryInsertDetail(Model model, @RequestParam(value="companyName") String companyName) {
-		model.addAttribute("companySalaryDetail", companyService.getCompanyStatisticsSalary(companyName));
-		return "/companyinfo/salary/companySalaryDetail";
+	public String companySalaryInsertDetail(Model model, @RequestParam(value="companyName") String companyName
+											,HttpSession session) {
+		if(session.getAttribute("generalId") == null){
+			return "/common/etc/loginCheck";
+		}else{
+			model.addAttribute("companySalaryDetail", companyService.getCompanyStatisticsSalary(companyName));
+			return "/companyinfo/salary/companySalaryDetail";
+		}	
 	}
 	
 	/*---------------------------------------------------------------------------------- 
@@ -146,12 +156,10 @@ public class CompanyController {
 	public String companyInterviewInsertForm(Model model, HttpServletRequest request, HttpSession session) {
 		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
 		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
+		
 		if(session.getAttribute("generalId") == null){
-			logger.info("test");
 			return "/common/etc/loginCheck";
 		}else{
-			logger.info("test2 {} :", request.getSession().toString());
-			logger.info("test2 {} :", request.getSession().getAttribute("generalId").toString());
 			return "/companyinfo/interview/companyInterviewInsert";
 		}
 	}
@@ -170,10 +178,15 @@ public class CompanyController {
 	}
 	//면접후기 사용자 디테일 화면 맵핑
 	@RequestMapping(value = "/interview/companyInterviewDetail", method = RequestMethod.GET)
-	public String companyInterviewDetail(Model model, @RequestParam(value="interviewCd") int interviewCd) {
+	public String companyInterviewDetail(Model model, @RequestParam(value="interviewCd") int interviewCd
+										,HttpSession session) {
 		logger.info("companyInterviewDetail : {}",companyService.getCompanyInterviewDetail(interviewCd).toString());
-		model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
-		return "/companyinfo/interview/companyInterviewDetail";
+		if(session.getAttribute("generalId") == null){
+			return "/common/etc/loginCheck";
+		}else{
+			model.addAttribute("companyInterviewDetail",companyService.getCompanyInterviewDetail(interviewCd));
+			return "/companyinfo/interview/companyInterviewDetail";
+		}			
 	}
 	//면접후기 삭제처리 맵핑
 	@RequestMapping(value = "/interview/companyInterviewDelete", method = RequestMethod.GET)
@@ -278,9 +291,14 @@ public class CompanyController {
 	
 	//기업리뷰 상세보기(사용자)
 	@RequestMapping(value = "/review/companyReviewDetail", method = RequestMethod.GET)
-	public String companyReviewDetail(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd) {
-		model.addAttribute("reviewDetail", companyService.getCompanyReviewDetail(companyReviewCd));
-		return "/companyinfo/review/companyReviewDetail";
+	public String companyReviewDetail(Model model, @RequestParam(value="companyReviewCd") int companyReviewCd
+										,HttpSession session) {
+		if(session.getAttribute("generalId") == null){
+			return "/common/etc/loginCheck";
+		}else{
+			model.addAttribute("reviewDetail", companyService.getCompanyReviewDetail(companyReviewCd));
+			return "/companyinfo/review/companyReviewDetail";
+		}			
 	}
 	
 	//기업리뷰 비승인리스트(관리자)
@@ -289,6 +307,7 @@ public class CompanyController {
 		if(page < 1){
 			page = 1;
 		}
+		model.addAttribute("name", "기업리뷰 비승인");
 		model.addAttribute("page", page);
 		model.addAttribute("reviewUnreceivedMap", companyService.getCompanyReviewUnreceivedList(page));
 		return "/admin/companyinfo/review/companyReviewUnreceivedList";
@@ -304,10 +323,14 @@ public class CompanyController {
 	
 	//기업리뷰 등록화면 맵핑
 	@RequestMapping(value = "/review/companyReviewInsertForm", method = RequestMethod.GET)
-	public String companyReviewInsertForm(Model model) {
-		model.addAttribute("companyInfoList", companyService.getCompanyNameList());
-		model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
-		return "/companyinfo/review/companyReviewInsert";
+	public String companyReviewInsertForm(Model model, HttpSession session) {
+		if(session.getAttribute("generalId") == null){
+			return "/common/etc/loginCheck";
+		}else{
+			model.addAttribute("companyInfoList", companyService.getCompanyNameList());
+			model.addAttribute("jobTopIndexList", companyService.getJobTopIndexList());
+			return "/companyinfo/review/companyReviewInsert";
+		}	
 	}
 	//기업리뷰 추천 맵핑
 	@RequestMapping(value = "/review/companyReviewLike", method = RequestMethod.GET)

@@ -17,8 +17,6 @@ public class CommonsDao {
 	private SqlSessionTemplate sqlSessionFactoryCommons;
 	//방문자 등록할 날짜 체크
 	public int selectVisitantRegdate(String visitantRegdate){
-		logger.info("날짜{}:",visitantRegdate);
-		logger.info("날짜{}:",sqlSessionFactoryCommons.toString());
 		return sqlSessionFactoryCommons.selectOne(NS + ".selectVisitantRegdate", visitantRegdate);
 	}
 	//해당날짜 방문자 첫등록

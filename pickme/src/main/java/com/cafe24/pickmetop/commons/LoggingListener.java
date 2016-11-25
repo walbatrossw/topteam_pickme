@@ -29,7 +29,6 @@ public class LoggingListener implements HttpSessionListener{
 		/*HttpSession session = hse.getSession();*/
 		Calendar today = Calendar.getInstance();
 		String visitantRegdate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE);
-		logger.info("ºó Ã¼Å© : {}", context.getBean("CommonsDao").toString());
 		if(commonsDao.selectVisitantRegdate(visitantRegdate) == 0){
 			logger.info("insert : {}");
 			commonsDao.insertTodayVisitant();

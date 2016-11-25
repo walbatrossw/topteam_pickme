@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/company/companyCommon.css">
 <link rel="stylesheet" href="/css/company/companyReview.css">
 <link rel="stylesheet" href="/css/company/companyinfo.css">
+
 <!-- <script>
 	$(document).ready(function(){
 		const $tablehover = $('.tablehover');
