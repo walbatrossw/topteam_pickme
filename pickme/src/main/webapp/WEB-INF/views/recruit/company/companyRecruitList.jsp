@@ -114,12 +114,18 @@ $(document).ready(function(){
 			location.href="/diary?ddayYear=${ddayYear}&ddayMonth=${ddayMonth}&ddayOption=search&bookmark=true";
 		}	
 	});
-	$('.popup').click(function(){
-		$('#modalIframe').html('<iframe src="/recruitDetail?recruitCompanyCd='+ $('#hiddenRecruitCd').val()+'" height="800px" width="840px" frameborder="0" framespacing="0"></iframe>')
-	});
+	/* $('.popup').click(function(){
+		console.log($('.hiddenRecruitCd').eq($(this).index()).val());
+		$('#modalIframe').html('<iframe src="/recruitDetail?recruitCompanyCd='+ $('#hiddenRecruitCd').eq($(this).index).val()+'" height="800px" width="840px" frameborder="0" framespacing="0"></iframe>'); 
+	}); */
 	
-	
+	//위에 클릭이벤트에서 기업 코드가 무조건 첫번재꺼라서 임시로 함수 하나만듬.
+	$.fn.iframeLink = function(recruitCompanyCd){
+		console.log(recruitCompanyCd);
+		$('#modalIframe').html('<iframe src="/recruitDetail?recruitCompanyCd='+ recruitCompanyCd +'" height="800px" width="840px" frameborder="0" framespacing="0"></iframe>');
+	};
 });
+
 //추가한 함수
 function recruitCompnay(name){
 	$('.close').trigger("click");
@@ -277,7 +283,8 @@ function resumeWrite(cd){
 										</c:if>
 									<!-- 공고명  -->
 										<c:forEach var="s" items="${oneDay.scheduleList}">
-										<input type="hidden" id="hiddenRecruitCd" value="${s.recruitCompanyCd}">
+										<%-- <input type="hidden" id="hiddenRecruitCd" value="${s.recruitCompanyCd}"> --%>
+										<input type="hidden" class="hiddenRecruitCd" value="${s.recruitCompanyCd}">
 											<div>
 												<c:if test="${s.begin=='begin'}">
 													<!-- <img src="/img/recruit/1478507737_Play01.png"> -->
@@ -287,11 +294,11 @@ function resumeWrite(cd){
 													<span style="color:gray;font-weight:bold;">끝</span>
 												</c:if>
 												<c:if test="${s.recruitName.length()<=9}">
-													<a class="popup" href="#" data-toggle="modal" data-target="#datailModal">${s.recruitName}</a>
+													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal">${s.recruitName}</a>
 													
 												</c:if>
 												<c:if test="${s.recruitName.length()>9}">
-													<a class="popup" href="#" data-toggle="modal" data-target="#datailModal">${fn:substring(s.recruitName,0,9)}</a>
+													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal">${fn:substring(s.recruitName,0,9)}</a>
 												</c:if>
 											</div>
 										</c:forEach>
