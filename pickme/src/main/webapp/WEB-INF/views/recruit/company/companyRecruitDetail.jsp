@@ -28,6 +28,14 @@ $(document).ready(function(){
 	        }
 		}
 	});
+	
+	//부모 함수호출
+	$('#recruitCompnay').click(function(){
+		parent.recruitCompnay($('#recruitCompnay').val());
+	});
+	$('#resumeWrite').click(function(){
+		parent.resumeWrite($('#resumeWrite').val());
+	});
 });
 </script>
 <title>채용상세보기</title>
@@ -62,7 +70,8 @@ $(document).ready(function(){
 				<td class="col-sm-3"><input type="hidden" id="recruitCompanyCd" value="${recruitCompanyInfoForDetail.recruitList[0].recruitCompanyCd}">
 				<input type="hidden" id="companyHidden" value="${recruitCompanyInfoForDetail.recruitList[0].companyName}">
 				
-				<label><a class="btn btn-default" href="/company/companyInfoDetail?companyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label>
+				<%-- <label><a class="btn btn-default" href="/company/companyInfoDetail?companyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label> --%>
+				<label><button id="recruitCompnay" class="btn btn-default" value="${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</button></label>
 				</td>
 				<td class="col-sm-3">
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitBegindate,0,10)}~
@@ -118,7 +127,8 @@ $(document).ready(function(){
 						${Detail.edu}
 					</td>
 					<td >
-						<a class="btn btn-default" href="/memberCoverletterInsert?recruitJobCd=${Detail.recruitJobCd}">자기소개서쓰기</a>
+						<%-- <a class="btn btn-default" href="/memberCoverletterInsert?recruitJobCd=${Detail.recruitJobCd}">자기소개서쓰기</a> --%>
+						<button id="resumeWrite" class="btn btn-default" value="${Detail.recruitJobCd}">자기소개서쓰기</button>
 					</td>
 					<td >
 						${Detail.cletterCount}

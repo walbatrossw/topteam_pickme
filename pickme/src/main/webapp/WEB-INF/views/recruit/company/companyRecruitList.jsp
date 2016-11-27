@@ -117,8 +117,18 @@ $(document).ready(function(){
 	$('.popup').click(function(){
 		$('#modalIframe').html('<iframe src="/recruitDetail?recruitCompanyCd='+ $('#hiddenRecruitCd').val()+'" height="800px" width="840px" frameborder="0" framespacing="0"></iframe>')
 	});
+	
+	
 });
-
+//추가한 함수
+function recruitCompnay(name){
+	$('.close').trigger("click");
+	location.href = "/company/companyInfoDetail?companyName=" + name;
+}
+function resumeWrite(cd){
+	$('.close').trigger("click");
+	location.href = "/memberCoverletterInsert?recruitJobCd=" + cd;
+}
 </script>
 <title>채용달력</title>
 </head>
