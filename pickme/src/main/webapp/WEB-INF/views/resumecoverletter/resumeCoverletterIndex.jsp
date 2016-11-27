@@ -1,4 +1,3 @@
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>나의 정보</title>
 <!-- Bootstrap Core CSS -->
-<!-- <link href="resumecoverlettersetting/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="resumecoverlettersetting/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- MetisMenu CSS -->
 <link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- Custom CSS -->
@@ -67,13 +66,11 @@
         });
     });
 </script>
-
-
 <script>
 </script>
 </head>
-
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp"/>
 <body>  
 	<div id="wrapper">
 		<div id="page-wrapper">

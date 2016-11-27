@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-	function go_time(){
-		 var now = new Date();
-		 var year = now.getFullYear(); //년
-		 var month = now.getMonth(); //월
-		 var day = now.getDay();  //일
-		 var hour = now.getHours();  //시
-		 var min = now.getMinutes();  //분
-		 var sec = now.getSeconds();  //초
-		 document.getElementById("clock").innerHTML 
-		 = year+"년 "+ month+"월 "+day+"일 "+hour+":"+min+":"+sec
-		 //id가 clock인 html에 현재시각을 넣음
-		 setTimeout("go_time()", 1000);
-		 //1초마다 해당 펑션을 실행함.
+	function printTime() {
+	    var clock = document.getElementById("clock"); // 출력할 장소 선택
+	    var now = new Date(); // 현재시간
+	    var nowTime = now.getFullYear() + "년 " + (now.getMonth()+1) + "월 " + now.getDate() + "일 " + now.getHours() + "시 " + now.getMinutes() + "분 " + now.getSeconds() + "초 ";
+	    clock.innerHTML = nowTime;  // 현재시간을 출력
+	    setTimeout("printTime()",1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+	}
+	window.onload = function() { // 페이지가 로딩되면 실행
+	    printTime();
 	}
 </script>
 </head>
-<body onload="go_time()">
+<body>
 	<!-- Page Whole START-->
 	<div id="wrapper">
 		<!-- Side Navigation Whole : START-->
@@ -33,8 +30,9 @@
 					<p align="center"><strong>자소서를 써야할 회사가 더 많다</strong></p>
 					<p align="right"><strong>By DoubleS</strong> &nbsp &nbsp &nbsp</p>
 					<hr>
-					<p align="center" style="color: navy;">오늘도 활기찬 하루를 시작해요!!!</p>
-					<div id="clock" align="center" style="color: navy;"></div>
+					<div align="center" style="color: navy;">
+					<p><strong><span id="clock"></span></strong></p>
+					</div>
 					<ul class="nav" id="side-menu">
 						<!-- Side Search Form : START -->
 						<li class="sidebar-search">
@@ -51,11 +49,17 @@
 						
 						<!-- Side MENU : START -->
 						<li>
-							<a href="/resumeCoverletterIndex"><i class="fa fa-sitemap fa-fw"></i> 이력서 & 자기소개서</a>
+							<a href="/resumeCoverletterIndex"><i class="fa fa-sitemap fa-fw"></i> 이력서 & 자소서 Tutorials</a>
 						</li>
-						<li>
-							<a href="/resumeCoverletterInfo"><i class="fa fa-info-circle fa-fw"></i> 나의 정보</a>
-						</li>
+						<c:set var="loginId" value="${sessionScope.generalId}" />
+			            <c:if test="${loginId ne null}">
+			            <li>
+							<a href="/resumeCoverletterInfo"><i class="fa fa-info-circle fa-fw"></i> 나의 P!ckME 통합정보</a>
+						</li>               		
+			            </c:if>
+			            	<c:if test="${empty loginId}">
+			                
+			                </c:if>
 						<li>
 							<a href="#"><i class="fa fa-table fa-fw"></i> 나의 이력서<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">

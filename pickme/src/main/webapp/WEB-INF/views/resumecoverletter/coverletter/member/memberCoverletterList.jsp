@@ -79,13 +79,13 @@
 				</div>
 					<div class="row">
 		                <div class="col-lg-10">
-		                    <div class="panel panel-default">
+		                    <div class="panel panel-primary">
 		                        <div class="panel-heading">
 		                        	<h4>나의 자기소개서</h4>
 		                        </div>
 		                        <div class="panel-body">
-		                        <div class="table-responsive">
-		                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		                        
+		                            <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 		                                <thead>
 		                                    <tr>
 		                                        <th>번호</th>
@@ -107,7 +107,7 @@
 											</c:forEach>
 										</tbody>
 									</table>
-		                    	</div>
+		                    	
 		                	</div>
 		            	</div>
 		        	</div>

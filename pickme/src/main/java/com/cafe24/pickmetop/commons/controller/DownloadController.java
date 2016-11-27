@@ -14,10 +14,12 @@ public class DownloadController {
  
 	@RequestMapping("/resumeDetail/download")
     public ModelAndView download( @RequestParam("etcFileName")String etcFileName, HttpServletRequest request){
-        /*다운로드 경로*/ 
-        //LOCAL 작업시 
-		String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
-    	//CAFE24 배포시
+        /****다운로드 경로****/ 
+        // KSMART LOCAL 작업시
+		//String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+		// HOME LOCAL 작업시
+		String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+		//CAFE24 배포시
         //String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
         System.out.println("download <------------------------------");
         System.out.println("etcFileName : " + etcFileName);

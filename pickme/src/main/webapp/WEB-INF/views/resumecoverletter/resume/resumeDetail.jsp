@@ -94,8 +94,15 @@
 					</div>
 					<div>
 						<button type="button" class="btn btn-default">
-							<a href="resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
+							<a href="/resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
 								<i class="fa fa-exchange fa-fw"></i> 이력서 수정하기
+							</a>
+						</button>
+					</div>
+					<div>
+						<button type="button" class="btn btn-default">
+							<a href="resumeDelete?resumeCd=${resumeDetailInfo.resumeCd}">
+								<i class="fa fa-exchange fa-fw"></i> 이력서 삭제하기
 							</a>
 						</button>
 					</div>
@@ -116,6 +123,7 @@
 						</div>
 						<div class="col-sm-10">
 									<h4>개인신상정보</h4>
+									
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">한글이름</th>

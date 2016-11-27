@@ -78,15 +78,14 @@
 				</div>
 					<div class="row">
 		                <div class="col-lg-8">
-		                    <div class="panel panel-default">
+		                    <div class="panel panel-primary">
 		                        <div class="panel-heading">
 		                        	<h4>${sessionScope.generalNick}님의 이력서리스트</h4>
 		                        	<p><strong>P!ckME</strong>는 지원자스펙분석 서비스를 지원할 예정입니다</p>
 		                        	<p>나의 이력서를 작성하시면 같은 기업, 같은 직무의 지원자들의 <strong>스펙을 분석해드립니다</strong></p>
 		                        </div>
 		                        <div class="panel-body">
-		                        <div class="table-responsive">
-		                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+		                            <table width="100%" class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 		                                <thead>
 		                                    <tr>
 		                                        <th>번호</th>
@@ -104,15 +103,14 @@
 												<td><a href="/resumeDetail?resumeCd=${resumeList.resumeCd}">${resumeList.resumeName}</a></td>
 												<td>${resumeList.resumeRegdate}</td>
 												<td>${resumeList.resumeModidate}</td>
-												<td class="rowlink-skip"><a href="#">수정</a></td>
-												<td class="rowlink-skip"><a href="#">삭제</a></td>
+												<td><a href="/resumeUpdateForm?resumeCd=${resumeList.resumeCd}">수정</a></td>
+												<td><a href="/resumeDelete?resumeCd=${resumeList.resumeCd}">삭제</a></td>
 											</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 		                    	</div>
-		                	</div>
-		            	</div>
+		            		</div>
 		        	</div>
 				</div>
 			</div>

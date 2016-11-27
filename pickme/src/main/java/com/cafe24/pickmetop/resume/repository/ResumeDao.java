@@ -32,7 +32,10 @@ public class ResumeDao {
 	@Autowired
 	@Resource(name="sqlSessionResume")
 	private SqlSessionTemplate sqlSessionFactoryResume;
-	
+
+/***************************************************************************************************	
+									01 이력서 입력처리 START	
+****************************************************************************************************/
 	//01_00 이력서입력
 	public int insertResume(ResumeVo resume){
 		return sqlSessionFactoryResume.insert(nameSpace +".insertResume",resume);
@@ -87,13 +90,28 @@ public class ResumeDao {
 		return sqlSessionFactoryResume.insert(nameSpace + ".insertResumeEtc", etc);
 	}
 	
+/***************************************************************************************************	
+								01 이력서 입력처리 END	
+****************************************************************************************************/
+
 	
+/***************************************************************************************************	
+								02 이력서 리스트 START
+****************************************************************************************************/	
 	
 	//02 이력서 리스트
 	public List<ResumeVo> selectResumeList(String loginId){
 		return sqlSessionFactoryResume.selectList(nameSpace + ".selectResumeList", loginId);
 	}
+
+/***************************************************************************************************	
+								02 이력서 리스트 END
+****************************************************************************************************/
+
 	
+/***************************************************************************************************	
+								03 이력서 상세보기 START
+****************************************************************************************************/	
 	//03 이력서 상세보기
 	public ResumeVo selectResumeDetailInfoByResumeCd(String resumeCd){
 		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeDetailInfoByResumeCd", resumeCd);
@@ -147,10 +165,106 @@ public class ResumeDao {
 		return sqlSessionFactoryResume.selectOne(nameSpace + ".selectResumeEtcByResumeCd", resumeCd);
 	}
 	
+/***************************************************************************************************	
+								03 이력서 상세보기 END
+****************************************************************************************************/	
+
+	
+/***************************************************************************************************	
+								04 이력서 수정 START
+****************************************************************************************************/	
+
+	//04 이력서 수정
+	
+	//04_00 이력서 수정전 전체 삭제
+	public int deleteFirstResume(String resumeCd){
+		return sqlSessionFactoryResume.delete(nameSpace + ".deleteFirstResume", resumeCd);
+	}
+	
+	//04_00 이력서 수정
+	public int updateResume(ResumeVo resume){
+		return sqlSessionFactoryResume.insert(nameSpace +".updateResume",resume);
+	}
+	//04_01 개인신상 수정
+	public int updateResumePersonal(ResumePersonalVo personal){
+		Logger.info("personal {}", personal);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumePersonal", personal);
+	}
+	//04_02 고등학교 수정
+	public int updateResumeHighschool(ResumeHighschoolVo highschool){
+		Logger.info("highschool {}", highschool);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeHighschool", highschool);
+	}
+	//04_03 대학교 다중수정
+	public int updateResumeUniversity(ResumeUniversityVo university){
+		Logger.info("university {}", university);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeUniversity", university);
+	}
+	//04_04 가족 다중수정
+	public int updateResumeFamily(ResumeFamilyVo family){
+		Logger.info("family {}", family);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeFamily", family);
+	}
+	//04_05 병역 수정
+	public int updateResumeMilitaryservice(ResumeMilitaryserviceVo militaryService){
+		Logger.info("militaryService {}", militaryService);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeMilitaryservice", militaryService);
+	}
+	//04_06 자격증 다중수정
+	public int updateResumeCertificate(ResumeCertificateVo certificate){
+		Logger.info("certificate {}", certificate);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeCertificate", certificate);
+	}
+	//04_07 경력사항 다중수정
+	public int updateResumeCareer(ResumeCareerVo career){
+		Logger.info("career {}", career);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeCareer", career);
+	}
+	//04_08 어학 다중수정
+	public int updateResumeLanguage(ResumeLanguageVo language){
+		Logger.info("language {}", language);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeLanguage", language);
+	}
+	//04_09 수상경력 다중수정
+	public int updateResumeAward(ResumeAwardVo award){
+		Logger.info("award {}", award);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeAward", award);
+	}
+	//04_10 국내외연수 다중수정
+	public int updateResumeTraining(ResumeTrainingVo training){
+		Logger.info("training {}", training);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeTraining", training);
+	}
+	//04_11 동아리 다중수정
+	public int updateResumeClub(ResumeClubVo club){
+		Logger.info("club {}", club);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeClub", club);
+	}
+	//04_12 기타 수정
+	public int updateResumeEtc(ResumeEtcVo etc){
+		Logger.info("etc {}", etc);
+		return sqlSessionFactoryResume.insert(nameSpace + ".updateResumeEtc", etc);
+	}
+	
+/***************************************************************************************************	
+									04 이력서 수정 END
+****************************************************************************************************/		
+
 	
 	
-	//이력서 수정
+	
+/***************************************************************************************************	
+									05 이력서 삭제 START
+****************************************************************************************************/		
 	
 	//이력서 삭제
+	public int deleteResume(String resumeCd){
+		return sqlSessionFactoryResume.delete(nameSpace + ".deleteResumeByResumeCd", resumeCd);
+	}
+		
+	
+/***************************************************************************************************	
+									05 이력서 삭제 END
+****************************************************************************************************/		
 	
 }

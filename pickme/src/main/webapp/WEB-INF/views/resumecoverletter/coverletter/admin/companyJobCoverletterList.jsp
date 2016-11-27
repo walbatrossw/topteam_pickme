@@ -79,15 +79,14 @@
 				</div>
 					<div class="row">
 		                <div class="col-lg-10">
-		                    <div class="panel panel-default">
+		                    <div class="panel panel-primary">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 기업 직무별 자기소개서 문항을 제공하고 있습니다.</p>
 		                        	<p>하단의 리스트에 채용명을 검색(우측상단), 클릭하시면 해당 기업의 자기소개서 작성페이지로 이동합니다.</p>
 		                        	<p>기본 자기소개서 양식을 제공합니다. 만약 원하시는 기업이 없거나, 나만의 자기소개서 작성을 원하신다면 기본 자기소개서를 클릭하시면 됩니다</p>
 		                        </div>
 		                        <div class="panel-body">
-		                        <div class="table-responsive">
-		                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+		                            <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 		                                <thead>
 		                                    <tr>
 		                                        <th>번호</th>
@@ -113,8 +112,7 @@
 											</c:forEach>
 										</tbody>
 									</table>
-		                    	</div>
-		                	</div>
+			                	</div>
 		            	</div>
 		        	</div>
 				</div>

@@ -50,8 +50,8 @@ public class ResumeController {
 	public String resumeList(Model model, HttpSession session){
 		String loginId = (String) session.getAttribute("generalId");
 		model.addAttribute("resumeList", resumeService.getResumeList(loginId));
-		Logger.info("resumeList : {}", model.toString());
-		Logger.info("session id : {}", session.getAttribute("generalId"));
+		Logger.info("이력서 리스트 : {}", model.toString());
+		Logger.info("이력서 리스트 - 세션 ID : {}", session.getAttribute("generalId"));
 		if(loginId == null) {
 			return "/common/etc/loginCheck";
 		}
@@ -63,8 +63,8 @@ public class ResumeController {
 	@RequestMapping(value="/resumeInsert", method = RequestMethod.GET)
 	public String resumeInsert(Model model, HttpSession session){
 		String loginId = (String) session.getAttribute("generalId");
-		Logger.info("resumeInsert : {}", model.toString());
-		Logger.info("session id : {}", session.getAttribute("generalId"));
+		Logger.info("이력서입력화면 : {}", model.toString());
+		Logger.info("이력서입력화면 - 세션 ID : {}", session.getAttribute("generalId"));
 		if (loginId == null) {
 			return "/common/etc/loginCheck";
 		} 
@@ -136,7 +136,7 @@ public class ResumeController {
 	
 	
 	
-	//05 이력서 수정처리(이력서 리스트에서 수정 버튼 클릭 후 수정화면으로 이동)
+	//05 이력서 수정화면(이력서 리스트에서 수정 버튼 클릭 후 수정화면으로 이동)
 	@RequestMapping(value="/resumeUpdateForm", method = RequestMethod.GET)
 	public String resumeUpdateForm(Model model, @RequestParam(value="resumeCd") String resumeCd, HttpSession session){
 		Map<String, Object> resumeUpdateDetail = resumeService.getResumeDetail(resumeCd);
@@ -162,8 +162,51 @@ public class ResumeController {
 		return "/resumecoverletter/resume/resumeUpdate";
 	}
 	
+	//06 이력서 수정처리(수정화면에서 수정처리후 상세보기 화면으로 이동)
+	@RequestMapping(value="/resumeUpdate", method = RequestMethod.POST)
+	public String resumeUpdate(Model model, 
+						ResumeVo resumeVo, 
+						ResumePersonalVo resumePersonalVo, 
+						ResumeHighschoolVo resumeHighschoolVo, 
+						ResumeUniversityVo resumeUniversityVo, 
+						ResumeFamilyVo resumeFamilyVo, 
+						ResumeMilitaryserviceVo resumeMilitaryserviceVo, 
+						ResumeCertificateVo resumeCertificateVo, 
+						ResumeCareerVo resumeCareerVo, 
+						ResumeLanguageVo resumeLanguageVo, 
+						ResumeAwardVo resumeAwardVo, 
+						ResumeTrainingVo resumeTrainingVo, 
+						ResumeClubVo resumeClubVo, 
+						ResumeEtcVo resumeEtcVo, 
+						HttpServletRequest request, 
+						HttpSession session,
+						@RequestParam(value="resumeCd")String resumeCd){
+		Logger.info("이력서 수정 : {}", resumeVo.toString());
+		Logger.info("개인신상 수정 : {}", resumePersonalVo.toString());
+		Logger.info("고등학교 수정 : {}", resumeHighschoolVo.toString());
+		Logger.info("대학교 수정 : {}", resumeUniversityVo.toString());
+		Logger.info("가족 수정 : {}", resumeFamilyVo.getResumeFamilyVoList().toString());
+		Logger.info("병역 수정 : {}", resumeMilitaryserviceVo.toString());
+		Logger.info("자격증 수정 : {}", resumeCertificateVo.toString());
+		Logger.info("경력 수정 : {}", resumeCareerVo.toString());
+		Logger.info("어학 수정 : {}", resumeLanguageVo.toString());
+		Logger.info("수상이력 수정 : {}", resumeAwardVo.toString());
+		Logger.info("국내외연수 수정 : {}", resumeTrainingVo.toString());
+		Logger.info("동아리, 동호회 수정 : {}", resumeClubVo.toString());
+		Logger.info("기타,포트폴리오 수정 : {}", resumeEtcVo.toString());
+		resumeService.updateResume(resumeVo, resumePersonalVo, resumeHighschoolVo, resumeUniversityVo, 
+							resumeFamilyVo, resumeMilitaryserviceVo, resumeCertificateVo, resumeCareerVo, 
+							resumeLanguageVo, resumeAwardVo, resumeTrainingVo, resumeClubVo, resumeEtcVo, request, session, resumeCd);
+		return "redirect:/resumeList";
+	}
+	
 	//06 이력서 삭제(이력서 리스트에서 바로 삭제처리)
-	//@RequestMapping(value="/resumeDelete", method = RequestMethod.POST)
+	@RequestMapping(value="/resumeDelete", method = RequestMethod.GET)
+	public String resumeDelete(@RequestParam(value="resumeCd")String resumeCd){
+		resumeService.deleteResume(resumeCd);
+		return "redirect:/resumeList";
+	}
+	
 	
 	//00 자격증 및 어학 검색페이지(이력서 입력폼에서 팝업을 통해 검색창을 띄워주고, 검색값을 입력폼에 자동입력 할 수 있게 처리)
 	@RequestMapping(value="/resumeCertilangIndex", method = RequestMethod.GET)

@@ -1,13 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/css/style.css">
-<title>Insert title here</title>
-
+<script>
+$(document).ready(function(){
+	$btnLogout = $('.btn-logout');
+	
+	$btnLogout.click(function(){
+		
+		location.href = "/memberGeneralLogout";
+	});
+});
+</script>
 </head>
 <body>
 	<div class="container">
@@ -45,22 +52,53 @@
 						        </ul>
 	      					</li>	
 	      					<li class="hiddenNavWrap">
-	      			    <c:if test="${empty sessionScope.generalId}">
-	      					<li><a href="/memberGeneralInsert">회원가입</a>
-	      				</c:if>
-	      				 <c:if test="${empty sessionScope.generalId}">
-	      					<li><a href="/memberGeneralLogin">로그인</a>
-	      				</c:if>	
-	      				<c:if test="${not empty sessionScope.generalId}">
-	      					<li><a href="/memberGeneralUpdate">내 정보</a></li>
-	      					<li><a href="/memberGeneralLogout">로그아웃</a></li>
-	      				     				
-	      				</c:if>	
+					<c:choose>
+      			    	<c:when test="${empty sessionScope.generalId}">
+      						<li><a href="/memberGeneralInsert">회원가입</a>
+      						<li><a href="/memberGeneralLogin">로그인</a>
+      					</c:when>	
+     		 			<c:otherwise>
+      						<li><a href="/general/memberGeneralUpdate?generalId=${sessionScope.generalId}">내 정보</a></li>
+      						<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
+      					</c:otherwise>   				
+      				</c:choose>
 	      				</ul>
   					</div>
   				</div>
 			</nav>
 		</section>
+		<div class="modal fade" id="logoutModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+	 			<div class="modal-content">
+	   		 		<div class="modal-header">
+	      				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      				<h4 class="modal-title">로그아웃</h4>
+	    			</div>
+	   				<div class="modal-body">
+	      				<p>${sessionScope.generalId }님 로그아웃 되었습니다.</p>
+	    			</div>
+	    			<div class="modal-footer">
+	      				<button type="button" class="btn btn-logout" data-dismiss="modal">Close</button>
+	    			</div>
+	  			</div>
+			</div>
+		</div>
+		<div class="modal fade" id="loginModal" role="dialog">
+			<div class="modal-dialog modal-sm">
+	 			<div class="modal-content">
+	   		 		<div class="modal-header">
+	      				<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      				<h4 class="modal-title">로그인</h4>
+	    			</div>
+	   				<div class="modal-body">
+	      				<p>로그인이 필요한 정보입니다. 로그인 페이지로 이동합니다.</p>
+	    			</div>
+	    			<div class="modal-footer">
+	      				<button type="button" class="btn btn-logout" data-dismiss="modal">확인</button>
+	    			</div>
+	  			</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -581,13 +581,377 @@
 	
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-									04 이력서 수정 
+									04 이력서 수정 START
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 -->
+	<delete id="deleteFirstResume" parameterType="String">
+		DELETE 
+			r, a, car, cer, cl, e, f, h, l, m, p, t, u
+		FROM 
+			tb_resume AS r 
+		LEFT JOIN tb_resume_award AS a ON a.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_career AS car on car.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_certificate AS cer on cer.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_club AS cl on cl.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_etc AS e on e.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_family AS f on f.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_highschool AS h on h.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_language AS l on l.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_militaryservice AS m on m.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_personal AS p on p.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_training AS t on t.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_university AS u on u.resume_cd = r.resume_cd
+		
+		WHERE r.resume_cd = #{resumeCd}
+	</delete>
+	
+	
+	<!-- 01_00 이력서 등록 -->
+	<insert id="updateResume" parameterType="com.cafe24.pickmetop.resume.model.ResumeVo">
+		INSERT INTO tb_resume(
+			resume_cd,
+			login_id,
+			resume_name,
+			resume_regdate,
+			resume_modidate
+		)VALUES(
+			(SELECT CONCAT('resume_cd_', LPAD(IFNULL(MAX(substring(resume.resume_cd, 11)),0)+1,4,'0')) AS resumeCdOrder FROM tb_resume resume ORDER BY resumeCdOrder),
+			#{loginId},
+			#{resumeName},
+			now(),
+			now()
+		)		
+	</insert>
+	<!-- 01_01 개인신상 -->
+	<insert id="updateResumePersonal" parameterType="com.cafe24.pickmetop.resume.model.ResumePersonalVo">
+		INSERT INTO tb_resume_personal(
+			personal_cd,
+			resume_cd,    
+			personal_korname,
+			personal_engname,
+			personal_birthdate,
+			personal_gender,
+			personal_phone,
+			personal_cellphone,
+			personal_email,
+			personal_sns,
+			personal_addr,
+			personal_photo
+		) VALUES (
+			(SELECT CONCAT('personal_cd_', LPAD(IFNULL(MAX(substring(personal.personal_cd, 13)),0)+1,4,'0')) AS personalCdOrder FROM tb_resume_personal personal ORDER BY personalCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{personalKorname},
+			#{personalEngname},
+			#{personalBirthdate},
+			#{personalGender},
+			#{personalPhone},
+			#{personalCellphone},
+			#{personalEmail},
+			#{personalSns},
+			#{personalAddr},
+			#{personalPhotoName}
+		)
+	</insert>
+	<!-- 01_02 고등학교 -->
+	<insert id="updateResumeHighschool" parameterType="com.cafe24.pickmetop.resume.model.ResumeHighschoolVo">
+		INSERT INTO tb_resume_highschool(
+			highschool_cd,
+			resume_cd,
+			highschool_name,
+			highschool_category,
+			highschool_begindate,
+			highschool_enddate
+		) VALUES (
+			(SELECT CONCAT('highschool_cd_', LPAD(IFNULL(MAX(substring(highschool.highschool_cd, 15)),0)+1,4,'0')) AS highschoolCdOrder FROM tb_resume_highschool highschool ORDER BY highschoolCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{highschoolName},
+			#{highschoolCategory},
+			#{highschoolBegindate},
+			#{highschoolEnddate}
+		)
+	</insert>
+	<!-- 01_03 대학교 -->
+	<insert id="updateResumeUniversity" parameterType="com.cafe24.pickmetop.resume.model.ResumeUniversityVo">
+		INSERT INTO tb_resume_university(
+			university_cd,
+			resume_cd,
+			university_name,
+			university_category,
+			university_begindate,
+			university_enddate,
+			university_major,
+			university_dmajorminor,
+			university_dmajorminor_name,
+			university_credit
+		) VALUES 
+			<foreach collection="resumeUniversityVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('university_cd_', LPAD(IFNULL(MAX(substring(university.university_cd, 15)),0)+1,4,'0')) AS universityCdOrder FROM tb_resume_university university ORDER BY universityCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.universityName},
+			#{item.universityCategory},
+			#{item.universityBegindate},
+			#{item.universityEnddate},
+			#{item.universityMajor},
+			#{item.universityDmajorminor},
+			#{item.universityDmajorminorName},
+			#{item.universityCredit}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_04 가족 -->
+	<insert id="updateResumeFamily" parameterType="com.cafe24.pickmetop.resume.model.ResumeFamilyVo">
+		INSERT INTO tb_resume_family(
+			family_cd,
+			resume_cd,
+			family_relation,
+			family_name,
+			family_birthdate,
+			family_education,
+			family_job,
+			family_cohabit
+		) VALUES 
+			<foreach collection="resumeFamilyVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('family_cd_', LPAD(IFNULL(MAX(substring(family.family_cd, 11)),0)+1,4,'0')) AS familyCdOrder FROM tb_resume_family family ORDER BY familyCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.familyRelation},
+			#{item.familyName},
+			#{item.familyBirthdate},
+			#{item.familyEducation},
+			#{item.familyJob},
+			#{item.familyCohabit}
+		)
+			</foreach>
+		
+	</insert>
+	<!-- 01_05 병역 -->
+	<insert id="updateResumeMilitaryservice" parameterType="com.cafe24.pickmetop.resume.model.ResumeMilitaryserviceVo">
+		INSERT INTO tb_resume_militaryservice(
+			militaryservice_cd,
+			resume_cd,
+			militaryservice_state,
+			militaryservice_group,
+			militaryservice_level,
+			militaryservice_branch,
+			militaryservice_begindate,
+			militaryservice_enddate
+		) VALUES (
+			(SELECT CONCAT('militaryservice_cd_', LPAD(IFNULL(MAX(substring(militaryservice.militaryservice_cd, 20)),0)+1,4,'0')) AS militaryserviceCdOrder FROM tb_resume_militaryservice militaryservice ORDER BY militaryserviceCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{militaryserviceState},
+			#{militaryserviceGroup},
+			#{militaryserviceLevel},
+			#{militaryserviceBranch},
+			#{militaryserviceBegindate},
+			#{militaryserviceEnddate}
+		)
+	</insert>
+	<!-- 01_06 자격증 -->
+	<insert id="updateResumeCertificate" parameterType="com.cafe24.pickmetop.resume.model.ResumeCertificateVo">
+		INSERT INTO tb_resume_certificate(
+			certificate_cd,
+			resume_cd,
+			certificate_name,
+			certificate_host,
+			certificate_grade,
+			certificate_regnum,
+			certificate_begindate,
+			certificate_enddate
+		) VALUES 
+			<foreach collection="resumeCertificateVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('certificate_cd_', LPAD(IFNULL(MAX(substring(certificate.certificate_cd, 16)),0)+1,4,'0')) AS certificateCdOrder FROM tb_resume_certificate certificate ORDER BY certificateCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.certificateName},
+			#{item.certificateHost},
+			#{item.certificateGrade},
+			#{item.certificateRegnum},
+			#{item.certificateBegindate},
+			#{item.certificateEnddate}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_07 경력 -->
+	<insert id="updateResumeCareer" parameterType="com.cafe24.pickmetop.resume.model.ResumeCareerVo">
+		INSERT INTO tb_resume_career(
+			career_cd,
+			resume_cd,
+			career_company,
+			career_begindate,
+			career_enddate,
+			career_period,
+			career_resign,
+			career_level,
+			career_department,
+			career_task
+		) VALUES 
+			<foreach collection="resumeCareerVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('career_cd_', LPAD(IFNULL(MAX(substring(career.career_cd, 11)),0)+1,4,'0')) AS careerCdOrder FROM tb_resume_career career ORDER BY careerCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.careerCompany},
+			#{item.careerBegindate},
+			#{item.careerEnddate},
+			#{item.careerPeriod},
+			#{item.careerResign},
+			#{item.careerLevel},
+			#{item.careerDepartment},
+			#{item.careerTask}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_08 어학 -->
+	<insert id="updateResumeLanguage" parameterType="com.cafe24.pickmetop.resume.model.ResumeLanguageVo">
+		INSERT INTO tb_resume_language(
+			language_cd,
+			resume_cd,
+			language_name,
+			language_level,
+			language_test,
+			language_grade,
+			language_host,
+			language_regnum,
+			language_begindate,
+			language_enddate
+		) VALUES 
+			<foreach collection="resumeLanguageVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('language_cd_', LPAD(IFNULL(MAX(substring(language.language_cd, 13)),0)+1,4,'0')) AS languageCdOrder FROM tb_resume_language language ORDER BY languageCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.languageName},
+			#{item.languageLevel},
+			#{item.languageTest},
+			#{item.languageGrade},
+			#{item.languageHost},
+			#{item.languageRegnum},
+			#{item.languageBegindate},
+			#{item.languageEnddate}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_09 수상경력 -->
+	<insert id="updateResumeAward" parameterType="com.cafe24.pickmetop.resume.model.ResumeAwardVo">
+		INSERT INTO tb_resume_award(
+			award_cd,
+			resume_cd,
+			award_name,
+			award_content,
+			award_host,
+			award_date
+		) VALUES 
+			<foreach collection="resumeAwardVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('award_cd_', LPAD(IFNULL(MAX(substring(award.award_cd, 10)),0)+1,4,'0')) AS awardCdOrder FROM tb_resume_award award ORDER BY awardCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.awardName},
+			#{item.awardContent},
+			#{item.awardHost},
+			#{item.awardDate}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_10 국내외연수 -->
+	<insert id="updateResumeTraining" parameterType="com.cafe24.pickmetop.resume.model.ResumeTrainingVo">
+		INSERT INTO tb_resume_training(
+			training_cd,
+			resume_cd,
+			training_country,
+			training_academy,
+			training_begindate,
+			training_enddate,
+			training_content
+		) VALUES 
+			<foreach collection="resumeTrainingVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('training_cd_', LPAD(IFNULL(MAX(substring(training.training_cd, 13)),0)+1,4,'0')) AS trainingCdOrder FROM tb_resume_training training ORDER BY trainingCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.trainingCountry},
+			#{item.trainingAcademy},
+			#{item.trainingBegindate},
+			#{item.trainingEnddate},
+			#{item.trainingContent}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_11 동아리 -->
+	<insert id="updateResumeClub" parameterType="com.cafe24.pickmetop.resume.model.ResumeClubVo">
+		INSERT INTO tb_resume_club(
+			club_cd,
+			resume_cd,
+			club_host,
+			club_name,
+			club_begindate,
+			club_enddate,
+			club_content
+		) VALUES 
+			<foreach collection="resumeClubVoList" item="item" separator=" , ">
+		(
+			(SELECT CONCAT('club_cd_', LPAD(IFNULL(MAX(substring(club.club_cd, 9)),0)+1,4,'0')) AS clubCdOrder FROM tb_resume_club club ORDER BY clubCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{item.clubHost},
+			#{item.clubName},
+			#{item.clubBegindate},
+			#{item.clubEnddate},
+			#{item.clubContent}
+		)
+			</foreach>
+	</insert>
+	<!-- 01_12 기타 -->
+	<insert id="updateResumeEtc" parameterType="com.cafe24.pickmetop.resume.model.ResumeEtcVo">
+		INSERT INTO tb_resume_etc(
+			etc_cd,
+			resume_cd,
+			etc_title,
+			etc_content,
+			etc_begindate,
+			etc_enddate,
+			etc_file
+		) VALUES (
+			(SELECT CONCAT('etc_cd_', LPAD(IFNULL(MAX(substring(etc.etc_cd, 8)),0)+1,4,'0')) AS etcCdOrder FROM tb_resume_etc etc ORDER BY etcCdOrder),
+			(SELECT CONCAT('resume_cd_', max(substring(resume.resume_cd, 11))) FROM tb_resume resume),
+			#{etcTitle},
+			#{etcContent},
+			#{etcBegindate},
+			#{etcEnddate},
+			#{etcFileName}
+		)
+	</insert>
+
+<!-- 
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+									04 이력서 수정  END
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+-->
+
+
 
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 									05 이력서 삭제 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
--->		
+-->
+	<!-- 이력서정보삭제 -->
+	<delete id="deleteResumeByResumeCd" parameterType="String">
+		DELETE 
+			r, a, car, cer, cl, e, f, h, l, m, p, t, u
+		FROM 
+			tb_resume AS r 
+		LEFT JOIN tb_resume_award AS a ON a.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_career AS car on car.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_certificate AS cer on cer.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_club AS cl on cl.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_etc AS e on e.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_family AS f on f.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_highschool AS h on h.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_language AS l on l.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_militaryservice AS m on m.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_personal AS p on p.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_training AS t on t.resume_cd = r.resume_cd
+		LEFT JOIN tb_resume_university AS u on u.resume_cd = r.resume_cd
+		
+		WHERE r.resume_cd = #{resumeCd}
+	</delete>
+
+		
 </mapper>

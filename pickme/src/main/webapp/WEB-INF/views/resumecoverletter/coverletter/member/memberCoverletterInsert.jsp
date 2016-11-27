@@ -175,7 +175,7 @@
 			                	<h3><mark>${sessionScope.generalNick}</mark>의 새로운 자소서</h3>
 			                </c:if>
 			                <c:if test="${empty loginId}">
-			                	<h3>반갑습니다.</h3>
+			                	<h3>P!CKME 자기소개서 페이지입니다</h3>
 			                </c:if>
 						
 						</h1>
@@ -183,18 +183,18 @@
 					
 					<div class="row">
 		                <div class="col-lg-8">
-		                    <div class="panel panel-default">
+		                    <div class="panel panel-primary">
 		                        <div class="panel-heading">
-		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
+		                        	<p><strong>P!ckMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
 		                        	<p>사용자가 원하는 이름과 마감일자로 변경해보세요</p>
-		                        	<p>빠르고 정확한 제출이 서류합격의 지름길입니다.</p>
-		                        	<p>맞춤법검사, 메모장, 공채핵심자료를 제공하고 있습니다.(좌측 하단) </p>
+		                        	<p>서류 마감일보다 빠르고 정확한 제출이 서류합격의 지름길입니다.</p>
+		                        	<p>P!ckMe자소서 페이지는 <strong style="color: yellow">인쇄하기, 맞춤법검사, 메모장, 기업정보</strong>를 제공하고 있습니다.(좌측 하단) </p>
 		                        	<c:set var="loginId" value="${sessionScope.generalId}" />
 			                        	<c:if test="${loginId ne null}">
-			                           		<button type="submit" class="btn btn-primary btn-sm" id="coverletterAddBtn"><i class="fa fa-save"></i>  자소서 저장</button>
+			                           		<button type="submit" class="btn btn-success btn-sm" id="coverletterAddBtn"><i class="fa fa-save"></i>  자소서 저장</button>
 			                           	</c:if>
 			                           	<c:if test="${empty loginId}">
-			                           		<p><strong><a href="/memberGeneralLogin">로그인</a></strong> 또는 <strong><a href="memberGeneralInsert">회원가입</a></strong> 후에 자기소개서를 저장하실 수 있습니다.</p>
+			                           		<p><strong><a href="/memberGeneralLogin" style="color: yellow">로그인</a></strong> 또는 <strong><a href="memberGeneralInsert" style="color: yellow">회원가입</a></strong> 후에 자기소개서를 저장하실 수 있습니다.</p>
 			                           	</c:if>
 								</div>
 		                        <div class="panel-body">

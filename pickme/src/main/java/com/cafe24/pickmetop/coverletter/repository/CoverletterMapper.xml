@@ -11,14 +11,14 @@
 	<!-- 마감임박채용공고10 -->  	
  	<select id="selectCoverletterCompanyJobListForInfo" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo">
 	SELECT
-		rc.recruit_name AS recruitName, <!-- 채용공고명 -->
-		ci.company_name AS companyName, <!-- 기업명 -->
-		jm.job_midindex_name AS jobMidindexName, <!-- 직무중분류명 -->
-		rcj.recruit_job_cd AS recruitJobCd, <!-- 기업 직무별 코드 -->
-		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
-		rcj.recruit_job_education AS recruitJobEducation, <!-- 채용학력 -->
-		rcj.recruit_job_workstatus AS recruitJobWorkstatus, <!-- 채용형태 -->
-		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
+		rc.recruit_name AS recruitName,
+		ci.company_name AS companyName, 
+		jm.job_midindex_name AS jobMidindexName, 
+		rcj.recruit_job_cd AS recruitJobCd, 
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail, 
+		rcj.recruit_job_education AS recruitJobEducation, 
+		rcj.recruit_job_workstatus AS recruitJobWorkstatus, 
+		rc.recruit_enddate AS recruitEnddate 
 	FROM 
 		tb_recruit_company rc
 	
@@ -31,6 +31,8 @@
 	INNER JOIN tb_job_midindex jm
 	ON rcj.job_midindex_cd = jm.job_midindex_cd
 	
+	WHERE 
+		CURRENT_TIMESTAMP <![CDATA[ <= ]]> rc.recruit_enddate
 	ORDER BY rc.recruit_enddate ASC
 	LIMIT 10
 	</select>

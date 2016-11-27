@@ -273,10 +273,10 @@ $(document).ready(function(){
 							class="form-control" value="${recruit.recruitName}" placeholder="채용공고명 입력">
 						</td>
 						<td class="col-sm-3">
-							<input type="date" name="recruitBegindate" id="recruitBegindate" class="form-control" value="${recruit.recruitBegindate}">
+							<input type="datetime-local" name="recruitBegindate" id="recruitBegindate" class="form-control" value="${recruit.recruitBegindate}">
 						</td>
 						<td class="col-sm-3">
-							<input type="date" name="recruitEnddate" id="recruitEnddate" class="form-control" value="${recruit.recruitEnddate}">
+							<input type="datetime-local" name="recruitEnddate" id="recruitEnddate" class="form-control" value="${recruit.recruitEnddate}">
 						</td>
 					</tr>
 					<tr>

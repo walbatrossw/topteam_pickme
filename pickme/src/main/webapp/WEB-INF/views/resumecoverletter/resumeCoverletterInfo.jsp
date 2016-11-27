@@ -39,8 +39,8 @@
 	});
 </script>
 </head>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp"/>
 <body>
 	<div id="wrapper">
 		<div id="page-wrapper">
@@ -108,11 +108,11 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">${myRecruitBookmarkListCount.myRecruitBookmarkCount}</div>
-	                                    <div>채용 북마크</div>
+	                                    <div>나의 관심 채용</div>
 	                                </div>
 	                            </div>
 	                        </div>
-	                        <a>
+	                        <a href="javascript:void(0);">
 	                            <div class="panel-footer" id="myRecruitBookmarkDetail">
 	                                <span class="pull-left"><strong>상세보기</strong></span>
 	                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -130,7 +130,7 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">13</div>
-	                                    <div>게시글 답글</div>
+	                                    <div>나의 게시글</div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -168,10 +168,10 @@
 	            </div>
 	            <!-- /.row -->
 	            <div class="row">
-	                <div class="col-lg-10">
-	                    <div class="panel panel-default">
+	                <div class="col-sm-5">
+	                    <div class="panel panel-primary">
 	                        <div class="panel-heading">
-	                            <i class="fa fa-bell fa-fw"></i> <strong>채용 마감 임박 top10</strong>
+	                            <i class="fa fa-bell fa-fw"></i> <strong>전체 채용 마감 임박 top10</strong>
 	                        </div>
 	                        <!-- /.panel-heading -->
 	                        <div class="panel-body">
@@ -205,6 +205,48 @@
 								</div>
 	                            <!-- /.list-group -->
 	                            <a href="/companyJobCoverletterList" class="btn btn-primary btn-block">모든 채용 공고 보기</a>
+	                        </div>
+	                        <!-- /.panel-body -->
+	                    </div>
+	                    <!-- /.panel -->
+	                </div>
+	                <div class="col-sm-5">
+	                    <div class="panel panel-yellow">
+	                        <div class="panel-heading">
+	                            <i class="fa fa-bell fa-fw"></i> <strong>나의 관심채용 마감 임박 top10</strong>
+	                        </div>
+	                        <!-- /.panel-heading -->
+	                        <div class="panel-body">
+	                        	<div>
+	                            <table class="table table-striped table-bordered table-hover" >
+		                        	<thead>
+		                                <tr>
+		                                    <th>번호</th>
+											<th>마감일</th>
+											<th>채용명</th>
+											<th>회사명</th>
+											<th>직무대분류</th>
+											<th>상세직무</th>
+											<th>채용형태</th>
+										</tr>
+		                            </thead>
+		                            <tbody>
+		                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
+										<tr>
+											<td>${i.count}</td>
+											<td>${companyJobCoverletterListForInfo.recruitEnddate}</td>
+											<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
+											<td>${companyJobCoverletterListForInfo.companyName}</td>
+											<td>${companyJobCoverletterListForInfo.jobMidindexName}</td>
+											<td>${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
+											<td>${companyJobCoverletterListForInfo.recruitJobWorkstatus}</td>
+										</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+								</div>
+	                            <!-- /.list-group -->
+	                            <a href="/companyJobCoverletterList" class="btn btn-warning btn-block">나의 관심 채용 전체 보기</a>
 	                        </div>
 	                        <!-- /.panel-body -->
 	                    </div>

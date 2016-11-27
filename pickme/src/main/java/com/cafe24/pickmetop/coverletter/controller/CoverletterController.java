@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
+import com.cafe24.pickmetop.coverletter.model.CoverletterPassVo;
 import com.cafe24.pickmetop.coverletter.service.CoverletterService;
 
 @Controller
@@ -150,7 +151,6 @@ public class CoverletterController {
 	// 05_01_01 합격자기소개서 리스트(팝업용:사용자)
 	@RequestMapping(value="/passCoverletterList", method = RequestMethod.GET)
 	public String passCoverletterList(Model model, HttpSession session){
-		
 		return "/resumecoverletter/coverletter/admin/passCoverletterList"; 
 	}
 	// 05_01_02 합격자기소개서 리스트(관리자페이지용: 관리자)
@@ -167,7 +167,8 @@ public class CoverletterController {
 	}
 	// 05_03 합격자기소개서 입력처리
 	@RequestMapping(value="/passCoverletterInsert", method = RequestMethod.POST)
-	public String passCoverletterInsert(Model model, HttpSession session){
+	public String passCoverletterInsert(Model model, CoverletterPassVo passCoverletter ,HttpSession session){
+		
 		Logger.info(model.toString());
 		return "/resumecoverletter/coverletter/admin/passCoverletterList"; 
 	}
