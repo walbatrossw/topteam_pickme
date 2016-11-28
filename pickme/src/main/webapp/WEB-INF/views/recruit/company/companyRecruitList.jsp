@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/simple-sidebar.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -215,8 +216,8 @@ function resumeWrite(cd){
 				&nbsp;
 			</div>
 		</div>
-	        
-		<table class="calendar-table table table-condensed table-tight" style="width: 1330px">
+	    <div class="col-xs-12">
+		<table class="calendar-table table table-condensed table-tight"> <!-- style="width: 1330px" -->
 			<thead>
 				<tr>
 					<th class="col-sm-1" style="text-align: center;color: orange;">SUN</th>
@@ -292,11 +293,11 @@ function resumeWrite(cd){
 													<span style="color:gray;font-weight:bold;">끝</span>
 												</c:if>
 												<c:if test="${s.recruitName.length()<=9}">
-													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal">${s.recruitName}</a>
+													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal" class="letterSizing">${s.recruitName}</a>
 													
 												</c:if>
 												<c:if test="${s.recruitName.length()>9}">
-													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal">${fn:substring(s.recruitName,0,9)}</a>
+													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal" class="letterSizing">${fn:substring(s.recruitName,0,9)}</a>
 												</c:if>
 											</div>
 										</c:forEach>
@@ -310,6 +311,7 @@ function resumeWrite(cd){
 				</tr>
 			</tbody>
 		</table>
+	</div>
 	</div>	
 </div>
 </div>
@@ -326,5 +328,5 @@ function resumeWrite(cd){
 
   
 </body>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />
+<%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" /> --%>
 </html>

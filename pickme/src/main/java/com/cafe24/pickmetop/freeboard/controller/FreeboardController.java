@@ -23,15 +23,14 @@ public class FreeboardController {
 	final static Logger logger = LoggerFactory.getLogger(FreeboardController.class);
 	@Autowired
 	FreeboardService freeService;
-	
-	
+
 	//合付农 昏力 
-		@RequestMapping(value="/freeboardbookmarkDelete")
-		public String bookmarkDelete(String freeboardCd){
-			logger.info("合付农 昏力! freeboardCd : {}",freeboardCd);
-			freeService.bookmarkDelete(freeboardCd);
-			return "redirect:/freeboardList";
-		}
+	@RequestMapping(value="/freeboardbookmarkDelete")
+	public String bookmarkDelete(String freeboardCd){
+		logger.info("合付农 昏力! freeboardCd : {}",freeboardCd);
+		freeService.bookmarkDelete(freeboardCd);
+		return "redirect:/freeboardList";
+	}
 		
 	//合付农 殿废
 	@RequestMapping(value="/freeboardbookmarkInsert")

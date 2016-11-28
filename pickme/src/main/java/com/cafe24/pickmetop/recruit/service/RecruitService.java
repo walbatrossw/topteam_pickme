@@ -259,7 +259,7 @@ public class RecruitService {
 				logger.info("jobTopIndexCd : {} ",jobTopIndexCd.size());
 				logger.info("industryTopindexCd :{}",industryTopindexCd.size());
 				logger.info("recruitJobWorkstatus :{}",recruitJobWorkstatus);
-				logger.info("bookmark : {}",bookmark);
+				logger.info("scheduleDate : {}",scheduleDate);
 				
 					
 	

@@ -8,7 +8,6 @@
 <!-- bootstrap -->
 <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- css -->
 <link rel="stylesheet" href="/css/freeboard_N_recruit/freeboardSidebar.css">
 <!-- Custom Fonts -->
@@ -222,11 +221,11 @@ $(document).ready(function(){
 			<h2 > &nbsp; 자유게시판</h2>
 			<hr>
 			<ul class="nav nav-pills nav-stacked">
-				<li><a href="/freeboardList"><span class="glyphicon glyphicon-home"></span>&nbsp; 전체글보기</a></li>
+				<li><a href="/freeboardList" style="color: gray"><span class="glyphicon glyphicon-home"></span>&nbsp; 전체글보기</a></li>
 				<c:forEach items="${cateForView}" var="cateForView">
 					<c:if test="${freeboardCate==cateForView.freeboardCateCd}">
 						<li class="active">
-							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">
+							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}" style="color: gray">
 							<c:if test="${cateForView.freeboardCateCd==1}"><i class="fa fa-comments-o"></i></c:if> 
 							<c:if test="${cateForView.freeboardCateCd==2}"><i class="fa  fa-building"></i></c:if> 
 							<c:if test="${cateForView.freeboardCateCd==3}"><i class="fa fa-edit  "></i></c:if> 
@@ -238,7 +237,7 @@ $(document).ready(function(){
 					</c:if>
 					<c:if test="${freeboardCate!=cateForView.freeboardCateCd}">
 						<li>
-							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}">
+							<a href="/freeboardList?cate=${cateForView.freeboardCateCd}" style="color: gray">
 							<c:if test="${cateForView.freeboardCateCd==1}"><i class="fa fa-comments-o"></i></c:if> 
 							<c:if test="${cateForView.freeboardCateCd==2}"><i class="fa  fa-building"></i></c:if> 
 							<c:if test="${cateForView.freeboardCateCd==3}"><i class="fa fa-edit  "></i></c:if> 
@@ -252,7 +251,7 @@ $(document).ready(function(){
 				</c:forEach>
 				<c:if test="${sessionScope.generalId!=null}">
 					<li>
-						<a href="/freeboardList?bookmark=bookmark" ><i class="fa fa-bookmark"></i> &nbsp;내 북마크보기</a>
+						<a href="/freeboardList?bookmark=bookmark" style="color: gray" ><i class="fa fa-bookmark"></i> &nbsp;내 북마크보기</a>
 					</li>
 				</c:if>
 			</ul>
@@ -318,7 +317,7 @@ $(document).ready(function(){
 				<table>
 						<tr>
 							<td style="font-size: large;  font-weight: bolder;" >
-									<span class="freeCate label label-success">
+									<span class="freeCate label label-warning">
 										<c:if test="${freeList.freeboardCateCd=='1'}">
 											잡담
 										</c:if>
@@ -399,7 +398,7 @@ $(document).ready(function(){
 					
 					<table>
 					<tr>
-						<td colspan="2">
+						<td colspan="2" width="400px">
 							<div class="row"> 
 								<div class="col-sm-10">
 									<span style="font-weight: bolder;">
@@ -444,16 +443,16 @@ $(document).ready(function(){
 				<!-- 페이징 -->
 				<div class="text-center">
 					<ul class="pager">
-						<li class="previous"><a href="/freeboardList?cate=${freeboardCate}&page=${page-1}">이전</a></li>
+						<li class="previous"><a href="/freeboardList?cate=${freeboardCate}&page=${page-1}" style="color: blacks">이전</a></li>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 								<c:if test="${page == i}">
-									<li class="active"><a href="/freeboardList?cate=${freeboardCate}&page=${i}">${i}</a></li>
+									<li class="active"><a href="/freeboardList?cate=${freeboardCate}&page=${i}" style="color: black">${i}</a></li>
 								</c:if>
 								<c:if test="${page != i}">
-									<li><a href="/freeboardList?cate=${freeboardCate}&page=${i}">${i}</a></li>
+									<li><a href="/freeboardList?cate=${freeboardCate}&page=${i}" style="color: black">${i}</a></li>
 								</c:if>
 						</c:forEach>
-						<li class="next"><a href="/freeboardList?cate=${freeboardCate}&page=${page+1}">다음</a></li>
+						<li class="next"><a href="/freeboardList?cate=${freeboardCate}&page=${page+1}" style="color: black">다음</a></li>
 					</ul>
 				</div>
 			</div>

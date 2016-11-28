@@ -26,11 +26,11 @@
 }
 /*페이징*/
 .pager .active a{
-	background-color: #337ab7;
+	background-color: #fcac23;
 	color: #fff;
 }
 .pager .active a:hover{
-	background-color: #337ab7;
+	background-color: #fcac23;
 	color: #fff;
 }
 /* 자동완성 */
@@ -40,3 +40,10 @@
     overflow-x: hidden;
     font-size: 14px;
 }
+
+ @media screen and (max-width:600px) {
+	 .letterSizing{
+		font-size : 0.3em;
+	}
+ 
+ }

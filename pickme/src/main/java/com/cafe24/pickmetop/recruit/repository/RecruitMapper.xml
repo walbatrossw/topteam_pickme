@@ -66,7 +66,7 @@
 		</if>
 	
 	WHERE 
-		recruit.recruit_begindate= #{scheduleDate}
+		date(recruit.recruit_begindate) = #{scheduleDate}
 		<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
 			AND
 				recruitjob.recruit_company_cd = recruit.recruit_company_cd
@@ -141,7 +141,8 @@
 			</if>
 		
 		WHERE 
-			recruit.recruit_enddate= #{scheduleDate}
+			<!-- recruit.recruit_enddate LIKE CONCAT(#{scheduleDate}, '%') -->
+			date(recruit.recruit_enddate) = #{scheduleDate}
 			<if test='recruitJobWorkstatus != null and recruitJobWorkstatus != "" or jobTopIndexCd != null and jobTopIndexCd != ""'>
 				AND
 					recruitjob.recruit_company_cd = recruit.recruit_company_cd

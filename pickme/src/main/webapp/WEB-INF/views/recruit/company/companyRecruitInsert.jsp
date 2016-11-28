@@ -16,6 +16,13 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 <script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+<!-- Datetimepicker -->
+<script src="/js/datetimepicker/moment.js"></script>
+<script src="/js/datetimepicker/transition.js"></script>
+<script src="/js/datetimepicker/collapse.js"></script>
+<script src="/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="/js/datetimepicker/ko.js"></script>
+<link rel="stylesheet" href="/css/datetimepicker/bootstrap-datetimepicker.css"/>
 <script>	 
 $(document).ready(function(){
 	var first = 0;
@@ -238,6 +245,19 @@ $(document).ready(function(){
 		}
 		
 	}); 
+	// datetimepicker 날짜 입력UI
+	$(function () {
+        $('#ddayPicker1').datetimepicker({
+        	locale: 'ko',
+        	format: 'L'
+        });
+    });
+	$(function () {
+        $('#ddayPicker2').datetimepicker({
+        	locale: 'ko',
+        	format: 'L'
+        });
+    });
 });
 </script>
 <title>채용입력</title>
@@ -273,10 +293,16 @@ $(document).ready(function(){
 							class="form-control" value="${recruit.recruitName}" placeholder="채용공고명 입력">
 						</td>
 						<td class="col-sm-3">
-							<input type="datetime-local" name="recruitBegindate" id="recruitBegindate" class="form-control" value="${recruit.recruitBegindate}">
+							<div style="position: relative">
+								<input type="text" class="form-control input-sm" id="ddayPicker1" name="recruitBegindate">
+							</div >
+							<%-- <input type="datetime-local" name="recruitBegindate" id="recruitBegindate" class="form-control" value="${recruit.recruitBegindate}"> --%>
 						</td>
 						<td class="col-sm-3">
-							<input type="datetime-local" name="recruitEnddate" id="recruitEnddate" class="form-control" value="${recruit.recruitEnddate}">
+							<div style="position: relative">
+								<input type="text" class="form-control input-sm" id="ddayPicker2" name="recruitEnddate">
+							</div >
+							<%-- <input type="datetime-local" name="recruitEnddate" id="recruitEnddate" class="form-control" value="${recruit.recruitEnddate}"> --%>
 						</td>
 					</tr>
 					<tr>
