@@ -7,11 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,18 +64,32 @@ public class MemberController {
 	public String memberGeneralLogin(HttpServletRequest request,
 			@RequestParam(value="generalId") String generalId,
 			@RequestParam(value="generalPw") String generalPw) {
-		Map<String, String> memberGeneralLogin = memberService.selectMemberCheck(generalId, generalPw);
+		
+		System.out.println("generalId : " + generalId + "//generalPw : " + generalPw);
+		
+		String loginCheck = null;
+		
+		//Map<String, Object> map = new HashMap<String, Object>();
+		MemberGeneralVo memberGeneralVo = 
+				memberService.selectMemberCheck(generalId, generalPw);
+		System.out.println("memberGeneralVo : " + memberGeneralVo);
 				
-		if(memberGeneralLogin != null){
+		if(memberGeneralVo == null) {
+			//login 실패
+			loginCheck = "redirect:/memberGeneralLogin";			
+		}else {
+			//login 성공
 			HttpSession session  = request.getSession(true);
 			
 			session.setAttribute("generalId", generalId);
 			session.setAttribute("generalPw",  generalPw);
 			
-			session.setAttribute("generalNick", memberGeneralLogin.get("generalNick"));
-			session.setAttribute("generalLevel", memberGeneralLogin.get("generalLevel"));
+			session.setAttribute("generalNick", memberGeneralVo.getGeneralNick());
+			session.setAttribute("generalLevel", memberGeneralVo.getGeneralLevel());
+			loginCheck = "/index";
 		}
-		return "/maintest";
+
+		return loginCheck;
 
 	}
 
@@ -86,8 +98,8 @@ public class MemberController {
 	public String memberGeneralLogout(HttpSession session){
 		session.removeAttribute("generalId");
 		session.removeAttribute("generalPw");
-		session.getAttribute("generalNick");	
-		session.getAttribute("generalLevel");
+		session.removeAttribute("generalNick");	
+		session.removeAttribute("generalLevel");
 	
 	return "redirect:/";
 	}

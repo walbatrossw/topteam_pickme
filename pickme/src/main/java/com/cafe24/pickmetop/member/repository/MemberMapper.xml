@@ -26,9 +26,13 @@
 	
 	
 	<!-- 로그인 아이디, 비밀번호 체크 -->
-	<select id="memberGeneralCheck" resultType="Map"
-				parameterType="java.util.Map">
+	<select id="memberGeneralCheck" 
+		resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo"
+		parameterType="java.util.Map">
+		
 		SELECT 
+			general_id as generalId,
+			general_pw as generalPw,
 			general_Level as generalLevel,
 			general_Nick as generalNick
 		FROM

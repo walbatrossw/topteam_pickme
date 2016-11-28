@@ -41,16 +41,23 @@ public class MemberService {
 	}
 	
 	// session 泥섎━ id pw 
-	public Map<String, String> selectMemberCheck(String generalId, String generalPw){
+	public MemberGeneralVo selectMemberCheck(String generalId, String generalPw){
 		
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		Map<String, String> resultMap = memberDao.memberGeneralCheck(generalId, generalPw);
+		map.put("generalId", generalId);
+		map.put("generalPw", generalPw);
+		
+		MemberGeneralVo memberGeneralVo = 
+				memberDao.memberGeneralCheck(map);
+		
+/*		Map<String, String> resultMap = memberDao.memberGeneralCheck(generalId, generalPw);
 		if(resultMap == null) {
 			logger.info("�씪移섑븯�뒗 �븘�씠�뵒 �뾾�쓬");
 		} else {
 			logger.info("�씪移섑븯�뒗 �븘�씠�뵒 �엳�쓬");
-		}
-		return resultMap;
+		}*/
+		return memberGeneralVo;
 	}
 	
 		// 濡쒓렇�씤 �셿猷� �솕硫� 泥섎━ �셿猷�
