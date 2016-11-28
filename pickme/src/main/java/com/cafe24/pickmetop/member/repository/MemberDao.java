@@ -40,6 +40,11 @@ public class MemberDao {
 	return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
 	}
 	
+	public int memberGeneralCheck(String generalId) {
+		logger.info("generalId : {}", generalId);	
+		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralIdCheck", generalId);
+	}
+	
 	// �씪諛� 濡쒓렇�씤 泥섎━ �셿猷�
 	public MemberGeneralVo selectMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);

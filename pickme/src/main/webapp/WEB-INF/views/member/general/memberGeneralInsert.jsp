@@ -294,7 +294,12 @@ body .container .content .signup-cont {
 				            <div class="signin-cont cont">
 					                <form action="/memberGeneralInsert" method="post" enctype="multipart/form-data">
 					                <input type="hidden" name="memberGeneralCheck" value="T">
-						                    <input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
+					                	<c:if test="${check == null }">
+					                		<input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일">
+					                	</c:if>
+						                <c:if test="${check eq '아이디중복' }">
+						                 	<input type="email" name="generalId" id="generalId" class="inpt" required="required" placeholder="이메일 중복 오류">
+						                </c:if>  
 						                    <label for="generalId">이메일</label>
 						                  
 						                    <input type="password" name="generalPw" id="generalPw" class="inpt" required="required" placeholder="비밀번호">

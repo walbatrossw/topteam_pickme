@@ -36,11 +36,19 @@
 		WHERE
 			general_id = #{generalId}
 		 AND
-			general_pw = #{generalPw}
-			
+			general_pw = #{generalPw}	
 	</select>
 	
-	
+	<select id="memberGeneralIdCheck" resultType="Integer"
+				parameterType="String">
+		SELECT 
+			IFNULL(COUNT(*), 0)
+		FROM
+			tb_member_general
+		WHERE
+			general_id = #{generalId}
+	</select>
+		
 	<!-- MemberGeneralVo 로그인 완료-->
 	<select id="selectMemberGeneral" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
 		SELECT 

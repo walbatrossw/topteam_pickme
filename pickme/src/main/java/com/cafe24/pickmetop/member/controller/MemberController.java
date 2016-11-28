@@ -44,16 +44,20 @@ public class MemberController {
 	
 	// 회원 가입후 메인 페이지 완료
 	@RequestMapping(value="/memberGeneralInsert", method = RequestMethod.POST)
-	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
+	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo, Model model){
 		//밑의 서비스를 실행하고
-		//int boolean 중복이 없고 잘가입이 되었다면 
-		memberService.addmemberGeneral(memberGeneralVo);
-		//index로리턴
-		return "/index";
-		//중복값이 이따면
-		//다시 로그인화면으로 이동
-		//이때 화면에서 체크를 해주고싶으면 뭔가 값을 넘겨서 체크
-		
+		if(memberService.addmemberGeneral(memberGeneralVo)){
+			//boolean 중복이 없고 잘가입이 되었다면 
+			//index로리턴	
+			return "/index";
+		}else{
+			//중복값이 있다면
+			//다시 로그인화면으로 이동
+			//이때 화면에서 체크를 해주고싶으면 뭔가 값을 넘겨서 체크
+			model.addAttribute("check", "아이디중복");
+			return "/member/general/memberGeneralInsert";
+		}
+	
 	}
 
 		

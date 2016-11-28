@@ -24,13 +24,19 @@ public class MemberService {
 	private final int MAX_PER_PAGE = 5;
 	
 	// �씪諛� �쉶�썝 媛��엯
-	public void addmemberGeneral(MemberGeneralVo memberGeneralVo){
+	public boolean addmemberGeneral(MemberGeneralVo memberGeneralVo){
 		memberGeneralVo.setGeneralLevel(1);
 		memberGeneralVo.setGeneralState(0);
 		//로그인 체크 Dao만들고
-		//조건문줘서 로그인중복이 없다면
-		memberDao.insertMemberGeneral(memberGeneralVo);
-		//로그인 중복이 있다면 컨트롤러로 뭐 종복이있다는 무슨 경우의 수를 주고
+		int result = memberDao.memberGeneralCheck(memberGeneralVo.getGeneralId());
+		if(result == 0) {
+			//조건문줘서 로그인중복이 없다면
+			memberDao.insertMemberGeneral(memberGeneralVo);
+			return true;
+		} else {
+			//로그인 중복이 있다면 컨트롤러로 뭐 종복이있다는 무슨 경우의 수를 주고
+			return false;
+		}
 		
 	}
 	
