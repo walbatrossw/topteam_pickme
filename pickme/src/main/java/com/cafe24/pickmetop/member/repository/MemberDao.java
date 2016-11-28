@@ -29,15 +29,16 @@ public class MemberDao {
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
 	}
 	
-	//濡쒓렇�씤 �븘�씠�뵒 泥댄겕 誘몄쟻�슜
-	public Map<String, String> memberGeneralCheck(String generalId, String generalPw) {
+	// 아이디 체크 
+	public MemberGeneralVo memberGeneralCheck(Map<String, Object> map) {
 	
-		logger.info("generalId : {}", generalId);
+/*		logger.info("generalId : {}", generalId);
 		logger.info("generalPw : {}",generalPw);
 		Map map = new HashMap();
 		map.put("generalId", generalId);
-		map.put("generalPw", generalPw);
-	return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
+		map.put("generalPw", generalPw);*/
+	
+		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
 	}
 	
 	public int memberGeneralCheck(String generalId) {
