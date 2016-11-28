@@ -1,10 +1,12 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modHeader.jsp" />
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/company/companyinfo.css">
 <link rel="stylesheet" href="/css/company/companyCommon.css">
@@ -72,40 +74,40 @@
 		<div id="head_lwrap">
 			<div class="header_cont">
 				<div class="gnb" style="background: rgba(255, 255, 255, 0.01);">
-				<h1><a class="companyInfoMain" href="/companyInfo"><strong>±â¾÷Á¤º¸</strong></a></h1>
+				<h1><a class="companyInfoMain" href="/companyInfo"><strong>ê¸°ì—…ì •ë³´</strong></a></h1>
 					<ul>
 						<li class="menu1">
-							<a href="/company/companyInfoList">±â¾÷Á¤º¸</a>
+							<a href="/company/companyInfoList">ê¸°ì—…ì •ë³´</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/company/companyInfoList">±â¾÷ ¸®½ºÆ®</a></li>
+									<li><a href="/company/companyInfoList">ê¸°ì—… ë¦¬ìŠ¤íŠ¸</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="menu2">
-							<a href="/review/companyReviewListAllow">±â¾÷¸®ºä</a>
+							<a href="/review/companyReviewListAllow">ê¸°ì—…ë¦¬ë·°</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/review/companyReviewInsertForm">±â¾÷¸®ºä µî·Ï</a></li>
-									<li><a href="/review/companyReviewListAllow">±â¾÷¸®ºä ¸ñ·Ï</a></li>
+									<li><a href="/review/companyReviewInsertForm">ê¸°ì—…ë¦¬ë·° ë“±ë¡</a></li>
+									<li><a href="/review/companyReviewListAllow">ê¸°ì—…ë¦¬ë·° ëª©ë¡</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="menu3">
-							<a href="/salary/companySalaryListAllow">¿¬ºÀÁ¤º¸ </a>
+							<a href="/salary/companySalaryListAllow">ì—°ë´‰ì •ë³´ </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/salary/companySalaryInsertForm">¿¬ºÀÁ¤º¸ µî·Ï</a></li>
-									<li><a href="/salary/companySalaryListAllow">¿¬ºÀÁ¤º¸ ½ÂÀÎ¸ñ·Ï</a></li>
+									<li><a href="/salary/companySalaryInsertForm">ì—°ë´‰ì •ë³´ ë“±ë¡</a></li>
+									<li><a href="/salary/companySalaryListAllow">ì—°ë´‰ì •ë³´ ìŠ¹ì¸ëª©ë¡</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="menu4">
-							<a href="/interview/companyInterviewListAllow">¸éÁ¢ÈÄ±â</a>
+							<a href="/interview/companyInterviewListAllow">ë©´ì ‘í›„ê¸°</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/interview/companyInterviewInsertForm">¸éÁ¢ÈÄ±â µî·Ï</a></li>
-									<li><a href="/interview/companyInterviewListAllow">¸éÁ¢ÈÄ±â ¸ñ·Ï</a></li>
+									<li><a href="/interview/companyInterviewInsertForm">ë©´ì ‘í›„ê¸° ë“±ë¡</a></li>
+									<li><a href="/interview/companyInterviewListAllow">ë©´ì ‘í›„ê¸° ëª©ë¡</a></li>
 								</ul>
 							</div>
 						</li>
@@ -117,44 +119,44 @@
 	</div>
 	<!-- //HEADER END -->
 	<div id="main_wrapper">
-		<!-- ºñÁÖ¾ó ÀÌ¹ÌÁö start -->
+		<!-- ë¹„ì£¼ì–¼ ì´ë¯¸ì§€ start -->
 		<div class="sections" id="main_visual">
 			<div class="section_cont">
 				<div class="visual">
 					<ul>
 						<li class="list1">
-							<span class="img" style="z-index:2; opacity:1;"><img src="/img/company/companymain.png"/></span><!-- ºñÁÖ¾ó ÀÌ¹ÌÁö1 -->
+							<span class="img" style="z-index:2; opacity:1;"><img src="/img/company/companymain.png"/></span><!-- ë¹„ì£¼ì–¼ ì´ë¯¸ì§€1 -->
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- ºñÁÖ¾ó ÀÌ¹ÌÁö end -->
+	<!-- ë¹„ì£¼ì–¼ ì´ë¯¸ì§€ end -->
 	<div class="container">
 		<div class="sections2">
 			<div class="row">
 				<div class="col-xs-8 quick">
 					<div class="col-xs-3">
-						<a href="/company/companyInfoList"><img alt="±â¾÷Á¤º¸ Äü¸Þ´º" src="/img/company/companyInfoQuick.jpg"></a>
+						<a href="/company/companyInfoList"><img alt="ê¸°ì—…ì •ë³´ í€µë©”ë‰´" src="/img/company/companyInfoQuick.jpg"></a>
 					</div>
 					<div class="col-xs-3">
-						<a href="/salary/companySalaryListAllow"><img alt="¿¬ºÀÁ¤º¸ Äü¸Þ´º" src="/img/company/companySalaryQuick.jpg"></a>
+						<a href="/salary/companySalaryListAllow"><img alt="ì—°ë´‰ì •ë³´ í€µë©”ë‰´" src="/img/company/companySalaryQuick.jpg"></a>
 					</div>
 					<div class="col-xs-3">
-						<a href="/interview/companyInterviewListAllow"><img alt="¸éÁ¢ÈÄ±â Äü¸Þ´º" src="/img/company/companyInterviewQuick.jpg"></a>
+						<a href="/interview/companyInterviewListAllow"><img alt="ë©´ì ‘í›„ê¸° í€µë©”ë‰´" src="/img/company/companyInterviewQuick.jpg"></a>
 					</div>
 					<div class="col-xs-3">
-						<a href="/review/companyReviewListAllow"><img alt="±â¾÷¸®ºä Äü¸Þ´º" src="/img/company/companyReviewQuick.jpg"></a>
+						<a href="/review/companyReviewListAllow"><img alt="ê¸°ì—…ë¦¬ë·° í€µë©”ë‰´" src="/img/company/companyReviewQuick.jpg"></a>
 					</div>
 				</div> 
 				<div class="col-xs-6 toplist">
 					<ul id="list10">
-				    	<li class="bar"><h3>±â¾÷ ÆòÁ¡ ¼øÀ§</h3></li>
+				    	<li class="bar"><h3>ê¸°ì—… í‰ì  ìˆœìœ„</h3></li>
 				     	<li id="list10_bg">
-						    <p id="listit1">¼øÀ§</p>
-							<p id="listit2">±â¾÷ÀÌ¸§</p>
-							<p id="listit3">±â¾÷ ÃÑ ÆòÁ¡</p>
+						    <p id="listit1">ìˆœìœ„</p>
+							<p id="listit2">ê¸°ì—…ì´ë¦„</p>
+							<p id="listit3">ê¸°ì—… ì´ í‰ì </p>
 					 	</li>
 					 	<c:forEach var="companyTotalRateList" items="${companyTotalRateList}" varStatus="i">
 						<li class="list10_list">
