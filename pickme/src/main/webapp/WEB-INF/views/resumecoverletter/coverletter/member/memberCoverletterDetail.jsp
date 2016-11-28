@@ -13,14 +13,6 @@
 <link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
-<!-- Social Buttons CSS -->
-<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
-<!-- DataTables CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-<!-- DataTables Responsive CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- jQuery -->
@@ -29,36 +21,24 @@
 <script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
-<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
-<script src="resumecoverlettersetting/data/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-<!-- Flot Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/flot/excanvas.min.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.pie.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.resize.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
-<script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- DataTables JavaScript -->
-<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
-<script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-<script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- Page-Level Demo Scripts - Notifications - Use for reference -->
 <script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-    // popover demo
-    $("[data-toggle=popover]")
-        .popover()
+
+function printPage(){
+	 var initBody;
+	 window.onbeforeprint = function(){
+	  initBody = document.body.innerHTML;
+	  document.body.innerHTML =  document.getElementById('print').innerHTML;
+	 };
+	 window.onafterprint = function(){
+	  document.body.innerHTML = initBody;
+	 };
+	 window.print();
+	 return false;
+}
 </script>
+
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
@@ -71,78 +51,77 @@
 				</div>
 					<div class="row">
 		                <div class="col-lg-8">
-		                    <div class="panel panel-default">
-		                        <div class="panel-heading">
-		                        	<p><strong>PickMe</strong>는 자기소개서의 이름과 제출일자 편집을 제공합니다</p>
-		                        	<p>사용자가 원하는 이름과 마감일자로 변경해보세요</p>
-		                        	<p>빠르고 정확한 제출이 서류합격의 지름길입니다.</p>
-		                        	<p>맞춤법검사, 메모장, 공채핵심자료를 제공하고 있습니다.(좌측 하단) </p>
+		                    <div class="panel panel-primary">
+		                        <div class="panel-heading" id="noprint">
+		                        	<p><strong>PickMe</strong>는 자소서 출력기능을 제공하고 있습니다</p>
+		                        	<p>하단의 인쇄버튼을 클릭하시면 프린터를 출력하시거나 PDF파일을 생성하실수 있습니다.</p>
+		                        	<button type="button" class="btn btn-warning btn-sm" onclick="window.printPage()"><i class="fa fa-print fa-fw"></i> 인쇄하기</button>
 		                        </div>
 		                        <div class="panel-body">
-		                        <div class="table-responsive">
-		                            <table class="table table-striped table-bordered table-hover table-responsive table-condenced" id="">
-		                                <thead>
-		                                    <tr>
-		                                        <th class="col-xs-3">자기소개서 이름</th>
-												<th class="col-xs-1">서류 제출 마감시간</th>
-												<th class="col-xs-1">내가 정한 마감시간</th>
-												<th class="col-xs-1">저장시간</th>
-		                                	</tr>
-		                                </thead>
-		                                <tbody>
-		                                   <tr>
-												<td>${memeberCoverletterInfo.mCletterName}</td>
-												<td style="color: blue;">${memeberCoverletterInfo.mCletterEnddate}</td>
-												<td style="color: red;">${memeberCoverletterInfo.mCletterDdaytime}</td>
-												<td>${memeberCoverletterInfo.mCletterRegdate}</td>
+		                        <div>
+		                       		<div id="print">
+			                            <table class="table table-striped table-bordered table-hover table-responsive table-condenced" id="">
+			                                <thead>
+			                                    <tr>
+			                                        <th class="col-xs-3">자기소개서 이름</th>
+													<th class="col-xs-1">서류 제출 마감시간</th>
+													<th class="col-xs-1">내가 정한 마감시간</th>
+													<th class="col-xs-1">저장시간</th>
+			                                	</tr>
+			                                </thead>
+			                                <tbody>
+			                                   <tr>
+													<td>${memeberCoverletterInfo.mCletterName}</td>
+													<td style="color: blue;">${memeberCoverletterInfo.mCletterEnddate}</td>
+													<td style="color: red;">${memeberCoverletterInfo.mCletterDdaytime}</td>
+													<td>${memeberCoverletterInfo.mCletterRegdate}</td>
+												</tr>
+											</tbody>
+										</table>
+										<c:forEach var="memeberCoverletterArticleList" items="${memeberCoverletterArticleList}" varStatus="i">	
+										<table class="table table-striped table-bordered table-hover" id="">
+			                            	<tr>
+												<td class="col-sm-1">
+													${i.count}. 문항
+												</td>
+												<td class="col-sm-8">
+													${memeberCoverletterArticleList.cCletterArticle}
+												</td>
 											</tr>
-										</tbody>
-									</table>
-									<c:forEach var="memeberCoverletterArticleList" items="${memeberCoverletterArticleList}" varStatus="i">	
-									<table class="table table-striped table-bordered table-hover" id="">
-		                            	<tr>
-											<td class="col-sm-1">
-												${i.count}. 문항
-											</td>
-											<td class="col-sm-8">
-												${memeberCoverletterArticleList.cCletterArticle}
-											</td>
-										</tr>
-										<tr>
-											<td class="col-sm-1">
-												${i.count}.	내용
-											</td>
-											<td class="col-sm-8">
-												${memeberCoverletterArticleList.mCletterArticleContent}
-											</td>
-										</tr>
-										<tr>
-											<td class="col-sm-1">
-												글자수
-											</td>
-											<td class="col-sm-8">
-												<div>
-													<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백포함) : 구현중
-												</div>
-												<div>
-													<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백미포함) : 구현중
-												</div>
-											</td>
-										</tr>
-		                            </table>
-		                            </c:forEach>
-		                            <div>
-									     <button type="button" class="btn btn-default">
-									     	<a href="memberCoverletterUpdateForm?mCletterCd=${memeberCoverletterInfo.mCletterCd}">
-									     		<i class="fa fa-exchange fa-fw">
-									     		</i> 수정하기
-									     	</a>  
-									     </button>
-								    </div>
+											<tr>
+												<td class="col-sm-1">
+													${i.count}.	내용
+												</td>
+												<td class="col-sm-8">
+													${memeberCoverletterArticleList.mCletterArticleContent}
+												</td>
+											</tr>
+											<tr>
+												<td class="col-sm-1">
+													글자수
+												</td>
+												<td class="col-sm-8">
+													<div>
+														<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백포함) : 구현중
+													</div>
+													<div>
+														<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백미포함) : 구현중
+													</div>
+												</td>
+											</tr>
+			                            </table>
+			                            </c:forEach>
+		                            </div>
+		                            <div id="noprint">
+									     <a href="memberCoverletterUpdateForm?mCletterCd=${memeberCoverletterInfo.mCletterCd}" class="btn btn-default">
+									     	<i class="fa fa-exchange fa-fw">
+									     	</i> 수정하기
+									    </a>  
+									</div>
 		                        </div>
-		                	</div>
+		                    </div>
 		            	</div>
-		        	</div>
+		            </div>
 				</div>
 			</div>
 		</div>

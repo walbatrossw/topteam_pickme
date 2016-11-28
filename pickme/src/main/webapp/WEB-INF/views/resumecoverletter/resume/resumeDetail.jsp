@@ -15,14 +15,6 @@
 <link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
-<!-- Social Buttons CSS -->
-<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
-<!-- DataTables CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-<!-- DataTables Responsive CSS -->
-<link href="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 <!-- Custom Fonts -->
 <link href="resumecoverlettersetting/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <!-- jQuery -->
@@ -31,34 +23,25 @@
 <script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
-<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
-<script src="resumecoverlettersetting/data/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-<!-- Flot Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/flot/excanvas.min.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.pie.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.resize.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
-<script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
 <!-- DataTables JavaScript -->
 <script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- Page-Level Demo Scripts - Notifications - Use for reference -->
 <script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-    // popover demo
-    $("[data-toggle=popover]")
-        .popover()
+	function printPage(){
+		var initBody;
+		window.onbeforeprint = function(){
+			initBody = document.body.innerHTML;
+			document.body.innerHTML =  document.getElementById('print').innerHTML;
+		};
+		window.onafterprint = function(){
+			document.body.innerHTML = initBody;
+		};
+		window.print();
+		return false;
+	}
 </script>
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
@@ -76,39 +59,31 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">${resumeDetailInfo.loginId} 님의 이력서</h3>
-					
-					<div class="row">
+					<h3 class="page-header" id="noprint">${resumeDetailInfo.loginId} 님의 이력서</h3>
+					<div class="col-lg-12" id="noprint">
 						<table class="table table-striped table-bordered table-hover">
 							<tr>
 								<th>이력서 이름</th>
-								<th>저장시간</th>
 								<th>수정시간</th>
 							</tr>
 							<tr>
 								<td>${resumeDetailInfo.resumeName}</td>
-								<td>${resumeDetailInfo.resumeRegdate}</td>
 								<td>${resumeDetailInfo.resumeModidate}</td>
 							</tr>
 						</table>
-					</div>
-					<div>
-						<button type="button" class="btn btn-default">
-							<a href="/resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}">
-								<i class="fa fa-exchange fa-fw"></i> 이력서 수정하기
-							</a>
-						</button>
-					</div>
-					<div>
-						<button type="button" class="btn btn-default">
-							<a href="resumeDelete?resumeCd=${resumeDetailInfo.resumeCd}">
-								<i class="fa fa-exchange fa-fw"></i> 이력서 삭제하기
-							</a>
+						<a href="/resumeUpdateForm?resumeCd=${resumeDetailInfo.resumeCd}" class="btn btn-primary btn-sm">
+							<i class="fa fa-exchange fa-fw"></i> 수정
+						</a>
+						<a href="resumeDelete?resumeCd=${resumeDetailInfo.resumeCd}" class="btn btn-primary btn-sm">
+							<i class="fa fa-times fa-fw"></i> 삭제
+						</a>
+						<button type="button" class="btn btn-primary btn-sm" onclick="window.printPage()">
+							<i class="fa fa-print fa-fw"></i> 인쇄하기
 						</button>
 					</div>
 					<hr>
-					<div class="row">
-						<div class="col-sm-2">
+					<div class="row" id="print">
+						<div class="col-xs-2">
 							<h4 align="center">증명사진</h4>
 							<table class="table table-striped table-bordered table-hover">
 								<tr>
@@ -118,10 +93,9 @@
 										</div>
 									</th>
 								</tr>
-								
 							</table>
 						</div>
-						<div class="col-sm-10">
+						<div class="col-xs-10">
 									<h4>개인신상정보</h4>
 									
 									<table class="table table-striped table-bordered table-hover">

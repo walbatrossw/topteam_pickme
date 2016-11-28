@@ -152,7 +152,7 @@
 	                                </div>
 	                                <div class="col-xs-9 text-right">
 	                                    <div class="huge">13</div>
-	                                    <div>게시글 답글</div>
+	                                    <div>나의 관심글</div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -176,28 +176,22 @@
 	                        <!-- /.panel-heading -->
 	                        <div class="panel-body">
 	                        	<div>
-	                            <table class="table table-striped table-bordered table-hover" >
+	                            <table class="table table-striped table-bordered table-hover table-condensed" >
 		                        	<thead>
 		                                <tr>
-		                                    <th>번호</th>
-											<th>마감일</th>
-											<th>채용명</th>
-											<th>회사명</th>
-											<th>직무대분류</th>
-											<th>상세직무</th>
-											<th>채용형태</th>
+		                                    <th class="small">번호</th>
+											<th class="small">마감일</th>
+											<th class="small">채용명</th>
+											<th class="small">상세직무</th>
 										</tr>
 		                            </thead>
 		                            <tbody>
 		                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
 										<tr>
-											<td>${i.count}</td>
-											<td>${companyJobCoverletterListForInfo.recruitEnddate}</td>
-											<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
-											<td>${companyJobCoverletterListForInfo.companyName}</td>
-											<td>${companyJobCoverletterListForInfo.jobMidindexName}</td>
-											<td>${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
-											<td>${companyJobCoverletterListForInfo.recruitJobWorkstatus}</td>
+											<td class="small">${i.count}</td>
+											<td class="small">${companyJobCoverletterListForInfo.recruitEnddate}</td>
+											<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
+											<td class="small">${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
 										</tr>
 										</c:forEach>
 									</tbody>
@@ -218,28 +212,22 @@
 	                        <!-- /.panel-heading -->
 	                        <div class="panel-body">
 	                        	<div>
-	                            <table class="table table-striped table-bordered table-hover" >
+	                            <table class="table table-striped table-bordered table-hover table-condensed" >
 		                        	<thead>
 		                                <tr>
-		                                    <th>번호</th>
-											<th>마감일</th>
-											<th>채용명</th>
-											<th>회사명</th>
-											<th>직무대분류</th>
-											<th>상세직무</th>
-											<th>채용형태</th>
+		                                    <th class="small">번호</th>
+											<th class="small">마감일</th>
+											<th class="small">채용명</th>
+											<th class="small">상세직무</th>
 										</tr>
 		                            </thead>
 		                            <tbody>
-		                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
+		                               	<c:forEach var="myRecruitBookmarkListForInfo" items="${myRecruitBookmarkListForInfo}" varStatus="i">
 										<tr>
-											<td>${i.count}</td>
-											<td>${companyJobCoverletterListForInfo.recruitEnddate}</td>
-											<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
-											<td>${companyJobCoverletterListForInfo.companyName}</td>
-											<td>${companyJobCoverletterListForInfo.jobMidindexName}</td>
-											<td>${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
-											<td>${companyJobCoverletterListForInfo.recruitJobWorkstatus}</td>
+											<td class="small">${i.count}</td>
+											<td class="small">${myRecruitBookmarkListForInfo.recruitEnddate}</td>
+											<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${myRecruitBookmarkListForInfo.recruitJobCd}">${myRecruitBookmarkListForInfo.recruitName}</a></td>
+											<td class="small">${myRecruitBookmarkListForInfo.recruitJobJobdetail}</td>
 										</tr>
 										</c:forEach>
 									</tbody>

@@ -77,27 +77,27 @@
 								<li><a href="/memberCoverletterList"><i class="fa fa-file fa-fw"></i> 내가 쓴 자소서</a></li>
 							</ul>
 						</li>
-						<li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
+						<!-- <li><a href="#"><i class="fa fa-save fa-fw"></i> 저장<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level"> 
-								<li><a href="#"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li> <!-- /memberCoverletterSave -->
-								<li><a href="#" data-toggle="modal" data-target="#importModal"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li> <!-- /memberCoverletterList -->
-								<li><a href="#" data-toggle="modal" data-target="#saveRecordModal"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li> <!-- /memberCoverletterSaveRecord -->
+								<li><a href="#"><i class="fa fa-folder fa-fw"></i> 저장하기</a></li> /memberCoverletterSave
+								<li><a href="#" data-toggle="modal" data-target="#importModal"><i class="fa fa-folder-open fa-fw"></i> 불러오기</a></li> /memberCoverletterList
+								<li><a href="#" data-toggle="modal" data-target="#saveRecordModal"><i class="fa fa-list-ol fa-fw"></i> 저장기록</a></li> /memberCoverletterSaveRecord
 							</ul>
-						</li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
+						</li> -->
+						<!-- <li><a href="#"><i class="fa fa-gear fa-fw"></i> 기능<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li>
 									<a href="javascript:void(0);" onclick="window.open('/coverletterPrint', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
 										<i class="fa fa-print fa-fw">
 										</i> 인쇄하기
 									</a>
-								</li> <!-- /coverletterPrint -->
+								</li> /coverletterPrint
 								<li>
 									<a href="javascript:void(0);" onclick="window.open('/coverletterExport', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
 										<i class="fa fa-mail-forward fa-fw">
 										</i> 내보내기
 									</a>
-								</li> <!-- /coverletterExport -->
+								</li> /coverletterExport
 								<li>
 									<a href="javascript:void(0);" onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
 										<i class="fa fa-check-square-o fa-fw">
@@ -123,15 +123,15 @@
 											</a>
 										</li>
 									</ul>
-								</li> <!-- /memberCoverletterMemo -->
+								</li> /memberCoverletterMemo
 								<li>
-									<a href="javascript:void(0);" onclick="window.open('/passCoverlettrList', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
+									<a href="#" data-toggle="modal" data-target="#passModal">
 										<i class="fa fa-thumbs-o-up fa-fw">
 										</i> 합격자소서
 									</a>
-								</li> <!-- /passCoverlettrList -->
+								</li> /passCoverlettrList
 							</ul>
-						</li>
+						</li> -->
 						<!-- Side MENU : MENU -->
 					
 					</ul>

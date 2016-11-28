@@ -12,10 +12,6 @@
 <link href="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Morris Charts CSS -->
-<link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
-<!-- Social Buttons CSS -->
-<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
 <!-- DataTables CSS -->
 <link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 <!-- DataTables Responsive CSS -->
@@ -28,22 +24,10 @@
 <script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
-<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
-<script src="resumecoverlettersetting/data/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-<!-- Flot Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/flot/excanvas.min.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.pie.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.resize.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
-<script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
 <!-- DataTables JavaScript -->
-<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <script>
@@ -57,7 +41,6 @@ $(document).ready(function() {
 			<table width="100%" class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 				<thead>	
 					<tr>
-						<th>체크</th>
 						<th>번호</th>
 						<th>자소서이름</th>
 						<th>자소서등록시간</th>
@@ -67,19 +50,17 @@ $(document).ready(function() {
 				<tbody>	
 				<c:forEach var="memberCoverletterListForModal" items="${memberCoverletterListForModal}" varStatus="i">
 					<tr>
-						<td><input type="checkbox" value="/memberCoverletterDetail?mCletterCd=${memberCoverletterListForModal.mCletterCd}"></td>
 						<td>${i.count}</td>
-						<td>${memberCoverletterListForModal.mCletterName}</td>
+						<td id="importCoverletter">
+						<a href="javascript:void(0);" onclick="window.open('/memberCoverletterDetail?mCletterCd=${memberCoverletterListForModal.mCletterCd}');">
+						${memberCoverletterListForModal.mCletterName}</a></td>
+						
 						<td>${memberCoverletterListForModal.mCletterRegdate}</td>
 						<td>${memberCoverletterListForModal.mCletterModidate}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
 			</table>
-			<div>
-				<button type="button" id="coverletterImportBtn" class="btn btn-success btn-sm"><i class="fa fa-folder-open-o"></i> 불러오기</button>
-			</div>
-		
 	</div>
 </body>
 </html>

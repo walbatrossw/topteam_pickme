@@ -33,6 +33,18 @@
 <script>
 	
 	$(document).ready(function(){
+		//내가 정한 마감일자 유효성 검사
+		$('#coverletterAddBtn').click(function(){
+			if($("#ddayPicker").val() ==  ""){
+				$("#ddayPickerError").text("나의 마감일자를 입력하세요");
+				$("#ddayPicker").focus();
+				return false;
+			} else {
+				$("#coverletterAddBtn").submit();
+			}	
+		});
+		
+		
 		
 		//글자수 세기
 		$(function(){
@@ -119,7 +131,7 @@
 		$memoAddBtn.click(function(){
 			if(memoFlag == false){
 				$('#fieldMemo').append(
-					'<div class="memo panel panel-default memo">'+
+					'<div class="memo panel panel-info memo">'+
 						'<div class="panel-heading">'+
 	                   		'<strong>메모장</strong>'+
 	                   	'</div>'+
@@ -152,16 +164,25 @@
             	format: 'L'
             });
         });
-		
-		// D-Day 구현해야함
-		
-		
 	});
+	
+function printPage(){
+	var initBody;
+	window.onbeforeprint = function(){
+		initBody = document.body.innerHTML;
+		document.body.innerHTML =  document.getElementById('print').innerHTML;
+	};
+	window.onafterprint = function(){
+		document.body.innerHTML = initBody;
+	};
+	window.print();
+	return false;
+}
+	
 </script>
-
 </head>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modHeader.jsp" />
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCoverletterInsert.jsp" />
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/resumecoverletter/module/modSideCommon.jsp" />
 <body>
 	
 	<div id="wrapper">
@@ -191,14 +212,38 @@
 		                        	<p>P!ckMe자소서 페이지는 <strong style="color: yellow">인쇄하기, 맞춤법검사, 메모장, 기업정보</strong>를 제공하고 있습니다.(좌측 하단) </p>
 		                        	<c:set var="loginId" value="${sessionScope.generalId}" />
 			                        	<c:if test="${loginId ne null}">
-			                           		<button type="submit" class="btn btn-success btn-sm" id="coverletterAddBtn"><i class="fa fa-save"></i>  자소서 저장</button>
-			                           	</c:if>
+			                           		<button type="submit" class="btn btn-warning btn-sm" id="coverletterAddBtn">
+				                           		<i class="fa fa-save">
+				                           		</i>  자소서 저장
+			                           		</button>
+			                           		<a href="#" data-toggle="modal" data-target="#saveRecordModal" class="btn btn-warning btn-sm">
+												<i class="fa fa-list-ol fa-fw"></i> 저장기록
+											</a>
+			                           		<a href="#" data-toggle="modal" data-target="#importModal" class="btn btn-warning btn-sm">
+			                           			<i class="fa fa-folder-open fa-fw"></i> 불러오기
+			                           		</a>
+											<button type="button" class="btn btn-warning btn-sm" onclick="window.printPage()">
+			                           			<i class="fa fa-print fa-fw"></i> 인쇄하기
+			                           		</button>
+											<a href="javascript:void(0);" class="btn btn-warning btn-sm" onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
+												<i class="fa fa-check-square-o fa-fw"></i> 맞춤법 검사
+											</a>
+											<a href="javascript:void(0);" class="btn btn-warning btn-sm" id="memoAddBtn">
+												<i class="fa fa-plus-circle fa-fw"></i> 메모장 추가
+											</a>
+											<a href="javascript:void(0);" class="btn btn-warning btn-sm" id="memoDelBtn">
+												<i class="fa fa-minus-circle fa-fw"></i> 메모장 삭제
+											</a>
+											<a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#passModal">
+												<i class="fa fa-thumbs-o-up fa-fw"></i> 합격자소서
+											</a>
+										</c:if>
 			                           	<c:if test="${empty loginId}">
 			                           		<p><strong><a href="/memberGeneralLogin" style="color: yellow">로그인</a></strong> 또는 <strong><a href="memberGeneralInsert" style="color: yellow">회원가입</a></strong> 후에 자기소개서를 저장하실 수 있습니다.</p>
 			                           	</c:if>
 								</div>
 		                        <div class="panel-body">
-		                        <div>
+		                        <div id="print">
 		                            <table class="table table-striped table-bordered table-hover table-condensed table-responsive">
 		                                <thead>
 		                                    <tr>
@@ -211,7 +256,7 @@
 		                                	<tr>
 												<td><input type="text" class="form-control input-sm" id="" name="mCletterName" value="${companyOneJobCletterInfo.companyName} / ${companyOneJobCletterInfo.recruitName} / ${companyOneJobCletterInfo.recruitJobJobdetail}"></td>
 												<td><input type="hidden" class="form-control input-sm" name="mCletterEnddate" value="${companyOneJobCletterInfo.recruitEnddate}">${companyOneJobCletterInfo.recruitEnddate}</td>
-												<td><input type="text" class="form-control input-sm" id="ddayPicker" name="mCletterDdaytime"></td>
+												<td><input type="text" class="form-control input-sm" id="ddayPicker" name="mCletterDdaytime"><span id="ddayPickerError" style="color: red"></span></td>
 											</tr>
 										</tbody>
 									</table>
@@ -409,6 +454,31 @@
 		    </div>
 		</div>
 		<!-- 오류문항 신고 Modal -->
+		<!-- 합격자소서 Modal -->
+		<div class="modal fade" id="passModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h4 class="modal-title">합격자소서</h4>
+			        </div>
+					<div class="modal-body">
+						<div class="check panel panel-primary">
+							<div class="panel-heading">
+                        		<strong>합격자소서 목록</strong>
+							</div>
+	                    	<div class="panel-body" align="center">
+	                    		<iframe src="/passCoverletterList" height="500px" width="840px" frameborder="0" framespacing="0"></iframe>
+	                    	</div>
+                    	</div>
+					</div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			        </div>
+				</div>
+		    </div>
+		</div>
 	</div>
 </body>
 </html>

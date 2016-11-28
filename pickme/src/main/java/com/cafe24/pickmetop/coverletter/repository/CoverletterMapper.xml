@@ -18,7 +18,7 @@
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, 
 		rcj.recruit_job_education AS recruitJobEducation, 
 		rcj.recruit_job_workstatus AS recruitJobWorkstatus, 
-		rc.recruit_enddate AS recruitEnddate 
+		DATE_FORMAT(rc.recruit_enddate, '%Y-%m-%d %H:%i') as recruitEnddate 
 	FROM 
 		tb_recruit_company rc
 	
@@ -37,6 +37,34 @@
 	LIMIT 10
 	</select>
 	<!-- //마감임박채용공고10 -->
+	
+	<!-- 나의 관심채용 마감임박순으로 정렬 최대 10개까지 -->
+	<select id="selectMyRecruitBookmarkListForInfo" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterBookmarkListVo">
+	SELECT 
+		
+		rcb.member_custom_bookmark_cd AS memberCustomBookmarkCd, 
+		rcb.login_id AS loginId, 
+		rcb.recruit_company_cd AS recruitCompanyCd,
+		rc.recruit_name AS recruitName,
+		rc.recruit_enddate AS recruitEnddate,
+		rcj.recruit_job_cd AS recruitJobCd,
+		rcj.recruit_job_jobdetail AS recruitJobJobdetail,
+		ci.company_name
+	
+	FROM tb_recruit_company_bookmark AS rcb
+	
+	LEFT JOIN tb_recruit_company AS rc ON rc.recruit_company_cd = rcb.recruit_company_cd
+	LEFT JOIN tb_recruit_company_job AS rcj ON rcj.recruit_company_cd = rcb.recruit_company_cd
+	LEFT JOIN tb_company_info AS ci on ci.company_cd = rc.company_cd
+	
+	WHERE rcb.login_id = #{loginId}
+	
+	AND CURRENT_TIMESTAMP <![CDATA[ <= ]]> rc.recruit_enddate
+	
+	ORDER BY rc.recruit_enddate ASC
+	LIMIT 20
+	</select>
+	<!-- //나의 관심채용 마감임박순으로 정렬 최대 10개까지 -->
 	
 	<!-- 나의자소서Count -->
 	<select id="selectMyCoverletterListCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
@@ -102,7 +130,7 @@
 		rcj.recruit_job_jobdetail AS recruitJobJobdetail, <!-- 상세직무 -->
 		rcj.recruit_job_education AS recruitJobEducation, <!-- 채용학력 -->
 		rcj.recruit_job_workstatus AS recruitJobWorkstatus, <!-- 채용형태 -->
-		rc.recruit_enddate AS recruitEnddate <!-- 마감일 -->
+		DATE_FORMAT(rc.recruit_enddate, '%Y-%m-%d %H:%i') as recruitEnddate  <!-- 마감일 -->
 	FROM 
 		tb_recruit_company rc
 	

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.pickmetop.coverletter.model.CoverletterBookmarkListVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
@@ -82,6 +83,11 @@ public class CoverletterDao {
 	public List<CoverletterCompanyJobInfoVo> selectCoverletterCompanyJobListForInfo(){
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobListForInfo");
 	}
+	public List<CoverletterBookmarkListVo> selectMyRecruitBookmarkListForInfo(String loginId){
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectMyRecruitBookmarkListForInfo", loginId);
+	}
+	
+	
 	// 05_02 나의 정보페이지(나의자소서Count)
 	public ResumeCoverletterInfoCountVo selectMyCoverletterListCount(String loginId){
 		logger.info("나의자소서Count : {}", loginId.toString());

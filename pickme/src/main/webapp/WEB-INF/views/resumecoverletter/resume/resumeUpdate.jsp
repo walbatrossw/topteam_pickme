@@ -498,6 +498,7 @@ function openPop() {
 											<td>
 												<div class="fileinput fileinput-new" data-provides="fileinput">
 								  					<div class="fileinput-preview thumbnail" id="personalPhotoName" data-trigger="fileinput" style=" width: 117px; height: 162px;">
+								  					<img style= "width: 117px; height: 162px; display: block;" src="/upload/resumefile/photo/${resumePersonal.personalPhotoName}"/>
 								  					<span class="fileinput-filename"></span>
 								  					</div>
 								  					<div class="well well-sm">
@@ -508,7 +509,7 @@ function openPop() {
 								    					<span class="btn btn-default btn-file">
 								    						<span class="fileinput-new">사진선택</span>
 									    					<span class="fileinput-exists">변경</span>
-								    					<input type="file" name="personalPhotoFile" value="${resumePersonal.personalPhotoName}"></span>
+								    					<input type="file" name="personalPhotoFile" value=""></span>
 								    					<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">삭제</a>
 								  					</div>
 								  				</div>

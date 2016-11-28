@@ -18,13 +18,13 @@
 <body>
 	<section id="main" class="column">
 		<div class="container">
-			<div class="jumbotron col-sm-10">
+			<div class="jumbotron">
 				<h2>합격자기소개서 입력</h2>
 				<p>합격 자기소개서명, 채용 기업, 채용 상세직무를 정확히 기입해주세요</p>
 			</div>
 			<form id="passCoverletterInsertForm" action="/passCoverletterInsert"  method="post">
-			<div class="form-group col-sm-10" id="the-basics">
-				<table class="table table-bordered table-hover table-responsive">
+			<div class="form-group" id="the-basics">
+				<table class="table table-bordered table-hover">
 					<tr>
 						<th class="col-sm-3">합격 자기소개서 이름</th>
 						<th class="col-sm-3">채용기업</th>
@@ -48,18 +48,16 @@
 					</tr>
 					<tr>
 						<td>
-							<textarea class="form-control" rows="20" cols="16" name="passCletterContent" placeholder="합격 자기소개서 내용을 입력해주세요"></textarea>
+							<textarea class="form-control" rows="25" cols="16" name="passCletterContent" placeholder="합격 자기소개서 내용을 입력해주세요"></textarea>
 						</td>
 					</tr>
 				</table>
-				<button type="submit" class="btn btn-primary btn-sm" id="passCoverletterAddBtn"><i class="fa fa-save"></i>  합격자소서 입력</button>
 			</div>
-			
+			<button type="submit" class="btn btn-primary btn-sm" id="passCoverletterAddBtn"><i class="fa fa-save"></i>  합격자소서 입력</button>
 			</form>
 			<br>
 		</div>
 		<br>
 	</section>
-	<br>	
 </body>
 </html>

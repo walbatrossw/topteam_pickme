@@ -21,6 +21,7 @@
 <body>
 	<!-- Page Whole START-->
 	<div id="wrapper">
+		<div id="noprint">
 		<!-- Side Navigation Whole : START-->
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
@@ -90,7 +91,7 @@
 			</div>
 		
 		<!-- /Side Navigation Whole END-->
-		
+		</div>
 	</div>
 	<!-- /Page Whole END-->
 </body>

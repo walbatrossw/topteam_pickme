@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe24.pickmetop.coverletter.model.CoverletterBookmarkListVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
@@ -29,6 +30,11 @@ public class CoverletterService {
 	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(){
 		return coverletterDao.selectCoverletterCompanyJobListForInfo();
 	}
+	
+	public List<CoverletterBookmarkListVo> getMyRecruitBookmarkListForInfo(String loginId){
+		return coverletterDao.selectMyRecruitBookmarkListForInfo(loginId);
+	}
+	
 	// 00 이력서 및 자기소개서 나의 정보페이지(나의자소서Count)
 	public ResumeCoverletterInfoCountVo getMyCoverletterListCount(String loginId){
 		return coverletterDao.selectMyCoverletterListCount(loginId);
@@ -37,12 +43,10 @@ public class CoverletterService {
 	public ResumeCoverletterInfoCountVo getMyResumeListCount(String loginId){
 		return coverletterDao.selectMyResumeListCount(loginId);
 	}
-	
 	// 00 이력서 및 자기소개서 나의 정보페이지(나의채용북마크Count)
 	public ResumeCoverletterInfoCountVo getMyRecruirLitCount(String loginId){
 		return coverletterDao.selectMyRecruirLitCount(loginId);
 	}
-	
 	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	public List<CoverletterMemberVo> getMemberCoverletterList(String loginId){
 		return coverletterDao.selectCoverletterMemberList(loginId);

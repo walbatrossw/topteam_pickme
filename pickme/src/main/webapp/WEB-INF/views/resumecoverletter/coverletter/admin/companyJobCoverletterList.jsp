@@ -15,8 +15,6 @@
 <link href="resumecoverlettersetting/dist/css/sb-admin-2.css" rel="stylesheet">
 <!-- Morris Charts CSS -->
 <link href="resumecoverlettersetting/vendor/morrisjs/morris.css" rel="stylesheet">
-<!-- Social Buttons CSS -->
-<link href="resumecoverlettersetting/vendor/bootstrap-social/bootstrap-social.css" rel="stylesheet">
 <!-- DataTables CSS -->
 <link href="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 <!-- DataTables Responsive CSS -->
@@ -29,36 +27,14 @@
 <script src="resumecoverlettersetting/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="resumecoverlettersetting/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/raphael/raphael.min.js"></script>
-<script src="resumecoverlettersetting/vendor/morrisjs/morris.min.js"></script>
-<script src="resumecoverlettersetting/data/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="resumecoverlettersetting/dist/js/sb-admin-2.js"></script>
-<!-- Flot Charts JavaScript -->
-<script src="resumecoverlettersetting/vendor/flot/excanvas.min.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.pie.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.resize.js"></script>
-<script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
-<script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-<script src="resumecoverlettersetting/data/flot-data.js"></script>
 <!-- DataTables JavaScript -->
-<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <script src="resumecoverlettersetting/data/flot-data.js"></script>
-<!-- Page-Level Demo Scripts - Notifications - Use for reference -->
-<script>
-    // tooltip demo
-    $('.tooltip-demo').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    })
-    // popover demo
-    $("[data-toggle=popover]")
-        .popover()
-</script>
+
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
 	$(document).ready(function() {
@@ -74,11 +50,11 @@
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="row">
-				<div class="col-lg-10">
+				<div class="col-lg-12">
 					<h1 class="page-header">채용기업 리스트</h1>
 				</div>
 					<div class="row">
-		                <div class="col-lg-10">
+		                <div class="col-lg-12">
 		                    <div class="panel panel-primary">
 		                        <div class="panel-heading">
 		                        	<p><strong>PickMe</strong>는 기업 직무별 자기소개서 문항을 제공하고 있습니다.</p>
@@ -89,25 +65,25 @@
 		                            <table class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 		                                <thead>
 		                                    <tr>
-		                                        <th>번호</th>
-												<th>채용명</th>
-												<th>회사명</th>
-												<th>직무대분류</th>
-												<th>상세직무</th>
-												<th class="col-sm-1">채용형태</th>
-												<th>마감일</th>
+		                                        <th class="small">번호</th>
+												<th class="small">채용명</th>
+												<th class="small">회사명</th>
+												<th class="small">직무대분류</th>
+												<th class="small">상세직무</th>
+												<th class="small">채용형태</th>
+												<th class="small">마감일</th>
 		                                	</tr>
 		                                </thead>
 		                                <tbody>
 		                                	<c:forEach var="companyJobCoverletterList" items="${companyJobCoverletterList}" varStatus="i">
 											<tr>
-												<td>${i.count}</td>
-												<td><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.recruitName}</a></td>
-												<td>${companyJobCoverletterList.companyName}</td>
-												<td>${companyJobCoverletterList.jobMidindexName}</td>
-												<td>${companyJobCoverletterList.recruitJobJobdetail}</td>
-												<td>${companyJobCoverletterList.recruitJobWorkstatus}</td>
-												<td>${companyJobCoverletterList.recruitEnddate}</td>
+												<td class="small">${i.count}</td>
+												<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterList.recruitJobCd}">${companyJobCoverletterList.recruitName}</a></td>
+												<td class="small">${companyJobCoverletterList.companyName}</td>
+												<td class="small">${companyJobCoverletterList.jobMidindexName}</td>
+												<td class="small">${companyJobCoverletterList.recruitJobJobdetail}</td>
+												<td class="small">${companyJobCoverletterList.recruitJobWorkstatus}</td>
+												<td class="small">${companyJobCoverletterList.recruitEnddate}</td>
 											</tr>
 											</c:forEach>
 										</tbody>

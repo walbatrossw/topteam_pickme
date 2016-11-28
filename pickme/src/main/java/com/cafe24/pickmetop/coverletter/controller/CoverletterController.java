@@ -33,6 +33,7 @@ public class CoverletterController {
 		Logger.info("Session : loginId {} " , loginId);
 		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo());
 		Logger.info("companyJobCoverletterListForInfo" , model.toString());
+		model.addAttribute("myRecruitBookmarkListForInfo", coverletterService.getMyRecruitBookmarkListForInfo(loginId));
 		model.addAttribute("myCoverletterListCount", coverletterService.getMyCoverletterListCount(loginId));
 		Logger.info("myCoverletterListCount" , model);
 		model.addAttribute("myResumeListCount", coverletterService.getMyResumeListCount(loginId));

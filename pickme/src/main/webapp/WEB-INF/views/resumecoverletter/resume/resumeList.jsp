@@ -43,7 +43,7 @@
 <script src="resumecoverlettersetting/vendor/flot/jquery.flot.time.js"></script>
 <script src="resumecoverlettersetting/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
 <!-- DataTables JavaScript -->
-<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="resumecoverlettersetting/vendor/datatables/js/jquery.dataTables.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="resumecoverlettersetting/vendor/datatables-responsive/dataTables.responsive.js"></script>
 <script src="resumecoverlettersetting/data/flot-data.js"></script>
@@ -88,23 +88,23 @@
 		                            <table width="100%" class="table table-striped table-bordered table-hover table-responsive" id="dataTables-example">
 		                                <thead>
 		                                    <tr>
-		                                        <th>번호</th>
-												<th>이력서이름</th>
-												<th>등록일</th>
-												<th>수정일</th>
-												<th>수정</th>
-												<th>삭제</th>
+		                                        <th class="small">번호</th>
+												<th class="small">이력서이름</th>
+												<th class="small">등록일</th>
+												<th class="small">수정일</th>
+												<th class="small">수정</th>
+												<th class="small">삭제</th>
 		                                	</tr>
 		                                </thead>
 		                                <tbody>
 		                                   	<c:forEach var="resumeList" items="${resumeList}" varStatus="i">
 											<tr>
-												<td>${i.count}</td>
-												<td><a href="/resumeDetail?resumeCd=${resumeList.resumeCd}">${resumeList.resumeName}</a></td>
-												<td>${resumeList.resumeRegdate}</td>
-												<td>${resumeList.resumeModidate}</td>
-												<td><a href="/resumeUpdateForm?resumeCd=${resumeList.resumeCd}">수정</a></td>
-												<td><a href="/resumeDelete?resumeCd=${resumeList.resumeCd}">삭제</a></td>
+												<td class="small">${i.count}</td>
+												<td class="small"><a href="/resumeDetail?resumeCd=${resumeList.resumeCd}">${resumeList.resumeName}</a></td>
+												<td class="small">${resumeList.resumeRegdate}</td>
+												<td class="small">${resumeList.resumeModidate}</td>
+												<td class="small"><a href="/resumeUpdateForm?resumeCd=${resumeList.resumeCd}">수정</a></td>
+												<td class="small"><a href="/resumeDelete?resumeCd=${resumeList.resumeCd}">삭제</a></td>
 											</tr>
 											</c:forEach>
 										</tbody>
