@@ -23,33 +23,37 @@ public class MemberService {
 	private final int LINE_PER_PAGE = 10;
 	private final int MAX_PER_PAGE = 5;
 	
-	// 일반 회원 가입
+	// �씪諛� �쉶�썝 媛��엯
 	public void addmemberGeneral(MemberGeneralVo memberGeneralVo){
 		memberGeneralVo.setGeneralLevel(1);
 		memberGeneralVo.setGeneralState(0);
+		//로그인 체크 Dao만들고
+		//조건문줘서 로그인중복이 없다면
 		memberDao.insertMemberGeneral(memberGeneralVo);
+		//로그인 중복이 있다면 컨트롤러로 뭐 종복이있다는 무슨 경우의 수를 주고
+		
 	}
 	
-	// session 처리 id pw 
+	// session 泥섎━ id pw 
 	public Map<String, String> selectMemberCheck(String generalId, String generalPw){
 		
 		
 		Map<String, String> resultMap = memberDao.memberGeneralCheck(generalId, generalPw);
 		if(resultMap == null) {
-			logger.info("일치하는 아이디 없음");
+			logger.info("�씪移섑븯�뒗 �븘�씠�뵒 �뾾�쓬");
 		} else {
-			logger.info("일치하는 아이디 있음");
+			logger.info("�씪移섑븯�뒗 �븘�씠�뵒 �엳�쓬");
 		}
 		return resultMap;
 	}
 	
-		// 로그인 완료 화면 처리 완료
+		// 濡쒓렇�씤 �셿猷� �솕硫� 泥섎━ �셿猷�
 	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
 		return memberDao.selectMemberGeneral(memberGeneralVo);
 	
 	}
 	
-	// 회원 리스트
+	// �쉶�썝 由ъ뒪�듃
 	public Map<String, Object> getMemberGeneralList(int page, String word){
 		PageHelper  pageHelper = new PageHelper(page,LINE_PER_PAGE);
 		pageHelper.setLastPage(memberDao.selectTotalCount(), MAX_PER_PAGE);
@@ -64,13 +68,13 @@ public class MemberService {
 		return resultMap;
 	} 
 	
-	// 회원 페이지
+	// �쉶�썝 �럹�씠吏�
 	public int getLastPage() {
 		return (int)(Math.ceil((double)memberDao.selectTotalCount()/LINE_PER_PAGE));
 	
 	}
 	
-	// 회원정보 비밀번호 닉네임
+	// �쉶�썝�젙蹂� 鍮꾨�踰덊샇 �땳�꽕�엫
 	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());

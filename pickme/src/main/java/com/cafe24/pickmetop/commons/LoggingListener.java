@@ -24,6 +24,7 @@ public class LoggingListener implements HttpSessionListener{
 	public LoggingListener(){}
 	
 	public void sessionCreated(HttpSessionEvent hse) {
+		hse.getSession().setMaxInactiveInterval(30*60);
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(hse.getSession().getServletContext(), FrameworkServlet.SERVLET_CONTEXT_PREFIX + "appServlet");
 		CommonsDao commonsDao = (CommonsDao) context.getBean("CommonsDao");
 		/*HttpSession session = hse.getSession();*/

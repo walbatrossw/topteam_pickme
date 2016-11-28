@@ -42,7 +42,7 @@ $(document).ready(function(){
 	      					<li><a href="/freeboardList">자유게시판</a></li>
 	      					<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">기업정보 <span class="caret"></span></a>
 	      						<ul class="dropdown-menu">
-	      							<li><a href="/company/companyInfoList">기업정보</a></li>
+	      							<li><a href="/companyInfo">기업정보</a></li>
 						            <li><a href="/review/companyReviewListAllow">기업리뷰</a></li>
 						            <li><a href="/salary/companySalaryListAllow">연봉정보</a></li>
 						            <li><a href="/interview/companyInterviewListAllow">면접후기</a></li>

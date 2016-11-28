@@ -31,7 +31,7 @@ public class MemberController {
 	private MemberService memberService;
 	MemberDao memberdao;
 	
-	// 일반 회원가입 화면 완료
+	// 일반 회원가입 화면 
 	@RequestMapping(value="/memberGeneralInsert")
 	public String memberGeneralInsertt(Model model){
 		return "/member/general/memberGeneralInsert";
@@ -45,8 +45,15 @@ public class MemberController {
 	// 회원 가입후 메인 페이지 완료
 	@RequestMapping(value="/memberGeneralInsert", method = RequestMethod.POST)
 	public String memberGeneralInsert(MemberGeneralVo memberGeneralVo){
+		//밑의 서비스를 실행하고
+		//int boolean 중복이 없고 잘가입이 되었다면 
 		memberService.addmemberGeneral(memberGeneralVo);
+		//index로리턴
 		return "/index";
+		//중복값이 이따면
+		//다시 로그인화면으로 이동
+		//이때 화면에서 체크를 해주고싶으면 뭔가 값을 넘겨서 체크
+		
 	}
 
 		
