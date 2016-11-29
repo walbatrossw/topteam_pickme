@@ -63,8 +63,8 @@
 	color: #ff6813;
 	font-family: 'Nanum Brush Script', serif;
 	display: table-cell;
-	text-align: right;
-	vertical-align: middle;
+	text-align: center;
+	/* vertical-align: middle; */
 	font-size: 2.5em;
 }
 .comment p strong {
@@ -262,4 +262,23 @@
 
 #head_lwrap.on .bg_submenu {
 	height: 220px;
+}
+
+.content{
+	width:100%;   
+	text-align:center;   
+}
+.tab-content{
+	margin:0 auto;
+	width: 50%;
+	text-align:left;
+}
+.tab-content p{
+	font-size: 1.3em;
+}
+.nav-pills li{
+	font-family: 'Hanna', serif;
+	font-size: 1.5em;
+	text-align: center;
+	width: 23%;
 }
