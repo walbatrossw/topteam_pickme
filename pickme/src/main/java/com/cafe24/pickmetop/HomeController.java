@@ -25,6 +25,10 @@ public class HomeController {
 		
 		return "index";
 	}
+	@RequestMapping(value = "/projectcover", method = RequestMethod.GET)
+	public String projectCover(Locale locale, Model model) {		
+		return "projectcover";
+	}
 	
 	@RequestMapping(value="/personalPolicy")
 	public String policy(){

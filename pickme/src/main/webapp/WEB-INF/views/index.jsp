@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>PickMe Main</title>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="/css/modern-business.css" rel="stylesheet">
@@ -17,10 +15,10 @@
 <script src="/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('.carousel').carousel({
+		/* $('.carousel').carousel({
 			interval : 5000
 		//changes the speed
-		});
+		}); */
 		gnb_menu();
 	});
 
@@ -47,41 +45,41 @@
 							src="/img/main/pickme_logo.png" width="200px;"></a>
 					</h1>
 					<h1 class="adminPage">
-						<a class="companyInfoMain" href="/admin"><strong>°ü¸®ÀÚ
+						<a class="companyInfoMain" href="/admin"><strong>ê´€ë¦¬ìž
 								PAGE</strong></a>
 					</h1>
 					<ul class="menu">
-						<li><a href="/diary">Ã¤¿ë°ø°í</a>
+						<li><a href="/diary">ì±„ìš©ê³µê³ </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/diary">Ã¤¿ë´Þ·Â</a></li>
+									<li><a href="/diary">ì±„ìš©ë‹¬ë ¥</a></li>
 								</ul>
 							</div></li>
-						<li><a href="/resumeCoverletterIndex">ÀÌ·Â¼­ & ÀÚ¼Ò¼­</a>
+						<li><a href="/resumeCoverletterIndex">ì´ë ¥ì„œ & ìžì†Œì„œ</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/resumeInsert">ÀÌ·Â¼­ </a></li>
-									<li><a href="/memberCoverletterList">ÀÚ±â¼Ò°³¼­ </a></li>
+									<li><a href="/resumeInsert">ì´ë ¥ì„œ </a></li>
+									<li><a href="/memberCoverletterList">ìžê¸°ì†Œê°œì„œ </a></li>
 								</ul>
 							</div></li>
-						<li><a href="/freeboardList">ÀÚÀ¯°Ô½ÃÆÇ </a>
+						<li><a href="/freeboardList">ìžìœ ê²Œì‹œíŒ </a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/freeboardList?cate=1">Àâ´ã</a></li>
-									<li><a href="/freeboardList?cate=2">±Ù¹«È¯°æ</a></li>
-									<li><a href="/freeboardList?cate=3">ÀÚ¼Ò¼­ </a></li>
-									<li><a href="/freeboardList?cate=4">ÀÎÀû¼º </a></li>
-									<li><a href="/freeboardList?cate=5">ÀÚ°ÝÁõ </a></li>
-									<li><a href="/freeboardList?cate=6">¾îÇÐ </a></li>
+									<li><a href="/freeboardList?cate=1">ìž¡ë‹´</a></li>
+									<li><a href="/freeboardList?cate=2">ê·¼ë¬´í™˜ê²½</a></li>
+									<li><a href="/freeboardList?cate=3">ìžì†Œì„œ </a></li>
+									<li><a href="/freeboardList?cate=4">ì¸ì ì„± </a></li>
+									<li><a href="/freeboardList?cate=5">ìžê²©ì¦ </a></li>
+									<li><a href="/freeboardList?cate=6">ì–´í•™ </a></li>
 								</ul>
 							</div></li>
-						<li><a href="/companyInfo">±â¾÷Á¤º¸</a>
+						<li><a href="/companyInfo">ê¸°ì—…ì •ë³´</a>
 							<div class="depth2">
 								<ul>
-									<li><a href="/company/companyInfoList">±â¾÷Á¤º¸ </a></li>
-									<li><a href="/review/companyReviewListAllow">±â¾÷¸®ºä </a></li>
-									<li><a href="/interview/companyInterviewListAllow">¿¬ºÀÁ¤º¸</a></li>
-									<li><a href="/companyInfo">¸éÁ¢ÈÄ±â</a></li>
+									<li><a href="/company/companyInfoList">ê¸°ì—…ì •ë³´ </a></li>
+									<li><a href="/review/companyReviewListAllow">ê¸°ì—…ë¦¬ë·° </a></li>
+									<li><a href="/interview/companyInterviewListAllow">ì—°ë´‰ì •ë³´</a></li>
+									<li><a href="/companyInfo">ë©´ì ‘í›„ê¸°</a></li>
 								</ul>
 							</div></li>
 					</ul>
@@ -105,8 +103,11 @@
 				<div id="section1" class="container-fluid">
 					<div class="comment">
 						<p>
-							<strong>Ã¤¿ë´Þ·Â</strong> <br>½Ç½Ã°£ Ã¤¿ëÁ¤º¸´Â ¹°·Ð<br>³ª¿¡°Ô µü ¸Â´Â °ø°íµµ
-							<br>ÃßÃµ¹ÞÀ» ¼ö ÀÖ¾î¿ä!
+							<strong>ì±„ìš©ë‹¬ë ¥</strong> <br>ì‹¤ì‹œê°„ ì±„ìš©ì •ë³´ëŠ” ë¬¼ë¡ <br>ë‚˜ì—ê²Œ ë”± ë§žëŠ” ê³µê³ ë„
+							<br>ì¶”ì²œë°›ì„ ìˆ˜ ìžˆì–´ìš”!		
+						</p>
+						<p class="button">
+							<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal"><h1>í”„ë¡œì íŠ¸ ì†Œê°œ</h1></button>
 						</p>
 					</div>
 				</div>
@@ -115,8 +116,8 @@
 				<div id="section2" class="container-fluid">
 					<div class="comment">
 						<p>
-							<strong>ÀÌ·Â¼­</strong> <br>¸Å¹ø »õ·Î ÀÛ¼ºÇØ¾ßµÇ´Â ³ªÀÇ ÀÌ·Â¼­ <br>ÀÌÁ¨ ºü¸£°í
-							Á¤È®ÇÏ°Ô º¹ºÙÇÏ¼¼¿ä!
+							<strong>ì´ë ¥ì„œ</strong> <br>ë§¤ë²ˆ ìƒˆë¡œ ìž‘ì„±í•´ì•¼ë˜ëŠ” ë‚˜ì˜ ì´ë ¥ì„œ <br>ì´ì   ë¹ ë¥´ê³ 
+							ì •í™•í•˜ê²Œ ë³µë¶™í•˜ì„¸ìš”!
 						</p>
 					</div>
 				</div>
@@ -125,8 +126,8 @@
 				<div id="section3" class="container-fluid">
 					<div class="comment">
 						<p>
-							<strong>ÀÚ±â¼Ò°³¼­</strong> <br>ÀÚ±â¼Ò°³¼­ ¹®Ç× Ã£À¸·¯ Çì¸ÅÁö ¸¶¼¼¿ä!!!<br>ºü¸£°í
-							Á¤È®ÇÏ°Ô ¾Ë·Áµå¸±°Ô¿ä~
+							<strong>ìžê¸°ì†Œê°œì„œ</strong> <br>ìžê¸°ì†Œê°œì„œ ë¬¸í•­ ì°¾ìœ¼ëŸ¬ í—¤ë§¤ì§€ ë§ˆì„¸ìš”!!!<br>ë¹ ë¥´ê³ 
+							ì •í™•í•˜ê²Œ ì•Œë ¤ë“œë¦´ê²Œìš”~
 						</p>
 					</div>
 				</div>
@@ -139,53 +140,69 @@
 			data-slide="next"> <span class="icon-next"></span>
 		</a>
 	</header>
-	<!-- ºñÁÖ¾ó ÀÌ¹ÌÁö end -->
+	<!-- ë¹„ì£¼ì–¼ ì´ë¯¸ì§€ end -->
 
 	<div class="content">
 		<div class="tab-content">
 			<ul class="nav nav-pills">
-				<li class="active"><a data-toggle="pill" href="#home">Ã¤¿ë°ø°í</a></li>
-				<li><a data-toggle="pill" href="#menu1">ÀÌ·Â¼­ & ÀÚ¼Ò¼­</a></li>
-				<li><a data-toggle="pill" href="#menu2">±â¾÷Á¤º¸</a></li>
-				<li><a data-toggle="pill" href="#menu3">ÀÚÀ¯°Ô½ÃÆÇ</a></li>
+				<li class="active"><a data-toggle="pill" href="#home">ì±„ìš©ê³µê³ </a></li>
+				<li><a data-toggle="pill" href="#menu1">ì´ë ¥ì„œ & ìžì†Œì„œ</a></li>
+				<li><a data-toggle="pill" href="#menu2">ê¸°ì—…ì •ë³´</a></li>
+				<li><a data-toggle="pill" href="#menu3">ìžìœ ê²Œì‹œíŒ</a></li>
 			</ul>
 
 			<div id="home" class="tab-pane fade in active">
 				<div class="jumbotron">
 					<h1>
-						<strong>Ã¤¿ë°ø°í</strong>
+						<strong>ì±„ìš©ê³µê³ </strong>
 					</h1>
 				</div>
-				<p>Ã¤¿ë´Þ·Â ½Ç½Ã°£ Ã¤¿ëÁ¤º¸´Â ¹°·Ð ³ª¿¡°Ô µü ¸Â´Â °ø°íµµ ÃßÃµ¹ÞÀ» ¼ö ÀÖ¾î¿ä!</p>
+				<p>ì±„ìš©ë‹¬ë ¥ ì‹¤ì‹œê°„ ì±„ìš©ì •ë³´ëŠ” ë¬¼ë¡  ë‚˜ì—ê²Œ ë”± ë§žëŠ” ê³µê³ ë„ ì¶”ì²œë°›ì„ ìˆ˜ ìžˆì–´ìš”!</p>
 			</div>
 			<div id="menu1" class="tab-pane fade">
 				<div class="jumbotron">
 					<h1>
-						<strong>ÀÌ·Â¼­ & ÀÚ¼Ò¼­</strong>
+						<strong>ì´ë ¥ì„œ & ìžì†Œì„œ</strong>
 					</h1>
 				</div>
-				<p>ÀÌ·Â¼­ ¸Å¹ø »õ·Î ÀÛ¼ºÇØ¾ßµÇ´Â ³ªÀÇ ÀÌ·Â¼­ ÀÌÁ¨ ºü¸£°í Á¤È®ÇÏ°Ô º¹ºÙÇÏ¼¼¿ä!</p>
+				<p>ì´ë ¥ì„œ ë§¤ë²ˆ ìƒˆë¡œ ìž‘ì„±í•´ì•¼ë˜ëŠ” ë‚˜ì˜ ì´ë ¥ì„œ ì´ì   ë¹ ë¥´ê³  ì •í™•í•˜ê²Œ ë³µë¶™í•˜ì„¸ìš”!</p>
 			</div>
 			<div id="menu2" class="tab-pane fade">
 				<div class="jumbotron">
 					<h1>
-						<strong>±â¾÷Á¤º¸</strong>
+						<strong>ê¸°ì—…ì •ë³´</strong>
 					</h1>
 				</div>
 				<p>
-					±â¾÷Á¤º¸ ±â´É¿¡¼­´Â ±â¾÷¸®½ºÆ® ¹× ±â¾÷µéÀÇ ±âº»Á¤º¸¸¦ È®ÀÎ ÇÒ ¼öÀÖ½À´Ï´Ù. <br>¶ÇÇÑ ¿¬ºÀÁ¤º¸¿¡¼­ Á÷±Þº°·Î
-					¿¬ºÀÅë°è¸¦ È®ÀÎÇÒ¼ö ÀÖ°í Á÷Á¢ ¿¬ºÀÁ¤º¸¸¦ ÀÔ·Â ÇÒ ¼öÀÖ½À´Ï´Ù. <br>¸éÁ¢ÈÄ±â ±â´É¿¡¼­ Á÷Á¢ ¸éÁ¢¸¦ º¸°í ÈÄ±â¸¦
-					ÀÛ¼ºÇÏ°í »ç¿ëÀÚµé°£¿¡ ¸éÁ¢ÈÄ±â¸¦ °øÀ¯ ÇÒ ¼öÀÖ½À´Ï´Ù. <br>±â¾÷¸®ºä¿¡¼­´Â ÇØ´ç ±â¾÷¿¡ ±Ù¹« ÇÏ¿´°Å³ª ±Ù¹« ÁßÀÎ
-					»ç¿ëÀÚµéÀÌ ÀÛ¼ºÇÑ ¸®ºä¸¦ È®ÀÎ ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+					ê¸°ì—…ì •ë³´ ê¸°ëŠ¥ì—ì„œëŠ” ê¸°ì—…ë¦¬ìŠ¤íŠ¸ ë° ê¸°ì—…ë“¤ì˜ ê¸°ë³¸ì •ë³´ë¥¼ í™•ì¸ í•  ìˆ˜ìžˆìŠµë‹ˆë‹¤. <br>ë˜í•œ ì—°ë´‰ì •ë³´ì—ì„œ ì§ê¸‰ë³„ë¡œ
+					ì—°ë´‰í†µê³„ë¥¼ í™•ì¸í• ìˆ˜ ìžˆê³  ì§ì ‘ ì—°ë´‰ì •ë³´ë¥¼ ìž…ë ¥ í•  ìˆ˜ìžˆìŠµë‹ˆë‹¤. <br>ë©´ì ‘í›„ê¸° ê¸°ëŠ¥ì—ì„œ ì§ì ‘ ë©´ì ‘ë¥¼ ë³´ê³  í›„ê¸°ë¥¼
+					ìž‘ì„±í•˜ê³  ì‚¬ìš©ìžë“¤ê°„ì— ë©´ì ‘í›„ê¸°ë¥¼ ê³µìœ  í•  ìˆ˜ìžˆìŠµë‹ˆë‹¤. <br>ê¸°ì—…ë¦¬ë·°ì—ì„œëŠ” í•´ë‹¹ ê¸°ì—…ì— ê·¼ë¬´ í•˜ì˜€ê±°ë‚˜ ê·¼ë¬´ ì¤‘ì¸
+					ì‚¬ìš©ìžë“¤ì´ ìž‘ì„±í•œ ë¦¬ë·°ë¥¼ í™•ì¸ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 				</p>
 			</div>
 			<div id="menu3" class="tab-pane fade">
-				<h3>ÀÚÀ¯°Ô½ÃÆÇ</h3>
-				<p>³»¿ë ÀÔ·Â¶õ</p>
+				<h3>ìžìœ ê²Œì‹œíŒ</h3>
+				<p>ë‚´ìš© ìž…ë ¥ëž€</p>
 			</div>
 		</div>
 	</div>
-
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+	   <div class="modal-dialog modal-lg">
+	     <div class="modal-content">
+	       <div class="modal-header">
+	         <button type="button" class="close" data-dismiss="modal">&times;</button>
+	         <h4 class="modal-title">í”„ë¡œì íŠ¸ ì†Œê°œ</h4>
+	       </div>
+	       <div class="modal-body">
+	         <iframe class="projectcovermodal" src="/projectcover"></iframe>
+	       </div>
+	       <div class="modal-footer">
+	         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	       </div>
+	     </div>
+	   </div>
+	 </div>
 	<jsp:include
 		page="${pageContext.request.contextPath}/WEB-INF/views/common/module/modFooter.jsp" />
 </body>
