@@ -12,17 +12,18 @@ public class Commons {
 	final static Logger logger = LoggerFactory.getLogger(Commons.class);
 
 	public boolean checkFileType(Recruit recruit) {
+		boolean flag = true;
 		MultipartFile boardImg = recruit.getRecruitJobFile();
 		if (boardImg != null) {
 			if (!recruit.getRecruitJobFile().isEmpty()) {
 				if (!boardImg.getContentType().equals("image/jpeg") && !boardImg.getContentType().equals("image/png")
 						&& !boardImg.getContentType().equals("image/gif")) {
 					logger.info("콘텐츠타입 불일치로 화면으로 forward");
-					return false; 
+					flag = false; 
 				}
 			}
 		}
-		return true;
+		return flag;
 	}
 
 }

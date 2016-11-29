@@ -161,6 +161,7 @@ $(document).ready(function(){
 			'<br>';
 			
 			$('#jobDetail').append(jobDetail);
+			second--;
 		}
 	});
 	
