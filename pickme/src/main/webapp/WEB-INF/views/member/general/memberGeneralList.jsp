@@ -34,8 +34,7 @@
     </thead>
     
   	<c:forEach  var="memberGeneraList" items="${memberGeneraList}" varStatus="i">
-  	  			
-				    	<tr>
+  	  			    	<tr>
 				    		<td>${i.count}</td>
 				    		<td>${memberGeneraList.generalId}</td>
 				    		<td>${memberGeneraList.generalPw}</td>

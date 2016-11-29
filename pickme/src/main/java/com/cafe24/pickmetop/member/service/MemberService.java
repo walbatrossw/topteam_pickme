@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cafe24.pickmetop.commons.PageHelper;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
-import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 import com.cafe24.pickmetop.member.repository.MemberDao;
 
 
@@ -23,7 +22,7 @@ public class MemberService {
 	private final int LINE_PER_PAGE = 10;
 	private final int MAX_PER_PAGE = 5;
 	
-	// �씪諛� �쉶�썝 媛��엯
+	// 관리자 사용자 권한 및 id 중복확인
 	public boolean addmemberGeneral(MemberGeneralVo memberGeneralVo){
 		memberGeneralVo.setGeneralLevel(1);
 		memberGeneralVo.setGeneralState(0);
@@ -40,7 +39,7 @@ public class MemberService {
 		
 	}
 	
-	// session 泥섎━ id pw 
+	// session에 id pw 값 비교
 	public MemberGeneralVo selectMemberCheck(String generalId, String generalPw){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -60,13 +59,13 @@ public class MemberService {
 		return memberGeneralVo;
 	}
 	
-		// 濡쒓렇�씤 �셿猷� �솕硫� 泥섎━ �셿猷�
+		// 일반회원 로그인
 	public MemberGeneralVo selectmemberGeneral(MemberGeneralVo memberGeneralVo){
 		return memberDao.selectMemberGeneral(memberGeneralVo);
 	
 	}
 	
-	// �쉶�썝 由ъ뒪�듃
+	// 페이징 
 	public Map<String, Object> getMemberGeneralList(int page, String word){
 		PageHelper  pageHelper = new PageHelper(page,LINE_PER_PAGE);
 		pageHelper.setLastPage(memberDao.selectTotalCount(), MAX_PER_PAGE);
@@ -81,13 +80,13 @@ public class MemberService {
 		return resultMap;
 	} 
 	
-	// �쉶�썝 �럹�씠吏�
+	// 페이지 수
 	public int getLastPage() {
 		return (int)(Math.ceil((double)memberDao.selectTotalCount()/LINE_PER_PAGE));
 	
 	}
 	
-	// �쉶�썝�젙蹂� 鍮꾨�踰덊샇 �땳�꽕�엫
+	// 회원정보 수정
 	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
@@ -96,6 +95,7 @@ public class MemberService {
 		return memberDao.memberGeneralUpdate(memberGeneralVo);
 	}
 	
+	//회원 삭제
 	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());

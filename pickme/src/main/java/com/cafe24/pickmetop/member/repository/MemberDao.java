@@ -1,6 +1,5 @@
 package com.cafe24.pickmetop.member.repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
-import com.cafe24.pickmetop.member.model.MemberLinkedVo;
-import com.cafe24.pickmetop.member.model.*;
 
 @Repository
 public class MemberDao {
@@ -23,7 +20,7 @@ public class MemberDao {
 	@Resource(name="sqlSessionMember")
 	private SqlSessionTemplate sqlSessionFactoryMember;
 	
-	//�쉶�썝�젙蹂�  蹂대뒗 �솕硫� �셿猷�
+	//회원가입후 메인 페이지
 	public int insertMemberGeneral(MemberGeneralVo memberGeneralVo){
 		
 		return sqlSessionFactoryMember.insert(NS+".insertMemberGeneral", memberGeneralVo);
@@ -40,34 +37,34 @@ public class MemberDao {
 	
 		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralCheck", map);
 	}
-	
+	// 아이디 중복 확인
 	public int memberGeneralCheck(String generalId) {
 		logger.info("generalId : {}", generalId);	
 		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralIdCheck", generalId);
 	}
 	
-	// �씪諛� 濡쒓렇�씤 泥섎━ �셿猷�
+	// 로그인 화면
 	public MemberGeneralVo selectMemberGeneral(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".selectMemberGeneral", memberGeneralVo);
 	}
 			
-	// �쉶�썝 由ъ뒪�듃 �셿猷�
+	// 회원 리스트 페이지 
 	public List<MemberGeneralVo> selectMemberGeneralList(Map<String, Object> map){
 		return sqlSessionFactoryMember.selectList(NS+".selectMemberGeneralList", map);
 	}
 	
-	// �쉶�썝 �럹�씠吏� �셿猷�
+	// 회원 리스트 페이지 수
 	public int selectTotalCount() {
 		return sqlSessionFactoryMember.selectOne(NS+".selectTotalCount");
 	}
 	
-	//�쉶�썝 �븫�샇 �땳�꽕�엫 
+	//회원정보 변경
 	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo){
 		logger.info("memberGeneralUpdate() MemberDao.java");
 		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralUpdate", memberGeneralVo);
 	
 	}
-	
+	// 회원정보 삭제
 	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo){
 		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralDelete", memberGeneralVo);
 	}

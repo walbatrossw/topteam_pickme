@@ -19,23 +19,21 @@
 	</head>
 	<body>
 		<!-- 헤더 -->
-		
 		<h3>회원정보 변경</h3>
-		<table class="table table-bordered">
+			<table class="table table-bordered">
 			<tbody>
-				<tr>
-					<td>아이디</td>
-					<td>${Session}</td>
-				</tr>
-				<tr>
-					<td>비밀번호</td>
-					<td><input type="button" value="비밀번호변경"></td>
-				</tr>
-				<tr>
-					<td>닉네임</td>
-					<td></td>
-				</tr>
-				
+					<tr>
+						<td>아이디</td>
+						<td>${Session}</td>
+					</tr>
+					<tr>
+						<td>비밀번호</td>
+						<td><input type="button" value="비밀번호변경"></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td></td>
+					</tr>
 			</tbody>
 		</table>
 		<input type="button" value="내정보수정">

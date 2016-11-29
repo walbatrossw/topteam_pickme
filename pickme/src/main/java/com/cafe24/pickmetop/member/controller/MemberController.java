@@ -1,9 +1,7 @@
 package com.cafe24.pickmetop.member.controller;
-
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +62,8 @@ public class MemberController {
 	public String memberGeneralLogin(HttpServletRequest request,
 			@RequestParam(value="generalId") String generalId,
 			@RequestParam(value="generalPw") String generalPw) {
-		
 		System.out.println("generalId : " + generalId + "//generalPw : " + generalPw);
-		
 		String loginCheck = null;
-		
 		//Map<String, Object> map = new HashMap<String, Object>();
 		MemberGeneralVo memberGeneralVo = 
 				memberService.selectMemberCheck(generalId, generalPw);
@@ -80,10 +75,8 @@ public class MemberController {
 		}else {
 			//login 성공
 			HttpSession session  = request.getSession(true);
-			
 			session.setAttribute("generalId", generalId);
 			session.setAttribute("generalPw",  generalPw);
-			
 			session.setAttribute("generalNick", memberGeneralVo.getGeneralNick());
 			session.setAttribute("generalLevel", memberGeneralVo.getGeneralLevel());
 			loginCheck = "/index";

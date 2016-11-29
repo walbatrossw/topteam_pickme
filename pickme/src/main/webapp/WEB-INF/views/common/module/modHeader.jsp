@@ -51,16 +51,12 @@ $(document).ready(function(){
       					<c:choose>
       			    <c:when test="${empty sessionScope.generalId}">
       					<li><a href="/memberGeneralInsert">회원가입</a>
-      				
-      				 
       					<li><a href="/memberGeneralLogin">로그인</a>
-      				
-      					</c:when>	
-     
-      				<c:otherwise>
+      				</c:when>	
+         			<c:otherwise>
       					<li><a href="/general/memberGeneralUpdate?generalId=${sessionScope.generalId}">내 정보</a></li>
       					<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
-      				  </c:otherwise>   				
+      				 </c:otherwise>   				
       					</c:choose>
 	      				</ul>
   					</div>
