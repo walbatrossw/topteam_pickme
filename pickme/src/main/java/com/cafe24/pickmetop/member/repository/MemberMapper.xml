@@ -25,7 +25,6 @@
 		)
 	</insert>
 
-
 	<!-- 로그인 아이디, 비밀번호 체크 -->
 	<select id="memberGeneralCheck" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo"
 		parameterType="java.util.Map">
@@ -102,7 +101,6 @@
 		tb_member_general
 		WHERE
 		general_id=#{generalId}
-
 	</delete>
 
 
