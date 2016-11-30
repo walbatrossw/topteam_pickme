@@ -86,7 +86,7 @@ public class MemberService {
 	
 	}
 	
-	// 회원정보 수정
+	// 회원정보 수정 화면
 	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
 		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
@@ -102,6 +102,10 @@ public class MemberService {
 		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
 		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
 		return memberDao.memberGeneralDelete(memberGeneralVo);
+	}
+	//회원정보 수정 처리
+	public void memberGeneralUpdatePro(MemberGeneralVo memberGeneralVo) {
+		memberDao.memberGeneralUpdatePro(memberGeneralVo);
 	}
 }
 			

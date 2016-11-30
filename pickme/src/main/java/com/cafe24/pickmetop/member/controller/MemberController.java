@@ -96,15 +96,8 @@ public class MemberController {
 	
 	return "redirect:/";
 	}
+	
 		
-	
-	// 회원정보 수정
-	@RequestMapping(value="{generalId}/memberGeneralUpdate", method = RequestMethod.GET)
-	public String memberGeneralUpdate(Model model, @RequestParam(value="generalId") String generalId) {
-		logger.info("generalId : {} MemberController.java", generalId);
-		return "/member/general/memberGeneralUpdate";
-	}
-	
 	// 사용자 리스트
 	 @RequestMapping(value="/general/memberGeneralList", method=RequestMethod.GET)
 	 public String memberGeneralList(Model model, HttpSession session,
@@ -116,7 +109,6 @@ public class MemberController {
 		 model.addAttribute("page", page);
 		 model.addAttribute("startPage",memberMap.get("startPage"));
 		 model.addAttribute("endPage", memberMap.get("endPage"));
-		 
 		 return "/member/general/memberGeneralList";
 	 }
 	 
@@ -129,18 +121,23 @@ public class MemberController {
 	 //회원 탈퇴 
 	 @RequestMapping(value="/memberGeneralDelete", method=RequestMethod.GET)
 	 public String memberGeneralDelete(){
-		
 		 return "/member/general/memberGeneralDelete";
 	 }
-	 // 탈퇴 화면 누르면 updata
-	 @RequestMapping(value="/memberGeneralUpdateForm", method = RequestMethod.GET)
-		public String memberGeneralUpdateForm(Model model) {
-		return "/member/general/memberGeneralUpdate";
 	 
+
+	 // 내정보 누르면 업데이트 화면
+	 @RequestMapping(value="/memberGeneralUpdate", method = RequestMethod.POST)
+		public String memberGeneralUpdateForm(MemberGeneralVo memberGeneralVo) {
+		 memberService.memberGeneralUpdatePro(memberGeneralVo);
+		 return "/member/general/memberGeneralUpdate";
 	 }
 	 
-	
-		 
+	 
+	 @RequestMapping(value="{generalId}/memberGeneralUpdate", method = RequestMethod.GET)
+		public String memberGeneralUpdate(Model model, @RequestParam(value="generalId") String generalId) {
+	 		logger.info("generalId : {} MemberController.java", generalId);
+			return "/member/general/memberGeneralUpdate";
+	 	}
 	
 }
 
