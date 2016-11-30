@@ -10,9 +10,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/js/star-rating.js" type="text/javascript"></script>
-<link rel="stylesheet" href="/css/company/companyinfo.css">
-<link rel="stylesheet" href="/css/company/companyCommon.css">
 <link rel="stylesheet" href="/css/company/companySalary.css">
+<link rel="stylesheet" href="/css/company/companyCommon.css">
 <script>
 $(document).ready(function(){
 	google.charts.load('current', {packages: ['corechart', 'bar']});
@@ -78,11 +77,10 @@ $(document).ready(function(){
 			</section>
 			<div class="sidebanner">
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+					<a href="http://xcurs0.cafe24.com"><img class="banner" src="/img/company/banner/DANIM.png"></a>
 				</div>
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
-					banner img test</a>
+					<a href="http://www.saramin.co.kr/"><img class="banner" src="/img/company/banner/saraminBanner.png"></a>
 				</div>
 			</div>	
 		</div>

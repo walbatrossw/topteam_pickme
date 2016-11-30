@@ -24,12 +24,18 @@
 	<!-- 일별 방문자수 통계 -->
 	<select id="selectRegDateVisitantCount" resultType="com.cafe24.pickmetop.admin.model.VisitantCountVo">
 		SELECT
-			visitant_today_count as visitantTodayCount,
-			visitant_regdate as visitantRegdate
+			TVC.visitant_today_count	as visitantTodayCount,
+			TVC.visitant_regdate as visitantRegdate
 		FROM
-			tb_visitant_count
+			(
+				SELECT visitant_today_count, visitant_regdate
+				FROM
+					tb_visitant_count
+				ORDER BY
+					visitant_regdate DESC
+				LIMIT 6
+			) as TVC
 		ORDER BY
-			visitant_regdate 
-		LIMIT 6
+			visitantRegdate
 	</select>
 </mapper>

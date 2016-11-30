@@ -254,15 +254,6 @@ public class CompanyService {
 	//기업리뷰등록(사용자) 메서드
 	public int addCompanyReview(CompanyReviewVo companyReviewVo){
 		companyReviewVo.setCompanyCd(companyDao.selectCompanyInfoByCompanyCd(companyReviewVo.getCompanyName()));
-		companyReviewVo.setLoginId("kji212@naver.com");
-		/*SimpleDateFormat setToday;
-		setToday = new SimpleDateFormat("yyyy-mm-dd");
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DATE, 1);
-		String today = setToday.format(calendar.getTime());
-		companyReviewVo.setReviewRegDate(today);
-		companyReviewVo.setReviewModiDate(today);
-		logger.info("CompanyService -> today {}",today);*/
 		logger.info("CompanyService -> companyCd2 {}", companyReviewVo.getCompanyCd());
 		return companyDao.insertCompanyReview(companyReviewVo);
 	}

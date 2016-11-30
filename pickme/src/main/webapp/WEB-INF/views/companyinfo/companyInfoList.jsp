@@ -48,9 +48,6 @@
 					<c:forEach var="companyInfoList" items="${companyInfoList }">
 						<div class="section_wrap">
 							<!--<hgroup>-->
-							<!--<h2 class="tit">기업리뷰 많은 기업  </h2>-->
-							<!--<h3 class="sub_tit">필터, 정렬로 선택하시면 다른 리스트를 볼 수 있습니다.</h3>-->
-							<!--</hgroup>-->
 							<div class="section_group">
 								<!-- repeat-->
 								<section class="company content_ty3">
@@ -65,7 +62,6 @@
 											<div class="col-xs-7 content_col2_3 cominfo">
 												<p class="us_titb_l3">
 													<a href="/company/companyInfoDetail?companyName=${companyInfoList.companyName }"><strong>${companyInfoList.companyName }</strong></a>
-													<!-- <button class="btn_heart1 btn_follow" data-company_id="30139">following</button> -->
 												</p>
 												<p>
 													<span class="us_stxt_1">${companyInfoList.industryTopIndexName }</span>
@@ -124,11 +120,10 @@
 			</div>
 			<div class="sidebanner">
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+					<a href="http://xcurs0.cafe24.com"><img class="banner" src="/img/company/banner/DANIM.png"></a>
 				</div>
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
-					banner img test</a>
+					<a href="http://www.saramin.co.kr/"><img class="banner" src="/img/company/banner/saraminBanner.png"></a>
 				</div>
 			</div>
 		</div>

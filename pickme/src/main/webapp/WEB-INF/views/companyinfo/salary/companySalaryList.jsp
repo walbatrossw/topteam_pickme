@@ -39,24 +39,25 @@
 			<!-- <img alt="기업리뷰 리스트 로고" src="/img/company/logo/reviewListLogo.jpg"> -->	
 		</div>
 		<div class="companySalaryList">
-			<div class="row searchbar">
-				<div class="col-xs-2">
-					<input type="text" class="form-control" id="searchCompanyName"
-						name="searchCompanyName" placeholder="기업명" />
-				</div>
-				<div class="col-xs-2">
-					<button class="btn .btn-default" id="searchBtn">
-						<span class="glyphicon glyphicon-search"></span>검색
-					</button>
-				</div>
-			</div>
+			
 			<div id="mainContents" class="jpcont_lft">
+				<div class="row searchbar">
+					<div class="col-xs-4">
+						<input type="text" class="form-control" id="searchCompanyName"
+							name="searchCompanyName" placeholder="기업명" />
+					</div>
+					<div class="col-xs-2">
+						<button class="btn .btn-default" id="searchBtn">
+							<span class="glyphicon glyphicon-search"></span>검색
+						</button>
+					</div>
+					<div class="col-xs-3 insertBtn">
+						<a href="/salary/companySalaryInsertForm" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span>연봉정보 쓰러가기</a>
+					</div>
+				</div>
 				<article id="listCompanies" class="list_companies">
 					<c:forEach var="companyInfoList" items="${companyInfoList }">
 						<div class="section_wrap">
-							<!--<hgroup>-->
-							<!--<h2 class="tit">기업리뷰 많은 기업  </h2>-->
-							<!--<h3 class="sub_tit">필터, 정렬로 선택하시면 다른 리스트를 볼 수 있습니다.</h3>-->
 							<!--</hgroup>-->
 							<div class="section_group">
 								<!-- repeat-->
@@ -65,8 +66,8 @@
 										<div class="content_wrap">
 											<div class="content_col2_2">
 												<a
-													href="/companies/30139/info/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90?"
-													class="llogo"> <img src="/img/company/company.png">
+													href="/company/companyInfoDetail?companyName=${companyInfoList.companyName }"
+													class="logo"> <img src="/img/company/company.png">
 												</a>
 											</div>
 											<div class="col-xs-5 content_col2_3 cominfo">
@@ -114,11 +115,10 @@
 			</div>
 			<div class="sidebanner">
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/DANIM.png"></a>
+					<a href="http://xcurs0.cafe24.com"><img class="banner" src="/img/company/banner/DANIM.png"></a>
 				</div>
 				<div class="row">
-					<a href="#"><img class="banner" src="/img/company/banner/banner2.jpg">
-					banner img test</a>
+					<a href="http://www.saramin.co.kr/"><img class="banner" src="/img/company/banner/saraminBanner.png"></a>
 				</div>
 			</div>
 		</div>		

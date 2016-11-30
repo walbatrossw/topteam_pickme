@@ -104,7 +104,6 @@ public class CompanyDao {
 	}
 	//기업리뷰 목록 카운트
 	public int selectAllowTotalCount(String tbName, String tbColumn, int allow){
-		logger.info("tttttttttttttext{}",sqlSessionFactoryCompany.toString());
 		Map<String, Object> sqlMap = new HashMap<String, Object>();
 		sqlMap.put("tbName", tbName);
 		sqlMap.put("tbColumn", tbColumn);

@@ -20,7 +20,7 @@ $(document).ready(function(){
 	});
 });
 </script>
-<title>Insert title here</title>
+<title>Pick ME</title>
 </head>
 <body>
 	<div class="container">

@@ -165,9 +165,12 @@ public class CompanyController {
 	}
 	//면접후기 등록처리 맵핑
 	@RequestMapping(value = "/interview/companyInterviewInsert", method = RequestMethod.POST)
-	public String companyInterviewInsert(Model model, CompanyInterviewVo companyInterviewVo) {
+	public String companyInterviewInsert(Model model, CompanyInterviewVo companyInterviewVo, HttpSession session) {
+		String loginId = (String) session.getAttribute("generalId");
+		logger.info("loginId : {}",loginId);
+		companyInterviewVo.setLoginId(loginId);
 		companyService.addCompnayInterview(companyInterviewVo);
-		return "redirect:/companyInfo";
+		return "redirect:/interview/companyInterviewListAllow";
 	}
 	//면접후기 관리자 디테일 화면 맵핑
 	@RequestMapping(value = "/interview/companyInterviewUnreceivedDetail", method = RequestMethod.GET)
@@ -315,10 +318,11 @@ public class CompanyController {
 	
 	//기업리뷰 등록처리 맵핑
 	@RequestMapping(value = "/review/companyReviewInsert", method = RequestMethod.POST)
-	public String companyReviewInsert(CompanyReviewVo companyReviewVo){
-		logger.info("command param companyReview:{}", companyReviewVo.toString());
+	public String companyReviewInsert(CompanyReviewVo companyReviewVo, HttpSession session){
+		String loginId = (String) session.getAttribute("generalId");
+		companyReviewVo.setLoginId(loginId);
 		companyService.addCompanyReview(companyReviewVo);
-		return "redirect:/companyInfo";
+		return "redirect:/review/companyReviewListAllow";
 	}
 	
 	//기업리뷰 등록화면 맵핑

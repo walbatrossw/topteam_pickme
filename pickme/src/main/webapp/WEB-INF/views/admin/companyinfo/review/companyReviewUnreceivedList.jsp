@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@
 								</c:if>
 								<td>${companyReviewList.companyName }</td>
 								<td>${companyReviewList.loginId }</td>
-								<td>${companyReviewList.reviewComment }</td>
+								<td>${fn:substring(companyReviewList.reviewComment,0,20) }</td>
 								<td>${companyReviewList.reviewRegDate }</td>
 								<td>미승인</td>
 							</tr>				

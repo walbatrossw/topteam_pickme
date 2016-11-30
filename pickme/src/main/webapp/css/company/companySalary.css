@@ -14,6 +14,9 @@
 #companySalaryInsertForm .col-xs-1{
 	padding: 10px 0px 0px 0px;
 }
+.insertBtn{
+	float: right;
+}
 
 .sidebanner{
 	float: right;
@@ -26,7 +29,6 @@
 	background-color: rgba(255,255,255,0.9);
 	margin: 10px 0px 15px 0px;
     padding: 5px;
-	height: 130px;
 }
 
 /*¿¬ºÀ ¸®½ºÆ®*/

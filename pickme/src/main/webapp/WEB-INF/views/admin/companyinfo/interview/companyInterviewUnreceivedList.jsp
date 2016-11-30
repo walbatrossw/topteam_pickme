@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +42,7 @@
 								</c:if>
 								<td>${companyInterviewList.companyName }</td>
 								<td>${companyInterviewList.loginId }</td>
-								<td>${companyInterviewList.interviewSummary }</td>
+								<td>${fn:substring(companyInterviewList.interviewSummary, 0, 20) }...</td>
 								<td>${companyInterviewList.interviewRegDate }</td>
 								<td>미승인</td>
 							</tr>				
