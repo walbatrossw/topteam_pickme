@@ -3,138 +3,137 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cafe24.pickmetop.member.repository.MemberMapper">
-	 <!-- MemberGeneralVo 회원가입 완료-->
+	<!-- MemberGeneralVo 회원가입 완료 -->
 	<insert id="insertMemberGeneral" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
-		INSERT INTO tb_member_general(
-			general_id,
-			general_pw,
-			general_nick,
-			general_level,
-			general_date,
-			general_logdate,
-			general_state
+		INSERT INTO
+		tb_member_general(
+		general_id,
+		general_pw,
+		general_nick,
+		general_level,
+		general_date,
+		general_logdate,
+		general_state
 		)VALUES(
-			#{generalId},
-			#{generalPw},
-			#{generalNick},
-			#{generalLevel},
-			now(),
-			now(),
-			#{generalState}
-		) 	
+		#{generalId},
+		#{generalPw},
+		#{generalNick},
+		#{generalLevel},
+		now(),
+		now(),
+		#{generalState}
+		)
 	</insert>
-	
-	
+
+
 	<!-- 로그인 아이디, 비밀번호 체크 -->
-	<select id="memberGeneralCheck" 
-		resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo"
+	<select id="memberGeneralCheck" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo"
 		parameterType="java.util.Map">
-		
-		SELECT 
-			general_id as generalId,
-			general_pw as generalPw,
-			general_Level as generalLevel,
-			general_Nick as generalNick
+		SELECT
+		general_id as generalId,
+		general_pw as generalPw,
+		general_Level as generalLevel,
+		general_Nick as generalNick
 		FROM
-			tb_member_general as total
+		tb_member_general as total
 		WHERE
-			general_id = #{generalId}
-		 AND
-			general_pw = #{generalPw}	
+		general_id = #{generalId}
+		AND
+		general_pw = #{generalPw}
 	</select>
-	
-	<!-- MemberGeneralVo id 값으로 계정 확인-->
+
+	<!-- MemberGeneralVo id 값으로 계정 확인 -->
 	<select id="memberGeneralIdCheck" resultType="Integer"
-				parameterType="String">
-		SELECT 
-			IFNULL(COUNT(*), 0)
+		parameterType="String">
+		SELECT
+		IFNULL(COUNT(*), 0)
 		FROM
-			tb_member_general
+		tb_member_general
 		WHERE
-			general_id = #{generalId}
+		general_id = #{generalId}
 	</select>
-		
-	<!-- MemberGeneralVo 로그인 완료-->
-	<select id="selectMemberGeneral" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
-		SELECT 
-			general_id as generalId,
-			general_pw as generalPw
+
+	<!-- MemberGeneralVo 로그인 완료 -->
+	<select id="selectMemberGeneral" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo"
+		parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+		SELECT
+		general_id as generalId,
+		general_pw as generalPw
 		FROM
-			tb_member_general as total
+		tb_member_general as total
 		WHERE
-			general_id = #{generalId} AND
-			general_pw = #{generalPw}
+		general_id = #{generalId} AND
+		general_pw = #{generalPw}
 	</select>
-	
+
 	<!-- MemberLinkedVo 회원리스트 수 db 확인 -->
 	<select id="selectTotalCount" resultType="Integer">
-        SELECT
-            COUNT(*)
-        FROM 
-       		tb_member_general
-    </select>
-    
-    
-	<!-- selectMemberGeneralList 회원리스트 완료-->
-	<select id="selectMemberGeneralList"  parameterType="java.util.Map" resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
-        SELECT  
-			general_id as generalId,
-			general_pw as generalPw,
-			general_nick as generalNick,
-			general_level as generalLevel,
-			general_date as generalDate,
-			general_logdate as generalLogdate
-        FROM 
-            tb_member_general
-        <where>
-	<if test="word != null">
-		general_id like CONCAT('%',#{word},'%')
-    </if>
-    
-	</where>		
-        LIMIT #{pageHelper.startRow}, #{pageHelper.linePerPage}
-    </select>
-    
- 
- <!--     MemberGeneralVO 업데이트 쿼리는 db 확인 jsp 미적용-->
-	  <update id="memberGeneralUpdate"  parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">	
-		UPDATE 
-			tb_member_general SET
-	 	
-	 	    general_pw = #{generalPw},
-			general_nick = #{generalNick}
-        WHERE 
-        	general_id = #{generalId}
-	</update> 
+		SELECT
+		COUNT(*)
+		FROM
+		tb_member_general
+	</select>
+
+
+	<!-- selectMemberGeneralList 회원리스트 완료 -->
+	<select id="selectMemberGeneralList" parameterType="java.util.Map"
+		resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+		SELECT
+		general_id as generalId,
+		general_pw as generalPw,
+		general_nick as generalNick,
+		general_level as generalLevel,
+		general_date as generalDate,
+		general_logdate as generalLogdate
+		FROM
+		tb_member_general
+		<where>
+			<if test="word != null">
+				general_id like CONCAT('%',#{word},'%')
+			</if>
+
+		</where>
+		LIMIT #{pageHelper.startRow}, #{pageHelper.linePerPage}
+	</select>
 	
-	<!--  MemberGeneralVO 삭제  쿼리는 db확인 -->
-	  <delete  id="memberGeneralDelete" 
-            parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
-		DELETE FROM 
-	 		tb_member_general
-		WHERE 
-			general_id=#{generalId} 
-       
-	</delete> 
-		
-		
-	<!-- MemberLinkedVo 로그인 미완료-->
+	<!-- MemberGeneralVO 삭제 쿼리는 db확인 -->
+	<delete id="memberGeneralDelete" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+		DELETE FROM
+		tb_member_general
+		WHERE
+		general_id=#{generalId}
+
+	</delete>
+
+
+	<!-- MemberLinkedVo 로그인 미완료 -->
 	<insert id="insertMemberLinked" parameterType="com.cafe24.pickmetop.member.model.MemberLinkedVo">
-		
+
 		INSERT INTO tb_member_linked(
-			linked_id,
-			linked_nick,
-			linked_regdate,
-			linked_logdate,
-			linked_state
-			
+		linked_id,
+		linked_nick,
+		linked_regdate,
+		linked_logdate,
+		linked_state
+
 		)VALUES(
-			#{linkedId},
-			#{linkedNick},
-			now(),
-			now(),
-			#{generalState}
-		) 	
-	</insert> 
+		#{linkedId},
+		#{linkedNick},
+		now(),
+		now(),
+		#{generalState}
+		)
+	</insert>
 	
+	<!-- MemberGeneralVO 업데이트  -->
+	<update id="memberGeneralUpdatePro" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+
+		UPDATE tb_member_general
+		SET
+		general_pw=#{generalPw},
+		general_nick=#{generalNick}
+		WHERE
+		general_id=#{generalId}
+	</update>
+
 </mapper>
