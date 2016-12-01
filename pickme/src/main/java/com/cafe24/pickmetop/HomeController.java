@@ -38,4 +38,16 @@ public class HomeController {
 	public String terms(){
 		return "/common/etc/terms";
 	}
+
+	@RequestMapping(value = "/error/error500")
+	public String error500(Locale locale, Model model) {
+		model.addAttribute("msg", "서버에 오류가 발생하였습니다.");
+		return "/common/error/error500";
+	}
+	@RequestMapping(value = "/error/error404")
+	public String error404(Locale locale, Model model) {
+		model.addAttribute("msg", "서버에 오류가 발생하였습니다.");
+		return "/common/error/error404";
+	}
+	
 }

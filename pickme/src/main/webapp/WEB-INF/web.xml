@@ -20,7 +20,14 @@ version="3.0">
 	<listener>
 		<listener-class>com.cafe24.pickmetop.commons.LoggingListener</listener-class>
 	</listener>
-	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/error500</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/error404</location>
+	</error-page>
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
