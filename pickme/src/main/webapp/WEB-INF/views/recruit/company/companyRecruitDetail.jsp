@@ -73,9 +73,9 @@ $(document).ready(function(){
 				<%-- <label><a class="btn btn-default" href="/company/companyInfoDetail?companyName=${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</a></label> --%>
 				<label><button id="recruitCompnay" class="btn btn-default" value="${recruitCompanyInfoForDetail.recruitList[0].companyName}">${recruitCompanyInfoForDetail.recruitList[0].companyName}</button></label>
 				</td>
-				<td class="col-sm-3">
+				<td class="col-sm-3" width="30%">
 					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitBegindate,0,10)}~
-					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitEnddate,0,10)}
+					${fn:substring(recruitCompanyInfoForDetail.recruitList[0].recruitEnddate,0,16)}
 				</td>
 				<td class="col-sm-3">
 					<a href="${recruitCompanyInfoForDetail.recruitList[0].companySite}" target="_blank" class="btn btn-default">홈페이지바로가기 </a>

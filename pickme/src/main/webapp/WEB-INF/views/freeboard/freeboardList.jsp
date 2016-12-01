@@ -308,8 +308,7 @@ $(document).ready(function(){
 				</table>
 				<hr>
 			</form>
-		
-		<!-- 게시글리스트 -->
+				<!-- 게시글리스트 -->
 		
 		<c:forEach items="${freeList}" var="freeList">
 		<input type="hidden" class="replyHidden" value="${freeList.freeboardCd}">
@@ -364,6 +363,9 @@ $(document).ready(function(){
 								<br>
 							</td>
 							<td>
+							<c:if test="${freeList.loginId!=sessionScope.generalId}">
+								<input type="hidden" class="boardContentUpdate">
+							</c:if>
 							<c:if test="${freeList.loginId==sessionScope.generalId}">
 								<a class="btn btn-default btn-sm" href="/freeboardContentDelete?freeboardCd=${freeList.freeboardCd}">삭제</a>
 								|<a class="boardContentUpdate btn btn-default btn-sm">수정</a>
@@ -420,8 +422,11 @@ $(document).ready(function(){
 							<td>		
 								<span>
 								<c:if test="${replyMap.loginId==sessionScope.generalId}">
-								<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
-								<a  class="updateReply btn btn-default btn-sm">수정</a> 
+									<a href="/freeboardReplyDelete?replyCd=${replyMap.replyCd}" class="btn btn-default btn-sm">삭제</a>|
+									<a  class="updateReply btn btn-default btn-sm">수정</a> 
+								</c:if>
+								<c:if test="${replyMap.loginId!=sessionScope.generalId}">
+									<input type="hidden"  class="updateReply">
 								</c:if>
 		
 								<c:if test="${replyMap.loginId!=sessionScope.generalId}">
@@ -443,7 +448,7 @@ $(document).ready(function(){
 				<!-- 페이징 -->
 				<div class="text-center">
 					<ul class="pager">
-						<li class="previous"><a href="/freeboardList?cate=${freeboardCate}&page=${page-1}" style="color: blacks">이전</a></li>
+						<li class="previous"><a href="/freeboardList?cate=${freeboardCate}&page=${page-1}" style="color: black">이전</a></li>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 								<c:if test="${page == i}">
 									<li class="active"><a href="/freeboardList?cate=${freeboardCate}&page=${i}" style="color: black">${i}</a></li>

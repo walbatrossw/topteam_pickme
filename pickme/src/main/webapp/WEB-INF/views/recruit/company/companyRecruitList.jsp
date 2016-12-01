@@ -292,12 +292,12 @@ function resumeWrite(cd){
 												<c:if test="${s.end=='end'}">
 													<span style="color:gray;font-weight:bold;">끝</span>
 												</c:if>
-												<c:if test="${s.recruitName.length()<=9}">
+												<c:if test="${s.recruitName.length()<=11}">
 													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal" class="letterSizing">${s.recruitName}</a>
 													
 												</c:if>
-												<c:if test="${s.recruitName.length()>9}">
-													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal" class="letterSizing">${fn:substring(s.recruitName,0,9)}</a>
+												<c:if test="${s.recruitName.length()>11}">
+													<a onClick="$(this).iframeLink('${s.recruitCompanyCd}');" class="popup" href="#" data-toggle="modal" data-target="#datailModal" class="letterSizing">${fn:substring(s.recruitName,0,11)}</a>
 												</c:if>
 											</div>
 										</c:forEach>

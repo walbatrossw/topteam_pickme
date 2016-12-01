@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,15 +12,21 @@ $(document).ready(function(){
 		if($('#sessionId').val()==""||$('#sessionId').val()==null){
 			alert("로그인후 이용가능합니다.")
 			location.href="/memberGeneralLogin";
+		}else if($('#sessionId').val()==''||$('#askContent').val()==''){
+			alert("모든 항목을 입력하세요!")	
 		}else{
 			location.href="/mail?askContent="+encodeURIComponent($('#askContent').val())
 			+"&sessionId="+$('#sessionId').val();
 		}
 	})
 	$('#sendAdMail').click(function(){
-		alert("$('#adContent').val() : " + $('#adContent').val())
+		if($('#phone').val()==''||$('#adContent').val()==''){
+			alert("모든 항목을 입력하세요!")	
+		}else{
 			location.href="/mail?adContent="+encodeURIComponent($('#adContent').val())
-			+"&phone="+$('#phone').val();
+			+"&phone="+$('#phone').val();			
+		}
+
 	});
 })
 </script>
@@ -30,7 +37,7 @@ $(document).ready(function(){
 		<div class="text-center">
 	    	<a href="http://blog.anchoreer.com/220470732604" target="_blank">회사소개</a> 
 	    	| <!-- <a href="" ng-click="inquiry()">문의하기</a>  -->
-	    	<a data-toggle="modal" data-target="#myModal">문의하기</a>
+	    	<a data-toggle="modal" data-target="#askModal">문의하기</a>
 	    	| <a href="/personalPolicy">개인정보취급방침</a> 
 	    	| <a href="/terms">이용약관</a> 
 	    	| <!-- <a href="" ng-click="partnership()">제휴/광고</a> -->
@@ -56,7 +63,7 @@ $(document).ready(function(){
 	</section>
 	
 	  <!-- 문의 Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="askModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -65,7 +72,12 @@ $(document).ready(function(){
         </div>
         <div class="modal-body">
         <div>
-        <input type="text"  class="form-control" id="sessionId" value="${sessionScope.generalId}">
+        <c:if test="${sessionScope.generalId==null}">
+        	<input type="text"  class="form-control" id="sessionId" placeholder="본인의 이메일을 입력하세요">
+        </c:if>
+        <c:if test="${sessionScope.generalId!=null}">
+        	<input type="text"  class="form-control" id="sessionId" value="${sessionScope.generalId}">
+        </c:if>
         </div>
         <br>
         <div>

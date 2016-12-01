@@ -47,6 +47,7 @@ public class FreeboardController {
 			@RequestParam(value="replyCd", defaultValue="") String replyCd){
 	
 		logger.info("replyContent  : {}",replyContent);
+		logger.info("replyCd  : {}",replyCd);
 		freeService.updateFreeReply(freeboardReplyVo,replyContent,replyCd);
 		
 		return "redirect:/freeboardList";

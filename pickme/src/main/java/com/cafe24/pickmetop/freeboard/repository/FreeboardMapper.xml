@@ -161,8 +161,6 @@
 				and 
 			bm.login_id = #{sessionId}
 		</if>
-
-	
 		ORDER BY freeboard_regdate DESC
 		LIMIT #{pageHelp.startRow}, #{pageHelp.linePerPage}		
 	</select>
