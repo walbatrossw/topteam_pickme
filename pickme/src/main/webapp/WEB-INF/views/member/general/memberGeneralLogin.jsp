@@ -6,34 +6,18 @@
 <%@ page import="java.math.BigInteger" %>
 <!doctype html>
 <html lang="kr">
-	<head>
-	<meta charset="UTF-8">
-<%
-    String clientId = "PI5oHtZhS4UHhoIXWnRS";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://localhost/memberGeneralLogin", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-    apiURL += "&client_id=" + clientId;
-    apiURL += "&redirect_uri=" + redirectURI;
-    apiURL += "&state=" + state;
-    session.setAttribute("state", state);
- %>
- 
-
-
+<head>
+<script type="text/javascript" src="/js/naverapi/naverLogin_implicit-1.0.2.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/member/memberGeneralInsert.css" type="text/css">
-
-
 </head>
 <body>
-
 <section class="container">
 		    <article class="half">
 			        <h1>PICK ME 자  소 서 </h1>
 			        <div class="tabs">
 				            <span class="tab signin active"><a href="#signin">일반로그인</a></span>
-				            <span class="tab signup"><a href="#signup">네이버로 로그인</a></span>
+				            <span class="tab signup"><a href="#">네이버로 로그인</a></span>
 			        </div>
 			        <div class="content">
 				            <div class="signin-cont cont">
@@ -58,8 +42,17 @@
     				        	        <div class="signup-cont cont">
               					  <form action="/memberLinkedLogin" method="post" enctype="multipart/form-data">
 						                  
-                    
-						               <a href="<%=apiURL%>"><img element.style width=100% height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
+                    					<!-- <div id="naver_id_login"><img src="/img/naverlogin_Green.PNG"></div>
+						     			<script>
+												<!-- 네이버아디디로로그인 초기화 Script -->
+												var naver_id_login = new naver_id_login("0u6HR6yd6PJIE4qoF9Rh", "http://localhost/");
+												var state = naver_id_login.getUniqState();
+												naver_id_login.setButton("white", 2,40);
+												naver_id_login.setDomain(".service.com");
+												naver_id_login.setState(state);
+												naver_id_login.init_naver_id_login();
+												<!-- //네이버아디디로로그인 초기화 Script -->
+										</script> -->
         					        </form>
           					  </div>
 			    	    </div>
@@ -68,8 +61,6 @@
 		    
 	</section>
 	
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
 <script type="text/javascript">
 $('.tabs .tab').click(function(){

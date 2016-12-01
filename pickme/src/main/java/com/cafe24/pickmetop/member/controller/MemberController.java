@@ -152,6 +152,16 @@ public class MemberController {
 		 
 		 return "redirect:/memberGeneralLogout";
 	 }
+	 // 연동아이디 등록
+	 @RequestMapping(value="/linkedLogin", method = RequestMethod.GET)
+	 public String linkedLogin(String linkedId, String linkedNick) {
+		
+		 System.out.println("연동테스트");
+		 System.out.println("linkedId : " + linkedId);
+		 System.out.println("linkedNick : " + linkedNick);
+
+		 return "/index";
+	 }
 	
 }
 
