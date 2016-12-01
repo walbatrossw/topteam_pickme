@@ -118,26 +118,40 @@ public class MemberController {
 		 return "/common/etc/terms";
 	 }
 	 
-	 //회원 탈퇴 
-	 @RequestMapping(value="/memberGeneralDelete", method=RequestMethod.GET)
-	 public String memberGeneralDelete(){
-		 return "/member/general/memberGeneralDelete";
-	 }
-	 
-
-	 // 내정보 누르면 업데이트 화면
-	 @RequestMapping(value="/memberGeneralUpdate", method = RequestMethod.POST)
-		public String memberGeneralUpdateForm(MemberGeneralVo memberGeneralVo) {
-		 memberService.memberGeneralUpdatePro(memberGeneralVo);
+	 // 내정보 누르면 업데이트및 탈퇴 화면
+	 @RequestMapping(value="/memberGeneralInfoForm", method=RequestMethod.GET)
+	 public String memberGeneralInfoForm(Model model, String generalId){
+		 System.out.println("01 memberGeneralInfoForm <-- MemberController.java");
+		 System.out.println("generalId : " + generalId);
+		 
+		 model.addAttribute("memberGeneralInfo", memberService.memberGeneralInfoForm(generalId));
+		 	 
 		 return "/member/general/memberGeneralUpdate";
 	 }
+	
+		 
+	 // 내정보에서 수정버튼 클릭시 업데이트 처리
+	 @RequestMapping(value="/memberGeneralUpdate", method = RequestMethod.POST)
+	 public String memberGeneralUpdateForm(MemberGeneralVo memberGeneralVo) {
+		 
+		 memberService.memberGeneralUpdatePro(memberGeneralVo);
+		 String generalId = memberGeneralVo.getGeneralId();
+		 System.out.println("generalId : " + generalId);
+		 
+		 return "redirect:/memberGeneralInfoForm?generalId="+generalId+"";
+	 }
 	 
-	 
-	 @RequestMapping(value="{generalId}/memberGeneralUpdate", method = RequestMethod.GET)
-		public String memberGeneralUpdate(Model model, @RequestParam(value="generalId") String generalId) {
-	 		logger.info("generalId : {} MemberController.java", generalId);
-			return "/member/general/memberGeneralUpdate";
-	 	}
+	 // 내정보에서 탈퇴버튼 클릭시 탈퇴처리
+	 @RequestMapping(value="/memberGeneralDelete", method = RequestMethod.POST)
+	 public String memberGeneralDelete(String generalId) {
+		
+		 System.out.println("01 memberGeneralDelete <-- MemberController.java");
+		 System.out.println("generalId : " + generalId);
+		 
+		 memberService.memberGeneralDelete(generalId);
+		 
+		 return "redirect:/memberGeneralLogout";
+	 }
 	
 }
 

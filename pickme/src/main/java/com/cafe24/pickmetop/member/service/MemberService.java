@@ -86,22 +86,26 @@ public class MemberService {
 	
 	}
 	
-	// 회원정보 수정 화면
-	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo) {
-		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
+	// 내정보 누르면 업데이트및 탈퇴 화면
+	public MemberGeneralVo memberGeneralInfoForm(String generalId) {
+/*		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
 		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
 		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
-		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
-		return memberDao.memberGeneralUpdate(memberGeneralVo);
+		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());*/
+		System.out.println("02 memberGeneralInfoForm <-- MemberService.java");
+		System.out.println("generalId : " + generalId);
+		
+		MemberGeneralVo memberGeneralVo
+			= memberDao.memberGeneralInfoForm(generalId);
+		
+		return memberGeneralVo;
 	}
 	
 	//회원 삭제
-	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo) {
-		logger.info("MemberService.java, GeneralId : {}", memberGeneralVo.getGeneralId());
-		logger.info("MemberService.java, GeneralPw : {}", memberGeneralVo.getGeneralPw());
-		logger.info("MemberService.java, GeneralLevel : {}", memberGeneralVo.getGeneralLevel());
-		logger.info("MemberService.java, GeneralNick : {}", memberGeneralVo.getGeneralNick());
-		return memberDao.memberGeneralDelete(memberGeneralVo);
+	public void memberGeneralDelete(String generalId) {
+		System.out.println("02 memberGeneralDelete <-- MemberService.java");
+		System.out.println("generalId : " + generalId);
+		memberDao.memberGeneralDelete(generalId);	
 	}
 	//회원정보 수정 처리
 	public void memberGeneralUpdatePro(MemberGeneralVo memberGeneralVo) {

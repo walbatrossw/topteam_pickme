@@ -79,7 +79,7 @@
 		resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
 		SELECT
 		general_id as generalId,
-		general_pw as generalPw,
+		
 		general_nick as generalNick,
 		general_level as generalLevel,
 		general_date as generalDate,
@@ -94,15 +94,6 @@
 		</where>
 		LIMIT #{pageHelper.startRow}, #{pageHelper.linePerPage}
 	</select>
-	
-	<!-- MemberGeneralVO 삭제 쿼리는 db확인 -->
-	<delete id="memberGeneralDelete" parameterType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
-		DELETE FROM
-		tb_member_general
-		WHERE
-		general_id=#{generalId}
-	</delete>
-
 
 	<!-- MemberLinkedVo 로그인 미완료 -->
 	<insert id="insertMemberLinked" parameterType="com.cafe24.pickmetop.member.model.MemberLinkedVo">
@@ -133,5 +124,30 @@
 		WHERE
 		general_id=#{generalId}
 	</update>
+	
+	<select id="memberGeneralInfoForm"
+		parameterType="String"
+		resultType="com.cafe24.pickmetop.member.model.MemberGeneralVo">
+		
+	SELECT 
+		general_id AS generalId,
+		general_pw AS generalPw 
+	FROM 
+		tb_member_general
+	WHERE
+		general_id = #{generalId}
+	
+	</select>
+	
+	<!-- 회원 탈퇴처리 -->
+	<delete id="memberGeneralDelete"
+		parameterType="String">
+		
+		DELETE FROM 
+			tb_member_general 
+		WHERE 
+			general_id=#{generalId}
+	
+	</delete>
 
 </mapper>

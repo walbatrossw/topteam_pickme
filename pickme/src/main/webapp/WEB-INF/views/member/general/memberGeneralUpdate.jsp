@@ -12,12 +12,50 @@
 
 	$(document).ready(function () {
 		
+		var loginGeneralPw = $('#loginGeneralPw').val();		
+		
+		/* 수정버튼 클릭시 vallidation check 후 Form 데이터 전송 */
 		$('#updateBtn').click(function () {
-			$('#memberGeneralUpdateForm').submit();
+			
+			var originGeneralPw = $('#originGeneralPw').val();
+			var newGeneralPw = $('#newGeneralPw').val();
+			var newGeneralPwCheck = $('#newGeneralPwCheck').val();
+					
+			if(loginGeneralPw != originGeneralPw) {
+				alert("입력한 현재 비밀번호가 옳바르지 않습니다.")
+				$('#originGeneralPw').focus();
+			}else if(newGeneralPw != newGeneralPwCheck) {
+				alert("새로입력한 비밀번호가 일치하지 않습니다.")
+				$('#newGeneralPw').focus();
+			}else if(newGeneralPw == "" || newGeneralPwCheck=="") {
+				alert("변경할 비밀번호를 입력하세요.")
+				$('#newGeneralPw').focus();
+			}else {
+				$('#memberGeneralUpdateForm').submit();	
+			}
 		});
 		
+		/* 삭제버튼 클릭시 vallidation check 후 Form 데이터 전송 */
+		$('#deleteBtn').click(function () {
+			var deleteGeneralPw = $('#deleteGeneralPw').val();
+			var result = confirm("정말탈퇴하시겠습니까?")
+			
+			if(loginGeneralPw != deleteGeneralPw) {
+				alert("옳바른 비밀번호를 입력해주세요.")
+			}else if(result){
+				alert("탈퇴되었습니다.")
+				$('#memberGeneralDelteForm').submit();		
+			}		
+		});		
+		
+		/* 뒤로가기 버튼 */
+		$('#returnBtn1').click(function () {
+			history.go(-1);
+		});
+		$('#returnBtn2').click(function () {
+			history.go(-1);
+		});
 	});
-
 </script>
 	<title>회원정보</title>
 </head>
@@ -33,7 +71,10 @@
 			<fieldset>
 				<legend>내정보 수정</legend>
  	  				
- 	  				<input hidden="generalId" name="generalId" value="${sessionScope.generalId}">
+ 	  				<!-- Hidden -->
+ 	  				<input type="hidden" id="loginGeneralPw" value="${memberGeneralInfo.generalPw }">
+ 	  				<input type="hidden" id="loginGeneralId" name="generalId" value="${memberGeneralInfo.generalId}">
+ 	  				
  	  				<div class="form-group">
  						 <label class="col-md-4 control-label">아이디</label> 
  						 	<div class="col-md-4"> 
@@ -43,19 +84,19 @@
 					<div class="form-group">		
 						<label class="col-md-4 control-label">현재 비밀번호</label>  
 					<div class="col-md-4">
-						<input type=password name=generalPw1>
+						<input type=password id="originGeneralPw">
  					</div>	
  						</div>			
 					<div class="form-group">		
 						<label class="col-md-4 control-label">비밀번호</label>  
 					<div class="col-md-4">
-						<input type=password name=generalPw>
+						<input type=password id="newGeneralPw" name=generalPw>
  					</div>	
  						</div>		
  					<div class="form-group">
  						<label class="col-md-4 control-label">비밀번호 확인</label>
  					<div class="col-md-4">
- 						<input type=password name="generalPw3">
+ 						<input type=password id="newGeneralPwCheck">
  					</div>
  						</div>
  					<div class="form-group">
@@ -73,12 +114,34 @@
  								<label class="col-md-4 control-label" for="signup_recruiter"></label>
  							<div class="col-md-4">
  								<input type="button" value="수정" id="updateBtn">
- 									<a href="javascript:history.go(-1)">[뒤로]</a>&nbsp;&nbsp;
+ 								<input type="button" value="뒤로가기" id="returnBtn1">&nbsp;&nbsp;
  							</div>
  						</div>		
  						
- 						<legend>탈퇴 하기</legend>
- 								
+ 						<legend>회원 탈퇴</legend>
+ 						<form id="memberGeneralDelteForm" class="form-horizontal" action="/memberGeneralDelete" method="post">
+ 						
+ 						<!-- Hidden -->
+ 						<input type="hidden" id="loginGeneralPw" value="${memberGeneralInfo.generalPw }">
+ 	  					<input type="hidden" id="loginGeneralId" name="generalId" value="${memberGeneralInfo.generalId}">
+ 							
+ 						<div class="form-group">
+	 						<label class="col-md-4 control-label">회원탈퇴</label>
+	 						<div class="col-md-4">
+	 							<!-- Enter키 막기 -->
+	 							<input style="VISIBILITY: hidden; WIDTH: 0px">
+	 							<input type="password" id="deleteGeneralPw" name="generalPw" placeholder="비밀번호 입력">
+						 	</div>
+						</div>
+ 						</form>	
+ 							
+ 						<div class="form-group">
+ 							<label class="col-md-4 control-label" for="signup_recruiter"></label>
+ 							<div class="col-md-4">
+ 								<input type="button" value="탈퇴" id="deleteBtn">
+ 								<input type="button" value="뒤로가기" id="returnBtn2">&nbsp;&nbsp;
+ 							</div>
+ 						</div>	
  					</div>
  				</div>
  			</body>

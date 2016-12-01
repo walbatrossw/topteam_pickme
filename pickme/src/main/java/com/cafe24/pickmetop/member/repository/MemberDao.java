@@ -58,15 +58,20 @@ public class MemberDao {
 		return sqlSessionFactoryMember.selectOne(NS+".selectTotalCount");
 	}
 	
-	//회원정보 변경
-	public int memberGeneralUpdate(MemberGeneralVo memberGeneralVo){
-		logger.info("memberGeneralUpdate() MemberDao.java");
-		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralUpdate", memberGeneralVo);
+	//내정보 누르면 업데이트및 탈퇴 화면
+	public MemberGeneralVo memberGeneralInfoForm(String generalId){
+		//logger.info("memberGeneralUpdate() MemberDao.java");
+		System.out.println("03 memberGeneralInfoForm <-- MemberDao.java");
+		System.out.println("generalId : " + generalId);
+		
+		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralInfoForm", generalId);
 	
 	}
 	// 회원정보 삭제
-	public int memberGeneralDelete(MemberGeneralVo memberGeneralVo){
-		return sqlSessionFactoryMember.selectOne(NS+".memberGeneralDelete", memberGeneralVo);
+	public void memberGeneralDelete(String generalId){
+		System.out.println("03 memberGeneralDelete <-- MemberDao.java");
+		System.out.println("generalId : " + generalId);
+		sqlSessionFactoryMember.delete(NS+".memberGeneralDelete", generalId);
 	}
 	
 	public void memberGeneralUpdatePro(MemberGeneralVo memberGeneralVo) {

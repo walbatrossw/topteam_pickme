@@ -54,7 +54,7 @@ $(document).ready(function(){
       					<li><a href="/memberGeneralLogin">로그인</a>
       				</c:when>	
          			<c:otherwise>
-      					<li><a href="/general/memberGeneralUpdate?generalId=${sessionScope.generalId}">내 정보</a></li>
+      					<li><a href="/memberGeneralInfoForm?generalId=${sessionScope.generalId}">내 정보</a></li>
       					<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
       				 </c:otherwise>   				
       					</c:choose>
