@@ -142,7 +142,6 @@
 	<!-- 회원 탈퇴처리 -->
 	<delete id="memberGeneralDelete"
 		parameterType="String">
-		
 		DELETE FROM 
 			tb_member_general 
 		WHERE 
