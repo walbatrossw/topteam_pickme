@@ -78,7 +78,7 @@ $(document).ready(function(){
 	var hiddenReplyCd;
 	$('.updateReply').click(function(){
 		var index = $('.updateReply').index(this);
-		var oldReply = $('#hiddenReply').val();
+		var oldReply = $('.hiddenReply').eq(index).val();
 		hiddenReplyCd = $('.hiddenReplyCd').eq(index).val();
 		$('.replyUpdateForm').eq(index).replaceWith(
 				'<table>'
@@ -185,7 +185,7 @@ $(document).ready(function(){
 		var hiddenFreeboardCd = $(this).attr("value");
 		//북마크가 하나도 없을경우 모두 빈별을 보여준다
 		if(listOfBookmark.length==0){
-			 $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:3em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty"></a>');
+			 $('.bookmarkSpan').eq(order).html('<a href="/freeboardbookmarkInsert?freeboardCd='+hiddenFreeboardCd+'"style="font-size:2em;color: orange;" class="bookmark empty glyphicon glyphicon-star-empty" data-trigger="hover" data-toggle="popover" data-content="북마크를 등록할수있어요!"></a>');
 		}else{
 			//북마크 리스트의 길이만큼 비교한다
 			for(var i=0; i<listOfBookmark.length; i++){
@@ -417,7 +417,7 @@ $(document).ready(function(){
 							<td width="750px">	
 								<p><span class="reply1">${replyMap.replyContent}</span>
 								<input type="hidden" value="${replyMap.replyCd}" class="hiddenReplyCd">
-								<input type="hidden" value="${replyMap.replyContent}" id="hiddenReply">
+								<input type="hidden" value="${replyMap.replyContent}" class="hiddenReply">
 							</td>
 							<td>		
 								<span>
