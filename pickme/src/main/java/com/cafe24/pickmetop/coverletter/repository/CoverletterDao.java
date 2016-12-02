@@ -17,6 +17,8 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleSaveVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 import com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo;
+import com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo;
+import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
 
 @Repository
 public class CoverletterDao {
@@ -79,30 +81,47 @@ public class CoverletterDao {
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace+".selectMemeberCoverletterArticleSaveRecord", mCletterCd);
 	}
 	
-	// 05_01 나의 정보페이지(마감임박채용공고10)
+	// 05_01 나의 정보페이지(마감임박채용공고리스트20)
 	public List<CoverletterCompanyJobInfoVo> selectCoverletterCompanyJobListForInfo(){
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectCoverletterCompanyJobListForInfo");
 	}
+	// 05_02 나의 정보페이지(관심채용리스트20)
 	public List<CoverletterBookmarkListVo> selectMyRecruitBookmarkListForInfo(String loginId){
 		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectMyRecruitBookmarkListForInfo", loginId);
 	}
+	// 05_03 나의 정보페이지(게시글리스트20)
+	public List<FreeboardVo> selectMyFreeboardWriteListForInfo(String loginId){
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectMyFreeboardWriteListForInfo", loginId);
+	}
+	// 05_04 나의 정보페이지(관심게시글리스트20)
+	public List<FreeboardBookmarkVo> selectMyFreeboardBookmarkListForInfo(String loginId){
+		return sqlSessionFactoryCoverletter.selectList(nameSpace+".selectMyFreeboardBookmarkListForInfo", loginId);
+	}
 	
-	
-	// 05_02 나의 정보페이지(나의자소서Count)
+	// 05_05 나의 정보페이지(나의자소서Count)
 	public ResumeCoverletterInfoCountVo selectMyCoverletterListCount(String loginId){
 		logger.info("나의자소서Count : {}", loginId.toString());
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyCoverletterListCount", loginId);
 	}
-	// 05_03 나의 정보페이지(나의 이력서Count)
+	// 05_06 나의 정보페이지(나의이력서Count)
 	public ResumeCoverletterInfoCountVo selectMyResumeListCount(String loginId){
-		logger.info("나의 이력서Count : {}", loginId.toString());
+		logger.info("나의이력서Count : {}", loginId.toString());
 		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyResumeListCount", loginId);
 	}
-	// 05_04 나의 정보페이지(나의채용북마크Count)
-	public ResumeCoverletterInfoCountVo selectMyRecruirLitCount(String loginId){
-		logger.info("나의 이력서Count : {}", loginId.toString());
-		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyRecruirLitCount", loginId);
+	// 05_07 나의 정보페이지(나의채용북마크Count)
+	public ResumeCoverletterInfoCountVo selectMyRecruitListCount(String loginId){
+		logger.info("나의채용북마크Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyRecruitListCount", loginId);
 	}
-	
+	// 05_08 나의 정보페이지(나의게시글Count)
+	public ResumeCoverletterInfoCountVo selectMyFreeboardWriteCount(String loginId){
+		logger.info("나의 이력서Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyFreeboardWriteCount", loginId);
+	}
+	// 05_08 나의 정보페이지(관심글Count)
+	public ResumeCoverletterInfoCountVo selectMyFreeboardBookmarkCount(String loginId){
+		logger.info("관심글Count : {}", loginId.toString());
+		return sqlSessionFactoryCoverletter.selectOne(nameSpace + ".selectMyFreeboardBookmarkCount", loginId);
+		}	
 	
 }

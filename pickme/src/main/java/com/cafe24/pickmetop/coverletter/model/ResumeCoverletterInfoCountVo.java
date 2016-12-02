@@ -5,7 +5,8 @@ public class ResumeCoverletterInfoCountVo {
 	private int myCoverletterCount;
 	private int myResumeCount;
 	private int myRecruitBookmarkCount;
-	private int myFreeBoardCount;
+	private int myFreeboardWriteCount;
+	private int myFreeboardBookmarkCount;
 	public String getLoginId() {
 		return loginId;
 	}
@@ -30,17 +31,24 @@ public class ResumeCoverletterInfoCountVo {
 	public void setMyRecruitBookmarkCount(int myRecruitBookmarkCount) {
 		this.myRecruitBookmarkCount = myRecruitBookmarkCount;
 	}
-	public int getMyFreeBoardCount() {
-		return myFreeBoardCount;
+	public int getMyFreeboardWriteCount() {
+		return myFreeboardWriteCount;
 	}
-	public void setMyFreeBoardCount(int myFreeBoardCount) {
-		this.myFreeBoardCount = myFreeBoardCount;
+	public void setMyFreeboardWriteCount(int myFreeboardWriteCount) {
+		this.myFreeboardWriteCount = myFreeboardWriteCount;
+	}
+	public int getMyFreeboardBookmarkCount() {
+		return myFreeboardBookmarkCount;
+	}
+	public void setMyFreeboardBookmarkCount(int myFreeboardBookmarkCount) {
+		this.myFreeboardBookmarkCount = myFreeboardBookmarkCount;
 	}
 	@Override
 	public String toString() {
 		return "ResumeCoverletterInfoCountVo [loginId=" + loginId + ", myCoverletterCount=" + myCoverletterCount
 				+ ", myResumeCount=" + myResumeCount + ", myRecruitBookmarkCount=" + myRecruitBookmarkCount
-				+ ", myFreeBoardCount=" + myFreeBoardCount + "]";
+				+ ", myFreeboardWriteCount=" + myFreeboardWriteCount + ", myFreeboardBookmarkCount="
+				+ myFreeboardBookmarkCount + "]";
 	}
 	
 }

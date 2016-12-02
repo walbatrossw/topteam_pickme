@@ -31,14 +31,27 @@ public class CoverletterController {
 	public String resumeCoverletterInfo(Model model, HttpSession session){
 		String loginId = (String) session.getAttribute("generalId");
 		Logger.info("Session : loginId {} " , loginId);
+		
 		model.addAttribute("companyJobCoverletterListForInfo", coverletterService.getCompanyJobCoverletterListForInfo());
-		Logger.info("companyJobCoverletterListForInfo" , model.toString());
 		model.addAttribute("myRecruitBookmarkListForInfo", coverletterService.getMyRecruitBookmarkListForInfo(loginId));
+		model.addAttribute("myFreeboardWriteListForInfo", coverletterService.getMyFreeboardWriteListForInfo(loginId));
+		model.addAttribute("myFreeboardBookmarkListForInfo", coverletterService.getMyFreeboardBookmarkListForInfo(loginId));
+		Logger.info("채용마감임박리스트 : {} " , coverletterService.getCompanyJobCoverletterListForInfo());
+		Logger.info("관심채용리스트  : {} " , coverletterService.getMyRecruitBookmarkListForInfo(loginId));
+		Logger.info("나의게시글리스트 : {} " , coverletterService.getMyFreeboardWriteListForInfo(loginId));
+		Logger.info("나의관심글리스트 : {} " , coverletterService.getMyFreeboardBookmarkListForInfo(loginId));
+		
 		model.addAttribute("myCoverletterListCount", coverletterService.getMyCoverletterListCount(loginId));
-		Logger.info("myCoverletterListCount" , model);
 		model.addAttribute("myResumeListCount", coverletterService.getMyResumeListCount(loginId));
-		Logger.info("myResumeListCount" , model);
-		model.addAttribute("myRecruitBookmarkListCount", coverletterService.getMyRecruirLitCount(loginId));
+		model.addAttribute("myRecruitListCount", coverletterService.getMyRecruitListCount(loginId));
+		model.addAttribute("myFreeboardWriteCount", coverletterService.getMyFreeboardWriteCount(loginId));
+		model.addAttribute("myFreeboardBookmarkCount", coverletterService.getMyFreeboardBookmarkCount(loginId));
+		Logger.info("나의자소서카운트 : {} " , coverletterService.getMyCoverletterListCount(loginId));
+		Logger.info("나의이력서카운트 : {} " , coverletterService.getMyResumeListCount(loginId));
+		Logger.info("나의관심채용카운트 : {} " , coverletterService.getMyRecruitListCount(loginId));
+		Logger.info("나의게시글카운트 : {} " , coverletterService.getMyFreeboardWriteCount(loginId));
+		Logger.info("나의관심글카운트 : {} " , coverletterService.getMyFreeboardBookmarkCount(loginId));
+		
 		if(loginId == null) {
 			return "/common/etc/loginCheck";
 		}

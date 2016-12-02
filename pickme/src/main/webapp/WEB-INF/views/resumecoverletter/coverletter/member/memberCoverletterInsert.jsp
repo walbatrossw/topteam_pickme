@@ -44,9 +44,17 @@
 			}	
 		});
 		
+		// 글자수 세기(글자수)
+		$(function() {
+		      $('#content').keyup(function (e){
+		          var content = $(this).val();
+		          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+		          $('#counter').html(content.length + '/300');
+		      });
+		      $('#content').keyup();
+		});
 		
-		
-		//글자수 세기
+		//글자수 세기(Byte)
 		$(function(){
 			$('textarea.content').keyup(function(){
 			bytesHandler(this);
@@ -64,10 +72,14 @@
 			return len;
 		}
 	
+		
 		function bytesHandler(obj){
 			var text = $(obj).val();
 			$('span.bytes').text(getTextLength(text));
 		}
+	
+		
+		
 		/* 항목 추가 및 삭제 */
 		// 항목추가하기
 		var articleNum = 0; 
@@ -280,7 +292,7 @@ function printPage(){
 																내용
 															</th>
 															<td>
-																<textarea class="form-control content" rows="8" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+																<textarea class="form-control content" id="content" rows="8" name="coverletterMemberArticleVoList[0].mCletterArticleContent" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
 															</td>
 														</tr>
 														<tr>
@@ -289,10 +301,7 @@ function printPage(){
 															</th>
 															<td>
 																<div>
-																	<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백포함) : 구현중
-																</div>
-																<div>
-																	<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백미포함) : 구현중
+																	<span class="bytes">0</span>byte /  <span id="counter">###</span>자 : (공백포함) : 구현중
 																</div>
 															</td>
 														</tr>

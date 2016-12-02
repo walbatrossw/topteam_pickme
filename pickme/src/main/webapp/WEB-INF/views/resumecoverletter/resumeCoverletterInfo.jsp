@@ -107,7 +107,7 @@
 	                                    <i class="fa fa-bookmark-o fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">${myRecruitBookmarkListCount.myRecruitBookmarkCount}</div>
+	                                    <div class="huge">${myRecruitListCount.myRecruitBookmarkCount}</div>
 	                                    <div>나의 관심 채용</div>
 	                                </div>
 	                            </div>
@@ -129,7 +129,7 @@
 	                                    <i class="fa fa-comments fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">13</div>
+	                                    <div class="huge">${myFreeboardWriteCount.myFreeboardWriteCount}</div>
 	                                    <div>나의 게시글</div>
 	                                </div>
 	                            </div>
@@ -151,7 +151,7 @@
 	                                    <i class="fa fa-comments fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">13</div>
+	                                    <div class="huge">${myFreeboardBookmarkCount.myFreeboardBookmarkCount}</div>
 	                                    <div>나의 관심글</div>
 	                                </div>
 	                            </div>
@@ -166,85 +166,141 @@
 	                    </div>
 	                </div>
 	            </div>
-	            <!-- /.row -->
 	            <div class="row">
-	                <div class="col-sm-5">
-	                    <div class="panel panel-primary">
-	                        <div class="panel-heading">
-	                            <i class="fa fa-bell fa-fw"></i> <strong>전체 채용 마감 임박 top10</strong>
-	                        </div>
-	                        <!-- /.panel-heading -->
-	                        <div class="panel-body">
-	                        	<div>
-	                            <table class="table table-striped table-bordered table-hover table-condensed" >
-		                        	<thead>
-		                                <tr>
-		                                    <th class="small">번호</th>
-											<th class="small">마감일</th>
-											<th class="small">채용명</th>
-											<th class="small">상세직무</th>
-										</tr>
-		                            </thead>
-		                            <tbody>
-		                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
-										<tr>
-											<td class="small">${i.count}</td>
-											<td class="small">${companyJobCoverletterListForInfo.recruitEnddate}</td>
-											<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
-											<td class="small">${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
-										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								</div>
-	                            <!-- /.list-group -->
-	                            <a href="/companyJobCoverletterList" class="btn btn-primary btn-block">모든 채용 공고 보기</a>
-	                        </div>
-	                        <!-- /.panel-body -->
-	                    </div>
-	                    <!-- /.panel -->
-	                </div>
-	                <div class="col-sm-5">
-	                    <div class="panel panel-yellow">
-	                        <div class="panel-heading">
-	                            <i class="fa fa-bell fa-fw"></i> <strong>나의 관심채용 마감 임박 top10</strong>
-	                        </div>
-	                        <!-- /.panel-heading -->
-	                        <div class="panel-body">
-	                        	<div>
-	                            <table class="table table-striped table-bordered table-hover table-condensed" >
-		                        	<thead>
-		                                <tr>
-		                                    <th class="small">번호</th>
-											<th class="small">마감일</th>
-											<th class="small">채용명</th>
-											<th class="small">상세직무</th>
-										</tr>
-		                            </thead>
-		                            <tbody>
-		                               	<c:forEach var="myRecruitBookmarkListForInfo" items="${myRecruitBookmarkListForInfo}" varStatus="i">
-										<tr>
-											<td class="small">${i.count}</td>
-											<td class="small">${myRecruitBookmarkListForInfo.recruitEnddate}</td>
-											<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${myRecruitBookmarkListForInfo.recruitJobCd}">${myRecruitBookmarkListForInfo.recruitName}</a></td>
-											<td class="small">${myRecruitBookmarkListForInfo.recruitJobJobdetail}</td>
-										</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								</div>
-	                            <!-- /.list-group -->
-	                            <a href="/companyJobCoverletterList" class="btn btn-warning btn-block">나의 관심 채용 전체 보기</a>
-	                        </div>
-	                        <!-- /.panel-body -->
-	                    </div>
-	                    <!-- /.panel -->
-	                </div>
-	                <!-- /.col-lg-4 -->
-	            </div>
-	            <!-- /.row -->
-	        </div>
-	        <!-- /#page-wrapper -->
-	</div>
+	            	<div class="row">
+		                <div class="col-sm-5">
+		                    <div class="panel panel-primary">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bell fa-fw"></i> <strong>전체 채용 마감 임박</strong>
+		                        </div>
+		                        <!-- /.panel-heading -->
+		                        <div class="panel-body">
+		                        	<div>
+		                            <table class="table table-striped table-bordered table-hover table-condensed" >
+			                        	<thead>
+			                                <tr>
+			                                    <th class="small">번호</th>
+												<th class="small">마감일</th>
+												<th class="small">채용명</th>
+												<th class="small">상세직무</th>
+											</tr>
+			                            </thead>
+			                            <tbody>
+			                               	<c:forEach var="companyJobCoverletterListForInfo" items="${companyJobCoverletterListForInfo}" varStatus="i">
+											<tr>
+												<td class="small">${i.count}</td>
+												<td class="small">${companyJobCoverletterListForInfo.recruitEnddate}</td>
+												<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${companyJobCoverletterListForInfo.recruitJobCd}">${companyJobCoverletterListForInfo.recruitName}</a></td>
+												<td class="small">${companyJobCoverletterListForInfo.recruitJobJobdetail}</td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									</div>
+		                            
+		                            <a href="/companyJobCoverletterList" class="btn btn-primary btn-block">모든 채용 공고 보기</a>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="col-sm-5">
+		                    <div class="panel panel-yellow">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bell fa-fw"></i> <strong>나의 관심채용 마감 임박</strong>
+		                        </div>
+		                        <div class="panel-body">
+		                        	<div>
+		                            <table class="table table-striped table-bordered table-hover table-condensed" >
+			                        	<thead>
+			                                <tr>
+			                                    <th class="small">번호</th>
+												<th class="small">마감일</th>
+												<th class="small">채용명</th>
+												<th class="small">상세직무</th>
+											</tr>
+			                            </thead>
+			                            <tbody>
+			                               	<c:forEach var="myRecruitBookmarkListForInfo" items="${myRecruitBookmarkListForInfo}" varStatus="i">
+											<tr>
+												<td class="small">${i.count}</td>
+												<td class="small">${myRecruitBookmarkListForInfo.recruitEnddate}</td>
+												<td class="small"><a href="/memberCoverletterInsert?recruitJobCd=${myRecruitBookmarkListForInfo.recruitJobCd}">${myRecruitBookmarkListForInfo.recruitName}</a></td>
+												<td class="small">${myRecruitBookmarkListForInfo.recruitJobJobdetail}</td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									</div>
+		                            <a href="/companyJobCoverletterList" class="btn btn-warning btn-block">나의 관심 채용 전체 보기</a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="row">   
+		                <div class="col-sm-5">
+		                    <div class="panel panel-red">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bell fa-fw"></i> <strong>나의 게시물</strong>
+		                        </div>
+		                        <div class="panel-body">
+		                        	<div>
+		                            <table class="table table-striped table-bordered table-hover table-condensed" >
+			                        	<thead>
+			                                <tr>
+			                                    <th class="small">번호</th>
+												<th class="small">제목</th>
+												<th class="small">등록일자</th>
+											</tr>
+			                            </thead>
+			                            <tbody>
+			                               	<c:forEach var="myFreeboardWriteListForInfo" items="${myFreeboardWriteListForInfo}" varStatus="i">
+											<tr>
+												<td class="small">${i.count}</td>
+												<td class="small">${myFreeboardWriteListForInfo.freeboardTitle}</td>
+												<td class="small">${myFreeboardWriteListForInfo.freeboardRegdate}</td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									</div>
+		                            <a href="/companyJobCoverletterList" class="btn btn-danger btn-block">나의 게시물 전체 보기</a>
+		                        </div>
+		                    </div>
+		            	</div>
+		            	<div class="col-sm-5">
+		                    <div class="panel panel-green">
+		                        <div class="panel-heading">
+		                            <i class="fa fa-bell fa-fw"></i> <strong>나의 관심글</strong>
+		                        </div>
+		                        <div class="panel-body">
+		                        	<div>
+		                            <table class="table table-striped table-bordered table-hover table-condensed" >
+			                        	<thead>
+			                                <tr>
+			                                    <th class="small">번호</th>
+												<th class="small">제목</th>
+												<th class="small">글 등록일자</th>
+												<th class="small">북마크 등록일자</th>
+											</tr>
+			                            </thead>
+			                            <tbody>
+			                               	<c:forEach var="myFreeboardBookmarkListForInfo" items="${myFreeboardBookmarkListForInfo}" varStatus="i">
+											<tr>
+												<td class="small">${i.count}</td>
+												<td class="small">${myFreeboardBookmarkListForInfo.freeboardTitle}</td>
+												<td class="small">${myFreeboardBookmarkListForInfo.freeboardRegdate}</td>
+												<td class="small">${myFreeboardBookmarkListForInfo.freeboardBookmarkRegdate}</td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									</div>
+		                            <a href=/freeboardList?bookmark=bookmark class="btn btn-success btn-block">나의 관심글 전체 보기</a>
+		                        </div>
+		                    </div>
+		            	</div>
+	           		</div>
+	        	</div>
+		</div>
+	</div>	
 </body>
 </html>

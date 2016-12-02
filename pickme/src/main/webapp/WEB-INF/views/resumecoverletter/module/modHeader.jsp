@@ -28,6 +28,11 @@ $(document).ready(function(){
 					        <span class="icon-bar"></span>
 					    </button>
 	   					<a class="navbar-brand" href="/"><img src="/img/main/pickme_logo_small.png" width="120px;"></a>
+    					<c:if test="${sessionScope.generalLevel == 1}">
+	   						<div class="adminPage">
+    							<a href="/admin">관리자 PAGE</a>
+    						</div>
+   						</c:if>
     				</div>
     				<div class="collapse navbar-collapse" id="myNavbar">
 	    				<ul class="nav navbar-nav navbar-right">

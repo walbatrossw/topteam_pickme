@@ -519,7 +519,6 @@ function openPop() {
 								</div>
 								<div class="col-sm-10">
 									<h4><strong>개인신상정보</strong></h4>
-									${resumePersonal.personalCd}
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<th class="col-sm-3">한글이름</th>
@@ -593,7 +592,6 @@ function openPop() {
 								<div class="col-sm-12">
 									<h4><strong>대학교</strong></h4>
 									<c:forEach var="resumeUniveristy" items="${resumeUniveristy}" varStatus="i">
-									${resumeUniveristy.universityCd}
 									<div class="university">
 										<table class="table table-striped table-bordered table-hover table-condensed">
 											<tr>

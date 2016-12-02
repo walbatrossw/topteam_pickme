@@ -18,6 +18,8 @@ import com.cafe24.pickmetop.coverletter.model.CoverletterMemberArticleVo;
 import com.cafe24.pickmetop.coverletter.model.CoverletterMemberVo;
 import com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo;
 import com.cafe24.pickmetop.coverletter.repository.CoverletterDao;
+import com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo;
+import com.cafe24.pickmetop.freeboard.model.FreeboardVo;
 
 
 @Service
@@ -26,38 +28,55 @@ public class CoverletterService {
 	@Autowired
 	CoverletterDao coverletterDao;
 	
-	// 00 이력서 및 자기소개서 나의 정보페이지(마감임박채용공고10)
+	// 01 나의정보(마감임박채용공고리스트20)
 	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterListForInfo(){
 		return coverletterDao.selectCoverletterCompanyJobListForInfo();
 	}
-	
+	// 02 나의정보(관심채용리스트20)
 	public List<CoverletterBookmarkListVo> getMyRecruitBookmarkListForInfo(String loginId){
 		return coverletterDao.selectMyRecruitBookmarkListForInfo(loginId);
 	}
+	// 03 나의정보(게시글리스트20)
+	public List<FreeboardVo> getMyFreeboardWriteListForInfo(String loginId){
+		return coverletterDao.selectMyFreeboardWriteListForInfo(loginId);
+	}
+	// 04 나의정보(관심게시글리스트20)
+	public List<FreeboardBookmarkVo> getMyFreeboardBookmarkListForInfo(String loginId){
+		return coverletterDao.selectMyFreeboardBookmarkListForInfo(loginId);
+	}
 	
-	// 00 이력서 및 자기소개서 나의 정보페이지(나의자소서Count)
+	// 05 나의정보(나의자소서Count)
 	public ResumeCoverletterInfoCountVo getMyCoverletterListCount(String loginId){
 		return coverletterDao.selectMyCoverletterListCount(loginId);
 	}
-	// 00 이력서 및 자기소개서 나의 정보페이지(나의 이력서Count)
+	// 06 나의정보(나의이력서Count)
 	public ResumeCoverletterInfoCountVo getMyResumeListCount(String loginId){
 		return coverletterDao.selectMyResumeListCount(loginId);
 	}
-	// 00 이력서 및 자기소개서 나의 정보페이지(나의채용북마크Count)
-	public ResumeCoverletterInfoCountVo getMyRecruirLitCount(String loginId){
-		return coverletterDao.selectMyRecruirLitCount(loginId);
+	// 07 나의정보(나의채용북마크Count)
+	public ResumeCoverletterInfoCountVo getMyRecruitListCount(String loginId){
+		return coverletterDao.selectMyRecruitListCount(loginId);
 	}
-	// 01 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
+	// 08 나의 정보(나의게시글Count)
+	public ResumeCoverletterInfoCountVo getMyFreeboardWriteCount(String loginId){
+		return coverletterDao.selectMyFreeboardWriteCount(loginId);
+	}
+	// 08 나의정보(관심글Count)
+	public ResumeCoverletterInfoCountVo getMyFreeboardBookmarkCount(String loginId){
+		return coverletterDao.selectMyFreeboardBookmarkCount(loginId);
+	}
+	
+	// 09 자기소개서 리스트(회원이 직접 작성한 자기소개서 리스트)
 	public List<CoverletterMemberVo> getMemberCoverletterList(String loginId){
 		return coverletterDao.selectCoverletterMemberList(loginId);
 	}
 	
-	// 02 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
+	// 10 기업채용공고의 자기소개서 리스트(자기소개서를 검색이나 체크리스트 체크를 통해 입력화면으로 이동)
 	public List<CoverletterCompanyJobInfoVo> getCompanyJobCoverletterList(){
 		return coverletterDao.selectCoverletterCompanyJobList();
 	}
 	
-	// 03_01 자기소개서 입력화면(자기소개서이름(채용기업명+채용명+상세직무), 자기소개서 제출 마감일자, 채용직무의 자기소개서항목리스트)
+	// 11_01 자기소개서 입력화면(자기소개서이름(채용기업명+채용명+상세직무), 자기소개서 제출 마감일자, 채용직무의 자기소개서항목리스트)
 	public Map<String, Object> getCompanyOneJobCletter(String recruitJobCd){
 		Map<String, Object> companyOneJobMap = new HashMap<String, Object>();
 		companyOneJobMap.put("companyOneJobCletterInfo", coverletterDao.selectOneCletterCompanyJobInfo(recruitJobCd));
@@ -67,7 +86,7 @@ public class CoverletterService {
 		return companyOneJobMap;
 	}
 	
-	// 03_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
+	// 12_02 자기소개서 입력처리(자기소개서 이름/마감시간/문항/내용)
 	public void addCoverletter(CoverletterMemberVo coverletterMember, 
 							CoverletterMemberArticleVo memberArticle,
 							CoverletterMemberArticleSaveVo saveRecord,
@@ -82,7 +101,7 @@ public class CoverletterService {
 		logger.info("saveRecord {}", saveRecord.toString());
 	}
 	
-	// 03_02 자기소개서 상세보기
+	// 13_02 자기소개서 상세보기
 	public Map<String, Object> getMemberCoverletter(String mCletterCd){
 		Map<String, Object> memberCoverletterMap = new HashMap<String, Object>();
 		memberCoverletterMap.put("memeberCoverletterInfo", coverletterDao.selectOneMemeberCoverletterInfo(mCletterCd));
@@ -94,7 +113,7 @@ public class CoverletterService {
 		return memberCoverletterMap;
 	}
 	
-	// 04_01 나의 자기소개서 & 이력서 메인
+	// 14_01 나의 자기소개서 & 이력서 메인
 	public Map<String, Object> getMemberInfo(String loginId){
 		return null;
 	}

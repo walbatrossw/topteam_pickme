@@ -8,7 +8,7 @@
 			(마감임박채용공고10/나의자소서Count/나의 이력서Count/나의채용북마크Count)
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
  -->
-	<!-- 마감임박채용공고10 -->  	
+	<!-- 마감임박채용공고리스트 최대 20개까지 (현재시간부터 마감임박순정렬 : 오름차순)-->  	
  	<select id="selectCoverletterCompanyJobListForInfo" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterCompanyJobInfoVo">
 	SELECT
 		rc.recruit_name AS recruitName,
@@ -34,15 +34,15 @@
 	WHERE 
 		CURRENT_TIMESTAMP <![CDATA[ <= ]]> rc.recruit_enddate
 	ORDER BY rc.recruit_enddate ASC
-	LIMIT 10
+	LIMIT 20
 	</select>
 	<!-- //마감임박채용공고10 -->
 	
-	<!-- 나의 관심채용 마감임박순으로 정렬 최대 10개까지 -->
+	<!-- 나의 관심채용리스트 최대 20개까지(현재시간부터 마감임박순정렬 : 오름차순) -->
 	<select id="selectMyRecruitBookmarkListForInfo" resultType="com.cafe24.pickmetop.coverletter.model.CoverletterBookmarkListVo">
 	SELECT 
 		
-		rcb.member_custom_bookmark_cd AS memberCustomBookmarkCd, 
+		rcb.member_custom_bookmark_cd AS memberCustomBookmarkCd,
 		rcb.login_id AS loginId, 
 		rcb.recruit_company_cd AS recruitCompanyCd,
 		rc.recruit_name AS recruitName,
@@ -58,13 +58,49 @@
 	LEFT JOIN tb_company_info AS ci on ci.company_cd = rc.company_cd
 	
 	WHERE rcb.login_id = #{loginId}
-	
 	AND CURRENT_TIMESTAMP <![CDATA[ <= ]]> rc.recruit_enddate
 	
 	ORDER BY rc.recruit_enddate ASC
 	LIMIT 20
 	</select>
-	<!-- //나의 관심채용 마감임박순으로 정렬 최대 10개까지 -->
+	<!-- //나의 관심채용리스트 최대 10개까지(현재시간부터 마감임박순정렬: 오름차순) -->
+	
+	<!-- 나의 게시글리스트 최대 20개까지(최근등록일순정렬: 오름차순) -->
+	<select id="selectMyFreeboardWriteListForInfo" parameterType="String" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardVo">
+	SELECT 
+		fb.freeboard_cd AS freeboardCd, 
+		fb.login_id AS loginId,
+		DATE_FORMAT(fb.freeboard_regdate, '%Y-%m-%d %H:%i') as freeboardRegdate,  
+		fb.freeboard_title AS freeboardTitle, 
+		fb.freeboard_content AS freeboardContent, 
+		fb.freeboard_nick AS freeboardNick, 
+		fb.freeboard_cate_cd AS freeboardCateCd
+	FROM tb_freeboard AS fb
+	WHERE fb.login_id = #{loginId}
+	ORDER BY fb.freeboard_regdate DESC
+	LIMIT 20
+	</select>
+	<!-- /나의 게시글리스트 최대 20개까지 -->
+	
+	
+	<!-- 나의 관심게시글리스트 최대 20개까지(최근등록일순 정렬: 오름차순)--> 
+	<select id="selectMyFreeboardBookmarkListForInfo" parameterType="String" resultType="com.cafe24.pickmetop.freeboard.model.FreeboardBookmarkVo">
+	SELECT 
+		fbbm.freeboard_bookmark_cd AS freeboardBookmarkCd, 
+		fbbm.freeboard_cd AS freeboardCd, 
+		fbbm.login_id AS loginId,
+		DATE_FORMAT(fbbm.freeboard_bookmark_regdate, '%Y-%m-%d %H:%i') as freeboardBookmarkRegdate,
+		fb.freeboard_title AS freeboardTitle,
+		fb.freeboard_content AS freeboardContent,
+		fb.freeboard_regdate AS freeboardRegdate
+	FROM tb_freeboard_bookmark AS fbbm
+	LEFT JOIN tb_freeboard AS fb ON fb.freeboard_cd = fbbm.freeboard_cd
+	WHERE fbbm.login_id = #{loginId}
+	ORDER BY fbbm.freeboard_bookmark_regdate DESC
+	LIMIT 20
+	</select>
+	<!-- /나의 관심게시글리스트 최대 20개까지 --> 
+	
 	
 	<!-- 나의자소서Count -->
 	<select id="selectMyCoverletterListCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
@@ -72,9 +108,9 @@
 		COUNT(*) AS myCoverletterCount
 	FROM tb_cletter_member
 	WHERE 
-		login_id = #{loginId};
+		login_id = #{loginId}
 	</select>
-	<!-- //나의자소서Count -->   
+	<!-- /나의자소서Count -->   
 	
 	<!-- 나의 이력서 Count --> 
 	<select id="selectMyResumeListCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
@@ -82,21 +118,39 @@
 		COUNT(*) AS myResumeCount
 	FROM tb_resume
 	WHERE 
-		login_id = #{loginId};
+		login_id = #{loginId}
 	</select>
-	<!-- // 나의 이력서 Count -->
+	<!-- /나의 이력서 Count -->
 	
 	<!-- 나의 채용북마크 Count --> 
-	<select id="selectMyRecruirLitCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
+	<select id="selectMyRecruitListCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
 	SELECT 
 		COUNT(*) AS myRecruitBookmarkCount
 	FROM tb_recruit_company_bookmark
 	WHERE 
-		login_id = #{loginId};
+		login_id = #{loginId}
 	</select>
-	<!-- // 나의 채용북마크 Count -->  
+	<!-- /나의 채용북마크 Count -->  
+	
+	<!-- 나의 게시글 Count -->
+	<select id="selectMyFreeboardWriteCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
+	SELECT 
+		COUNT(*) AS myFreeboardWriteCount
+	FROM tb_freeboard
+	WHERE 
+		login_id = #{loginId}
+	</select>
+	<!-- /나의 게시글 Count -->
 
-
+	<!-- 나의 관심글 Count -->
+	<select id="selectMyFreeboardBookmarkCount" parameterType="String" resultType="com.cafe24.pickmetop.coverletter.model.ResumeCoverletterInfoCountVo">
+	SELECT 
+		COUNT(*) AS myFreeboardBookmarkCount
+	FROM tb_freeboard
+	WHERE 
+		login_id = #{loginId}
+	</select>
+	<!-- /나의 게시글 Count -->
 <!-- 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ	
 					01	회원자소서 리스트	: 리스트페이지, 모달페이지
