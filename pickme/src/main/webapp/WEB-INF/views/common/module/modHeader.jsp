@@ -34,6 +34,11 @@ $(document).ready(function(){
 					        <span class="icon-bar"></span>
 					    </button>
 	   					<a class="navbar-brand" href="/"><img src="/img/main/pickme_logo_small.png" width="120px;"></a>
+	   					<c:if test="${sessionScope.generalLevel == 1}">
+	   						<div class="adminPage">
+    							<a href="/admin">관리자 PAGE</a>
+    						</div>
+   						</c:if>
     				</div>
     				<div class="collapse navbar-collapse" id="myNavbar">
 	    				<ul class="nav navbar-nav navbar-right">
@@ -48,16 +53,16 @@ $(document).ready(function(){
 						            <li><a href="/interview/companyInterviewListAllow">면접후기</a></li>
 						        </ul>
 	      					<li class="hiddenNavWrap">
-      					<c:choose>
-      			    <c:when test="${empty sessionScope.generalId}">
-      					<li><a href="/memberGeneralInsert">회원가입</a>
-      					<li><a href="/memberGeneralLogin">로그인</a>
-      				</c:when>	
-         			<c:otherwise>
-      					<li><a href="/memberGeneralInfoForm?generalId=${sessionScope.generalId}">내 정보</a></li>
-      					<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
-      				 </c:otherwise>   				
-      					</c:choose>
+	      					<c:choose>
+	      			    		<c:when test="${empty sessionScope.generalId}">
+	      							<li><a href="/memberGeneralInsert">회원가입</a>
+	      							<li><a href="/memberGeneralLogin">로그인</a>
+	      						</c:when>	
+	         					<c:otherwise>
+	      							<li><a href="/memberGeneralInfoForm?generalId=${sessionScope.generalId}">내 정보</a></li>
+	      							<li><a href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a></li>
+	      				 		</c:otherwise>   				
+	      					</c:choose>
 	      				</ul>
   					</div>
   				</div>

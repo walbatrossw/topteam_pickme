@@ -42,10 +42,6 @@
 						<a class="companyInfoMain" href="/"><img
 							src="/img/main/pickme_logo.png" width="200px;"></a>
 					</h1>
-					<h1 class="adminPage">
-						<a class="companyInfoMain" href="/admin"><strong>관리자
-								PAGE</strong></a>
-					</h1>
 					<ul class="menu">
 						<li><a href="/diary">채용공고</a>
 							<div class="depth2">

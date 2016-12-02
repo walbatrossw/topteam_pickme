@@ -164,9 +164,7 @@ public class MemberController {
 			 session.setAttribute("generalId", linkedId);
 			 session.setAttribute("generalNick", linkedNick);
 			 return "/index";
-		 }
-		 
-		
+		 }	
 	 }
 	
 }

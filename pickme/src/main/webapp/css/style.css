@@ -5,7 +5,17 @@ body {
 .mainmenu{
 	margin-bottom: 30px;
 } 
-
+.adminPage{
+	padding-top: 20px;
+	float: left;
+}
+.adminPage a{
+	color: gray;
+}
+.adminPage a:hover{
+	color: white;
+	text-decoration: none;
+}
 /*로그인 모달*/
 #loginModal {
 	font-family: 'Hanna', serif;
