@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cafe24.pickmetop.commons.PageHelper;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
+import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 import com.cafe24.pickmetop.member.repository.MemberDao;
 
 
@@ -110,6 +111,16 @@ public class MemberService {
 	//회원정보 수정 처리
 	public void memberGeneralUpdatePro(MemberGeneralVo memberGeneralVo) {
 		memberDao.memberGeneralUpdatePro(memberGeneralVo);
+	}
+	
+	//연동회원 등록
+	public void memberLinkedInsert(String linkedId, String linkedNick){
+		if(memberDao.memberLinkedSelectBylinkedId(linkedId) == 0){
+			MemberLinkedVo memberLinkedVo = new MemberLinkedVo();
+			memberLinkedVo.setLinkedId(linkedId);
+			memberLinkedVo.setLinkedNick(linkedNick);
+			memberDao.memberLinkedInsert(memberLinkedVo);
+		}
 	}
 }
 			

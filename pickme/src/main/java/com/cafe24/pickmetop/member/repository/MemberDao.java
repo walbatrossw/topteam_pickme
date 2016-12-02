@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.cafe24.pickmetop.member.model.MemberGeneralVo;
+import com.cafe24.pickmetop.member.model.MemberLinkedVo;
 
 @Repository
 public class MemberDao {
@@ -76,6 +77,15 @@ public class MemberDao {
 	
 	public void memberGeneralUpdatePro(MemberGeneralVo memberGeneralVo) {
 		sqlSessionFactoryMember.update(NS+".memberGeneralUpdatePro", memberGeneralVo);
+	}
+	
+	//연동회원 등록
+	public int memberLinkedInsert(MemberLinkedVo memberLinkedVo){
+		return sqlSessionFactoryMember.insert(NS + ".memberLinkedInsert", memberLinkedVo);
+	}
+	//연동회원 아이디 중복검사
+	public int memberLinkedSelectBylinkedId(String linkedId){
+		return sqlSessionFactoryMember.selectOne(NS + ".memberLinkedSelectBylinkedId", linkedId);
 	}
 
 }		

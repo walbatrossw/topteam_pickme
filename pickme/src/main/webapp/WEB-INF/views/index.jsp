@@ -8,7 +8,6 @@
 <link href="/css/modern-business.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="/js/naverapi/naverLogin_implicit-1.0.2.js"></script>
 <!-- <script src="/js/jquery.js"></script> -->
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.min.js"></script>
@@ -18,21 +17,9 @@
 			interval : 5000
 		//changes the speed
 		}); */
+		console.log("${generalId}");
 		gnb_menu();				
 	});
-	<!-- 네이버아디디로로그인 Callback페이지 처리 Script -->
-	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-	
-	// 네이버 사용자 프로필 조회
-	var naver_id_login = new naver_id_login("0u6HR6yd6PJIE4qoF9Rh", "http://localhost/");
-		// 접근 토큰 값 출력
-		alert(naver_id_login.oauthParams.access_token);
-
-	naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	function naverSignInCallback() {
-		location.href = "/linkedLogin?linkedId="+naver_id_login.getProfileData('email')+"&linkedNick=" + naver_id_login.getProfileData('nickname');
-	}
-
 	function gnb_menu() {
 		$(".menu").mouseenter(function() {
 			$("#head_lwrap").addClass("on");

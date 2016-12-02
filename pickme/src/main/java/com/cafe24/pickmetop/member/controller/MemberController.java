@@ -152,15 +152,21 @@ public class MemberController {
 		 
 		 return "redirect:/memberGeneralLogout";
 	 }
-	 // 연동아이디 등록
-	 @RequestMapping(value="/linkedLogin", method = RequestMethod.GET)
-	 public String linkedLogin(String linkedId, String linkedNick) {
+	 // 네이버 로그인 처리
+	 @RequestMapping(value="/linkedLogin")
+	 public String linkedLogin(String linkedId, String linkedNick, HttpSession session) {
+		 logger.info("linkedId : {}", linkedId);
+		 logger.info("linkedNick : {}", linkedNick);
+		 if(linkedId == null){
+			 return "/member/linked/memberLinkedLogin";
+		 }else{
+			 memberService.memberLinkedInsert(linkedId, linkedNick);
+			 session.setAttribute("generalId", linkedId);
+			 session.setAttribute("generalNick", linkedNick);
+			 return "/index";
+		 }
+		 
 		
-		 System.out.println("연동테스트");
-		 System.out.println("linkedId : " + linkedId);
-		 System.out.println("linkedNick : " + linkedNick);
-
-		 return "/index";
 	 }
 	
 }

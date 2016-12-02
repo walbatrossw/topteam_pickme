@@ -148,5 +148,29 @@
 			general_id=#{generalId}
 	
 	</delete>
+	<!-- 연동회원 등록처리 -->
+	<insert id="memberLinkedInsert" parameterType="com.cafe24.pickmetop.member.model.MemberLinkedVo">
+		INSERT INTO tb_member_linked(
+			linked_id,
+			linked_nick,
+			linked_regdate,
+			linked_logdate,
+			linked_state
+		)VALUES(
+			#{linkedId},
+			#{linkedNick},
+			now(),
+			now(),
+			1
+		)
+	</insert>
+	<select id="memberLinkedSelectBylinkedId" parameterType="String" resultType="Integer">
+		SELECT
+			IFNULL(COUNT(*),0)
+		FROM
+			tb_member_linked
+		WHERE
+			linked_id = #{linkedId}
+	</select>
 
 </mapper>
