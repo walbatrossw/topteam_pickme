@@ -237,7 +237,8 @@ function printPage(){
 											<button type="button" class="btn btn-warning btn-sm" onclick="window.printPage()">
 			                           			<i class="fa fa-print fa-fw"></i> 인쇄하기
 			                           		</button>
-											<a href="javascript:void(0);" class="btn btn-warning btn-sm" onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
+											<a href="javascript:void(0);" class="btn btn-warning btn-sm" 
+											onclick="window.open('http://164.125.7.61/speller/', 'pop01', 'top=10, left=10, width=855, height=720, status=no, menubar=no, toolbar=no, resizable=no');">
 												<i class="fa fa-check-square-o fa-fw"></i> 맞춤법 검사
 											</a>
 											<a href="javascript:void(0);" class="btn btn-warning btn-sm" id="memoAddBtn">
@@ -301,7 +302,7 @@ function printPage(){
 															</th>
 															<td>
 																<div>
-																	<span class="bytes">0</span>byte /  <span id="counter">###</span>자 : (공백포함) : 구현중
+																	<span class="bytes">0</span>byte /  <span id="counter">###</span>자 : (공백포함)
 																</div>
 															</td>
 														</tr>
@@ -340,10 +341,7 @@ function printPage(){
 															</td>
 															<td>
 																<div>
-																	<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백포함) : 구현중
-																</div>
-																<div>
-																	<span class="bytes">0</span>byte / <span class="bytes">0</span>자 : (공백미포함) : 구현중
+																	<span class="bytes">0</span>byte /  <span id="counter">###</span>자 : (공백포함)
 																</div>
 															</td>
 														</tr>

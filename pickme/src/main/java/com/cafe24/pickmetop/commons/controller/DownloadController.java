@@ -18,9 +18,9 @@ public class DownloadController {
         // KSMART LOCAL 작업시
 		//String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
 		// HOME LOCAL 작업시
-		String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+		//String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
 		//CAFE24 배포시
-        //String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
+        String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
         System.out.println("download <------------------------------");
         System.out.println("etcFileName : " + etcFileName);
     	

@@ -43,8 +43,8 @@ public class ResumeService {
 	//final String pdfDir = "C:\\Users\\DoubleS\\Desktop\\TeamProject\\Workspace\\Git\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
 	
 	/*KSMART LOCAL*/
-	final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
-	final String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
+	//final String imgDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\photo";
+	//final String pdfDir = "C:\\Users\\202-09\\Desktop\\PickMe_Workspace\\TeamGit\\topteam_pickme\\pickme\\src\\main\\webapp\\upload\\resumefile\\portfolio";
 	
 	// 01_이력서 입력
 	@Transactional
@@ -65,8 +65,8 @@ public class ResumeService {
 			HttpSession session){
 		
 		/*CAFE24 배포시(사진 및 포트폴리오 저장)*/
-		//final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
-		//final String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
+		final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
+		final String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
 		
 		/****이력서 증명사진 입력****/
 		
@@ -188,8 +188,8 @@ public class ResumeService {
 			String resumeCd){
 
 		/*CAFE24 배포시(사진 및 포트폴리오 저장)*/
-		//final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
-		//final String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
+		final String imgDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/photo";
+		final String pdfDir = request.getSession().getServletContext().getRealPath("/")+"upload/resumefile/portfolio";
 		
 		/****이력서 증명사진 수정****/
 		
